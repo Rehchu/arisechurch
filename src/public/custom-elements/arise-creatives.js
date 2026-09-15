@@ -157,6 +157,14 @@ function acrEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* Arise Church speed: ask Wix for a resized copy (longest side at most w, format picked per browser). */
+function acrImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 function initials(name) {
   const parts = String(name || '').trim().split(/\s+/);
   return parts.slice(0, 2).map(function (p) { return p.charAt(0).toUpperCase(); }).join('');
@@ -167,7 +175,7 @@ class AriseCreatives extends HTMLElement {
     if (this._b) return;
     this._b = true;
 
-    if (!document.getElementById('acr-fonts')) {
+    if (!document.getElementById('acr-fonts') && !document.querySelector('link[href="' + ACR_FONTS + '"]')) {
       const l = document.createElement('link');
       l.id = 'acr-fonts'; l.rel = 'stylesheet'; l.href = ACR_FONTS;
       document.head.appendChild(l);
@@ -214,7 +222,8 @@ class AriseCreatives extends HTMLElement {
       ? '<div class="depts" data-cms-source="CreativeDepartments">' + depts.map(function (d, i) {
           const n = String(i + 1).padStart(2, '0');
           const inner =
-            (d.groupPhoto ? '<img src="' + E(d.groupPhoto) + '" alt="' + E(d.name) + '">' : '') +
+            (d.groupPhoto ? '<img src="' + E(acrImg(d.groupPhoto, 1200)) + '" alt="' + E(d.name) + '"' +
+              (i >= 3 ? ' loading="lazy" decoding="async"' : '') + '>' : '') +
             '<span class="d__n">' + n + '</span>' +
             '<div class="d__t"><h3>' + E(d.name) + '</h3>' +
             (d.tagline ? '<span>' + E(d.tagline) + '</span>' : '') + '</div>';
@@ -268,10 +277,11 @@ class AriseCreatives extends HTMLElement {
     });
 
     const cards = team.length
-      ? '<div class="team" data-cms-source="CreativeMembers">' + team.map(function (m) {
+      ? '<div class="team" data-cms-source="CreativeMembers">' + team.map(function (m, i) {
           return '<div class="m">' +
             (m.photo
-              ? '<div class="m__ph"><img src="' + E(m.photo) + '" alt="' + E(m.name) + '"></div>'
+              ? '<div class="m__ph"><img src="' + E(acrImg(m.photo, 1200)) + '" alt="' + E(m.name) + '"' +
+                ((dept.groupPhoto || i >= 4) ? ' loading="lazy" decoding="async"' : '') + '></div>'
               : '<div class="m__init">' + E(initials(m.name)) + '</div>') +
             '<div class="m__b">' +
               (m.role ? '<span class="m__r">' + E(m.role) + '</span>' : '') +
@@ -303,7 +313,7 @@ class AriseCreatives extends HTMLElement {
 
         (dept.groupPhoto
           ? '<section class="sect" style="padding-bottom:0"><div class="shell">' +
-            '<div class="group" data-cms-source="CreativeDepartments"><img src="' + E(dept.groupPhoto) + '" alt="' +
+            '<div class="group" data-cms-source="CreativeDepartments"><img src="' + E(acrImg(dept.groupPhoto, 2000)) + '" alt="' +
             E(dept.name) + ' team"></div></div></section>'
           : '') +
 
@@ -350,8 +360,9 @@ class AriseCreatives extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = Object.prototype.hasOwnProperty.call(map, k) ? (map[k] || {}) : {};
       if (v.image) {
-        if (el.tagName === 'IMG') el.src = v.image;
-        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        const w = Number(el.getAttribute('data-ciw')) || 1600;
+        if (el.tagName === 'IMG') el.src = acrImg(v.image, w);
+        else el.style.backgroundImage = 'url("' + String(acrImg(v.image, w)).replace(/["\\]/g, '') + '")';
       }
     });
   }

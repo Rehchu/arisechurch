@@ -238,8 +238,17 @@ function aabFocusables(m) {
     function (el) { return !el.disabled && el.offsetParent !== null; });
 }
 
+/* Arise Church photos: ask Wix for a resized copy (whole image, longest side at most w,
+   AVIF/WebP picked per browser). Anything that is not a plain wixstatic photo is left alone. */
+function aabImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 function injectHead() {
-  if (!document.getElementById('ap-about-fonts')) {
+  if (!document.getElementById('ap-about-fonts') && !document.querySelector('link[href="' + FONTS + '"]')) {
     const l = document.createElement('link');
     l.id = 'ap-about-fonts'; l.rel = 'stylesheet'; l.href = FONTS;
     document.head.appendChild(l);
@@ -408,8 +417,9 @@ class AriseAbout extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = has(k) ? map[k] : null;
       if (v && v.image) {
-        if (el.tagName === 'IMG') el.src = v.image;
-        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        const img = aabImg(v.image, Number(el.getAttribute('data-ciw')) || 1600);
+        if (el.tagName === 'IMG') el.src = img;
+        else el.style.backgroundImage = 'url("' + String(img).replace(/["\\]/g, '') + '")';
       }
     });
   }

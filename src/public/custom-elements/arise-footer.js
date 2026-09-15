@@ -78,6 +78,15 @@ const SOCIAL = [
    'M18.2 2.3h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9.1L.9 2.3h7l4.8 6.4zm-1.2 17.9h1.9L7.1 4.2H5z']
 ];
 
+/* Arise Church speed fix: serve plain Wix media photos resized by Wix (whole image
+   kept, longest side at most w, AVIF/WebP picked per browser). Anything else is left alone. */
+function aftImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 function aftTrimDay(label, value) { var m = /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)\b[\s,:\-\u2013\u00b7]*/i.exec(value || ''); return (m && String(label || '').toLowerCase().indexOf(m[1].toLowerCase()) > -1) ? value.slice(m[0].length) : value; }
 
 class AriseFooter extends HTMLElement {
@@ -88,7 +97,7 @@ class AriseFooter extends HTMLElement {
     if (this._built) return;
     this._built = true;
 
-    if (!document.getElementById('aft-fonts')) {
+    if (!document.getElementById('aft-fonts') && !document.querySelector('link[href="' + AFT_FONTS + '"]')) {
       const l = document.createElement('link');
       l.id = 'aft-fonts'; l.rel = 'stylesheet'; l.href = AFT_FONTS;
       document.head.appendChild(l);
@@ -182,8 +191,9 @@ class AriseFooter extends HTMLElement {
         const k = el.getAttribute('data-ci');
         const v = has(k) ? (map[k] || {}) : {};
         if (v.image) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+          const w = Number(el.getAttribute('data-ciw')) || 1600;
+          if (el.tagName === 'IMG') el.src = aftImg(v.image, w);
+          else el.style.backgroundImage = 'url("' + String(aftImg(v.image, w)).replace(/["\\]/g, '') + '")';
         }
       });
       /* labelled rows: drop a leading day name the label already shows */

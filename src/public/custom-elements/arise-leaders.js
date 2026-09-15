@@ -250,6 +250,20 @@ function aldEsc(s) {
     .replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
+/* Arise Church speed: ask Wix for a resized copy (longest side <= w, AVIF/WebP per browser).
+   Anything that is not a plain static.wixstatic.com media URL (including an already
+   resized one) is returned unchanged, so calling it twice is harmless. */
+function aldImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
+/* Arise Church speed: the built-in leader photos use the resized copies too
+   (CMS rows are resized in people() before they are escaped). */
+LEADERS.forEach(function (l) { l.photo = aldImg(l.photo, 1200); });
+
 function injectHead() {
   if (!document.getElementById('ap-leaders-fonts')) {
     const l = document.createElement('link');
@@ -281,7 +295,7 @@ class AriseLeaders extends HTMLElement {
       if (!Array.isArray(d) || !d.length) return LEADERS;
       return d.map(function (l) {
         return { name: aldEsc(l.name), role: aldEsc(l.role), bio: aldEsc(l.bio),
-                 photo: aldEsc(l.photo), feat: !!l.featured };
+                 photo: aldEsc(aldImg(l.photo, 1200)), feat: !!l.featured };
       });
     } catch (e) {
       console.error('arise-leaders: bad data-leaders JSON', e);
@@ -313,7 +327,7 @@ class AriseLeaders extends HTMLElement {
 
     const cards = '<div class="lead__grid">' + rest.map(l =>
       '<div class="lead__c">' +
-        '<div class="lead__ph"><img src="' + l.photo + '" alt="' + l.name.replace(/&[a-z]+;/g,'') + '"></div>' +
+        '<div class="lead__ph"><img src="' + l.photo + '" alt="' + l.name.replace(/&[a-z]+;/g,'') + '" loading="lazy" decoding="async"></div>' +
         '<div class="lead__b">' +
           '<span class="lead__role">' + l.role + '</span>' +
           '<h2>' + l.name + '</h2>' +
@@ -366,8 +380,9 @@ class AriseLeaders extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = has(k) ? map[k] : null;
       if (v && v.image) {
-        if (el.tagName === 'IMG') el.src = v.image;
-        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        const w = Number(el.getAttribute('data-ciw')) || 1600;
+        if (el.tagName === 'IMG') el.src = aldImg(v.image, w);
+        else el.style.backgroundImage = 'url("' + String(aldImg(v.image, w)).replace(/["\\]/g, '') + '")';
       }
     });
   }

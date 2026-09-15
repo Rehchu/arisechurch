@@ -233,6 +233,15 @@ function amnEsc(s) {
     .replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
+/* Arise Church speed: ask Wix for a resized copy (longest side <= w, AVIF/WebP per browser).
+   Anything that is not a plain static.wixstatic.com media URL is returned unchanged. */
+function amnImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 function injectHead() {
   if (!document.getElementById('ap-min-fonts')) {
     const l = document.createElement('link');
@@ -280,8 +289,10 @@ class AriseMinistries extends HTMLElement {
   }
 
   build() {
-    const tiles = this.list().map(m => {
-      const inner = '<img src="' + amnEsc(m.img) + '" alt="' + amnEsc(m.title) + '">' +
+    const tiles = this.list().map((m, i) => {
+      /* first four tiles are on the first screen; the rest load as they scroll in */
+      const inner = '<img src="' + amnEsc(amnImg(m.img, m.logo ? 800 : 1200)) + '" alt="' + amnEsc(m.title) + '"' +
+        (i >= 4 ? ' loading="lazy" decoding="async"' : '') + '>' +
         '<div class="min__t"><h2>' + amnEsc(m.title) + '</h2>' +
         (m.soon ? '' : '<span>' + amnEsc(m.cat) + '</span>') + '</div>';
       return m.soon
@@ -334,8 +345,9 @@ class AriseMinistries extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = has(k) ? map[k] : null;
       if (v && v.image) {
-        if (el.tagName === 'IMG') el.src = v.image;
-        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        const w = Number(el.getAttribute('data-ciw')) || 1600;
+        if (el.tagName === 'IMG') el.src = amnImg(v.image, w);
+        else el.style.backgroundImage = 'url("' + String(amnImg(v.image, w)).replace(/["\\]/g, '') + '")';
       }
     });
   }

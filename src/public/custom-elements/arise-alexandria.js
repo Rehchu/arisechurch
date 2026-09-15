@@ -161,6 +161,14 @@ function aaxEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* Arise Church speed: ask Wix for a resized copy (longest side at most w, format picked per browser). */
+function aaxImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 /* Drop a leading day name from a value when the row label already names that day. */
 function aaxTrimDay(label, value) {
   var m = /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)\b[\s,:\-\u2013\u00b7]*/i.exec(value || '');
@@ -172,7 +180,7 @@ class AriseAlexandria extends HTMLElement {
     if (this._b) return;
     this._b = true;
 
-    if (!document.getElementById('aax-fonts')) {
+    if (!document.getElementById('aax-fonts') && !document.querySelector('link[href="' + AAX_FONTS + '"]')) {
       const l = document.createElement('link');
       l.id = 'aax-fonts'; l.rel = 'stylesheet'; l.href = AAX_FONTS;
       document.head.appendChild(l);
@@ -245,7 +253,7 @@ class AriseAlexandria extends HTMLElement {
           '<div class="mark"><span class="kicker" data-ck="alexandria.pastor.kicker">Lead Pastor</span></div>' +
           '<div class="pastor">' +
             (photo
-              ? '<div class="pastor__ph"><img data-ci="alexandria.pastor.photo" src="' + E(photo) + '" alt="' + E(name) + '"></div>'
+              ? '<div class="pastor__ph"><img data-ci="alexandria.pastor.photo" data-ciw="1200" src="' + E(aaxImg(photo, 1200)) + '" alt="' + E(name) + '"></div>'
               : '<div class="pastor__init">' + E(initials) + '</div>') +
             '<div class="pastor__b">' +
               '<span class="pastor__r" data-ck="alexandria.pastor.role">' + E(T('alexandria.pastor.role')) + '</span>' +
@@ -311,8 +319,9 @@ class AriseAlexandria extends HTMLElement {
       if (handled(k) || !Object.prototype.hasOwnProperty.call(map, k)) return;
       const v = map[k] || {};
       if (v.image) {
-        if (el.tagName === 'IMG') el.src = v.image;
-        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        const w = Number(el.getAttribute('data-ciw')) || 1600;
+        if (el.tagName === 'IMG') el.src = aaxImg(v.image, w);
+        else el.style.backgroundImage = 'url("' + String(aaxImg(v.image, w)).replace(/["\\]/g, '') + '")';
       }
     });
   }

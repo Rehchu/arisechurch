@@ -385,7 +385,7 @@ const AH_HTML = `
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__bg" data-ci="home.hero.photo" style="background-image:url(${PHOTO.worship})"></div>
+    <div class="hero__bg" data-ci="home.hero.photo" data-ciw="2000" style="background-image:url(${ahoImg(PHOTO.worship, 2000)})"></div>
     <div class="hero__scrim"></div><div class="hero__floor"></div>
     <div class="hero__in"><div class="shell"><div class="hero__grid"><div class="hero__col">
       <div class="mark mark--l"><span class="kicker" data-ck="home.hero.kicker">Arise Church &middot; Pineville, LA</span></div>
@@ -440,7 +440,7 @@ const AH_HTML = `
 
     <div class="camp">
       <div class="camp__c">
-        <div class="camp__img"><img data-ci="home.campus.main.photo" src="${CAMPUS_PINEVILLE}" alt="Arise Church Main Campus building in Pineville, Louisiana"></div>
+        <div class="camp__img"><img data-ci="home.campus.main.photo" data-ciw="1200" src="${ahoImg(CAMPUS_PINEVILLE, 1200)}" loading="lazy" decoding="async" alt="Arise Church Main Campus building in Pineville, Louisiana"></div>
         <div class="camp__b">
           <span class="camp__tag" data-ck="home.campus.main.tag">Main Campus</span>
           <p class="camp__addr" data-ck="site.campus.main">501 Ates Road<br>Pineville, LA 71360</p>
@@ -455,7 +455,7 @@ const AH_HTML = `
       </div>
 
       <div class="camp__c">
-        <div class="camp__img"><img data-ci="home.campus.second.photo" src="${CAMPUS_ALEXANDRIA}" alt="Arise Church Alexandria Campus building on North Blvd"></div>
+        <div class="camp__img"><img data-ci="home.campus.second.photo" data-ciw="1200" src="${ahoImg(CAMPUS_ALEXANDRIA, 1200)}" loading="lazy" decoding="async" alt="Arise Church Alexandria Campus building on North Blvd"></div>
         <div class="camp__b">
           <span class="camp__tag" data-ck="home.campus.second.tag">Second Campus</span>
           <p class="camp__addr" data-ck="site.campus.second">5305 North Blvd<br>Alexandria, LA 71301</p>
@@ -478,10 +478,10 @@ const AH_HTML = `
     <div class="mark mark--l"><span class="kicker" data-ck="home.ministries.kicker">Ministries</span></div>
     <h2 data-ck="home.ministries.heading">Find Your People</h2>
     <div class="min">
-      <a class="min__c min__c--logo" href="/lead-network"><img data-ci="home.ministries.item1.photo" src="${PHOTO.lead}" alt="Lead Network"><div class="min__t"><h3 data-ck="home.ministries.item1">Lead Network</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
-      <a class="min__c" href="/childrens"><img data-ci="home.ministries.item2.photo" src="${PHOTO.kids}" alt="Children's Ministry"><div class="min__t"><h3 data-ck="home.ministries.item2">Children's Ministry</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
-      <a class="min__c" href="/youth"><img data-ci="home.ministries.item3.photo" src="${PHOTO.youth}" alt="Youth Ministry"><div class="min__t"><h3 data-ck="home.ministries.item3">Youth Ministry</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
-      <a class="min__c" href="/outreach"><img data-ci="home.ministries.item4.photo" src="${PHOTO.outreach}" alt="Outreach"><div class="min__t"><h3 data-ck="home.ministries.item4">Outreach</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
+      <a class="min__c min__c--logo" href="/lead-network"><img data-ci="home.ministries.item1.photo" data-ciw="800" src="${ahoImg(PHOTO.lead, 800)}" loading="lazy" decoding="async" alt="Lead Network"><div class="min__t"><h3 data-ck="home.ministries.item1">Lead Network</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
+      <a class="min__c" href="/childrens"><img data-ci="home.ministries.item2.photo" data-ciw="1200" src="${ahoImg(PHOTO.kids, 1200)}" loading="lazy" decoding="async" alt="Children's Ministry"><div class="min__t"><h3 data-ck="home.ministries.item2">Children's Ministry</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
+      <a class="min__c" href="/youth"><img data-ci="home.ministries.item3.photo" data-ciw="1200" src="${ahoImg(PHOTO.youth, 1200)}" loading="lazy" decoding="async" alt="Youth Ministry"><div class="min__t"><h3 data-ck="home.ministries.item3">Youth Ministry</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
+      <a class="min__c" href="/outreach"><img data-ci="home.ministries.item4.photo" data-ciw="1200" src="${ahoImg(PHOTO.outreach, 1200)}" loading="lazy" decoding="async" alt="Outreach"><div class="min__t"><h3 data-ck="home.ministries.item4">Outreach</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
     </div>
     <div style="margin-top:48px"><a class="btn btn--ghost" href="/ministries" data-ck="home.ministries.button">All Ministries</a></div>
   </div></section>
@@ -510,7 +510,7 @@ const AH_HTML = `
         <cite data-ck="home.prayer.cite">- Beth Moore</cite>
         <div style="margin-top:32px"><a class="btn btn--dark" href="mailto:arisechurchprayer@gmail.com" data-ck="home.prayer.button">Prayer Request</a></div>
       </div>
-      <div class="prayer__img"><img data-ci="home.prayer.photo" src="${PHOTO.service}" alt="Arise Church congregation in prayer"></div>
+      <div class="prayer__img"><img data-ci="home.prayer.photo" data-ciw="1200" src="${ahoImg(PHOTO.service, 1200)}" loading="lazy" decoding="async" alt="Arise Church congregation in prayer"></div>
     </div>
   </div></section>
 
@@ -527,6 +527,15 @@ const AH_HTML = `
 
 function ahoEsc(s) {
   return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+/* Arise Church speed: ask Wix for a resized copy (AVIF/WebP picked per browser) of a
+   plain static.wixstatic.com photo; longest side at most w, no crop. Anything else is
+   returned untouched. Hoisted, so the AH_HTML template above can call it. */
+function ahoImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
 }
 function ahoVidOk(id) { return typeof id === 'string' && /^[A-Za-z0-9_\-]+$/.test(id); }
 function ahoTrimDay(label, value) { var m = /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)\b[\s,:\-\u2013\u00b7]*/i.exec(value || ''); return (m && String(label || '').toLowerCase().indexOf(m[1].toLowerCase()) > -1) ? value.slice(m[0].length) : value; }
@@ -545,7 +554,8 @@ class AriseHome extends HTMLElement {
     }
     this._built = true;
 
-    if (!document.getElementById('ah-home-fonts')) {
+    if (!document.getElementById('ah-home-fonts') &&
+        !document.querySelector('link[href="' + AH_FONTS + '"]')) {
       const l = document.createElement('link');
       l.id = 'ah-home-fonts'; l.rel = 'stylesheet'; l.href = AH_FONTS;
       document.head.appendChild(l);
@@ -625,11 +635,11 @@ class AriseHome extends HTMLElement {
     stage.innerHTML = items.map(function (it, i) {
       const media = ahoVidOk(it.videoId)
         ? '<div class="news__media" data-v="' + i + '">' +
-            (it.src ? '<img class="news__img" src="' + E(it.src) + '" alt="' + E(it.alt || it.title) + '">' : '') +
+            (it.src ? '<img class="news__img" src="' + E(ahoImg(it.src, 1200)) + '" alt="' + E(it.alt || it.title) + '">' : '') +
             '<button class="news__play" data-play="' + i + '" ' +
               'aria-label="Play ' + E(it.title || 'video') + '"><span>&#9654;</span></button>' +
           '</div>'
-        : (it.src ? '<img class="news__img" src="' + E(it.src) + '" alt="' + E(it.alt || it.title) + '">' : '');
+        : (it.src ? '<img class="news__img" src="' + E(ahoImg(it.src, 1200)) + '" alt="' + E(it.alt || it.title) + '">' : '');
 
       return '<div class="news__slide" data-on="' + (i === 0) + '">' +
         media +
@@ -677,7 +687,7 @@ class AriseHome extends HTMLElement {
         const box = stage.querySelector('.news__media[data-v="' + i + '"]');
         if (!box || !ahoVidOk(it.videoId)) return;
         const base = 'https://video.wixstatic.com/video/';
-        box.innerHTML = '<video controls autoplay playsinline poster="' + E(it.src) + '">' +
+        box.innerHTML = '<video controls autoplay playsinline poster="' + E(ahoImg(it.src, 1200)) + '">' +
           ['1080p', '720p', '480p'].map(function (q) {
             return '<source src="' + base + it.videoId + '/' + q + '/mp4/file.mp4" type="video/mp4">';
           }).join('') + '</video>';
@@ -752,7 +762,7 @@ class AriseHome extends HTMLElement {
       '<div class="cvid">' +
         '<video playsinline loop preload="' + (autoplay ? 'metadata' : 'none') + '"' +
           (autoplay ? ' muted' : ' controls') +
-          ' poster="' + ahoEsc(poster) + '" aria-label="Church culture at Arise Church">' +
+          ' poster="' + ahoEsc(ahoImg(poster, 2000)) + '" aria-label="Church culture at Arise Church">' +
           ['1080p', '720p', '480p'].map(function (q) {
             return '<source src="' + base + cfg.videoId + '/' + q +
                    '/mp4/file.mp4" type="video/mp4">';
@@ -846,7 +856,7 @@ class AriseHome extends HTMLElement {
           return '<button class="gal__t" data-i="' + i + '" ' +
             'aria-label="Open ' + ((p.video || p.videoId) ? 'video' : 'photo') + ' ' + (i + 1) +
             ' of ' + pics.length + '">' +
-            '<img src="' + E(p.src) + '" alt="' + E(p.alt) + '" loading="lazy">' +
+            '<img src="' + E(ahoImg(p.src, 1200)) + '" alt="' + E(p.alt) + '" loading="lazy" decoding="async">' +
             ((p.video || p.videoId) ? '<span class="gal__v">&#9654;</span>' : '') +
           '</button>';
         }).join('') +
@@ -897,10 +907,10 @@ class AriseHome extends HTMLElement {
                 return '<source src="' + base + p.videoId + '/' + q + '/mp4/file.mp4" type="video/mp4">';
               }).join('')
             : '<source src="' + LE(p.video) + '" type="video/mp4">';
-          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(p.src) + '">' +
+          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(ahoImg(p.src, 2000)) + '">' +
             srcs + '</video>';
         } else {
-          stage.innerHTML = '<img src="' + LE(p.src) + '" alt="' + LE(p.alt || '') + '">';
+          stage.innerHTML = '<img src="' + LE(ahoImg(p.src, 2000)) + '" alt="' + LE(p.alt || '') + '">';
         }
         cap.textContent = p.caption || '';
         idx.textContent = (self._i + 1) + ' / ' + list.length;
@@ -973,8 +983,9 @@ class AriseHome extends HTMLElement {
     self.querySelectorAll('[data-ci]').forEach(function (el) {
       const v = entry(el.getAttribute('data-ci'));
       if (!v.image) return;
-      if (el.tagName === 'IMG') el.src = v.image;
-      else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+      const ciw = Number(el.getAttribute('data-ciw')) || 1600;
+      if (el.tagName === 'IMG') el.src = ahoImg(v.image, ciw);
+      else el.style.backgroundImage = 'url("' + String(ahoImg(v.image, ciw)).replace(/["\\]/g, '') + '")';
     });
     self.querySelectorAll('[data-ckrow]').forEach(function (el) {
       const v = entry(el.getAttribute('data-ckrow'));

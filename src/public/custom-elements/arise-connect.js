@@ -214,10 +214,16 @@ function acgEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
-/* Wix Image field values (wix:image://v1/<id>/...) are not loadable URLs. */
-function acgImg(u) {
-  const m = /^wix:image:\/\/v1\/([^\/#]+)/.exec(String(u || ''));
-  return m ? 'https://static.wixstatic.com/media/' + m[1] : u;
+/* Wix Image field values (wix:image://v1/<id>/...) are not loadable URLs.
+   Arise Church speed fix: plain Wix media photos are then served resized by Wix
+   (whole image kept, longest side at most w, AVIF/WebP picked per browser).
+   Anything else (already resized, gif, data:, other hosts) is left alone. */
+function acgImg(u, w) {
+  const wi = /^wix:image:\/\/v1\/([^\/#]+)/.exec(String(u || ''));
+  u = wi ? 'https://static.wixstatic.com/media/' + wi[1] : String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
 }
 
 const FORMS = {
@@ -287,7 +293,7 @@ class AriseConnect extends HTMLElement {
     if (this._b) return;
     this._b = true;
 
-    if (!document.getElementById('acg-fonts')) {
+    if (!document.getElementById('acg-fonts') && !document.querySelector('link[href="' + ACG_FONTS + '"]')) {
       const l = document.createElement('link');
       l.id = 'acg-fonts'; l.rel = 'stylesheet'; l.href = ACG_FONTS;
       document.head.appendChild(l);
@@ -446,7 +452,7 @@ class AriseConnect extends HTMLElement {
 
       return '<div class="g">' +
         (g.flyer
-          ? '<div class="g__img"><img src="' + E(acgImg(g.flyer)) + '" alt="' + E(g.title) + '">' +
+          ? '<div class="g__img"><img src="' + E(acgImg(g.flyer, 1200)) + '" alt="' + E(g.title) + '" loading="lazy" decoding="async">' +
             (g.isFull ? '<span class="g__full" data-ck="connect.groups.card.fullBadge">Full</span>' : '') + '</div>'
           : '') +
         '<div class="g__b">' +
@@ -641,8 +647,9 @@ class AriseConnect extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = Object.prototype.hasOwnProperty.call(map, k) ? (map[k] || {}) : {};
       if (!v.image) return;
-      if (el.tagName === 'IMG') el.src = v.image;
-      else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+      const w = Number(el.getAttribute('data-ciw')) || 1600;
+      if (el.tagName === 'IMG') el.src = acgImg(v.image, w);
+      else el.style.backgroundImage = 'url("' + String(acgImg(v.image, w)).replace(/["\\]/g, '') + '")';
     });
   }
 }

@@ -207,8 +207,17 @@ arise-childrens{display:block;width:100%}
 }
 `;
 
+/* Arise Church photos: ask Wix for a resized copy (whole image, longest side at most w,
+   AVIF/WebP picked per browser). Anything that is not a plain wixstatic photo is left alone. */
+function achImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 function injectHead() {
-  if (!document.getElementById('sub-childrens-fonts')) {
+  if (!document.getElementById('sub-childrens-fonts') && !document.querySelector('link[href="' + FONTS + '"]')) {
     const l = document.createElement('link');
     l.id = 'sub-childrens-fonts'; l.rel = 'stylesheet'; l.href = FONTS;
     document.head.appendChild(l);
@@ -240,18 +249,18 @@ class AriseChildrens extends HTMLElement {
         '</div></header>' +
 
 
-        '<div class="band"><img data-ci="childrens.welcome.image" src="' + WELCOME + '" ' +
+        '<div class="band"><img data-ci="childrens.welcome.image" data-ciw="1600" src="' + achImg(WELCOME, 1600) + '" ' +
           'alt="Welcome to Children\u2019s Church"></div>' +
 
         '<section class="sect"><div class="shell">' +
           '<div class="mark"><span class="kicker" data-ck="childrens.curriculum.kicker">Our Curriculum</span></div>' +
           '<h2 data-ck="childrens.curriculum.heading">Superkid Academy</h2>' +
           '<div class="split">' +
-            '<div class="split__img"><img data-ci="childrens.kids.photo" src="' + KIDS + '" ' +
-              'alt="Children at Arise Church Children\u2019s Ministry"></div>' +
+            '<div class="split__img"><img data-ci="childrens.kids.photo" data-ciw="1200" src="' + achImg(KIDS, 1200) + '" ' +
+              'alt="Children at Arise Church Children\u2019s Ministry" loading="lazy" decoding="async"></div>' +
             '<div class="split__b">' +
-              '<img class="split__logo" data-ci="childrens.superkid.logo" src="' + SUPERKID + '" ' +
-              'alt="Superkid Academy curriculum logo">' +
+              '<img class="split__logo" data-ci="childrens.superkid.logo" data-ciw="800" src="' + achImg(SUPERKID, 800) + '" ' +
+              'alt="Superkid Academy curriculum logo" loading="lazy" decoding="async">' +
               '<p data-ck="childrens.curriculum.body">Our Children\u2019s Ministry uses the Superkid Academy curriculum \u2014 ' +
               'teaching kids who they are in Christ through lessons built for their age group.</p>' +
             '</div>' +
@@ -263,7 +272,7 @@ class AriseChildrens extends HTMLElement {
           '<h2 data-ck="childrens.leaders.heading">Our Leaders</h2>' +
           '<div class="people people--one">' +
             '<div class="p__c">' +
-              (TONYA ? '<div class="p__ph"><img src="' + TONYA + '" alt="Tonya Sizemore"></div>'
+              (TONYA ? '<div class="p__ph"><img src="' + achImg(TONYA, 1200) + '" alt="Tonya Sizemore" loading="lazy" decoding="async"></div>'
                      : '<div class="p__init" data-ck="childrens.leaders.initials">TS</div>') +
               '<div class="p__b">' +
                 '<span class="p__role" data-ck="childrens.leaders.role">Children\u2019s Director</span>' +
@@ -344,7 +353,7 @@ class AriseChildrens extends HTMLElement {
           return '<button class="gal__t" data-i="' + i + '" ' +
             'aria-label="Open ' + ((p.video || p.videoId) ? 'video' : 'photo') + ' ' + (i + 1) +
             ' of ' + pics.length + '">' +
-            '<img src="' + E(p.src) + '" alt="' + E(p.alt) + '" loading="lazy">' +
+            '<img src="' + E(achImg(p.src, 1200)) + '" alt="' + E(p.alt) + '" loading="lazy" decoding="async">' +
             ((p.video || p.videoId) ? '<span class="gal__v">&#9654;</span>' : '') +
           '</button>';
         }).join('') +
@@ -395,10 +404,10 @@ class AriseChildrens extends HTMLElement {
                 return '<source src="' + base + LE(p.videoId) + '/' + q + '/mp4/file.mp4" type="video/mp4">';
               }).join('')
             : '<source src="' + LE(p.video) + '" type="video/mp4">';
-          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(p.src) + '">' +
+          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(achImg(p.src, 2000)) + '">' +
             srcs + '</video>';
         } else {
-          stage.innerHTML = '<img src="' + LE(p.src) + '" alt="' + LE(p.alt || '') + '">';
+          stage.innerHTML = '<img src="' + LE(achImg(p.src, 2000)) + '" alt="' + LE(p.alt || '') + '">';
         }
         cap.textContent = p.caption || '';
         idx.textContent = (self._i + 1) + ' / ' + list.length;
@@ -466,8 +475,9 @@ class AriseChildrens extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = own.call(map, k) ? (map[k] || {}) : {};
       if (v.image) {
-        if (el.tagName === 'IMG') el.src = v.image;
-        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        const img = achImg(v.image, Number(el.getAttribute('data-ciw')) || 1600);
+        if (el.tagName === 'IMG') el.src = img;
+        else el.style.backgroundImage = 'url("' + String(img).replace(/["\\]/g, '') + '")';
       }
     });
   }

@@ -169,6 +169,15 @@ function ahdEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* Arise Church speed: ask Wix for a resized copy (longest side <= w, AVIF/WebP per browser).
+   Anything that is not a plain static.wixstatic.com media URL is returned unchanged. */
+function ahdImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 /* While the mobile menu is open, make the rest of the page inert (where supported). */
 function ahdSetInert(host, panel, on) {
   if (!('inert' in HTMLElement.prototype)) return;
@@ -226,7 +235,7 @@ class AriseHeader extends HTMLElement {
     this.innerHTML =
       '<div class="ahd"><div class="ahd__in">' +
         '<a class="ahd__brand" href="/" target="_top">' +
-          '<img src="' + LOGO + '" alt="Arise Church" data-ci="site.header.logo">' +
+          '<img src="' + ahdImg(LOGO, 800) + '" alt="Arise Church" data-ci="site.header.logo" data-ciw="800">' +
           '<span><span class="ahd__wm" data-ck="site.header.wordmark">Arise Church</span>' +
           '<span class="ahd__tag" data-ck="site.tagline">#YouBelongHere</span></span>' +
         '</a>' +
@@ -357,8 +366,9 @@ class AriseHeader extends HTMLElement {
         const k = el.getAttribute('data-ci');
         const v = has(k) ? (map[k] || {}) : {};
         if (v.image) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+          const w = Number(el.getAttribute('data-ciw')) || 1600;
+          if (el.tagName === 'IMG') el.src = ahdImg(v.image, w);
+          else el.style.backgroundImage = 'url("' + String(ahdImg(v.image, w)).replace(/["\\]/g, '') + '")';
         }
       });
     });

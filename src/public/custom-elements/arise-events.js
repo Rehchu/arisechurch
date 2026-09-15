@@ -177,6 +177,14 @@ function aevEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
+/* Arise Church speed: ask Wix for a resized copy (longest side at most w, format picked per browser). */
+function aevImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 /* The built-in fallback event disappears once it has ended. */
 function aevFallback() {
   const f = FALLBACK.upcoming[0];
@@ -189,7 +197,7 @@ class AriseEvents extends HTMLElement {
     if (this._built) return;
     this._built = true;
 
-    if (!document.getElementById('aev-fonts')) {
+    if (!document.getElementById('aev-fonts') && !document.querySelector('link[href="' + AEV_FONTS + '"]')) {
       const l = document.createElement('link');
       l.id = 'aev-fonts'; l.rel = 'stylesheet'; l.href = AEV_FONTS;
       document.head.appendChild(l);
@@ -244,7 +252,7 @@ class AriseEvents extends HTMLElement {
         '</div>' +
         '<div class="shell"><div class="feat" data-cms-source="Events">' +
           '<div class="feat__img">' +
-            (feat.image ? '<img src="' + E(feat.image) + '" alt="' + E(feat.title) + '">' : '') +
+            (feat.image ? '<img src="' + E(aevImg(feat.image, 1600)) + '" alt="' + E(feat.title) + '">' : '') +
             (feat.startMonth ? '<div class="feat__date"><span class="m">' + E(feat.startMonth) +
               '</span><span class="d">' + E(feat.startDay) + '</span></div>' : '') +
           '</div>' +
@@ -282,7 +290,7 @@ class AriseEvents extends HTMLElement {
         '<h2 data-ck="events.more.heading">More Events</h2><div class="up" data-cms-source="Events">' +
         rest.map(function (e) {
           return '<a class="up__c" href="' + E(e.url) + '" target="_top">' +
-            '<div class="up__img">' + (e.image ? '<img src="' + E(e.image) + '" alt="' + E(e.title) + '">' : '') + '</div>' +
+            '<div class="up__img">' + (e.image ? '<img src="' + E(aevImg(e.image, 1200)) + '" alt="' + E(e.title) + '" loading="lazy" decoding="async">' : '') + '</div>' +
             '<div class="up__b">' +
               (e.startDate ? '<div class="up__when">' + E(e.startDate) + '</div>' : '') +
               '<h3>' + E(e.title) + '</h3>' +
@@ -299,7 +307,7 @@ class AriseEvents extends HTMLElement {
     if (d.past.length) {
       html += '<div class="arch" data-cms-source="Events">' + d.past.map(function (e) {
         return '<a class="arch__c" href="' + E(e.url) + '" target="_top">' +
-          (e.image ? '<img src="' + E(e.image) + '" alt="' + E(e.title) + '">' : '') +
+          (e.image ? '<img src="' + E(aevImg(e.image, 1200)) + '" alt="' + E(e.title) + '" loading="lazy" decoding="async">' : '') +
           '<div class="arch__t"><h3>' + E(e.title) + '</h3>' +
           (e.startDate ? '<span>' + E(e.startDate) + '</span>' : '') + '</div></a>';
       }).join('') + '</div>';
@@ -346,8 +354,9 @@ class AriseEvents extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = has.call(map, k) ? map[k] : null;
       if (!v || !v.image) return;
-      if (el.tagName === 'IMG') el.src = v.image;
-      else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+      const w = Number(el.getAttribute('data-ciw')) || 1600;
+      if (el.tagName === 'IMG') el.src = aevImg(v.image, w);
+      else el.style.backgroundImage = 'url("' + String(aevImg(v.image, w)).replace(/["\\]/g, '') + '")';
     });
   }
 }

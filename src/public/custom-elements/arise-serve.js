@@ -147,6 +147,14 @@ function asvEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* Arise Church speed: ask Wix for a resized copy (longest side at most w, format picked per browser). */
+function asvImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 const FIELDS = [
   { k: 'name',     label: 'Your Name', type: 'text',  req: true,  half: true },
   { k: 'email',    label: 'Email',     type: 'email', req: true,  half: true },
@@ -162,7 +170,7 @@ class AriseServe extends HTMLElement {
     if (this._b) return;
     this._b = true;
 
-    if (!document.getElementById('asv-fonts')) {
+    if (!document.getElementById('asv-fonts') && !document.querySelector('link[href="' + ASV_FONTS + '"]')) {
       const l = document.createElement('link');
       l.id = 'asv-fonts'; l.rel = 'stylesheet'; l.href = ASV_FONTS;
       document.head.appendChild(l);
@@ -372,8 +380,9 @@ class AriseServe extends HTMLElement {
       const v = asvVal(el.getAttribute('data-ci'));
       const img = v.image || v.imageUrl;
       if (!img) return;
-      if (el.tagName === 'IMG') el.src = img;
-      else el.style.backgroundImage = 'url("' + String(img).replace(/["\\]/g, '') + '")';
+      const w = Number(el.getAttribute('data-ciw')) || 1600;
+      if (el.tagName === 'IMG') el.src = asvImg(img, w);
+      else el.style.backgroundImage = 'url("' + String(asvImg(img, w)).replace(/["\\]/g, '') + '")';
     });
   }
 }

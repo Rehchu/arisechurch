@@ -125,12 +125,23 @@ function aclEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* Arise Church speed: ask Wix for a resized copy (AVIF/WebP picked per browser) of a
+   plain static.wixstatic.com photo; longest side at most w, no crop. Anything else is
+   returned untouched. */
+function aclImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 class AriseClasses extends HTMLElement {
   connectedCallback() {
     if (this._built) return;
     this._built = true;
 
-    if (!document.getElementById('acl-fonts')) {
+    if (!document.getElementById('acl-fonts') &&
+        !document.querySelector('link[href="' + ACL_FONTS + '"]')) {
       const l = document.createElement('link');
       l.id = 'acl-fonts'; l.rel = 'stylesheet'; l.href = ACL_FONTS;
       document.head.appendChild(l);
@@ -209,7 +220,7 @@ class AriseClasses extends HTMLElement {
       return;
     }
 
-    list.innerHTML = '<div class="list" data-cms-source="OnlinePrograms">' + items.map(function (c) {
+    list.innerHTML = '<div class="list" data-cms-source="OnlinePrograms">' + items.map(function (c, i) {
       const facts = [];
       if (c.steps)    facts.push('<span><b>' + E(c.steps) + '</b> steps</span>');
       if (c.sections) facts.push('<span><b>' + E(c.sections) + '</b> sections</span>');
@@ -218,7 +229,8 @@ class AriseClasses extends HTMLElement {
 
       return '<div class="c">' +
         '<div class="c__img">' +
-          (c.image ? '<img src="' + E(c.image) + '" alt="' + E(c.title) + '">' : '') +
+          (c.image ? '<img src="' + E(aclImg(c.image, 1200)) + '" alt="' + E(c.title) + '"' +
+            (i >= 3 ? ' loading="lazy" decoding="async"' : '') + '>' : '') +
           '<span class="c__price">' + E(c.price || 'Free') + '</span>' +
         '</div>' +
         '<div class="c__b">' +
@@ -252,8 +264,9 @@ class AriseClasses extends HTMLElement {
       }
       if (v.image) {
         self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
+          const img = aclImg(v.image, Number(el.getAttribute('data-ciw')) || 1600);
+          if (el.tagName === 'IMG') el.src = img;
+          else el.style.backgroundImage = 'url(' + img + ')';
         });
       }
     });

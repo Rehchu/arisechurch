@@ -1,6 +1,8 @@
 /* Arise Church - Velo page code
    Paste into: Code panel -> Page Code -> "Past Sermons"  (replaces the whole file)
-   Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss. */
+   Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss.
+   Sped up 2026-09-15: the backend calls start at once and each attribute is set as soon
+   as its own call answers. */
 import wixData from 'wix-data';
 import { getLiveVideoId, getCurrentSeries, getLatestShorts } from 'backend/youtube.jsw';
 
@@ -51,44 +53,52 @@ function ariseSet(attr, value) {
 }
 
 $w.onReady(async () => {
+  // The series lookup, the newest Shorts and the first live check all start right
+  // away, side by side; each sets its own attributes as soon as it answers.
+
   // ---- Series band: a CMS override (Site Settings -> sermonSeries) wins,
   //      otherwise the newest YouTube playlist whose name contains "series".
-  try {
-    let title = null, line = null, link = null, label = null;
-    const { items } = await wixData.query('SiteSettings')
-      .eq('settingKey', 'sermonSeries').limit(1).find();
-    const s = items[0];
-    if (s && s.seriesActive && s.seriesTitle) {
-      title = s.seriesTitle;
-      line  = s.seriesLine   || null;
-      link  = s.seriesLink   || null;
-      label = s.seriesButton || null;
-    } else {
-      const auto = await getCurrentSeries();
-      if (auto) { title = auto.title; link = auto.url; label = 'Watch the Series'; }
-    }
-    if (title) {
-      ariseSet('data-series-title', title);
-      ariseSet('data-series-line', line || '');
-      if (link)  ariseSet('data-series-link', link);
-      if (label) ariseSet('data-series-button', label);
-      ariseSet('data-series-active', 'true');
-      console.log(PAGE + ': series band "' + title + '"');
-    } else {
-      ariseSet('data-series-active', 'false');   // hides the band
-      console.log(PAGE + ': no active series, band hidden');
-    }
-  } catch (err) { console.error(PAGE + ': series lookup failed', err); }
+  const seriesLoad = (async () => {
+    try {
+      let title = null, line = null, link = null, label = null;
+      const { items } = await wixData.query('SiteSettings')
+        .eq('settingKey', 'sermonSeries').limit(1).find();
+      const s = items[0];
+      if (s && s.seriesActive && s.seriesTitle) {
+        title = s.seriesTitle;
+        line  = s.seriesLine   || null;
+        link  = s.seriesLink   || null;
+        label = s.seriesButton || null;
+      } else {
+        const auto = await getCurrentSeries();
+        if (auto) { title = auto.title; link = auto.url; label = 'Watch the Series'; }
+      }
+      if (title) {
+        ariseSet('data-series-title', title);
+        ariseSet('data-series-line', line || '');
+        if (link)  ariseSet('data-series-link', link);
+        if (label) ariseSet('data-series-button', label);
+        ariseSet('data-series-active', 'true');
+        console.log(PAGE + ': series band "' + title + '"');
+      } else {
+        ariseSet('data-series-active', 'false');   // hides the band
+        console.log(PAGE + ': no active series, band hidden');
+      }
+    } catch (err) { console.error(PAGE + ': series lookup failed', err); }
+  })();
 
   // ---- Newest Shorts from the YouTube channel. If none come back, the page
   //      keeps showing its built-in list.
-  try {
-    const shorts = await getLatestShorts(8);
-    console.log(PAGE + ': ' + shorts.length + ' newest Shorts');
-    if (shorts.length) ariseSet('data-clips', shorts);
-  } catch (err) { console.error(PAGE + ': Shorts lookup failed', err); }
+  const shortsLoad = (async () => {
+    try {
+      const shorts = await getLatestShorts(8);
+      console.log(PAGE + ': ' + shorts.length + ' newest Shorts');
+      if (shorts.length) ariseSet('data-clips', shorts);
+    } catch (err) { console.error(PAGE + ': Shorts lookup failed', err); }
+  })();
 
-  // ---- Live stream: re-checked every minute; the attribute only changes on change.
+  // ---- Live stream: checked now, then re-checked every minute; the attribute
+  //      only changes on change.
   let current = null;
   async function checkLive() {
     try {
@@ -101,4 +111,6 @@ $w.onReady(async () => {
   }
   checkLive();
   setInterval(checkLive, 60000);
+
+  await Promise.all([seriesLoad, shortsLoad]);   // onReady finishes once both have answered
 });

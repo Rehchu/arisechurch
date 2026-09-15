@@ -227,8 +227,17 @@ arise-events,arise-sermons{display:block;width:100%}
 
 function asrEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 
+/* Arise Church photos: ask Wix for a resized copy (whole image, longest side at most w,
+   AVIF/WebP picked per browser). Anything that is not a plain wixstatic photo is left alone. */
+function asrImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 function injectHead() {
-  if (!document.getElementById('aes-sermons-fonts')) {
+  if (!document.getElementById('aes-sermons-fonts') && !document.querySelector('link[href="' + FONTS + '"]')) {
     const l = document.createElement('link');
     l.id = 'aes-sermons-fonts'; l.rel = 'stylesheet'; l.href = FONTS;
     document.head.appendChild(l);
@@ -361,7 +370,7 @@ class AriseSermons extends HTMLElement {
       const title = String(c.title || '').replace(/\s+/g, ' ').trim();
       return '<a class="card" href="https://www.youtube.com/shorts/' + c.id + '" target="_blank" rel="noopener">' +
         '<div class="card__th card__th--short">' +
-          '<img src="' + YT + c.id + '/frame0.jpg" alt="' + asrEsc(title || 'Arise Church Short') + '" loading="lazy">' +
+          '<img src="' + YT + c.id + '/frame0.jpg" alt="' + asrEsc(title || 'Arise Church Short') + '" loading="lazy" decoding="async">' +
         '</div>' +
         (title ? '<h3>' + asrEsc(title) + '</h3>' : '') +
       '</a>';
@@ -429,8 +438,9 @@ class AriseSermons extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = has.call(map, k) ? map[k] : null;
       if (!v || !v.image) return;
-      if (el.tagName === 'IMG') el.src = v.image;
-      else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+      const img = asrImg(v.image, Number(el.getAttribute('data-ciw')) || 1600);
+      if (el.tagName === 'IMG') el.src = img;
+      else el.style.backgroundImage = 'url("' + String(img).replace(/["\\]/g, '') + '")';
     });
   }
 }

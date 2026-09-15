@@ -249,7 +249,7 @@ arise-leaders,arise-ministries,arise-about,arise-contact{display:block;width:100
 `;
 
 function injectHead() {
-  if (!document.getElementById('ap-contact-fonts')) {
+  if (!document.getElementById('ap-contact-fonts') && !document.querySelector('link[href="' + FONTS + '"]')) {
     const l = document.createElement('link');
     l.id = 'ap-contact-fonts'; l.rel = 'stylesheet'; l.href = FONTS;
     document.head.appendChild(l);
@@ -287,7 +287,7 @@ class AriseContact extends HTMLElement {
           '<h2 data-ck="contact.campus.heading">One Church,<br>Two Campuses</h2>' +
           '<div class="camp">' +
             '<div class="camp__c">' +
-              '<div class="camp__img"><img data-ci="contact.campus.main.photo" src="' + CAMPUS_PINEVILLE + '" alt="Arise Church Main Campus building in Pineville, Louisiana"></div>' +
+              '<div class="camp__img"><img data-ci="contact.campus.main.photo" data-ciw="1200" src="' + acoImg(CAMPUS_PINEVILLE, 1200) + '" alt="Arise Church Main Campus building in Pineville, Louisiana"></div>' +
               '<div class="camp__b"><span class="camp__tag" data-ck="contact.campus.main.tag">Main Campus</span>' +
                 '<p class="camp__addr" data-ck="site.campus.main">501 Ates Road<br>Pineville, LA 71360</p>' +
                 '<div class="camp__times">' +
@@ -300,7 +300,7 @@ class AriseContact extends HTMLElement {
               '</div>' +
             '</div>' +
             '<div class="camp__c">' +
-              '<div class="camp__img"><img data-ci="contact.campus.second.photo" src="' + CAMPUS_ALEXANDRIA + '" alt="Arise Church Alexandria Campus building on North Blvd"></div>' +
+              '<div class="camp__img"><img data-ci="contact.campus.second.photo" data-ciw="1200" src="' + acoImg(CAMPUS_ALEXANDRIA, 1200) + '" alt="Arise Church Alexandria Campus building on North Blvd" loading="lazy" decoding="async"></div>' +
               '<div class="camp__b"><span class="camp__tag" data-ck="contact.campus.second.tag">Second Campus</span>' +
                 '<p class="camp__addr" data-ck="site.campus.second">5305 North Blvd<br>Alexandria, LA 71301</p>' +
                 '<div class="camp__times">' +
@@ -377,8 +377,9 @@ class AriseContact extends HTMLElement {
       const v = acoVal(el.getAttribute('data-ci'));
       const img = v.image || v.imageUrl;
       if (!img) return;
-      if (el.tagName === 'IMG') el.src = img;
-      else el.style.backgroundImage = 'url("' + String(img).replace(/["\\]/g, '') + '")';
+      const w = Number(el.getAttribute('data-ciw')) || 1600;
+      if (el.tagName === 'IMG') el.src = acoImg(img, w);
+      else el.style.backgroundImage = 'url("' + String(acoImg(img, w)).replace(/["\\]/g, '') + '")';
     });
     self.querySelectorAll('[data-ckrow]').forEach(function (el) {
       const v = acoVal(el.getAttribute('data-ckrow'));
@@ -404,6 +405,15 @@ class AriseContact extends HTMLElement {
       if (t !== val.textContent) val.textContent = t;
     });
   }
+}
+
+/* Arise Church speed fix: serve plain Wix media photos resized by Wix (whole image
+   kept, longest side at most w, AVIF/WebP picked per browser). Anything else is left alone. */
+function acoImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
 }
 
 function acoTrimDay(label, value) {

@@ -1,8 +1,8 @@
 /* Arise Church - Velo page code
    Paste into: Code panel -> Page Code -> "Classes"  (replaces the whole file)
-   Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss. */
+   Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss.
+   Sped up 2026-09-15: data-content now comes only from masterPage.js (it was loaded twice). */
 import { getPrograms } from 'backend/classes.web';
-import { getPageContent } from 'backend/content.web';
 
 const PAGE = 'Classes';
 const EL = '#customElement5';
@@ -51,12 +51,6 @@ function ariseSet(attr, value) {
 }
 
 $w.onReady(async () => {
-  try {
-    const content = await getPageContent();
-    console.log(PAGE + ': content ' + Object.keys(content).length + ' keys');
-    ariseSet('data-content', content);
-  } catch (err) { console.error(PAGE + ': content failed', err); }
-
   try {
     const classes = await getPrograms();
     console.log(PAGE + ': ' + classes.length + ' programs');

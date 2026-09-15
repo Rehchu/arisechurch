@@ -168,6 +168,16 @@ function abiEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* Arise Church speed: ask Wix for a resized copy (AVIF/WebP picked per browser) of a
+   plain static.wixstatic.com photo; longest side at most w, no crop. Anything else is
+   returned untouched. */
+function abiImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 class AriseBible extends HTMLElement {
   static get observedAttributes() { return ['data-content']; }
   attributeChangedCallback() { if (this._built) this.applyContent(); }
@@ -176,7 +186,8 @@ class AriseBible extends HTMLElement {
     if (this._built) return;
     this._built = true;
 
-    if (!document.getElementById('abi-fonts')) {
+    if (!document.getElementById('abi-fonts') &&
+        !document.querySelector('link[href="' + ABI_FONTS + '"]')) {
       const l = document.createElement('link');
       l.id = 'abi-fonts'; l.rel = 'stylesheet'; l.href = ABI_FONTS;
       document.head.appendChild(l);
@@ -316,8 +327,9 @@ class AriseBible extends HTMLElement {
       }
       if (v.image) {
         self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
+          const img = abiImg(v.image, Number(el.getAttribute('data-ciw')) || 1600);
+          if (el.tagName === 'IMG') el.src = img;
+          else el.style.backgroundImage = 'url(' + img + ')';
         });
       }
     });

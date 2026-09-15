@@ -182,6 +182,15 @@ arise-youth{display:block;width:100%}
 }
 `;
 
+/* Arise Church speed: ask Wix for a resized copy (longest side <= w, AVIF/WebP per browser).
+   Anything that is not a plain static.wixstatic.com media URL is returned unchanged. */
+function ayoImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 function injectHead() {
   if (!document.getElementById('sub-youth-fonts')) {
     const l = document.createElement('link');
@@ -213,14 +222,14 @@ class AriseYouth extends HTMLElement {
           '<h1 data-ck="youth.hero.heading">Youth Ministry</h1>' +
         '</div></header>' +
 
-        '<div class="banner"><img data-ci="youth.banner.image" src="' + BANNER + '" alt="Arise Church Youth Ministry"></div>' +
+        '<div class="banner"><img data-ci="youth.banner.image" data-ciw="1600" src="' + ayoImg(BANNER, 1600) + '" alt="Arise Church Youth Ministry"></div>' +
 
         '<section class="sect"><div class="shell">' +
           '<div class="mark"><span class="kicker" data-ck="youth.leaders.kicker">Our Leaders</span></div>' +
           '<h2 data-ck="youth.leaders.heading">Our Leaders</h2>' +
           '<div class="people people--one">' +
             '<div class="p__c">' +
-              '<div class="p__ph"><img data-ci="youth.leaders.photo" src="' + KERIK + '" alt="Chad and Tabitha Kerik"></div>' +
+              '<div class="p__ph"><img data-ci="youth.leaders.photo" data-ciw="1200" src="' + ayoImg(KERIK, 1200) + '" alt="Chad and Tabitha Kerik"></div>' +
               '<div class="p__b">' +
                 '<span class="p__role" data-ck="youth.leaders.role">Youth Ministers</span>' +
                 '<h3 data-ck="youth.leaders.name">Chad and Tabitha Kerik</h3>' +
@@ -306,7 +315,7 @@ class AriseYouth extends HTMLElement {
           return '<button class="gal__t" data-i="' + i + '" ' +
             'aria-label="Open ' + ((p.video || p.videoId) ? 'video' : 'photo') + ' ' + (i + 1) +
             ' of ' + pics.length + '">' +
-            '<img src="' + E(p.src) + '" alt="' + E(p.alt) + '" loading="lazy">' +
+            '<img src="' + E(ayoImg(p.src, 1200)) + '" alt="' + E(p.alt) + '" loading="lazy" decoding="async">' +
             ((p.video || p.videoId) ? '<span class="gal__v">&#9654;</span>' : '') +
           '</button>';
         }).join('') +
@@ -357,10 +366,10 @@ class AriseYouth extends HTMLElement {
                 return '<source src="' + base + LE(p.videoId) + '/' + q + '/mp4/file.mp4" type="video/mp4">';
               }).join('')
             : '<source src="' + LE(p.video) + '" type="video/mp4">';
-          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(p.src) + '">' +
+          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(ayoImg(p.src, 2000)) + '">' +
             srcs + '</video>';
         } else {
-          stage.innerHTML = '<img src="' + LE(p.src) + '" alt="' + LE(p.alt || '') + '">';
+          stage.innerHTML = '<img src="' + LE(ayoImg(p.src, 2000)) + '" alt="' + LE(p.alt || '') + '">';
         }
         cap.textContent = p.caption || '';
         idx.textContent = (self._i + 1) + ' / ' + list.length;
@@ -428,8 +437,9 @@ class AriseYouth extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = own.call(map, k) ? (map[k] || {}) : {};
       if (v.image) {
-        if (el.tagName === 'IMG') el.src = v.image;
-        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        const w = Number(el.getAttribute('data-ciw')) || 1600;
+        if (el.tagName === 'IMG') el.src = ayoImg(v.image, w);
+        else el.style.backgroundImage = 'url("' + String(ayoImg(v.image, w)).replace(/["\\]/g, '') + '")';
       }
     });
   }

@@ -1,8 +1,10 @@
 /* Arise Church - Velo page code
    Paste into: Code panel -> Page Code -> "Home"  (replaces the whole file)
-   Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss. */
+   Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss.
+   Sped up 2026-09-15: data-content now comes only from masterPage.js (it was loaded twice);
+   the other backend calls start at once and each attribute is set as soon as its call answers. */
 import { getProjectPhotos } from 'backend/gallery.web';
-import { getPageContent, getHomeSettings } from 'backend/content.web';
+import { getHomeSettings } from 'backend/content.web';
 
 const PAGE = 'Home';
 const EL = '#customElement1';
@@ -52,25 +54,27 @@ function ariseSet(attr, value) {
 }
 
 $w.onReady(async () => {
-  try {
-    const content = await getPageContent();
-    console.log(PAGE + ': content ' + Object.keys(content).length + ' keys');
-    ariseSet('data-content', content);
-  } catch (err) { console.error(PAGE + ': content failed', err); }
+  // Every backend call below starts right away, side by side. Each one sets its
+  // own attribute as soon as it answers; onReady finishes once all have answered.
+  const cultureLoad = (async () => {
+    try {
+      const culture = await getHomeSettings();
+      console.log(PAGE + ': culture video ' + (culture && culture.videoId ? culture.videoId : 'none'));
+      if (culture) ariseSet('data-culture', culture);
+    } catch (err) { console.error(PAGE + ': culture failed', err); }
+  })();
 
-  try {
-    const culture = await getHomeSettings();
-    console.log(PAGE + ': culture video ' + (culture && culture.videoId ? culture.videoId : 'none'));
-    if (culture) ariseSet('data-culture', culture);
-  } catch (err) { console.error(PAGE + ': culture failed', err); }
+  const newsLoad = (async () => {
+    try {
+      const news = await getProjectPhotos(EXCITING_NEWS);
+      const items = news.map((n) => ({
+        src: n.src, videoId: n.videoId || '', title: n.alt,
+        description: n.caption, alt: n.alt
+      }));
+      console.log(PAGE + ': news ' + items.length + ' items');
+      ariseSet('data-news', items);
+    } catch (err) { console.error(PAGE + ': news failed', err); }
+  })();
 
-  try {
-    const news = await getProjectPhotos(EXCITING_NEWS);
-    const items = news.map((n) => ({
-      src: n.src, videoId: n.videoId || '', title: n.alt,
-      description: n.caption, alt: n.alt
-    }));
-    console.log(PAGE + ': news ' + items.length + ' items');
-    ariseSet('data-news', items);
-  } catch (err) { console.error(PAGE + ': news failed', err); }
+  await Promise.all([cultureLoad, newsLoad]);
 });

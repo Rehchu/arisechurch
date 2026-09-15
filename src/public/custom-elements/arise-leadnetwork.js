@@ -247,8 +247,19 @@ arise-leadnetwork{display:block;width:100%}
 }
 `;
 
+/* Arise Church speed: ask Wix for a resized copy (AVIF/WebP picked per browser) of a
+   plain static.wixstatic.com photo; longest side at most w, no crop. Anything else is
+   returned untouched. */
+function alnImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 function injectHead() {
-  if (!document.getElementById('sub-leadnetwork-fonts')) {
+  if (!document.getElementById('sub-leadnetwork-fonts') &&
+      !document.querySelector('link[href="' + FONTS + '"]')) {
     const l = document.createElement('link');
     l.id = 'sub-leadnetwork-fonts'; l.rel = 'stylesheet'; l.href = FONTS;
     document.head.appendChild(l);
@@ -279,7 +290,7 @@ class AriseLeadNetwork extends HTMLElement {
           const t = TEACHINGS[i];
           const box = self.querySelector('.t__media[data-t="' + i + '"]');
           box.innerHTML =
-            '<video controls autoplay playsinline poster="' + M + t.thumb + '">' +
+            '<video controls autoplay playsinline poster="' + alnImg(M + t.thumb, 1200) + '">' +
               '<source src="' + VID + t.video + '/' + t.quality + '/mp4/file.mp4" type="video/mp4">' +
               '<source src="' + VID + t.video + '/480p/mp4/file.mp4" type="video/mp4">' +
             '</video>';
@@ -290,7 +301,7 @@ class AriseLeadNetwork extends HTMLElement {
     this.innerHTML =
       '<div class="sub">' +
         '<header class="phead"><div class="shell">' +
-          '<img class="phead__logo" data-ci="leadnetwork.hero.logo" src="' + LN_LOGO + '" alt="Lead Network logo">' +
+          '<img class="phead__logo" data-ci="leadnetwork.hero.logo" data-ciw="800" src="' + alnImg(LN_LOGO, 800) + '" alt="Lead Network logo">' +
           '<div class="mark mark--l"><span class="kicker" data-ck="leadnetwork.hero.kicker">Leadership Development</span></div>' +
           '<h1 data-ck="leadnetwork.hero.heading">Lead Network</h1>' +
           '<p class="lede" data-ck="leadnetwork.hero.lede">We invite you to explore our comprehensive selection of video courses ' +
@@ -305,7 +316,7 @@ class AriseLeadNetwork extends HTMLElement {
             TEACHINGS.map(function (t, i) {
               return '<div class="t__c">' +
                 '<div class="t__media" data-t="' + i + '">' +
-                  '<img data-ci="leadnetwork.teachings.item' + (i + 1) + 'Thumb" src="' + M + t.thumb + '" alt="' + t.title + '">' +
+                  '<img data-ci="leadnetwork.teachings.item' + (i + 1) + 'Thumb" data-ciw="1200" src="' + alnImg(M + t.thumb, 1200) + '" alt="' + t.title + '">' +
                   '<button class="t__play" data-play="' + i + '" ' +
                     'aria-label="Play ' + t.title + '"><span>&#9654;</span></button>' +
                 '</div>' +
@@ -330,8 +341,8 @@ class AriseLeadNetwork extends HTMLElement {
           '<div class="people">' +
 
             '<div class="p__c">' +
-              '<div class="p__ph"><img data-ci="leadnetwork.austin.photo" src="' + AUSTIN + '" ' +
-                'alt="Apostle Carlos Austin and Pastor Melissa Austin"></div>' +
+              '<div class="p__ph"><img data-ci="leadnetwork.austin.photo" data-ciw="1600" src="' + alnImg(AUSTIN, 1600) + '" ' +
+                'loading="lazy" decoding="async" alt="Apostle Carlos Austin and Pastor Melissa Austin"></div>' +
               '<div class="p__b">' +
                 '<span class="p__role" data-ck="leadnetwork.ministers.austinRole">Apostle &amp; Pastor</span>' +
                 '<h3 data-ck="leadnetwork.ministers.austinName">Carlos and Melissa Austin</h3>' +
@@ -346,8 +357,8 @@ class AriseLeadNetwork extends HTMLElement {
             '</div>' +
 
             '<div class="p__c">' +
-              '<div class="p__ph"><img data-ci="leadnetwork.calloway.photo" src="' + CALLOWAY + '" ' +
-                'alt="Pastor Derrick Calloway and Pastor Pamla Calloway"></div>' +
+              '<div class="p__ph"><img data-ci="leadnetwork.calloway.photo" data-ciw="1600" src="' + alnImg(CALLOWAY, 1600) + '" ' +
+                'loading="lazy" decoding="async" alt="Pastor Derrick Calloway and Pastor Pamla Calloway"></div>' +
               '<div class="p__b">' +
                 '<span class="p__role" data-ck="leadnetwork.ministers.callowayRole">Lead Pastors</span>' +
                 '<h3 data-ck="leadnetwork.ministers.callowayName">Derrick and Pamla Calloway</h3>' +
@@ -439,7 +450,7 @@ class AriseLeadNetwork extends HTMLElement {
           return '<button class="gal__t" data-i="' + i + '" ' +
             'aria-label="Open ' + ((p.video || p.videoId) ? 'video' : 'photo') + ' ' + (i + 1) +
             ' of ' + pics.length + '">' +
-            '<img src="' + E(p.src) + '" alt="' + E(p.alt) + '" loading="lazy">' +
+            '<img src="' + E(alnImg(p.src, 1200)) + '" alt="' + E(p.alt) + '" loading="lazy" decoding="async">' +
             ((p.video || p.videoId) ? '<span class="gal__v">&#9654;</span>' : '') +
           '</button>';
         }).join('') +
@@ -490,10 +501,10 @@ class AriseLeadNetwork extends HTMLElement {
                 return '<source src="' + base + LE(p.videoId) + '/' + q + '/mp4/file.mp4" type="video/mp4">';
               }).join('')
             : '<source src="' + LE(p.video) + '" type="video/mp4">';
-          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(p.src) + '">' +
+          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(alnImg(p.src, 2000)) + '">' +
             srcs + '</video>';
         } else {
-          stage.innerHTML = '<img src="' + LE(p.src) + '" alt="' + LE(p.alt || '') + '">';
+          stage.innerHTML = '<img src="' + LE(alnImg(p.src, 2000)) + '" alt="' + LE(p.alt || '') + '">';
         }
         cap.textContent = p.caption || '';
         idx.textContent = (self._i + 1) + ' / ' + list.length;
@@ -561,8 +572,9 @@ class AriseLeadNetwork extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = own.call(map, k) ? (map[k] || {}) : {};
       if (v.image) {
-        if (el.tagName === 'IMG') el.src = v.image;
-        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        const img = alnImg(v.image, Number(el.getAttribute('data-ciw')) || 1600);
+        if (el.tagName === 'IMG') el.src = img;
+        else el.style.backgroundImage = 'url("' + String(img).replace(/["\\]/g, '') + '")';
       }
     });
   }

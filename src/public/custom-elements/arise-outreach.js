@@ -203,8 +203,19 @@ arise-outreach{display:block;width:100%}
 }
 `;
 
+/* Arise Church speed: ask Wix for a resized copy (AVIF/WebP picked per browser) of a
+   plain static.wixstatic.com photo; longest side at most w, no crop. Anything else is
+   returned untouched. */
+function aorImg(u, w) {
+  u = String(u || '');
+  var m = u.match(/^https?:\/\/static\.wixstatic\.com\/media\/([^\/?#]+\.(?:jpe?g|png|webp|avif))$/i);
+  if (!m) return u;
+  return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
+}
+
 function injectHead() {
-  if (!document.getElementById('sub-outreach-fonts')) {
+  if (!document.getElementById('sub-outreach-fonts') &&
+      !document.querySelector('link[href="' + FONTS + '"]')) {
     const l = document.createElement('link');
     l.id = 'sub-outreach-fonts'; l.rel = 'stylesheet'; l.href = FONTS;
     document.head.appendChild(l);
@@ -242,7 +253,7 @@ class AriseOutreach extends HTMLElement {
             CLIPS.map(function (c, i) {
               return '<div class="clip">' +
                 '<video controls preload="none" playsinline ' +
-                  'poster="' + M + c.id + 'f001.jpg" ' +
+                  'poster="' + aorImg(M + c.id + 'f001.jpg', 2000) + '" ' +
                   'aria-label="Arise Church outreach: ' + c.label + '">' +
                   '<source src="' + VID + c.id + '/720p/mp4/file.mp4" type="video/mp4">' +
                   '<source src="' + VID + c.id + '/480p/mp4/file.mp4" type="video/mp4">' +
@@ -259,8 +270,8 @@ class AriseOutreach extends HTMLElement {
           '<p class="lede" style="margin-top:24px;max-width:56ch" data-ck="outreach.supplies.body">We are always collecting supplies ' +
           '&amp; monetary donations for the homeless and hungry in our community.</p>' +
           '<div class="supp">' +
-            '<div class="supp__img"><img data-ci="outreach.supplies.image" src="' + SUPPLIES + '" ' +
-              'alt="Outreach supplies needed list"></div>' +
+            '<div class="supp__img"><img data-ci="outreach.supplies.image" data-ciw="1600" src="' + aorImg(SUPPLIES, 1600) + '" ' +
+              'loading="lazy" decoding="async" alt="Outreach supplies needed list"></div>' +
             '<ul class="supp__list">' +
               '<li data-ck="outreach.supplies.item1">Socks</li>' +
               '<li data-ck="outreach.supplies.item2">Winter gloves &amp; hats</li>' +
@@ -363,7 +374,7 @@ class AriseOutreach extends HTMLElement {
           return '<button class="gal__t" data-i="' + i + '" ' +
             'aria-label="Open ' + ((p.video || p.videoId) ? 'video' : 'photo') + ' ' + (i + 1) +
             ' of ' + pics.length + '">' +
-            '<img src="' + E(p.src) + '" alt="' + E(p.alt) + '" loading="lazy">' +
+            '<img src="' + E(aorImg(p.src, 1200)) + '" alt="' + E(p.alt) + '" loading="lazy" decoding="async">' +
             ((p.video || p.videoId) ? '<span class="gal__v">&#9654;</span>' : '') +
           '</button>';
         }).join('') +
@@ -414,10 +425,10 @@ class AriseOutreach extends HTMLElement {
                 return '<source src="' + base + LE(p.videoId) + '/' + q + '/mp4/file.mp4" type="video/mp4">';
               }).join('')
             : '<source src="' + LE(p.video) + '" type="video/mp4">';
-          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(p.src) + '">' +
+          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(aorImg(p.src, 2000)) + '">' +
             srcs + '</video>';
         } else {
-          stage.innerHTML = '<img src="' + LE(p.src) + '" alt="' + LE(p.alt || '') + '">';
+          stage.innerHTML = '<img src="' + LE(aorImg(p.src, 2000)) + '" alt="' + LE(p.alt || '') + '">';
         }
         cap.textContent = p.caption || '';
         idx.textContent = (self._i + 1) + ' / ' + list.length;
@@ -485,8 +496,9 @@ class AriseOutreach extends HTMLElement {
       const k = el.getAttribute('data-ci');
       const v = own.call(map, k) ? (map[k] || {}) : {};
       if (v.image) {
-        if (el.tagName === 'IMG') el.src = v.image;
-        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        const img = aorImg(v.image, Number(el.getAttribute('data-ciw')) || 1600);
+        if (el.tagName === 'IMG') el.src = img;
+        else el.style.backgroundImage = 'url("' + String(img).replace(/["\\]/g, '') + '")';
       }
     });
   }

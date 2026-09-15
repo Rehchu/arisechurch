@@ -1,7 +1,8 @@
 /* Arise Church - Velo page code
    Paste into: Code panel -> Page Code -> "Connect Groups"  (replaces the whole file)
-   Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss. */
-import { getConnectGroups, getPageContent } from 'backend/content.web';
+   Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss.
+   Sped up 2026-09-15: data-content now comes only from masterPage.js (it was loaded twice). */
+import { getConnectGroups } from 'backend/content.web';
 
 const PAGE = 'Connect Groups';
 const EL = '#customElement1';
@@ -50,12 +51,6 @@ function ariseSet(attr, value) {
 }
 
 $w.onReady(async () => {
-  try {
-    const content = await getPageContent();
-    console.log(PAGE + ': content ' + Object.keys(content).length + ' keys');
-    ariseSet('data-content', content);
-  } catch (err) { console.error(PAGE + ': content failed', err); }
-
   try {
     const groups = await getConnectGroups();
     console.log(PAGE + ': ' + groups.length + ' groups');
