@@ -1,0 +1,122 @@
+import { fetch } from 'wix-fetch';
+
+const CHANNEL_ID = 'UCGS9j7B_prcJkbTNgzlGrKg';
+
+/* =========================================================================
+   1. LIVE STREAM DETECTION
+   Reads YouTube's public /live page. When streaming, its canonical link is
+   a watch URL. When not, it points back at the channel. No API key needed.
+   ========================================================================= */
+
+let liveCache = { value: null, at: 0 };
+const LIVE_CACHE_MS = 45000;
+
+export async function getLiveVideoId() {
+  const now = Date.now();
+  if (now - liveCache.at < LIVE_CACHE_MS) return liveCache.value;
+
+  let result = null;
+
+  try {
+    const res = await fetch(
+      'https://www.youtube.com/channel/' + CHANNEL_ID + '/live',
+      { method: 'get', headers: { 'User-Agent': 'Mozilla/5.0 (compatible)' } }
+    );
+
+    if (res.ok) {
+      const html = await res.text();
+
+      // Signal 1: when live, the canonical link is a watch URL
+      const canonical = html.match(/<link rel="canonical" href="([^"]+)"/);
+      if (canonical && canonical[1].indexOf('/watch?v=') > -1) {
+        const id = canonical[1].split('/watch?v=')[1].split('&')[0];
+        if (/^[A-Za-z0-9_-]{11}$/.test(id)) result = id;
+      }
+
+      // Signal 2: fallback if the canonical is missing
+      if (!result && html.indexOf('"isLive":true') > -1) {
+        const vid = html.match(/"videoId":"([A-Za-z0-9_-]{11})"/);
+        if (vid) result = vid[1];
+      }
+    }
+  } catch (err) {
+    console.error('Live check failed:', err);
+    result = null;
+  }
+
+  liveCache = { value: result, at: now };
+  return result;
+}
+
+/* =========================================================================
+   2. CURRENT SERIES
+   Reads the channel's playlists. A playlist counts as the current series if
+   its name contains "series" -- which four of yours already do. Anything on
+   IGNORE is never treated as a series.
+   ========================================================================= */
+
+const IGNORE = [
+  'sunday sermons',
+  'lead network',
+  'iserve september',
+  'glory nights | arise church',
+  'conferences & special events',
+  'apostle bryant sanders - messages'
+];
+
+let seriesCache = { value: null, at: 0 };
+const SERIES_CACHE_MS = 600000;
+
+export async function getCurrentSeries() {
+  const now = Date.now();
+  if (now - seriesCache.at < SERIES_CACHE_MS) return seriesCache.value;
+
+  let result = null;
+
+  try {
+    const res = await fetch(
+      'https://www.youtube.com/channel/' + CHANNEL_ID + '/playlists',
+      { method: 'get', headers: { 'User-Agent': 'Mozilla/5.0 (compatible)' } }
+    );
+
+    if (res.ok) {
+      const html = await res.text();
+      const seen = {};
+
+      // NOTE: playlist IDs come in two lengths, 13 and 34 characters.
+      // Matching {16,} silently misses most of yours.
+      const re = /"playlistId":"(PL[A-Za-z0-9_-]{10,})"/g;
+      let m;
+
+      while ((m = re.exec(html)) !== null) {
+        const pid = m[1];
+        if (seen[pid]) continue;
+        seen[pid] = true;
+
+        const seg = html.slice(m.index, m.index + 3000);
+        const t = seg.match(/"title":\{"runs":\[\{"text":"([^"]{2,90})"/) ||
+                  seg.match(/"title":\{"simpleText":"([^"]{2,90})"/);
+        if (!t) continue;
+
+        const title = t[1].trim();
+        const lower = title.toLowerCase();
+
+        if (IGNORE.indexOf(lower) > -1) continue;
+        if (lower.indexOf('series') === -1) continue;   // opt-in by name
+
+        result = {
+          // drop a trailing "(Series)" so the heading reads cleanly
+          title: title.replace(/\s*\(series\)\s*$/i, '').trim(),
+          url: 'https://www.youtube.com/playlist?list=' + pid
+        };
+        break;                                          // first match = newest
+      }
+    }
+  } catch (err) {
+    console.error('Series lookup failed:', err);
+    result = null;
+  }
+
+  seriesCache = { value: result, at: now };
+  return result;
+}

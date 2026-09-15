@@ -1,0 +1,77 @@
+import { events } from 'wix-events.v2';
+import { elevate } from 'wix-auth';
+
+const elevatedQuery = elevate(events.queryEvents);
+
+function ctaFor(ev) {
+  const reg = ev.registration || {};
+  const type = reg.type;
+  const status = reg.status || '';
+
+  if (reg.registrationDisabled) return { cta: 'View Event', ctaEnabled: true };
+
+  if (type === 'TICKETING') {
+    if (reg.tickets && reg.tickets.soldOut) return { cta: 'Sold Out', ctaEnabled: false };
+    if (status.indexOf('OPEN') === 0) return { cta: 'Get Tickets', ctaEnabled: true };
+    return { cta: 'View Event', ctaEnabled: true };
+  }
+  if (type === 'RSVP') {
+    if (status === 'OPEN_RSVP_WAITLIST') return { cta: 'Join Waitlist', ctaEnabled: true };
+    if (status.indexOf('OPEN') === 0) return { cta: 'RSVP', ctaEnabled: true };
+    return { cta: 'View Event', ctaEnabled: true };
+  }
+  if (type === 'EXTERNAL') return { cta: 'Register', ctaEnabled: true };
+  return { cta: 'View Event', ctaEnabled: true };
+}
+
+function shape(ev) {
+  const dt = ev.dateAndTimeSettings || {};
+  const f  = dt.formatted || {};
+  const start = dt.startDate ? new Date(dt.startDate) : null;
+  const loc = ev.location || {};
+  const addr = (loc.address && loc.address.formatted) || '';
+
+  return Object.assign({
+    id: ev._id || ev.id,
+    title: ev.title || '',
+    shortDescription: ev.shortDescription || '',
+    image: (ev.mainImage && (ev.mainImage.url || ev.mainImage)) || '',
+    dateLine: f.dateAndTime || '',
+    startDate: f.startDate || '',
+    startMonth: start ? start.toLocaleString('en-US', { month: 'short' }) : '',
+    startDay: start ? String(start.getDate()) : '',
+    location: addr || loc.name || '',
+    url: (ev.eventPageUrl && ev.eventPageUrl.path) || ''
+  }, ctaFor(ev));
+}
+
+/**
+ * Upcoming events (soonest first) and past events (most recent first).
+ */
+export async function getEvents() {
+  try {
+    const res = await elevatedQuery({ fields: ['DETAILS', 'TEXTS', 'REGISTRATION', 'URLS'] })
+      .ne('status', 'CANCELED')
+      .limit(50)
+      .find();
+
+    const all = (res.items || []).map(shape);
+    const raw = res.items || [];
+
+    const upcoming = [], past = [];
+    raw.forEach((ev, i) => {
+      const s = all[i];
+      if (!s.url) return;
+      if (ev.status === 'UPCOMING' || ev.status === 'STARTED') upcoming.push(s);
+      else if (ev.status === 'ENDED') past.push(s);
+    });
+
+    upcoming.sort((a, b) => (a.dateLine > b.dateLine ? 1 : -1));
+    past.reverse();
+
+    return { upcoming, past: past.slice(0, 8) };
+  } catch (err) {
+    console.error('getEvents failed:', err);
+    return { upcoming: [], past: [] };
+  }
+}
