@@ -16,6 +16,8 @@
    All copy is from the live site. The four ministries without pages show a
    Coming Soon flag instead of a dead link -- edit MINISTRIES below to change
    that when a page goes live.
+   Fixed 2026-09-14: no horizontal scroll from 100vw, escape tile fields, wix:image URLs, Sunday times CMS hooks, safer applyContent.
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-ministries.json)
    =========================================================================== */
 
 const FONTS =
@@ -43,7 +45,7 @@ arise-leaders,arise-ministries,arise-about,arise-contact{display:block;width:100
   --shell:1180px;--gut:clamp(20px,5vw,56px);--sect:clamp(56px,8vw,104px);
   font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:300;color:var(--ink);
   background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;
-  color-scheme:light only;width:100vw;margin-left:calc(50% - 50vw);
+  color-scheme:light only;width:100vw;margin-left:calc(50% - 50vw);overflow-x:hidden;
 }
 .ap img{color:#fff;font-size:12px;background:#1A1A1F}
 .ap .shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gut)}
@@ -225,6 +227,12 @@ arise-leaders,arise-ministries,arise-about,arise-contact{display:block;width:100
 }
 `;
 
+/* Escape CMS text for HTML; existing entities (&amp; &middot; ...) are kept. */
+function amnEsc(s) {
+  return String(s == null ? '' : s).replace(/&(?!(#\d+|#x[0-9a-f]+|[a-z]+);)/gi, '&amp;')
+    .replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 function injectHead() {
   if (!document.getElementById('ap-min-fonts')) {
     const l = document.createElement('link');
@@ -254,9 +262,11 @@ class AriseMinistries extends HTMLElement {
       const d = JSON.parse(raw);
       if (!Array.isArray(d) || !d.length) return MINISTRIES;
       return d.map(function (m) {
+        let img = String(m.img || '');
+        if (img.indexOf('wix:image://v1/') === 0) img = 'https://static.wixstatic.com/media/' + img.slice(15).split(/[\/#]/)[0];
         return { title: m.title || '', cat: m.cat || '', link: m.link || '',
-                 img: m.img || '', soon: !!m.soon,
-                 logo: /1c539649/.test(m.img || '') };
+                 img: img, soon: !!m.soon,
+                 logo: /1c539649/.test(img) };
       });
     } catch (e) {
       console.error('arise-ministries: bad data-ministries JSON', e);
@@ -271,33 +281,33 @@ class AriseMinistries extends HTMLElement {
 
   build() {
     const tiles = this.list().map(m => {
-      const inner = '<img src="' + m.img + '" alt="' + m.title.replace(/&[a-z]+;/g,'') + '">' +
-        '<div class="min__t"><h2>' + m.title + '</h2>' +
-        (m.soon ? '' : '<span>' + m.cat + '</span>') + '</div>';
+      const inner = '<img src="' + amnEsc(m.img) + '" alt="' + amnEsc(m.title) + '">' +
+        '<div class="min__t"><h2>' + amnEsc(m.title) + '</h2>' +
+        (m.soon ? '' : '<span>' + amnEsc(m.cat) + '</span>') + '</div>';
       return m.soon
         ? '<span class="min__c' + (m.logo ? ' min__c--logo' : '') + '" data-soon>' + inner + '</span>'
-        : '<a class="min__c' + (m.logo ? ' min__c--logo' : '') + '" href="' + m.link + '" target="_top">' + inner + '</a>';
+        : '<a class="min__c' + (m.logo ? ' min__c--logo' : '') + '" href="' + amnEsc(m.link) + '" target="_top">' + inner + '</a>';
     }).join('');
 
     this.innerHTML =
       '<div class="ap">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Arise Church</span></div>' +
-          '<h1>Ministries</h1>' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="ministries.hero.kicker">Arise Church</span></div>' +
+          '<h1 data-ck="ministries.hero.heading">Ministries</h1>' +
         '</div></header>' +
         '<section class="sect"><div class="shell">' +
-          '<div class="min">' + tiles + '</div>' +
-          '<div class="needband"><h2>We are In Need</h2>' +
-          '<a class="btn" href="/serve" target="_top">Sign Up to Serve!</a></div>' +
+          '<div class="min" data-cms-source="Ministries">' + tiles + '</div>' +
+          '<div class="needband"><h2 data-ck="ministries.need.heading">We are In Need</h2>' +
+          '<a class="btn" href="/serve" target="_top" data-ck="ministries.need.button">Sign Up to Serve!</a></div>' +
         '</div></section>' +
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta">' +
             '<div class="cta__b">' +
-              '<div class="mark"><span class="kicker">Not Sure Where To Start</span></div>' +
-              '<h2>Come Visit First</h2>' +
-              '<p>Sunday 10:30 AM in Pineville, 10:00 AM in Alexandria. ' + 'Find your people once you\u2019re here.</p>' +
+              '<div class="mark"><span class="kicker" data-ck="ministries.cta.kicker">Not Sure Where To Start</span></div>' +
+              '<h2 data-ck="ministries.cta.heading">Come Visit First</h2>' +
+              '<p><span data-ck="site.times.sunday.main">Sunday 10:30 AM</span> <span data-ck="ministries.cta.where1">in Pineville,</span> <span data-ck="site.times.sunday.second">Sunday 10:00 AM</span> <span data-ck="ministries.cta.where2">in Alexandria.</span> ' + '<span data-ck="ministries.cta.body">Find your people once you\u2019re here.</span></p>' +
             '</div>' +
-            '<a class="btn" href="/contact" target="_top">Plan Your Visit</a>' +
+            '<a class="btn" href="/contact" target="_top" data-ck="ministries.cta.button">Plan Your Visit</a>' +
           '</div>' +
         '</div></section>' +
       '</div>';
@@ -314,18 +324,18 @@ class AriseMinistries extends HTMLElement {
     if (!map || typeof map !== 'object') return;
 
     const self = this;
-    Object.keys(map).forEach(function (k) {
-      const v = map[k] || {};
-      if (v.text) {
-        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
-          el.innerHTML = v.text;
-        });
-      }
-      if (v.image) {
-        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
-        });
+    const has = function (k) { return !!k && Object.prototype.hasOwnProperty.call(map, k) && map[k]; };
+    self.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = has(k) ? map[k] : null;
+      if (v && v.text) el.innerHTML = v.text;
+    });
+    self.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = has(k) ? map[k] : null;
+      if (v && v.image) {
+        if (el.tagName === 'IMG') el.src = v.image;
+        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
       }
     });
   }

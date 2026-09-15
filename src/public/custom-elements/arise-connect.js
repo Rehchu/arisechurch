@@ -23,6 +23,9 @@
    formType set to connect-host or connect-join.
 
    DATES are near the top -- update them each season in one place.
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-connect.json)
+   Fixed 2026-09-14: placeholder contrast, form a11y (live status, aria-required/invalid/describedby, success focus), full ARIA tabs + arrow keys, host-by tab label CMS hook, safer applyContent, wix:image flyer URLs
+   14 Sept (Bradly): host registration only. The Join tab, join form and Join This Group buttons stay hidden until Page Content connect.join.open = yes; a blank connect.season.hostby row hides the deadline.
    =========================================================================== */
 
 const ACG_FONTS =
@@ -35,7 +38,7 @@ const SEASON = {
   name:      'Fall Connect Groups',
   starts:    'the week of September 14',
   ends:      'the week of November 16',
-  hostBy:    'September 2'
+  hostBy:    'September 20'
 };
 
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -147,6 +150,7 @@ arise-connect{display:block;width:100%}
 .acg .g__none p{color:var(--muted);font-size:15.5px;max-width:48ch;margin:0 auto}
 
 /* tabs + forms */
+.acg [hidden]{display:none!important}
 .acg .tabs{display:flex;gap:2px;margin-top:48px;flex-wrap:wrap}
 .acg .tab{flex:1 1 220px;background:var(--bone);border:0;padding:20px 22px;cursor:pointer;
   font-family:'Oswald',Helvetica,Arial,sans-serif;text-align:left;
@@ -175,7 +179,7 @@ arise-connect{display:block;width:100%}
   font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:300;font-size:16.5px;color:#fff}
 .acg textarea{min-height:110px;resize:vertical;line-height:1.6}
 .acg select option{background:#0A0A0C;color:#fff}
-.acg input::placeholder,.acg textarea::placeholder{color:rgba(255,255,255,.34)}
+.acg input::placeholder,.acg textarea::placeholder{color:rgba(255,255,255,.55)}
 .acg input:focus,.acg select:focus,.acg textarea:focus{outline:none;border-bottom-color:var(--red)}
 .acg .bad input,.acg .bad select,.acg .bad textarea{border-bottom-color:var(--redL)}
 .acg .hint{font-size:12px;color:var(--redL);margin-top:7px;min-height:16px}
@@ -201,9 +205,19 @@ arise-connect{display:block;width:100%}
 }
 `;
 
+var AC_MAP = { firstName: 'given-name', lastName: 'family-name', name: 'name',
+  email: 'email', phone: 'tel' };
+function acOf(k) { return AC_MAP[k] || 'on'; }
+
 function acgEsc(s) {
   return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* Wix Image field values (wix:image://v1/<id>/...) are not loadable URLs. */
+function acgImg(u) {
+  const m = /^wix:image:\/\/v1\/([^\/#]+)/.exec(String(u || ''));
+  return m ? 'https://static.wixstatic.com/media/' + m[1] : u;
 }
 
 const FORMS = {
@@ -288,32 +302,36 @@ class AriseConnect extends HTMLElement {
 
     const buildForm = function (type) {
       const cfg = FORMS[type];
+      const pre = type === 'connect-host' ? 'connect.host' : 'connect.join';
       const fields = cfg.fields.map(function (f) {
         const cls = f.half ? '' : ' full';
         const req = f.req ? ' <span class="req">*</span>' : '';
         const id = type + '-' + f.k;
+        const acgReq = f.req ? ' aria-required="true"' : '';
         let control;
         if (f.type === 'textarea') {
-          control = '<textarea id="' + id + '"></textarea>';
+          control = '<textarea id="' + id + '" name="' + f.k + '"' + acgReq + '></textarea>';
         } else if (f.type === 'select') {
-          control = '<select id="' + id + '"><option value="">No preference</option>' +
+          control = '<select id="' + id + '" name="' + f.k + '"' + acgReq + '><option value="">' +
+            (f.req ? 'Choose...' : 'No preference') + '</option>' +
             (f.options || []).map(function (o) { return '<option>' + E(o) + '</option>'; }).join('') +
             '</select>';
         } else {
-          control = '<input id="' + id + '" type="' + f.type + '"' +
-            (f.ph ? ' placeholder="' + E(f.ph) + '"' : '') + ' autocomplete="on">';
+          control = '<input id="' + id + '" name="' + f.k + '" type="' + f.type + '"' +
+            (f.ph ? ' placeholder="' + E(f.ph) + '"' : '') + acgReq + ' autocomplete="' + acOf(f.k) + '">';
         }
         return '<div class="fld' + cls + '" data-k="' + f.k + '">' +
-          '<label for="' + id + '">' + E(f.label) + req + '</label>' +
-          control + '<div class="hint"></div></div>';
+          '<label for="' + id + '"><span data-ck="' + pre + '.label.' + f.k + '">' + E(f.label) + '</span>' + req + '</label>' +
+          control + '<div class="hint" id="' + id + '-hint"></div></div>';
       }).join('');
 
-      return '<div class="panel" data-panel="' + type + '" data-on="' + (type === 'connect-host') + '">' +
-        '<h3>' + E(cfg.heading) + '</h3>' +
-        '<p class="intro">' + E(cfg.intro) + '</p>' +
+      return '<div class="panel" data-panel="' + type + '" data-on="' + (type === 'connect-host') + '"' +
+        ' id="acg-panel-' + type + '" role="tabpanel" aria-labelledby="acg-tab-' + type + '">' +
+        '<h3 data-ck="' + pre + '.heading">' + E(cfg.heading) + '</h3>' +
+        '<p class="intro" data-ck="' + pre + '.intro">' + E(cfg.intro) + '</p>' +
         '<form novalidate data-type="' + type + '">' + fields +
-          '<div class="note"></div>' +
-          '<div class="full"><button type="submit">' + E(cfg.button) + '</button></div>' +
+          '<div class="note" role="status" aria-live="polite"></div>' +
+          '<div class="full"><button type="submit"><span data-ck="' + pre + '.button">' + E(cfg.button) + '</span></button></div>' +
         '</form>' +
       '</div>';
     };
@@ -321,70 +339,72 @@ class AriseConnect extends HTMLElement {
     this.innerHTML =
       '<div class="acg">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Arise Church</span></div>' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="connect.hero.kicker">Arise Church</span></div>' +
           '<h1 data-ck="connect.season.name">' + E(SEASON.name) + '</h1>' +
           '<p class="lede" data-ck="connect.hero.body">Where real people build real faith. Don\'t do life alone - ' +
           'do life together.</p>' +
-          '<div class="strip" style="margin-top:28px"><span>Connect &middot; Grow &middot; Go</span></div>' +
+          '<div class="strip" style="margin-top:28px"><span data-ck="connect.hero.strip">Connect &middot; Grow &middot; Go</span></div>' +
         '</div></header>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">What They Are</span></div>' +
-          '<h2>In Homes,<br>Every Week</h2>' +
-          '<p class="lede" style="margin-top:24px;max-width:58ch">Connect Groups meet in homes ' +
+          '<div class="mark"><span class="kicker" data-ck="connect.what.kicker">What They Are</span></div>' +
+          '<h2 data-ck="connect.what.heading">In Homes,<br>Every Week</h2>' +
+          '<p class="lede" style="margin-top:24px;max-width:58ch" data-ck="connect.what.body">Connect Groups meet in homes ' +
           'across our community. A host opens their door, a few people gather, and life gets ' +
           'shared around a table instead of a pew.</p>' +
 
           '<div class="pill">' +
-            '<div class="pill__c"><div class="pill__n">CONNECT</div>' +
-              '<h3>Build meaningful relationships</h3>' +
-              '<p>Know people and be known by them.</p></div>' +
-            '<div class="pill__c"><div class="pill__n">GROW</div>' +
-              '<h3>Do life together</h3>' +
-              '<p>Faith grows faster in company than alone.</p></div>' +
-            '<div class="pill__c"><div class="pill__n">GO</div>' +
-              '<h3>Live it out and make an impact</h3>' +
-              '<p>What happens around the table goes out the door.</p></div>' +
+            '<div class="pill__c"><div class="pill__n" data-ck="connect.pillars.item1.label">CONNECT</div>' +
+              '<h3 data-ck="connect.pillars.item1.heading">Build meaningful relationships</h3>' +
+              '<p data-ck="connect.pillars.item1.body">Know people and be known by them.</p></div>' +
+            '<div class="pill__c"><div class="pill__n" data-ck="connect.pillars.item2.label">GROW</div>' +
+              '<h3 data-ck="connect.pillars.item2.heading">Do life together</h3>' +
+              '<p data-ck="connect.pillars.item2.body">Faith grows faster in company than alone.</p></div>' +
+            '<div class="pill__c"><div class="pill__n" data-ck="connect.pillars.item3.label">GO</div>' +
+              '<h3 data-ck="connect.pillars.item3.heading">Live it out and make an impact</h3>' +
+              '<p data-ck="connect.pillars.item3.body">What happens around the table goes out the door.</p></div>' +
           '</div>' +
 
           '<div class="verse">' +
-            '<p>And they, continuing daily with one accord in the temple, and breaking bread from ' +
+            '<p data-ck="connect.verse.body">And they, continuing daily with one accord in the temple, and breaking bread from ' +
             'house to house, did eat their meat with gladness and singleness of heart, praising God, ' +
             'and having favor with all the people.</p>' +
-            '<cite>Acts 2:46</cite>' +
+            '<cite data-ck="connect.verse.ref">Acts 2:46</cite>' +
           '</div>' +
         '</div></section>' +
 
         '<section class="sect sect--ink"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">This Season</span></div>' +
-          '<h2>Dates</h2>' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="connect.dates.kicker">This Season</span></div>' +
+          '<h2 data-ck="connect.dates.heading">Dates</h2>' +
           '<div class="when">' +
-            '<div class="when__c"><div class="when__l">Starts</div>' +
+            '<div class="when__c"><div class="when__l" data-ck="connect.dates.startsLabel">Starts</div>' +
               '<div class="when__v" data-ck="connect.season.starts">' + E(SEASON.starts) + '</div></div>' +
-            '<div class="when__c"><div class="when__l">Ends</div>' +
+            '<div class="when__c"><div class="when__l" data-ck="connect.dates.endsLabel">Ends</div>' +
               '<div class="when__v" data-ck="connect.season.ends">' + E(SEASON.ends) + '</div></div>' +
-            '<div class="when__c when__c--urgent"><div class="when__l">Host sign-up closes</div>' +
+            '<div class="when__c when__c--urgent" data-acg-hostby><div class="when__l" data-ck="connect.dates.hostbyLabel">Host sign-up closes</div>' +
               '<div class="when__v" data-ck="connect.season.hostby">' + E(SEASON.hostBy) + '</div></div>' +
           '</div>' +
         '</div></section>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Find a Group</span></div>' +
-          '<h2>Groups This Season</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="connect.groups.kicker">Find a Group</span></div>' +
+          '<h2 data-ck="connect.groups.heading">Groups This Season</h2>' +
           '<div id="acgGroups"></div>' +
         '</div></section>' +
 
         '<section class="sect sect--bone"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Sign Up</span></div>' +
-          '<h2>Be a Host.<br>Make a Difference.</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="connect.signup.kicker">Sign Up</span></div>' +
+          '<h2 data-ck="connect.signup.heading">Be a Host.<br>Make a Difference.</h2>' +
           '<div class="tabs" role="tablist">' +
-            '<button class="tab" role="tab" data-tab="connect-host" aria-selected="true">' +
-              '<span class="tab__t">Host a Group</span>' +
-              '<span class="tab__d">Open your home. Sign up by ' + E(SEASON.hostBy) + '.</span>' +
+            '<button class="tab" role="tab" data-tab="connect-host" aria-selected="true"' +
+              ' id="acg-tab-connect-host" aria-controls="acg-panel-connect-host" tabindex="0">' +
+              '<span class="tab__t" data-ck="connect.signup.tab1.title">Host a Group</span>' +
+              '<span class="tab__d"><span data-ck="connect.signup.tab1.body">Open your home.</span><span data-acg-hostby> <span data-ck="connect.signup.tab1.signupBy">Sign up by</span> <span data-ck="connect.season.hostby">' + E(SEASON.hostBy) + '</span>.</span></span>' +
             '</button>' +
-            '<button class="tab" role="tab" data-tab="connect-join" aria-selected="false">' +
-              '<span class="tab__t">Join a Group</span>' +
-              '<span class="tab__d">Find a group near you.</span>' +
+            '<button class="tab" role="tab" data-tab="connect-join" aria-selected="false"' +
+              ' id="acg-tab-connect-join" aria-controls="acg-panel-connect-join" tabindex="-1">' +
+              '<span class="tab__t" data-ck="connect.signup.tab2.title">Join a Group</span>' +
+              '<span class="tab__d" data-ck="connect.signup.tab2.body">Find a group near you.</span>' +
             '</button>' +
           '</div>' +
           buildForm('connect-host') +
@@ -406,36 +426,37 @@ class AriseConnect extends HTMLElement {
 
     if (!list.length) {
       mount.innerHTML =
-        '<div class="g__none"><h3>Groups are forming</h3>' +
-        '<p>Hosts are signing up now. Check back soon, or add your name below and we will ' +
+        '<div class="g__none"><h3 data-ck="connect.groups.empty.heading">Groups are forming</h3>' +
+        '<p data-ck="connect.groups.empty.body">Hosts are signing up now. Check back soon, or add your name below and we will ' +
         'match you with a group when they are set.</p></div>';
+      this.applyContent();
       return;
     }
 
     const self = this;
-    mount.innerHTML = '<div class="groups">' + list.map(function (g, i) {
+    mount.innerHTML = '<div class="groups" data-cms-source="ConnectGroups">' + list.map(function (g, i) {
       const when = [g.day, g.time].filter(Boolean).join(' \u00b7 ');
       const rows = [
-        g.hostName ? ['Host', g.hostName] : null,
-        (g.location || g.area) ? ['Where', g.location || g.area] : null,
-        when ? ['When', when] : null,
-        g.dates ? ['Dates', g.dates] : null,
-        g.audience ? ['For', g.audience] : null
+        g.hostName ? ['Host', g.hostName, 'connect.groups.card.hostLabel'] : null,
+        (g.location || g.area) ? ['Where', g.location || g.area, 'connect.groups.card.whereLabel'] : null,
+        when ? ['When', when, 'connect.groups.card.whenLabel'] : null,
+        g.dates ? ['Dates', g.dates, 'connect.groups.card.datesLabel'] : null,
+        g.audience ? ['For', g.audience, 'connect.groups.card.forLabel'] : null
       ].filter(Boolean);
 
       return '<div class="g">' +
         (g.flyer
-          ? '<div class="g__img"><img src="' + E(g.flyer) + '" alt="' + E(g.title) + '">' +
-            (g.isFull ? '<span class="g__full">Full</span>' : '') + '</div>'
+          ? '<div class="g__img"><img src="' + E(acgImg(g.flyer)) + '" alt="' + E(g.title) + '">' +
+            (g.isFull ? '<span class="g__full" data-ck="connect.groups.card.fullBadge">Full</span>' : '') + '</div>'
           : '') +
         '<div class="g__b">' +
           '<h3>' + E(g.title) + '</h3>' +
           (g.description ? '<p class="g__d">' + E(g.description) + '</p>' : '') +
           '<dl class="g__facts">' + rows.map(function (r) {
-            return '<dt>' + E(r[0]) + '</dt><dd>' + E(r[1]) + '</dd>';
+            return '<dt data-ck="' + r[2] + '">' + E(r[0]) + '</dt><dd>' + E(r[1]) + '</dd>';
           }).join('') + '</dl>' +
           '<button class="g__go" data-join="' + i + '"' + (g.isFull ? ' disabled' : '') + '>' +
-            (g.isFull ? 'Group Full' : 'Join This Group') + '</button>' +
+            (g.isFull ? '<span data-ck="connect.groups.card.fullButton">Group Full</span>' : '<span data-ck="connect.groups.card.joinButton">Join This Group</span>') + '</button>' +
         '</div>' +
       '</div>';
     }).join('') + '</div>';
@@ -446,21 +467,26 @@ class AriseConnect extends HTMLElement {
         const g = list[parseInt(b.getAttribute('data-join'), 10)];
         if (!g) return;
 
-        self.querySelectorAll('.tab').forEach(function (t) {
-          t.setAttribute('aria-selected', String(t.getAttribute('data-tab') === 'connect-join'));
-        });
-        self.querySelectorAll('.panel').forEach(function (p) {
-          p.setAttribute('data-on', String(p.getAttribute('data-panel') === 'connect-join'));
-        });
+        self.acgSelect('connect-join');
 
         const which = self.querySelector('#connect-join-subject');
         if (which) which.value = g.title || '';
-        const day = self.querySelector('#connect-join-position');
-        if (day && g.day) day.value = g.day;
 
         const panel = self.querySelector('.panel[data-panel="connect-join"]');
         if (panel && panel.scrollIntoView) panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
+    });
+    this.applyContent();
+  }
+
+  acgSelect(t) {
+    this.querySelectorAll('.tab').forEach(function (x) {
+      const on = x.getAttribute('data-tab') === t;
+      x.setAttribute('aria-selected', String(on));
+      x.setAttribute('tabindex', on ? '0' : '-1');
+    });
+    this.querySelectorAll('.panel').forEach(function (p) {
+      p.setAttribute('data-on', String(p.getAttribute('data-panel') === t));
     });
   }
 
@@ -469,19 +495,27 @@ class AriseConnect extends HTMLElement {
 
     this.querySelectorAll('.tab').forEach(function (b) {
       b.addEventListener('click', function () {
-        const t = b.getAttribute('data-tab');
-        self.querySelectorAll('.tab').forEach(function (x) {
-          x.setAttribute('aria-selected', String(x === b));
-        });
-        self.querySelectorAll('.panel').forEach(function (p) {
-          p.setAttribute('data-on', String(p.getAttribute('data-panel') === t));
-        });
+        self.acgSelect(b.getAttribute('data-tab'));
+      });
+      b.addEventListener('keydown', function (e) {
+        const tabs = Array.prototype.slice.call(self.querySelectorAll('.tab')).filter(function (t) { return !t.hidden; });
+        const i = tabs.indexOf(b);
+        let n = -1;
+        if (e.key === 'ArrowRight' || e.key === 'Right') n = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'Left') n = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') n = 0;
+        else if (e.key === 'End') n = tabs.length - 1;
+        if (n < 0 || !tabs[n]) return;
+        e.preventDefault();
+        self.acgSelect(tabs[n].getAttribute('data-tab'));
+        tabs[n].focus();
       });
     });
 
     this.querySelectorAll('form').forEach(function (form) {
       const type = form.getAttribute('data-type');
       const cfg = FORMS[type];
+      const pre = type === 'connect-host' ? 'connect.host' : 'connect.join';
       const note = form.querySelector('.note');
       const go = form.querySelector('button[type="submit"]');
 
@@ -491,6 +525,8 @@ class AriseConnect extends HTMLElement {
         form.querySelectorAll('.fld').forEach(function (d) {
           d.classList.remove('bad');
           const h = d.querySelector('.hint'); if (h) h.textContent = '';
+          const c = d.querySelector('input,select,textarea');
+          if (c) { c.removeAttribute('aria-invalid'); c.removeAttribute('aria-describedby'); }
         });
         note.textContent = '';
         note.removeAttribute('data-err');
@@ -508,11 +544,13 @@ class AriseConnect extends HTMLElement {
           if (f.req && !val) {
             wrap.classList.add('bad');
             wrap.querySelector('.hint').textContent = 'Required';
+            if (el) { el.setAttribute('aria-invalid', 'true'); el.setAttribute('aria-describedby', type + '-' + f.k + '-hint'); }
             if (!firstBad) firstBad = el;
           } else if (f.type === 'email' && val &&
                      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
             wrap.classList.add('bad');
             wrap.querySelector('.hint').textContent = 'Check this email address';
+            if (el) { el.setAttribute('aria-invalid', 'true'); el.setAttribute('aria-describedby', type + '-' + f.k + '-hint'); }
             if (!firstBad) firstBad = el;
           }
         });
@@ -547,8 +585,11 @@ class AriseConnect extends HTMLElement {
           if (!res.ok) throw new Error('status ' + res.status);
 
           const panel = form.parentNode;
-          panel.innerHTML = '<h3>' + acgEsc(cfg.heading) + '</h3>' +
-            '<div class="done"><h3>Thank You</h3><p>' + acgEsc(cfg.done) + '</p></div>';
+          panel.innerHTML = '<h3 data-ck="' + pre + '.heading">' + acgEsc(cfg.heading) + '</h3>' +
+            '<div class="done" tabindex="-1" role="status"><h3 data-ck="connect.success.heading">Thank You</h3><p data-ck="' + pre + '.done">' + acgEsc(cfg.done) + '</p></div>';
+          self.applyContent();
+          const acgDone = panel.querySelector('.done');
+          if (acgDone) acgDone.focus();
 
         } catch (err) {
           console.error('connect form failed:', err);
@@ -560,29 +601,48 @@ class AriseConnect extends HTMLElement {
       });
     });
   }
+  /* Connect Groups is host registration only until joining is opened in the CMS:
+     add the Page Content row connect.join.open with the text "yes". A Page Content
+     row connect.season.hostby with blank text hides the host sign-up deadline. */
+  acgSignupState(map) {
+    const text = function (k) {
+      if (!map || !Object.prototype.hasOwnProperty.call(map, k)) return null;
+      const v = map[k];
+      return v && typeof v === 'object' ? String(v.text || '') : String(v == null ? '' : v);
+    };
+    const open = /^\s*(yes|true|open|on|1)\s*$/i.test(text('connect.join.open') || '');
+    const joinTab = this.querySelector('#acg-tab-connect-join');
+    const joinPanel = this.querySelector('.panel[data-panel="connect-join"]');
+    if (joinTab) joinTab.hidden = !open;
+    if (joinPanel) joinPanel.hidden = !open;
+    this.querySelectorAll('.g__go').forEach(function (b) { b.hidden = !open; });
+    if (!open && joinTab && joinTab.getAttribute('aria-selected') === 'true') this.acgSelect('connect-host');
+
+    const hostBy = text('connect.season.hostby');
+    const noDeadline = hostBy !== null && hostBy.replace(/<[^>]*>/g, '').trim() === '';
+    this.querySelectorAll('[data-acg-hostby]').forEach(function (el) { el.hidden = noDeadline; });
+  }
+
   applyContent() {
     const raw = this.getAttribute('data-content');
-    if (!raw) return;
-    let map;
-    try { map = JSON.parse(raw); } catch (e) {
-      console.error('bad data-content JSON', e); return;
+    let map = null;
+    if (raw) {
+      try { map = JSON.parse(raw); } catch (e) { console.error('bad data-content JSON', e); map = null; }
     }
+    this.acgSignupState(map && typeof map === 'object' ? map : null);
     if (!map || typeof map !== 'object') return;
 
-    const self = this;
-    Object.keys(map).forEach(function (k) {
-      const v = map[k] || {};
-      if (v.text) {
-        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
-          el.innerHTML = v.text;
-        });
-      }
-      if (v.image) {
-        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
-        });
-      }
+    this.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = Object.prototype.hasOwnProperty.call(map, k) ? (map[k] || {}) : {};
+      if (v.text) el.innerHTML = v.text;
+    });
+    this.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = Object.prototype.hasOwnProperty.call(map, k) ? (map[k] || {}) : {};
+      if (!v.image) return;
+      if (el.tagName === 'IMG') el.src = v.image;
+      else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
     });
   }
 }

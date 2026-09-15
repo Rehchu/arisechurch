@@ -24,6 +24,8 @@
 
    Without the page code it still renders, using the fallback below. With it,
    every event you add in Wix Events appears here automatically.
+   Fixed 2026-09-14: fallback event expires after it ends, Sold Out is a non-link, Anton size floors, CMS time hooks in empty state, safer applyContent
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-events.json)
    =========================================================================== */
 
 const AEV_FONTS =
@@ -39,7 +41,8 @@ const FALLBACK = {
     startMonth: 'Oct', startDay: '30', startDate: 'October 30, 2026',
     location: 'Arise Church, 501 Ates Rd, Pineville, LA 71360, USA',
     url: '/events-1/the-lead-network-2026-camp-meeting-the-outpour',
-    cta: 'RSVP', ctaEnabled: true
+    cta: 'RSVP', ctaEnabled: true,
+    endsAt: '2026-11-01T17:30:00-05:00'
   }],
   past: []
 };
@@ -60,7 +63,7 @@ arise-events{display:block;width:100%}
   text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
 .aev h1{font-size:clamp(40px,7.4vw,84px)}
 .aev h2{font-size:clamp(26px,3.8vw,46px)}
-.aev h3{font-size:clamp(15px,1.5vw,18px);letter-spacing:.03em;line-height:1.2}
+.aev h3{font-size:clamp(18px,1.6vw,22px);letter-spacing:.03em;line-height:1.2}
 .aev h4{font-size:13px;letter-spacing:.12em}
 .aev p{font-size:clamp(15.5px,1.4vw,17px)}
 
@@ -115,7 +118,7 @@ arise-events{display:block;width:100%}
 .aev .feat__sub{color:rgba(255,255,255,.82);font-size:17px;margin-top:20px;max-width:46ch}
 .aev .meta{margin-top:30px;border-top:1px solid var(--ruleD)}
 .aev .meta__r{display:flex;gap:22px;padding:15px 0;border-bottom:1px solid var(--ruleD);font-size:14.5px}
-.aev .meta__r .lbl{flex:0 0 100px;color:var(--redL);padding-top:2px;font-family:'Anton',Impact,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;line-height:1.02}
+.aev .meta__r .lbl{flex:0 0 100px;color:var(--redL);padding-top:2px;font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;line-height:1.02}
 .aev .meta__r div{color:rgba(255,255,255,.82)}
 .aev .feat__acts{margin-top:38px;display:flex;gap:13px;flex-wrap:wrap}
 
@@ -142,7 +145,7 @@ arise-events{display:block;width:100%}
 .aev .arch__c:hover img{transform:scale(1.05);filter:grayscale(0) brightness(.8)}
 .aev .arch__t{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 18px;
   background:linear-gradient(180deg,rgba(6,6,8,0) 0%,rgba(6,6,8,.72) 42%,rgba(6,6,8,.97) 100%)}
-.aev .arch__t h3{color:#fff;font-size:15px}
+.aev .arch__t h3{color:#fff;font-size:18px}
 .aev .arch__t span{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
   color:#fff;opacity:.9;margin-top:5px;font-weight:500}
 
@@ -171,7 +174,14 @@ arise-events{display:block;width:100%}
 function aevEsc(s) {
   return String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+/* The built-in fallback event disappears once it has ended. */
+function aevFallback() {
+  const f = FALLBACK.upcoming[0];
+  if (f && f.endsAt && Date.now() > Date.parse(f.endsAt)) return { upcoming: [], past: [] };
+  return FALLBACK;
 }
 
 class AriseEvents extends HTMLElement {
@@ -201,7 +211,7 @@ class AriseEvents extends HTMLElement {
 
   getData() {
     const raw = this.getAttribute('data-events');
-    if (!raw) return FALLBACK;
+    if (!raw) return aevFallback();
     try {
       const d = JSON.parse(raw);
       return {
@@ -210,7 +220,7 @@ class AriseEvents extends HTMLElement {
       };
     } catch (e) {
       console.error('arise-events: could not parse data-events', e);
-      return FALLBACK;
+      return aevFallback();
     }
   }
 
@@ -222,17 +232,17 @@ class AriseEvents extends HTMLElement {
 
     let html = '<div class="aev">' +
       '<header class="phead"><div class="shell">' +
-        '<div class="mark mark--l"><span class="kicker">Arise Church</span></div>' +
-        '<h1>Events</h1>' +
+        '<div class="mark mark--l"><span class="kicker" data-ck="events.hero.kicker">Arise Church</span></div>' +
+        '<h1 data-ck="events.hero.heading">Events</h1>' +
       '</div></header>';
 
     if (feat) {
       const cls = feat.ctaEnabled === false ? 'btn btn--off' : 'btn';
       html +=
         '<section style="padding:0"><div class="shell" style="padding-top:var(--sect)">' +
-          '<div class="mark"><span class="kicker">Upcoming</span></div>' +
+          '<div class="mark"><span class="kicker" data-ck="events.upcoming.kicker">Upcoming</span></div>' +
         '</div>' +
-        '<div class="shell"><div class="feat">' +
+        '<div class="shell"><div class="feat" data-cms-source="Events">' +
           '<div class="feat__img">' +
             (feat.image ? '<img src="' + E(feat.image) + '" alt="' + E(feat.title) + '">' : '') +
             (feat.startMonth ? '<div class="feat__date"><span class="m">' + E(feat.startMonth) +
@@ -244,29 +254,32 @@ class AriseEvents extends HTMLElement {
             '<h2>' + E(feat.title) + '</h2>' +
             (feat.shortDescription ? '<p class="feat__sub">' + E(feat.shortDescription) + '</p>' : '') +
             '<div class="meta">' +
-              (feat.dateLine ? '<div class="meta__r"><div class="lbl">Time</div><div>' + E(feat.dateLine) + '</div></div>' : '') +
-              (feat.location ? '<div class="meta__r"><div class="lbl">Location</div><div>' + E(feat.location) + '</div></div>' : '') +
+              (feat.dateLine ? '<div class="meta__r"><div class="lbl" data-ck="events.featured.timeLabel">Time</div><div>' + E(feat.dateLine) + '</div></div>' : '') +
+              (feat.location ? '<div class="meta__r"><div class="lbl" data-ck="events.featured.locationLabel">Location</div><div>' + E(feat.location) + '</div></div>' : '') +
             '</div>' +
             '<div class="feat__acts">' +
-              '<a class="' + cls + '" href="' + E(feat.url) + '" target="_top">' + E(feat.cta || 'View Event') + '</a>' +
+              (feat.ctaEnabled === false
+                ? '<span class="' + cls + '" aria-disabled="true">' + E(feat.cta || 'Sold Out') + '</span>'
+                : '<a class="' + cls + '" href="' + E(feat.url) + '" target="_top">' + E(feat.cta || 'View Event') + '</a>') +
             '</div>' +
           '</div>' +
         '</div></div></section>';
     } else {
       html +=
         '<section class="sect sect--ink"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Upcoming</span></div>' +
-          '<h2>Nothing On The Calendar<br>Right Now</h2>' +
-          '<p style="margin-top:22px;max-width:46ch">Join us Sunday - 10:30 AM in Pineville, 10:00 AM in Alexandria - ' +
-          'or Monday nights at 7:00 PM for Glory Night.</p>' +
-          '<div style="margin-top:38px"><a class="btn" href="/contact" target="_top">Plan Your Visit</a></div>' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="events.upcoming.kicker">Upcoming</span></div>' +
+          '<h2 data-ck="events.empty.heading">Nothing On The Calendar<br>Right Now</h2>' +
+          '<p style="margin-top:22px;max-width:46ch"><span data-ck="events.empty.body">Join us</span> <span data-ck="site.times.sunday.main">Sunday 10:30 AM</span> <span data-ck="events.empty.bodyMain">in Pineville or</span> ' +
+          '<span data-ck="site.times.sunday.second">Sunday 10:00 AM</span> <span data-ck="events.empty.bodySecond">in Alexandria, ' +
+          'or</span> <span data-ck="site.times.main.glorynight">Monday 7:00 PM</span> <span data-ck="events.empty.bodyEnd">for Glory Night.</span></p>' +
+          '<div style="margin-top:38px"><a class="btn" href="/contact" target="_top" data-ck="events.empty.button">Plan Your Visit</a></div>' +
         '</div></section>';
     }
 
     if (rest.length) {
       html += '<section class="sect"><div class="shell">' +
-        '<div class="mark"><span class="kicker">Also Coming Up</span></div>' +
-        '<h2>More Events</h2><div class="up">' +
+        '<div class="mark"><span class="kicker" data-ck="events.more.kicker">Also Coming Up</span></div>' +
+        '<h2 data-ck="events.more.heading">More Events</h2><div class="up" data-cms-source="Events">' +
         rest.map(function (e) {
           return '<a class="up__c" href="' + E(e.url) + '" target="_top">' +
             '<div class="up__img">' + (e.image ? '<img src="' + E(e.image) + '" alt="' + E(e.title) + '">' : '') + '</div>' +
@@ -280,31 +293,33 @@ class AriseEvents extends HTMLElement {
     }
 
     html += '<section class="sect sect--ink"><div class="shell">' +
-      '<div class="mark mark--l"><span class="kicker">Previous Events</span></div>' +
-      '<h2>Here You Can Check Out<br>Photos From Our Past Events</h2>';
+      '<div class="mark mark--l"><span class="kicker" data-ck="events.past.kicker">Previous Events</span></div>' +
+      '<h2 data-ck="events.past.heading">Here You Can Check Out<br>Photos From Our Past Events</h2>';
 
     if (d.past.length) {
-      html += '<div class="arch">' + d.past.map(function (e) {
+      html += '<div class="arch" data-cms-source="Events">' + d.past.map(function (e) {
         return '<a class="arch__c" href="' + E(e.url) + '" target="_top">' +
           (e.image ? '<img src="' + E(e.image) + '" alt="' + E(e.title) + '">' : '') +
           '<div class="arch__t"><h3>' + E(e.title) + '</h3>' +
           (e.startDate ? '<span>' + E(e.startDate) + '</span>' : '') + '</div></a>';
       }).join('') + '</div>';
     } else {
-      html += '<div class="empty"><h3>Photo albums coming soon</h3>' +
-        '<p>Past event albums will appear here.</p></div>';
+      html += '<div class="empty"><h3 data-ck="events.past.emptyHeading">Photo albums coming soon</h3>' +
+        '<p data-ck="events.past.emptyBody">Past event albums will appear here.</p></div>';
     }
 
-    html += '<div style="margin-top:44px"><a class="btn btn--ghost" href="/previous-events-1" target="_top">Previous Events</a></div>' +
-      '</div></section>';
+    /* Archive button removed Aug 23 2026 -- /previous-events-1 was deleted from
+       the site (verified live: 404, absent from pages-sitemap.xml). If a past
+       events page comes back, re-add the button here with its new URL. */
+    html += '</div></section>';
 
     html += '<section class="sect" style="padding-top:0"><div class="shell">' +
         '<div class="cta"><div class="cta__b">' +
-          '<div class="mark"><span class="kicker">Questions</span></div>' +
-          '<h2>Planning To Come?</h2>' +
-          '<p>Email us and someone will get back to you with details.</p>' +
+          '<div class="mark"><span class="kicker" data-ck="events.cta.kicker">Questions</span></div>' +
+          '<h2 data-ck="events.cta.heading">Planning To Come?</h2>' +
+          '<p data-ck="events.cta.body">Email us and someone will get back to you with details.</p>' +
         '</div>' +
-        '<a class="btn" href="/contact" target="_top">Contact Us</a>' +
+        '<a class="btn" href="/contact" target="_top" data-ck="events.cta.button">Contact Us</a>' +
       '</div></div></section>';
 
     html += '</div>';
@@ -321,20 +336,18 @@ class AriseEvents extends HTMLElement {
     }
     if (!map || typeof map !== 'object') return;
 
-    const self = this;
-    Object.keys(map).forEach(function (k) {
-      const v = map[k] || {};
-      if (v.text) {
-        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
-          el.innerHTML = v.text;
-        });
-      }
-      if (v.image) {
-        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
-        });
-      }
+    const has = Object.prototype.hasOwnProperty;
+    this.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = has.call(map, k) ? map[k] : null;
+      if (v && v.text) el.innerHTML = v.text;
+    });
+    this.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = has.call(map, k) ? map[k] : null;
+      if (!v || !v.image) return;
+      if (el.tagName === 'IMG') el.src = v.image;
+      else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
     });
   }
 }

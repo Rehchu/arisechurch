@@ -2,6 +2,8 @@
    ARISE CHURCH -- CREATIVE ARTS
    File: public/custom-elements/arise-creatives.js
    Tag:  arise-creatives
+   Fixed 2026-09-14: Anton 18px floor (h3, tile badge + switcher now Oswald labels); case-insensitive member/department match; applyContent no longer builds selectors from keys
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-creatives.json)
 
    ONE file, every page in the section.
 
@@ -46,7 +48,7 @@ arise-creatives{display:block;width:100%}
   text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
 .acr h1{font-size:clamp(36px,6.6vw,76px)}
 .acr h2{font-size:clamp(26px,3.8vw,46px)}
-.acr h3{font-size:clamp(16px,1.7vw,20px);letter-spacing:.04em;line-height:1.14}
+.acr h3{font-size:clamp(18px,1.7vw,20px);letter-spacing:.04em;line-height:1.14}
 .acr p{font-size:clamp(15.5px,1.4vw,17px)}
 .acr .lede{font-size:clamp(16.5px,1.7vw,20px);line-height:1.62}
 
@@ -55,6 +57,12 @@ arise-creatives{display:block;width:100%}
   box-shadow:62px 0 0 var(--red);margin-right:80px}
 .acr .kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;
   color:var(--red);white-space:nowrap}
+@media(max-width:620px){
+  /* the two dashes eat 188px before the text starts -- too much on a phone */
+  .acr .mark{flex-wrap:nowrap;align-items:flex-start}
+  .acr .mark::before{margin-right:124px;margin-top:5px}
+  .acr .kicker{white-space:normal;letter-spacing:.20em;font-size:11px;line-height:1.5}
+}
 .acr .mark--l .kicker{color:var(--redL)}
 
 .acr .btn{display:inline-block;padding:14px 30px;font-size:12px;font-weight:600;letter-spacing:.16em;
@@ -94,7 +102,7 @@ arise-creatives{display:block;width:100%}
 .acr .d__t span{display:block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
   color:rgba(255,255,255,.86);margin-top:6px;font-weight:500}
 .acr .d__n{position:absolute;top:0;left:0;background:var(--red);color:#fff;
-  font-family:'Anton',Impact,sans-serif;font-size:13px;letter-spacing:.1em;padding:8px 14px}
+  font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:600;font-size:13px;letter-spacing:.16em;padding:8px 14px}
 
 /* people */
 .acr .team{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:48px}
@@ -113,8 +121,8 @@ arise-creatives{display:block;width:100%}
 
 .acr .switch{display:flex;flex-wrap:wrap;gap:2px;background:var(--rule);margin-top:48px}
 .acr .switch a,.acr .switch span{flex:1 1 auto;background:var(--paper);padding:16px 18px;
-  text-decoration:none;text-align:center;font-family:'Anton',Impact,sans-serif;font-size:14px;
-  text-transform:uppercase;letter-spacing:.04em;color:var(--ink);
+  text-decoration:none;text-align:center;font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:600;font-size:14px;
+  text-transform:uppercase;letter-spacing:.16em;color:var(--ink);
   border-top:3px solid transparent;transition:background .18s,color .18s}
 .acr .switch a:hover{background:var(--ink);color:#fff}
 .acr .switch span[aria-current]{background:var(--ink);color:#fff;border-top-color:var(--red)}
@@ -172,8 +180,12 @@ class AriseCreatives extends HTMLElement {
     this.render();
   }
 
-  static get observedAttributes() { return ['data-depts', 'data-members', 'data-dept']; }
-  attributeChangedCallback() { if (this._b) this.render(); }
+  static get observedAttributes() { return ['data-depts', 'data-members', 'data-dept', 'data-content']; }
+  attributeChangedCallback(name) {
+    if (!this._b) return;
+    if (name === 'data-content') { this.applyContent(); return; }
+    this.render();
+  }
 
   parse(attr) {
     const raw = this.getAttribute(attr);
@@ -199,7 +211,7 @@ class AriseCreatives extends HTMLElement {
     const depts = this.parse('data-depts');
 
     const tiles = depts.length
-      ? '<div class="depts">' + depts.map(function (d, i) {
+      ? '<div class="depts" data-cms-source="CreativeDepartments">' + depts.map(function (d, i) {
           const n = String(i + 1).padStart(2, '0');
           const inner =
             (d.groupPhoto ? '<img src="' + E(d.groupPhoto) + '" alt="' + E(d.name) + '">' : '') +
@@ -210,34 +222,36 @@ class AriseCreatives extends HTMLElement {
             ? '<a class="d" href="' + E(d.pageLink) + '" target="_top">' + inner + '</a>'
             : '<span class="d">' + inner + '</span>';
         }).join('') + '</div>'
-      : '<div class="empty"><h3>Departments coming soon</h3>' +
-        '<p>The teams that make Sunday happen will be listed here.</p></div>';
+      : '<div class="empty"><h3 data-ck="creatives.empty.heading">Departments coming soon</h3>' +
+        '<p data-ck="creatives.empty.body">The teams that make Sunday happen will be listed here.</p></div>';
 
     this.innerHTML =
       '<div class="acr">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Arise Church</span></div>' +
-          '<h1>Arise<br>Creative Arts</h1>' +
-          '<p class="lede">Every song, every screen, every sound. Creative Arts is the group of ' +
-          'teams that serve together to make Sunday happen &mdash; each one its own department, ' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="creatives.hero.kicker">Arise Church</span></div>' +
+          '<h1 data-ck="creatives.hero.heading">Arise<br>Creative Arts</h1>' +
+          '<p class="lede" data-ck="creatives.hero.body">Every song, every screen, every sound. Creative Arts is the group of ' +
+          'teams that serve together to make Sunday happen - each one its own department, ' +
           'all of them one department.</p>' +
         '</div></header>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">The Departments</span></div>' +
-          '<h2>Who Does What</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="creatives.depts.kicker">The Departments</span></div>' +
+          '<h2 data-ck="creatives.depts.heading">Who Does What</h2>' +
           tiles +
         '</div></section>' +
 
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta"><div class="cta__b">' +
-            '<div class="mark"><span class="kicker">Get Involved</span></div>' +
-            '<h2>There&rsquo;s Room<br>For You</h2>' +
-            '<p>If you sing, play, run sound, shoot, edit, or post &mdash; we could use you.</p>' +
+            '<div class="mark"><span class="kicker" data-ck="creatives.cta.kicker">Get Involved</span></div>' +
+            '<h2 data-ck="creatives.cta.heading">There\'s Room<br>For You</h2>' +
+            '<p data-ck="creatives.cta.body">If you sing, play, run sound, shoot, edit, or post - we could use you.</p>' +
           '</div>' +
-          '<a class="btn" href="/serve" target="_top">Sign Up to Serve</a>' +
+          '<a class="btn" href="/serve" target="_top" data-ck="creatives.cta.button">Sign Up to Serve</a>' +
         '</div></div></section>' +
       '</div>';
+
+    this.applyContent();
   }
 
   /* ---------- one department ---------- */
@@ -247,12 +261,14 @@ class AriseCreatives extends HTMLElement {
     const members = this.parse('data-members');
 
     const dept = depts.filter(function (d) { return d.slug === slug; })[0] || { name: slug };
+    const key = function (s) { return String(s || '').trim().toLowerCase(); };
     const team = members.filter(function (m) {
-      return (m.department || '') === dept.name;
+      const md = key(m.department);
+      return md !== '' && (md === key(dept.name) || md === key(dept.slug));
     });
 
     const cards = team.length
-      ? '<div class="team">' + team.map(function (m) {
+      ? '<div class="team" data-cms-source="CreativeMembers">' + team.map(function (m) {
           return '<div class="m">' +
             (m.photo
               ? '<div class="m__ph"><img src="' + E(m.photo) + '" alt="' + E(m.name) + '"></div>'
@@ -264,11 +280,11 @@ class AriseCreatives extends HTMLElement {
             '</div>' +
           '</div>';
         }).join('') + '</div>'
-      : '<div class="empty"><h3>Team coming soon</h3>' +
-        '<p>Photos and bios for this department are on the way.</p></div>';
+      : '<div class="empty"><h3 data-ck="creatives.dept.empty.heading">Team coming soon</h3>' +
+        '<p data-ck="creatives.dept.empty.body">Photos and bios for this department are on the way.</p></div>';
 
     const switcher = depts.length > 1
-      ? '<div class="switch">' + depts.map(function (d) {
+      ? '<div class="switch" data-cms-source="CreativeDepartments">' + depts.map(function (d) {
           return d.slug === slug
             ? '<span aria-current="page">' + E(d.name) + '</span>'
             : '<a href="' + E(d.pageLink || '#') + '" target="_top">' + E(d.name) + '</a>';
@@ -278,41 +294,66 @@ class AriseCreatives extends HTMLElement {
     this.innerHTML =
       '<div class="acr">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Arise Creative Arts</span></div>' +
-          '<h1>' + E(dept.name) + '</h1>' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="creatives.dept.hero.kicker">Arise Creative Arts</span></div>' +
+          '<h1 data-cms-source="CreativeDepartments">' + E(dept.name) + '</h1>' +
           (dept.description
-            ? '<p class="lede">' + E(dept.description) + '</p>'
-            : (dept.tagline ? '<p class="lede">' + E(dept.tagline) + '</p>' : '')) +
+            ? '<p class="lede" data-cms-source="CreativeDepartments">' + E(dept.description) + '</p>'
+            : (dept.tagline ? '<p class="lede" data-cms-source="CreativeDepartments">' + E(dept.tagline) + '</p>' : '')) +
         '</div></header>' +
 
         (dept.groupPhoto
           ? '<section class="sect" style="padding-bottom:0"><div class="shell">' +
-            '<div class="group"><img src="' + E(dept.groupPhoto) + '" alt="' +
+            '<div class="group" data-cms-source="CreativeDepartments"><img src="' + E(dept.groupPhoto) + '" alt="' +
             E(dept.name) + ' team"></div></div></section>'
           : '') +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">The Team</span></div>' +
-          '<h2>Who Serves Here</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="creatives.dept.team.kicker">The Team</span></div>' +
+          '<h2 data-ck="creatives.dept.team.heading">Who Serves Here</h2>' +
           cards +
         '</div></section>' +
 
         '<section class="sect sect--bone" style="padding-top:0"><div class="shell">' +
           '<div class="mark" style="padding-top:var(--sect)">' +
-            '<span class="kicker">The Other Teams</span></div>' +
-          '<h2>Creative Arts</h2>' +
+            '<span class="kicker" data-ck="creatives.dept.others.kicker">The Other Teams</span></div>' +
+          '<h2 data-ck="creatives.dept.others.heading">Creative Arts</h2>' +
           switcher +
         '</div></section>' +
 
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta"><div class="cta__b">' +
-            '<div class="mark"><span class="kicker">Serve With Us</span></div>' +
-            '<h2>Join This Team</h2>' +
-            '<p>No experience needed &mdash; just a willingness to show up.</p>' +
+            '<div class="mark"><span class="kicker" data-ck="creatives.dept.cta.kicker">Serve With Us</span></div>' +
+            '<h2 data-ck="creatives.dept.cta.heading">Join This Team</h2>' +
+            '<p data-ck="creatives.dept.cta.body">No experience needed - just a willingness to show up.</p>' +
           '</div>' +
-          '<a class="btn" href="/serve" target="_top">Sign Up to Serve</a>' +
+          '<a class="btn" href="/serve" target="_top" data-ck="creatives.dept.cta.button">Sign Up to Serve</a>' +
         '</div></div></section>' +
       '</div>';
+
+    this.applyContent();
+  }
+  applyContent() {
+    const raw = this.getAttribute('data-content');
+    if (!raw) return;
+    let map;
+    try { map = JSON.parse(raw); } catch (e) {
+      console.error('bad data-content JSON', e); return;
+    }
+    if (!map || typeof map !== 'object') return;
+
+    this.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = Object.prototype.hasOwnProperty.call(map, k) ? (map[k] || {}) : {};
+      if (v.text) el.innerHTML = v.text;
+    });
+    this.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = Object.prototype.hasOwnProperty.call(map, k) ? (map[k] || {}) : {};
+      if (v.image) {
+        if (el.tagName === 'IMG') el.src = v.image;
+        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+      }
+    });
   }
 }
 

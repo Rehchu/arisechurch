@@ -2,6 +2,7 @@
    ARISE CHURCH -- CLASSES
    File: public/custom-elements/arise-classes.js
    Tag:  arise-classes
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-classes.json)
 
    Lists every published Online Program. Free or paid is decided in the
    Online Programs dashboard, not here -- this page shows whatever they set,
@@ -49,6 +50,12 @@ arise-classes{display:block;width:100%}
   box-shadow:62px 0 0 var(--red);margin-right:80px}
 .acl .kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;
   color:var(--red);white-space:nowrap}
+@media(max-width:620px){
+  /* the two dashes eat 188px before the text starts -- too much on a phone */
+  .acl .mark{flex-wrap:nowrap;align-items:flex-start}
+  .acl .mark::before{margin-right:124px;margin-top:5px}
+  .acl .kicker{white-space:normal;letter-spacing:.20em;font-size:11px;line-height:1.5}
+}
 .acl .mark--l .kicker{color:var(--redL)}
 
 .acl .btn{display:inline-block;padding:14px 30px;font-size:12px;font-weight:600;letter-spacing:.16em;
@@ -137,33 +144,38 @@ class AriseClasses extends HTMLElement {
     this.innerHTML =
       '<div class="acl">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Learn &amp; Grow</span></div>' +
-          '<h1>Classes</h1>' +
-          '<p class="lede">Go deeper at your own pace. Classes and studies you can start ' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="classes.hero.kicker">Learn &amp; Grow</span></div>' +
+          '<h1 data-ck="classes.hero.heading">Classes</h1>' +
+          '<p class="lede" data-ck="classes.hero.body">Go deeper at your own pace. Classes and studies you can start ' +
           'whenever you are ready.</p>' +
         '</div></header>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Available Now</span></div>' +
-          '<h2>What You Can Take</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="classes.list.kicker">Available Now</span></div>' +
+          '<h2 data-ck="classes.list.heading">What You Can Take</h2>' +
           '<div id="aclList"></div>' +
         '</div></section>' +
 
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta"><div class="cta__b">' +
-            '<div class="mark"><span class="kicker">Questions</span></div>' +
-            '<h2>Not Sure Where<br>To Start?</h2>' +
-            '<p>Send us a note and we will point you to the right place.</p>' +
+            '<div class="mark"><span class="kicker" data-ck="classes.cta.kicker">Questions</span></div>' +
+            '<h2 data-ck="classes.cta.heading">Not Sure Where<br>To Start?</h2>' +
+            '<p data-ck="classes.cta.body">Send us a note and we will point you to the right place.</p>' +
           '</div>' +
-          '<a class="btn" href="/contact" target="_top">Contact Us</a>' +
+          '<a class="btn" href="/contact" target="_top" data-ck="classes.cta.button">Contact Us</a>' +
         '</div></div></section>' +
       '</div>';
 
     this.fill();
+    this.applyContent();
   }
 
-  static get observedAttributes() { return ['data-classes']; }
-  attributeChangedCallback() { if (this._built) this.fill(); }
+  static get observedAttributes() { return ['data-classes', 'data-content']; }
+  attributeChangedCallback(name) {
+    if (!this._built) return;   // nothing to patch until it has rendered
+    if (name === 'data-content') { this.applyContent(); return; }
+    this.fill();
+  }
 
   items() {
     const raw = this.getAttribute('data-classes');
@@ -189,18 +201,19 @@ class AriseClasses extends HTMLElement {
     if (!items.length) {
       list.innerHTML =
         '<div class="empty" style="border-color:var(--rule)">' +
-          '<h3 style="color:var(--muted)">Classes are coming</h3>' +
-          '<p style="color:var(--muted)">We are putting the first classes together now. ' +
+          '<h3 style="color:var(--muted)" data-ck="classes.empty.heading">Classes are coming</h3>' +
+          '<p style="color:var(--muted)" data-ck="classes.empty.body">We are putting the first classes together now. ' +
           'Check back soon, or contact us to hear when they open.</p>' +
         '</div>';
+      this.applyContent();
       return;
     }
 
-    list.innerHTML = '<div class="list">' + items.map(function (c) {
+    list.innerHTML = '<div class="list" data-cms-source="OnlinePrograms">' + items.map(function (c) {
       const facts = [];
       if (c.steps)    facts.push('<span><b>' + E(c.steps) + '</b> steps</span>');
       if (c.sections) facts.push('<span><b>' + E(c.sections) + '</b> sections</span>');
-      if (c.selfPaced) facts.push('<span>Self-paced</span>');
+      if (c.selfPaced) facts.push('<span data-ck="classes.card.selfPaced">Self-paced</span>');
       else if (c.duration) facts.push('<span><b>' + E(c.duration) + '</b></span>');
 
       return '<div class="c">' +
@@ -214,10 +227,36 @@ class AriseClasses extends HTMLElement {
           (c.details ? '<p class="c__d">' + E(c.details) + '</p>' : '') +
           (facts.length ? '<div class="c__facts">' + facts.join('') + '</div>' : '') +
           (c.url ? '<div class="c__go"><a class="btn btn--dark" href="' + E(c.url) +
-                   '" target="_top">View Class</a></div>' : '') +
+                   '" target="_top" data-ck="classes.card.button">View Class</a></div>' : '') +
         '</div>' +
       '</div>';
     }).join('') + '</div>';
+    this.applyContent();
+  }
+  applyContent() {
+    const raw = this.getAttribute('data-content');
+    if (!raw) return;
+    let map;
+    try { map = JSON.parse(raw); } catch (e) {
+      console.error('bad data-content JSON', e); return;
+    }
+    if (!map || typeof map !== 'object') return;
+
+    const self = this;
+    Object.keys(map).forEach(function (k) {
+      const v = map[k] || {};
+      if (v.text) {
+        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
+          el.innerHTML = v.text;
+        });
+      }
+      if (v.image) {
+        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
+          if (el.tagName === 'IMG') el.src = v.image;
+          else el.style.backgroundImage = 'url(' + v.image + ')';
+        });
+      }
+    });
   }
 }
 

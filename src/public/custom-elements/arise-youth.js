@@ -15,6 +15,8 @@
 
    All copy is from the live page.
    NOTE: Youth Events is empty on the live page -- shown as an empty state.
+   Fixed 2026-09-14: Photo viewer lightbox is now a dialog (role/aria-modal/label, focus returns to the tile, Tab stays inside); data-photos videoId validated and escaped; CMS content applied without building selectors from keys, background urls quoted; Sunday times sentence has CMS hooks (site.times.sunday.main/.second).
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-youth.json)
    =========================================================================== */
 
 const FONTS =
@@ -50,6 +52,12 @@ arise-youth{display:block;width:100%}
   box-shadow:62px 0 0 var(--red);margin-right:80px}
 .sub .kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;
   color:var(--red);white-space:nowrap}
+@media(max-width:620px){
+  /* the two dashes eat 188px before the text starts -- too much on a phone */
+  .sub .mark{flex-wrap:nowrap;align-items:flex-start}
+  .sub .mark::before{margin-right:124px;margin-top:5px}
+  .sub .kicker{white-space:normal;letter-spacing:.20em;font-size:11px;line-height:1.5}
+}
 .sub .mark--l .kicker{color:var(--redL)}
 .sub .strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:9px 20px}
 .sub .strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;
@@ -189,60 +197,71 @@ function injectHead() {
 
 class AriseYouth extends HTMLElement {
   connectedCallback() {
-    if (this._built) return;
+    if (this._built) {
+      /* re-attached by Wix: restore the body-mounted lightbox */
+      if (this._lb && !this._lb.isConnected) document.body.appendChild(this._lb);
+      if (this._lbKey) document.addEventListener('keydown', this._lbKey);
+      return;
+    }
     this._built = true;
     injectHead();
 
     this.innerHTML =
       '<div class="sub">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">6th to 12th Grade</span></div>' +
-          '<h1>Youth Ministry</h1>' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="youth.hero.kicker">6th to 12th Grade</span></div>' +
+          '<h1 data-ck="youth.hero.heading">Youth Ministry</h1>' +
         '</div></header>' +
 
-        '<div class="banner"><img src="' + BANNER + '" alt="Arise Church Youth Ministry"></div>' +
+        '<div class="banner"><img data-ci="youth.banner.image" src="' + BANNER + '" alt="Arise Church Youth Ministry"></div>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Our Leaders</span></div>' +
-          '<h2>Our Leaders</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="youth.leaders.kicker">Our Leaders</span></div>' +
+          '<h2 data-ck="youth.leaders.heading">Our Leaders</h2>' +
           '<div class="people people--one">' +
             '<div class="p__c">' +
-              '<div class="p__ph"><img src="' + KERIK + '" alt="Chad and Tabitha Kerik"></div>' +
+              '<div class="p__ph"><img data-ci="youth.leaders.photo" src="' + KERIK + '" alt="Chad and Tabitha Kerik"></div>' +
               '<div class="p__b">' +
-                '<span class="p__role">Youth Ministers</span>' +
-                '<h3>Chad and Tabitha Kerik</h3>' +
+                '<span class="p__role" data-ck="youth.leaders.role">Youth Ministers</span>' +
+                '<h3 data-ck="youth.leaders.name">Chad and Tabitha Kerik</h3>' +
               '</div>' +
             '</div>' +
           '</div>' +
         '</div></section>' +
 
         '<section class="sect sect--bone"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Youth Events</span></div>' +
-          '<h2>Youth Events</h2>' +
-          '<div class="empty"><h3>Nothing listed yet</h3>' +
-          '<p>Youth events will appear here as they are announced.</p></div>' +
+          '<div class="mark"><span class="kicker" data-ck="youth.events.kicker">Youth Events</span></div>' +
+          '<h2 data-ck="youth.events.heading">Youth Events</h2>' +
+          '<div class="empty"><h3 data-ck="youth.events.emptyHeading">Nothing listed yet</h3>' +
+          '<p data-ck="youth.events.emptyBody">Youth events will appear here as they are announced.</p></div>' +
         '</div></section>' +
 
         '<section class="sect sect--bone"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Moments</span></div>' +
-          '<h2>Youth Life</h2>' +
-          '<div class="gal-mount"></div>' +
+          '<div class="mark"><span class="kicker" data-ck="youth.moments.kicker">Moments</span></div>' +
+          '<h2 data-ck="youth.moments.heading">Youth Life</h2>' +
+          '<div class="gal-mount" data-cms-source="Portfolio"></div>' +
         '</div></section>' +
 
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta"><div class="cta__b">' +
-            '<div class="mark"><span class="kicker">Get Involved</span></div>' +
-            '<h2>Come Hang Out</h2>' +
-            '<p>Sunday 10:30 AM in Pineville, 10:00 AM in Alexandria.</p>' +
+            '<div class="mark"><span class="kicker" data-ck="youth.cta.kicker">Get Involved</span></div>' +
+            '<h2 data-ck="youth.cta.heading">Come Hang Out</h2>' +
+            '<p><span data-ck="site.times.sunday.main">Sunday 10:30 AM</span> <span data-ck="youth.cta.campus1">in Pineville,</span> ' +
+            '<span data-ck="site.times.sunday.second">Sunday 10:00 AM</span> <span data-ck="youth.cta.campus2">in Alexandria.</span></p>' +
           '</div>' +
-          '<a class="btn" href="/contact" target="_top">Plan Your Visit</a>' +
+          '<a class="btn" href="/contact" target="_top" data-ck="youth.cta.button">Plan Your Visit</a>' +
         '</div></div></section>' +
       '</div>';
 
     this.fillGallery();
+
+    this.applyContent();  }
+  static get observedAttributes() { return ['data-photos', 'data-content']; }
+  attributeChangedCallback(name) {
+    if (!this._built) return;
+    if (name === 'data-content') { this.applyContent(); return; }
+    this.fillGallery();
   }
-  static get observedAttributes() { return ['data-photos']; }
-  attributeChangedCallback() { if (this._built) this.fillGallery(); }
 
   galPhotos() {
     const raw = this.getAttribute('data-photos');
@@ -259,7 +278,7 @@ class AriseYouth extends HTMLElement {
           alt: p.alt || '',
           caption: p.caption || p.title || ''
         };
-      }).filter(function (p) { return p.src || p.video || p.videoId; });
+      }).filter(function (p) { return (p.src || p.video || p.videoId) && (!p.videoId || /^[A-Za-z0-9_\-]+$/.test(p.videoId)); });
     } catch (e) {
       console.error('gallery: bad data-photos JSON', e);
       return [];
@@ -305,6 +324,9 @@ class AriseYouth extends HTMLElement {
       const lb = document.createElement('div');
       lb.className = 'agl-lb';
       lb.setAttribute('data-open', 'false');
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.setAttribute('aria-label', 'Photo viewer');
       lb.innerHTML =
         '<div class="agl-lb__i"></div>' +
         '<button class="agl-lb__x" aria-label="Close">&times;</button>' +
@@ -319,6 +341,10 @@ class AriseYouth extends HTMLElement {
       const cap = lb.querySelector('.agl-lb__c');
       const idx = lb.querySelector('.agl-lb__i');
 
+      const LE = function (s) {
+        return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      };
       this._show = function (i) {
         const list = self._pics || [];
         if (!list.length) return;
@@ -328,13 +354,13 @@ class AriseYouth extends HTMLElement {
           const base = 'https://video.wixstatic.com/video/';
           const srcs = p.videoId
             ? ['1080p', '720p', '480p'].map(function (q) {
-                return '<source src="' + base + p.videoId + '/' + q + '/mp4/file.mp4" type="video/mp4">';
+                return '<source src="' + base + LE(p.videoId) + '/' + q + '/mp4/file.mp4" type="video/mp4">';
               }).join('')
-            : '<source src="' + p.video + '" type="video/mp4">';
-          stage.innerHTML = '<video controls autoplay playsinline poster="' + p.src + '">' +
+            : '<source src="' + LE(p.video) + '" type="video/mp4">';
+          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(p.src) + '">' +
             srcs + '</video>';
         } else {
-          stage.innerHTML = '<img src="' + p.src + '" alt="' + (p.alt || '') + '">';
+          stage.innerHTML = '<img src="' + LE(p.src) + '" alt="' + LE(p.alt || '') + '">';
         }
         cap.textContent = p.caption || '';
         idx.textContent = (self._i + 1) + ' / ' + list.length;
@@ -343,21 +369,33 @@ class AriseYouth extends HTMLElement {
         lb.setAttribute('data-open', 'false');
         stage.innerHTML = '';
         document.documentElement.style.overflow = '';
+        const op = self._opener; self._opener = null;
+        if (op && op.isConnected && op.focus) op.focus();
       };
       lb.querySelector('.agl-lb__x').addEventListener('click', this._close);
       lb.querySelector('.agl-lb__p').addEventListener('click', function () { self._show(self._i - 1); });
       lb.querySelector('.agl-lb__n').addEventListener('click', function () { self._show(self._i + 1); });
       lb.addEventListener('click', function (e) { if (e.target === lb) self._close(); });
-      document.addEventListener('keydown', function (e) {
+      this._lbKey = function (e) {
         if (lb.getAttribute('data-open') !== 'true') return;
         if (e.key === 'Escape') self._close();
         if (e.key === 'ArrowLeft') self._show(self._i - 1);
         if (e.key === 'ArrowRight') self._show(self._i + 1);
-      });
+        if (e.key === 'Tab') {
+          const fs = lb.querySelectorAll('button, video[controls]');
+          if (!fs.length) return;
+          const first = fs[0], last = fs[fs.length - 1];
+          const inside = lb.contains(document.activeElement);
+          if (e.shiftKey && (!inside || document.activeElement === first)) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && (!inside || document.activeElement === last)) { e.preventDefault(); first.focus(); }
+        }
+      };
+      document.addEventListener('keydown', this._lbKey);
     }
 
     this.querySelectorAll('.gal__t').forEach(function (b) {
       b.addEventListener('click', function () {
+        self._opener = b;
         self._show(parseInt(b.getAttribute('data-i'), 10));
         self._lb.setAttribute('data-open', 'true');
         document.documentElement.style.overflow = 'hidden';
@@ -367,8 +405,33 @@ class AriseYouth extends HTMLElement {
   }
 
   disconnectedCallback() {
+    if (this._lbKey) document.removeEventListener('keydown', this._lbKey);
     if (this._lb && this._lb.parentNode) this._lb.parentNode.removeChild(this._lb);
     document.documentElement.style.overflow = '';
+  }
+  applyContent() {
+    const raw = this.getAttribute('data-content');
+    if (!raw) return;
+    let map;
+    try { map = JSON.parse(raw); } catch (e) {
+      console.error('bad data-content JSON', e); return;
+    }
+    if (!map || typeof map !== 'object') return;
+
+    const own = Object.prototype.hasOwnProperty;
+    this.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = own.call(map, k) ? (map[k] || {}) : {};
+      if (v.text) el.innerHTML = v.text;
+    });
+    this.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = own.call(map, k) ? (map[k] || {}) : {};
+      if (v.image) {
+        if (el.tagName === 'IMG') el.src = v.image;
+        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+      }
+    });
   }
 }
 

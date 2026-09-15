@@ -17,9 +17,10 @@
       Set the footer container's background to #0A0A0C.
    5. Save, then PUBLISH.
 
-   NOTE: arise-home.js already contains its own footer. Once this element is
-   in the site footer, delete that section from arise-home.js or the homepage
-   will show two. Tell me and I'll send a version with it removed.
+   NOTE: resolved -- arise-home.js no longer contains a footer of its own.
+   This element is the only footer, installed once, sitewide.
+   Fixed 2026-09-14: tagline + bottom-strip times CMS-hooked, Sunday label hooks with day trimming, no CSS selectors built from CMS keys, quoted bg urls
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-footer.json)
    =========================================================================== */
 
 const AFT_FONTS =
@@ -62,19 +63,22 @@ arise-footer{display:block;width:100%}
 .aft__btm{padding-top:22px;font-size:12px;display:flex;justify-content:space-between;
   gap:14px;flex-wrap:wrap;color:rgba(255,255,255,.7)}
 .aft a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+@media(max-width:560px){.aft a{padding:7px 0}.aft__social a{width:44px;height:44px}}
 @media(prefers-reduced-motion:reduce){.aft *{transition:none!important}}
 `;
 
 const SOCIAL = [
   ['https://www.facebook.com/arisenow', 'Facebook',
    'M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z'],
-  ['http://instagram.com/arisechurch.cenla', 'Instagram',
+  ['https://instagram.com/arisechurch.cenla', 'Instagram',
    'M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.1A6.7 6.7 0 1018.7 12 6.7 6.7 0 0012 5.3zm0 11A4.3 4.3 0 1116.3 12 4.3 4.3 0 0112 16.3zm6.9-11.2a1.6 1.6 0 11-1.6-1.6 1.6 1.6 0 011.6 1.6z'],
   ['https://www.youtube.com/@arisechurch4147', 'YouTube',
    'M23 7.5s-.2-1.6-.9-2.3c-.9-.9-1.8-.9-2.3-1C17.2 4 12 4 12 4s-5.2 0-7.8.2c-.5.1-1.4.1-2.3 1C1.2 5.9 1 7.5 1 7.5S.8 9.4.8 11.3v1.8c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.6.2 7.6.2s5.2 0 7.8-.2c.5-.1 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.8c0-1.9-.2-3.8-.2-3.8zM9.8 15.1V8.9l6.2 3.1z'],
-  ['http://twitter.com/AriseChurch_C', 'X',
+  ['https://twitter.com/AriseChurch_C', 'X',
    'M18.2 2.3h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9.1L.9 2.3h7l4.8 6.4zm-1.2 17.9h1.9L7.1 4.2H5z']
 ];
+
+function aftTrimDay(label, value) { var m = /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)\b[\s,:\-\u2013\u00b7]*/i.exec(value || ''); return (m && String(label || '').toLowerCase().indexOf(m[1].toLowerCase()) > -1) ? value.slice(m[0].length) : value; }
 
 class AriseFooter extends HTMLElement {
   static get observedAttributes() { return ['data-content']; }
@@ -107,50 +111,50 @@ class AriseFooter extends HTMLElement {
         '<div class="aft__g">' +
 
           '<div class="aft__brand">' +
-            '<div class="aft__lbl">Arise Church</div>' +
-            '<p>Multicultural, multiethnic, and multigenerational. Pineville &amp; Alexandria, Louisiana.</p>' +
-            '<a class="aft__strip" href="/about" target="_top"><span>#YouBelongHere</span></a>' +
+            '<div class="aft__lbl" data-ck="site.footer.brand.heading">Arise Church</div>' +
+            '<p data-ck="site.footer.brand.body">Multicultural, multiethnic, and multigenerational. Pineville &amp; Alexandria, Louisiana.</p>' +
+            '<a class="aft__strip" href="/about" target="_top"><span data-ck="site.tagline">#YouBelongHere</span></a>' +
             '<div class="aft__social">' + social + '</div>' +
           '</div>' +
 
           '<div>' +
-            '<div class="aft__lbl">Visit</div>' +
+            '<div class="aft__lbl" data-ck="site.footer.visit.heading">Visit</div>' +
             '<a href="https://www.google.com/maps/dir//501+Ates+Rd,+Pineville,+LA+71360" target="_blank" rel="noopener" data-ck="site.campus.main">501 Ates Road<br>Pineville, LA 71360</a>' +
             '<a href="https://www.google.com/maps/dir//5305+North+Blvd,+Alexandria,+LA+71301" target="_blank" rel="noopener" data-ck="site.campus.second">5305 North Blvd<br>Alexandria, LA 71301</a>' +
             '<div class="aft__when">' +
-              '<b>Sunday</b> <span data-ck="site.times.sunday.main">10:30 AM</span> Pineville<br>' +
-              '<b>Sunday</b> <span data-ck="site.times.sunday.second">10:00 AM</span> Alexandria<br>' +
-              '<a href="/contact" style="display:inline-block;margin-top:9px;color:#DB3F48">' +
+              '<b data-ck="site.times.sunday.main.label">Sunday</b> <span data-ck="site.times.sunday.main">10:30 AM</span> <span data-ck="site.footer.campus1">Pineville</span><br>' +
+              '<b data-ck="site.times.sunday.second.label">Sunday</b> <span data-ck="site.times.sunday.second">10:00 AM</span> <span data-ck="site.footer.campus2">Alexandria</span><br>' +
+              '<a href="/contact" style="display:inline-block;margin-top:9px;color:#DB3F48" data-ck="site.footer.visit.weeknight">' +
                 'Weeknight times &rarr;</a>' +
             '</div>' +
           '</div>' +
 
           '<div>' +
-            '<div class="aft__lbl">Explore</div>' +
-            '<a href="/about" target="_top">About</a>' +
-            '<a href="/leaders" target="_top">Meet our Leaders</a>' +
-            '<a href="/ministries" target="_top">Ministries</a>' +
-            '<a href="/connect-groups" target="_top">Connect Groups</a>' +
-            '<a href="/creative-arts" target="_top">Arise Creative Arts</a>' +
-            '<a href="/sermons" target="_top">Sermons</a>' +
-            '<a href="/classes" target="_top">Classes</a>' +
-            '<a href="/events" target="_top">Events</a>' +
-            '<a href="/arise-bible" target="_top">Bible Search</a>' +
+            '<div class="aft__lbl" data-ck="site.footer.explore.heading">Explore</div>' +
+            '<a href="/about" target="_top" data-ck="site.footer.explore.item1">About</a>' +
+            '<a href="/leaders" target="_top" data-ck="site.footer.explore.item2">Meet our Leaders</a>' +
+            '<a href="/ministries" target="_top" data-ck="site.footer.explore.item3">Ministries</a>' +
+            '<a href="/connect-groups" target="_top" data-ck="site.footer.explore.item4">Connect Groups</a>' +
+            '<a href="/creative-arts" target="_top" data-ck="site.footer.explore.item5">Arise Creative Arts</a>' +
+            '<a href="/sermons" target="_top" data-ck="site.footer.explore.item6">Sermons</a>' +
+            '<a href="/classes" target="_top" data-ck="site.footer.explore.item7">Classes</a>' +
+            '<a href="/events" target="_top" data-ck="site.footer.explore.item8">Events</a>' +
+            '<a href="/arise-bible" target="_top" data-ck="site.footer.explore.item9">Bible Search</a>' +
           '</div>' +
 
           '<div>' +
-            '<div class="aft__lbl">Connect</div>' +
-            '<a href="/contact" target="_top">Contact</a>' +
-            '<a href="/serve" target="_top">Sign Up to Serve</a>' +
-            '<a href="/tithes-and-offerings" target="_top">Give Online</a>' +
-            '<a href="mailto:arisechurchprayer@gmail.com">Prayer Request</a>' +
+            '<div class="aft__lbl" data-ck="site.footer.connect.heading">Connect</div>' +
+            '<a href="/contact" target="_top" data-ck="site.footer.connect.item1">Contact</a>' +
+            '<a href="/serve" target="_top" data-ck="site.footer.connect.item2">Sign Up to Serve</a>' +
+            '<a href="/tithes-and-offerings" target="_top" data-ck="site.footer.connect.item3">Give Online</a>' +
+            '<a href="mailto:arisechurchprayer@gmail.com" data-ck="site.footer.connect.item4">Prayer Request</a>' +
             '<a href="mailto:arisenow.church@gmail.com" data-ck="site.email">arisenow.church@gmail.com</a>' +
           '</div>' +
 
         '</div>' +
         '<div class="aft__btm">' +
-          '<span>&copy; ' + year + ' Arise Church</span>' +
-          '<span>Sunday 10:30 AM Pineville &middot; 10:00 AM Alexandria</span>' +
+          '<span>&copy; ' + year + ' <span data-ck="site.footer.bottom.copyright">Arise Church</span></span>' +
+          '<span><span data-ck="site.times.sunday.main">Sunday 10:30 AM</span> <span data-ck="site.footer.campus1">Pineville</span> &middot; <span data-ck="site.times.sunday.second">Sunday 10:00 AM</span> <span data-ck="site.footer.campus2">Alexandria</span></span>' +
         '</div>' +
       '</div></div>';
 
@@ -165,20 +169,29 @@ class AriseFooter extends HTMLElement {
     }
     if (!map || typeof map !== 'object') return;
 
-    const self = this;
-    Object.keys(map).forEach(function (k) {
-      const v = map[k] || {};
-      if (v.text) {
-        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
-          el.innerHTML = v.text;
-        });
-      }
-      if (v.image) {
-        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
+    const roots = [this];
+    const has = function (k) { return Object.prototype.hasOwnProperty.call(map, k); };
+    roots.forEach(function (root) {
+      if (!root) return;
+      root.querySelectorAll('[data-ck]').forEach(function (el) {
+        const k = el.getAttribute('data-ck');
+        const v = has(k) ? (map[k] || {}) : {};
+        if (v.text) el.innerHTML = v.text;
+      });
+      root.querySelectorAll('[data-ci]').forEach(function (el) {
+        const k = el.getAttribute('data-ci');
+        const v = has(k) ? (map[k] || {}) : {};
+        if (v.image) {
           if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
-        });
-      }
+          else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        }
+      });
+      /* labelled rows: drop a leading day name the label already shows */
+      root.querySelectorAll('.aft__when [data-ck]').forEach(function (el) {
+        const lab = el.previousElementSibling;
+        if (!lab || lab.getAttribute('data-ck') !== el.getAttribute('data-ck') + '.label') return;
+        el.innerHTML = aftTrimDay(lab.textContent, el.innerHTML);
+      });
     });
   }
 }

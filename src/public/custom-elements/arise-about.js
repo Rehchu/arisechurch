@@ -14,7 +14,8 @@
       iframe in Editor and Preview, so they look wrong there. That's normal.
 
    All copy is from the live site.
-
+   Fixed 2026-09-14: Sunday times CMS hooks, We Believe/We Promise dialogs accessible (role, focus return, Tab trap), safer applyContent.
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-about.json)
    =========================================================================== */
 
 const FONTS =
@@ -36,9 +37,10 @@ const PROMISES = [
   ['WE PROMISE','to help guide you on a path of freedom to know your true identity in the Kingdom of God regardless of what this world might suggest.','']
 ];
 
-function creedList(rows) {
-  return '<ul class="creedlist">' + rows.map(r =>
-    '<li><b>' + r[0] + '</b> ' + r[1] + (r[2] ? '<cite>' + r[2] + '</cite>' : '') + '</li>'
+function creedList(rows, pfx) {
+  return '<ul class="creedlist">' + rows.map((r, i) =>
+    '<li><b data-ck="' + pfx + '.itemLead">' + r[0] + '</b> <span data-ck="' + pfx + '.item' + (i + 1) + '">' + r[1] + '</span>' +
+    (r[2] ? '<cite data-ck="' + pfx + '.item' + (i + 1) + 'Ref">' + r[2] + '</cite>' : '') + '</li>'
   ).join('') + '</ul>';
 }
 
@@ -229,6 +231,13 @@ arise-leaders,arise-ministries,arise-about,arise-contact{display:block;width:100
 }
 `;
 
+/* Visible focusable controls inside an open popup (for the Tab trap). */
+function aabFocusables(m) {
+  return Array.prototype.filter.call(
+    m.querySelectorAll('button,a[href],input,select,textarea,[tabindex]:not([tabindex="-1"])'),
+    function (el) { return !el.disabled && el.offsetParent !== null; });
+}
+
 function injectHead() {
   if (!document.getElementById('ap-about-fonts')) {
     const l = document.createElement('link');
@@ -247,60 +256,65 @@ class AriseAbout extends HTMLElement {
   attributeChangedCallback() { if (this._b) this.applyContent(); }
 
   connectedCallback() {
-    if (this._b) return; this._b = true; injectHead();
+    if (this._b) {
+      /* re-attached: re-arm the Escape handler */
+      if (this._onKey) document.addEventListener('keydown', this._onKey);
+      return;
+    }
+    this._b = true; injectHead();
 
     this.innerHTML =
       '<div class="ap">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Arise Church</span></div>' +
-          '<h1>About</h1>' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="about.hero.kicker">Arise Church</span></div>' +
+          '<h1 data-ck="about.hero.heading">About</h1>' +
         '</div></header>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Who We Are</span></div>' +
-          '<p class="lede">ARISE CHURCH is designed to change the lives of men, women, and children as they ' +
+          '<div class="mark"><span class="kicker" data-ck="about.who.kicker">Who We Are</span></div>' +
+          '<p class="lede" data-ck="about.who.body">ARISE CHURCH is designed to change the lives of men, women, and children as they ' +
           'journey towards their own personal greatness within God\u2019s ordained purpose. Arise Church has the ' +
           'mandate to teach people who they are in Christ and how they should function as effective kingdom ' +
           'citizens on earth. The various ministries and outreaches at ARISE CHURCH are aimed to serve both the ' +
           'body of Christ and central Louisiana. We aspire to train ambassadors for Christ who model the glory ' +
           'of God in their lives, while revealing His kingdom on earth.</p>' +
-          '<div class="strip" style="margin-top:32px"><span>Apostle Bryant Sanders &middot; Pastor Vanessa Sanders</span></div>' +
+          '<div class="strip" style="margin-top:32px"><span data-ck="about.who.leaders">Apostle Bryant Sanders &middot; Pastor Vanessa Sanders</span></div>' +
 
           '<div class="creed">' +
-            '<button type="button" data-modal="believe">We Believe <i>&rarr;</i></button>' +
-            '<button type="button" data-modal="promise">We Promise <i>&rarr;</i></button>' +
+            '<button type="button" data-modal="believe" aria-haspopup="dialog" aria-controls="m-believe"><span data-ck="about.believe.button">We Believe</span> <i>&rarr;</i></button>' +
+            '<button type="button" data-modal="promise" aria-haspopup="dialog" aria-controls="m-promise"><span data-ck="about.promise.button">We Promise</span> <i>&rarr;</i></button>' +
           '</div>' +
         '</div></section>' +
 
         '<section class="sect sect--bone"><div class="shell">' +
           '<div class="pillar"><div class="pillar__h">' +
-            '<div class="mark"><span class="kicker">Vision</span></div>' +
-            '<h2>2026: The Year of Uncommon Favor</h2></div>' +
+            '<div class="mark"><span class="kicker" data-ck="about.vision.kicker">Vision</span></div>' +
+            '<h2 data-ck="about.vision.heading">2026: The Year of Uncommon Favor</h2></div>' +
             '<div class="pillar__b">' +
-            '<p>This is the year the Lord has marked for uncommon favor \u2014 favor that cannot be explained by ' +
+            '<p data-ck="about.vision.body">This is the year the Lord has marked for uncommon favor \u2014 favor that cannot be explained by ' +
             'human effort, connections, or circumstance, but favor that comes solely from the hand of a good and ' +
             'generous God.</p>' +
-            '<p>2026 will be remembered as the year God crowned His people with glory, goodness, and grace beyond measure.</p>' +
+            '<p data-ck="about.vision.body2">2026 will be remembered as the year God crowned His people with glory, goodness, and grace beyond measure.</p>' +
           '</div></div>' +
         '</div></section>' +
 
         '<section class="sect sect--ink"><div class="shell">' +
           '<div class="pillar" style="border-top:0;padding-top:0"><div class="pillar__h">' +
-            '<div class="mark mark--l"><span class="kicker">Mission</span></div>' +
-            '<h2>2026 Mission Statement: Impact Tioga</h2>' +
-            '<div class="strip" style="margin-top:32px"><span>Impact Tioga</span></div></div>' +
+            '<div class="mark mark--l"><span class="kicker" data-ck="about.mission.kicker">Mission</span></div>' +
+            '<h2 data-ck="about.mission.heading">2026 Mission Statement: Impact Tioga</h2>' +
+            '<div class="strip" style="margin-top:32px"><span data-ck="about.mission.strip">Impact Tioga</span></div></div>' +
             '<div class="pillar__b">' +
-            '<p>Our mission for this year is to Impact Tioga\u2014to bring the life-changing love of Jesus Christ ' +
+            '<p data-ck="about.mission.body">Our mission for this year is to Impact Tioga\u2014to bring the life-changing love of Jesus Christ ' +
             'into every corner of our community, transforming lives, families, and the town we call home.</p>' +
-            '<p>We are called to help Tioga discover Christ: to share the Gospel boldly and compassionately, ' +
+            '<p data-ck="about.mission.body2">We are called to help Tioga discover Christ: to share the Gospel boldly and compassionately, ' +
             'inviting every person to encounter the Savior who redeems, restores, and gives eternal hope.</p>' +
-            '<p>We are committed to building the community together: partnering with neighbors, schools, ' +
+            '<p data-ck="about.mission.body3">We are committed to building the community together: partnering with neighbors, schools, ' +
             'businesses, and local leaders to foster unity, serve those in need, and create spaces where everyone ' +
             'feels seen, valued, and loved.</p>' +
-            '<p>We are devoted to supporting one another: walking alongside each other in prayer, encouragement, ' +
+            '<p data-ck="about.mission.body4">We are devoted to supporting one another: walking alongside each other in prayer, encouragement, ' +
             'and practical help, strengthening families, lifting up the hurting, and growing together as the ' +
             'family of God.</p>' +
-            '<p>This is our moment. With God\u2019s uncommon favor upon us, we will rise up as one church, one body, ' +
+            '<p data-ck="about.mission.body5">This is our moment. With God\u2019s uncommon favor upon us, we will rise up as one church, one body, ' +
             'to make a lasting impact\u2014for the glory of Jesus and the good of Tioga.</p>' +
           '</div></div>' +
         '</div></section>' +
@@ -308,44 +322,71 @@ class AriseAbout extends HTMLElement {
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta">' +
             '<div class="cta__b">' +
-              '<div class="mark"><span class="kicker">Visit</span></div>' +
-              '<h2>You Belong Here</h2>' +
-              '<p>Sunday 10:30 AM in Pineville, 10:00 AM in Alexandria. ' + 'Come as you are \u2014 but never leave as you were.</p>' +
+              '<div class="mark"><span class="kicker" data-ck="about.cta.kicker">Visit</span></div>' +
+              '<h2 data-ck="about.cta.heading">You Belong Here</h2>' +
+              '<p><span data-ck="site.times.sunday.main">Sunday 10:30 AM</span> <span data-ck="about.cta.where1">in Pineville,</span> <span data-ck="site.times.sunday.second">Sunday 10:00 AM</span> <span data-ck="about.cta.where2">in Alexandria.</span> ' + '<span data-ck="about.cta.body">Come as you are \u2014 but never leave as you were.</span></p>' +
             '</div>' +
-            '<a class="btn" href="/contact" target="_top">Plan Your Visit</a>' +
+            '<a class="btn" href="/contact" target="_top" data-ck="about.cta.button">Plan Your Visit</a>' +
           '</div>' +
         '</div></section>' +
-        '<div class="modal" id="m-believe"><div class="modal__box">' +
+        '<div class="modal" id="m-believe" role="dialog" aria-modal="true" aria-labelledby="m-believe-h"><div class="modal__box">' +
           '<button class="modal__x" data-close aria-label="Close">&times;</button>' +
-          '<div class="modal__hd"><div class="mark"><span class="kicker">Arise Church</span></div><h2>We Believe</h2></div>' +
-          '<div class="modal__bd">' + creedList(BELIEFS) + '</div>' +
+          '<div class="modal__hd"><div class="mark"><span class="kicker" data-ck="about.believe.kicker">Arise Church</span></div><h2 id="m-believe-h" data-ck="about.believe.heading">We Believe</h2></div>' +
+          '<div class="modal__bd">' + creedList(BELIEFS, 'about.believe') + '</div>' +
         '</div></div>' +
 
-        '<div class="modal" id="m-promise"><div class="modal__box">' +
+        '<div class="modal" id="m-promise" role="dialog" aria-modal="true" aria-labelledby="m-promise-h"><div class="modal__box">' +
           '<button class="modal__x" data-close aria-label="Close">&times;</button>' +
-          '<div class="modal__hd"><div class="mark"><span class="kicker">Arise Church</span></div><h2>We Promise</h2></div>' +
-          '<div class="modal__bd">' + creedList(PROMISES) + '</div>' +
+          '<div class="modal__hd"><div class="mark"><span class="kicker" data-ck="about.promise.kicker">Arise Church</span></div><h2 id="m-promise-h" data-ck="about.promise.heading">We Promise</h2></div>' +
+          '<div class="modal__bd">' + creedList(PROMISES, 'about.promise') + '</div>' +
         '</div></div>' +
       '</div>';
 
     this.applyContent();
 
     const root = this;
+    /* close a popup and hand focus back to the button that opened it */
+    const closeModal = m => {
+      const wasOpen = m.getAttribute('data-open') === 'true';
+      m.setAttribute('data-open', 'false');
+      if (wasOpen && root._lastTrigger && root._lastTrigger.isConnected) {
+        try { root._lastTrigger.focus(); } catch (err) {}
+      }
+    };
     root.querySelectorAll('[data-modal]').forEach(b => {
       b.addEventListener('click', () => {
         const m = root.querySelector('#m-' + b.getAttribute('data-modal'));
-        if (m) m.setAttribute('data-open', 'true');
+        if (m) {
+          root._lastTrigger = b;
+          m.setAttribute('data-open', 'true');
+          const x = m.querySelector('.modal__x');
+          if (x) { try { x.focus(); } catch (err) {} }
+        }
       });
     });
     root.querySelectorAll('[data-close]').forEach(b => {
-      b.addEventListener('click', () => b.closest('.modal').setAttribute('data-open', 'false'));
+      b.addEventListener('click', () => closeModal(b.closest('.modal')));
     });
     root.querySelectorAll('.modal').forEach(m => {
-      m.addEventListener('click', e => { if (e.target === m) m.setAttribute('data-open', 'false'); });
+      m.addEventListener('click', e => { if (e.target === m) closeModal(m); });
     });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') root.querySelectorAll('.modal').forEach(m => m.setAttribute('data-open','false'));
-    });
+    this._onKey = e => {
+      if (e.key === 'Escape') root.querySelectorAll('.modal').forEach(m => closeModal(m));
+      if (e.key === 'Tab') {
+        const open = root.querySelector('.modal[data-open="true"]');
+        if (!open) return;
+        const f = aabFocusables(open);
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        const a = document.activeElement;
+        if (e.shiftKey && (a === first || !open.contains(a))) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && (a === last || !open.contains(a))) { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener('keydown', this._onKey);
+  }
+  disconnectedCallback() {
+    if (this._onKey) document.removeEventListener('keydown', this._onKey);
   }
   applyContent() {
     const raw = this.getAttribute('data-content');
@@ -357,18 +398,18 @@ class AriseAbout extends HTMLElement {
     if (!map || typeof map !== 'object') return;
 
     const self = this;
-    Object.keys(map).forEach(function (k) {
-      const v = map[k] || {};
-      if (v.text) {
-        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
-          el.innerHTML = v.text;
-        });
-      }
-      if (v.image) {
-        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
-        });
+    const has = function (k) { return !!k && Object.prototype.hasOwnProperty.call(map, k) && map[k]; };
+    self.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = has(k) ? map[k] : null;
+      if (v && v.text) el.innerHTML = v.text;
+    });
+    self.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = has(k) ? map[k] : null;
+      if (v && v.image) {
+        if (el.tagName === 'IMG') el.src = v.image;
+        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
       }
     });
   }

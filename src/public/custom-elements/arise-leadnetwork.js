@@ -14,8 +14,10 @@
       only the published site renders them properly.
 
    All copy is from the live page.
-   NOTE: this page lives at /lead-network. Rename it to /lead-network and say
-         yes to the 301 redirect, then update the header NAV array.
+   NOTE: this page lives at /lead-network. The old /general-4 URL still
+         redirects to it, so nothing external is broken.
+   Fixed 2026-09-14: Photo viewer lightbox is now a dialog (role/aria-modal/label, focus returns to the tile, Tab stays inside); data-photos videoId validated and escaped; CMS content applied without building selectors from keys, background urls quoted; gallery and CMS photos now render on first build (stray calls moved out of TEACHINGS.map).
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-leadnetwork.json)
    =========================================================================== */
 
 const FONTS =
@@ -85,6 +87,12 @@ arise-leadnetwork{display:block;width:100%}
   box-shadow:62px 0 0 var(--red);margin-right:80px}
 .sub .kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;
   color:var(--red);white-space:nowrap}
+@media(max-width:620px){
+  /* the two dashes eat 188px before the text starts -- too much on a phone */
+  .sub .mark{flex-wrap:nowrap;align-items:flex-start}
+  .sub .mark::before{margin-right:124px;margin-top:5px}
+  .sub .kicker{white-space:normal;letter-spacing:.20em;font-size:11px;line-height:1.5}
+}
 .sub .mark--l .kicker{color:var(--redL)}
 .sub .strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:9px 20px}
 .sub .strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;
@@ -254,7 +262,12 @@ function injectHead() {
 
 class AriseLeadNetwork extends HTMLElement {
   connectedCallback() {
-    if (this._built) return;
+    if (this._built) {
+      /* re-attached by Wix: restore the body-mounted lightbox */
+      if (this._lb && !this._lb.isConnected) document.body.appendChild(this._lb);
+      if (this._lbKey) document.addEventListener('keydown', this._lbKey);
+      return;
+    }
     this._built = true;
     injectHead();
 
@@ -277,76 +290,74 @@ class AriseLeadNetwork extends HTMLElement {
     this.innerHTML =
       '<div class="sub">' +
         '<header class="phead"><div class="shell">' +
-          '<img class="phead__logo" src="' + LN_LOGO + '" alt="Lead Network logo">' +
-          '<div class="mark mark--l"><span class="kicker">Leadership Development</span></div>' +
-          '<h1>Lead Network</h1>' +
-          '<p class="lede">We invite you to explore our comprehensive selection of video courses ' +
+          '<img class="phead__logo" data-ci="leadnetwork.hero.logo" src="' + LN_LOGO + '" alt="Lead Network logo">' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="leadnetwork.hero.kicker">Leadership Development</span></div>' +
+          '<h1 data-ck="leadnetwork.hero.heading">Lead Network</h1>' +
+          '<p class="lede" data-ck="leadnetwork.hero.lede">We invite you to explore our comprehensive selection of video courses ' +
           'offered through the Lead Network. Our courses are to enhance your skills and facilitate ' +
           'learning across various subjects. Discover the valuable opportunities that await you.</p>' +
         '</div></header>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Teachings</span></div>' +
-          '<h2>Watch &amp; Listen</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="leadnetwork.teachings.kicker">Teachings</span></div>' +
+          '<h2 data-ck="leadnetwork.teachings.heading">Watch &amp; Listen</h2>' +
           '<div class="teach">' +
             TEACHINGS.map(function (t, i) {
               return '<div class="t__c">' +
                 '<div class="t__media" data-t="' + i + '">' +
-                  '<img src="' + M + t.thumb + '" alt="' + t.title + '">' +
+                  '<img data-ci="leadnetwork.teachings.item' + (i + 1) + 'Thumb" src="' + M + t.thumb + '" alt="' + t.title + '">' +
                   '<button class="t__play" data-play="' + i + '" ' +
                     'aria-label="Play ' + t.title + '"><span>&#9654;</span></button>' +
                 '</div>' +
                 '<div class="t__b">' +
-                  '<div class="t__by">' + t.by + '</div>' +
-                  '<h3>' + t.title + '</h3>' +
-                  '<p class="t__sub">' + t.sub + '</p>' +
-                  (t.length ? '<div class="t__len">' + t.length + '</div>' : '') +
+                  '<div class="t__by" data-ck="leadnetwork.teachings.item' + (i + 1) + 'By">' + t.by + '</div>' +
+                  '<h3 data-ck="leadnetwork.teachings.item' + (i + 1) + 'Title">' + t.title + '</h3>' +
+                  '<p class="t__sub" data-ck="leadnetwork.teachings.item' + (i + 1) + 'Sub">' + t.sub + '</p>' +
+                  (t.length ? '<div class="t__len" data-ck="leadnetwork.teachings.item' + (i + 1) + 'Length">' + t.length + '</div>' : '') +
                   (t.audio
                     ? '<div class="t__audio"><audio controls preload="none" src="' +
                         MP3 + t.audio + '.mp3"></audio></div>'
-                    : '<div class="t__soon">Audio coming soon</div>') +
+                    : '<div class="t__soon" data-ck="leadnetwork.teachings.audioSoon">Audio coming soon</div>') +
                 '</div>' +
               '</div>';
-
-    this.fillGallery();
             }).join('') +
           '</div>' +
         '</div></section>' +
 
         '<section class="sect sect--bone"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Our Current Ministers</span></div>' +
-          '<h2>Our Current Ministers</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="leadnetwork.ministers.kicker">Our Current Ministers</span></div>' +
+          '<h2 data-ck="leadnetwork.ministers.heading">Our Current Ministers</h2>' +
           '<div class="people">' +
 
             '<div class="p__c">' +
-              '<div class="p__ph"><img src="' + AUSTIN + '" ' +
+              '<div class="p__ph"><img data-ci="leadnetwork.austin.photo" src="' + AUSTIN + '" ' +
                 'alt="Apostle Carlos Austin and Pastor Melissa Austin"></div>' +
               '<div class="p__b">' +
-                '<span class="p__role">Apostle &amp; Pastor</span>' +
-                '<h3>Carlos and Melissa Austin</h3>' +
-                '<div class="p__church">' +
+                '<span class="p__role" data-ck="leadnetwork.ministers.austinRole">Apostle &amp; Pastor</span>' +
+                '<h3 data-ck="leadnetwork.ministers.austinName">Carlos and Melissa Austin</h3>' +
+                '<div class="p__church" data-ck="leadnetwork.ministers.austinChurch">' +
                   '<b>Kingdom Builders Ministry Church</b>' +
                   '200 N. Houston Ave., Suite C<br>Humble, TX 77338' +
                 '</div>' +
                 '<div class="p__links">' +
-                  '<a href="https://www.facebook.com/kbmchurch2014/" target="_blank" rel="noopener">Facebook</a>' +
+                  '<a href="https://www.facebook.com/kbmchurch2014/" target="_blank" rel="noopener" data-ck="leadnetwork.ministers.austinFacebook">Facebook</a>' +
                 '</div>' +
               '</div>' +
             '</div>' +
 
             '<div class="p__c">' +
-              '<div class="p__ph"><img src="' + CALLOWAY + '" ' +
+              '<div class="p__ph"><img data-ci="leadnetwork.calloway.photo" src="' + CALLOWAY + '" ' +
                 'alt="Pastor Derrick Calloway and Pastor Pamla Calloway"></div>' +
               '<div class="p__b">' +
-                '<span class="p__role">Lead Pastors</span>' +
-                '<h3>Derrick and Pamla Calloway</h3>' +
-                '<div class="p__church">' +
+                '<span class="p__role" data-ck="leadnetwork.ministers.callowayRole">Lead Pastors</span>' +
+                '<h3 data-ck="leadnetwork.ministers.callowayName">Derrick and Pamla Calloway</h3>' +
+                '<div class="p__church" data-ck="leadnetwork.ministers.callowayChurch">' +
                   '<b>Faith Culture Church</b>' +
                   '245 Florida Ave SE<br>Denham Springs, LA 70726' +
                 '</div>' +
                 '<div class="p__links">' +
-                  '<a href="https://faithculturechurchbr.com/about" target="_blank" rel="noopener">Website</a>' +
-                  '<a href="https://www.facebook.com/fccaplacejustforyou/" target="_blank" rel="noopener">Facebook</a>' +
+                  '<a href="https://faithculturechurchbr.com/about" target="_blank" rel="noopener" data-ck="leadnetwork.ministers.callowayWebsite">Website</a>' +
+                  '<a href="https://www.facebook.com/fccaplacejustforyou/" target="_blank" rel="noopener" data-ck="leadnetwork.ministers.callowayFacebook">Facebook</a>' +
                 '</div>' +
               '</div>' +
             '</div>' +
@@ -354,30 +365,36 @@ class AriseLeadNetwork extends HTMLElement {
           '</div>' +
           '<div style="margin-top:48px">' +
             '<a class="btn btn--dark" href="https://www.youtube.com/@arisechurch4147" ' +
-            'target="_blank" rel="noopener">Watch Now</a>' +
+            'target="_blank" rel="noopener" data-ck="leadnetwork.ministers.button">Watch Now</a>' +
           '</div>' +
         '</div></section>' +
 
         '<section class="sect sect--bone"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Gatherings</span></div>' +
-          '<h2>Camp Meetings &amp; Teachings</h2>' +
-          '<div class="gal-mount"></div>' +
+          '<div class="mark"><span class="kicker" data-ck="leadnetwork.gatherings.kicker">Gatherings</span></div>' +
+          '<h2 data-ck="leadnetwork.gatherings.heading">Camp Meetings &amp; Teachings</h2>' +
+          '<div class="gal-mount" data-cms-source="Portfolio"></div>' +
         '</div></section>' +
 
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta"><div class="cta__b">' +
-            '<div class="mark"><span class="kicker">Camp Meeting</span></div>' +
-            '<h2>The Outpour</h2>' +
-            '<p>The Lead Network 2026 Camp Meeting, October 30 to November 1.</p>' +
+            '<div class="mark"><span class="kicker" data-ck="leadnetwork.cta.kicker">Camp Meeting</span></div>' +
+            '<h2 data-ck="leadnetwork.cta.heading">The Outpour</h2>' +
+            '<p data-ck="leadnetwork.cta.body">The Lead Network 2026 Camp Meeting, October 30 to November 1.</p>' +
           '</div>' +
-          '<a class="btn" href="/events" target="_top">See the Event</a>' +
+          '<a class="btn" href="/events" target="_top" data-ck="leadnetwork.cta.button">See the Event</a>' +
         '</div></div></section>' +
       '</div>';
 
     this._wire();
+    this.fillGallery();
+    this.applyContent();
   }
-  static get observedAttributes() { return ['data-photos']; }
-  attributeChangedCallback() { if (this._built) this.fillGallery(); }
+  static get observedAttributes() { return ['data-photos', 'data-content']; }
+  attributeChangedCallback(name) {
+    if (!this._built) return;
+    if (name === 'data-content') { this.applyContent(); return; }
+    this.fillGallery();
+  }
 
   galPhotos() {
     const raw = this.getAttribute('data-photos');
@@ -394,7 +411,7 @@ class AriseLeadNetwork extends HTMLElement {
           alt: p.alt || '',
           caption: p.caption || p.title || ''
         };
-      }).filter(function (p) { return p.src || p.video || p.videoId; });
+      }).filter(function (p) { return (p.src || p.video || p.videoId) && (!p.videoId || /^[A-Za-z0-9_\-]+$/.test(p.videoId)); });
     } catch (e) {
       console.error('gallery: bad data-photos JSON', e);
       return [];
@@ -440,6 +457,9 @@ class AriseLeadNetwork extends HTMLElement {
       const lb = document.createElement('div');
       lb.className = 'agl-lb';
       lb.setAttribute('data-open', 'false');
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.setAttribute('aria-label', 'Photo viewer');
       lb.innerHTML =
         '<div class="agl-lb__i"></div>' +
         '<button class="agl-lb__x" aria-label="Close">&times;</button>' +
@@ -454,6 +474,10 @@ class AriseLeadNetwork extends HTMLElement {
       const cap = lb.querySelector('.agl-lb__c');
       const idx = lb.querySelector('.agl-lb__i');
 
+      const LE = function (s) {
+        return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      };
       this._show = function (i) {
         const list = self._pics || [];
         if (!list.length) return;
@@ -463,13 +487,13 @@ class AriseLeadNetwork extends HTMLElement {
           const base = 'https://video.wixstatic.com/video/';
           const srcs = p.videoId
             ? ['1080p', '720p', '480p'].map(function (q) {
-                return '<source src="' + base + p.videoId + '/' + q + '/mp4/file.mp4" type="video/mp4">';
+                return '<source src="' + base + LE(p.videoId) + '/' + q + '/mp4/file.mp4" type="video/mp4">';
               }).join('')
-            : '<source src="' + p.video + '" type="video/mp4">';
-          stage.innerHTML = '<video controls autoplay playsinline poster="' + p.src + '">' +
+            : '<source src="' + LE(p.video) + '" type="video/mp4">';
+          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(p.src) + '">' +
             srcs + '</video>';
         } else {
-          stage.innerHTML = '<img src="' + p.src + '" alt="' + (p.alt || '') + '">';
+          stage.innerHTML = '<img src="' + LE(p.src) + '" alt="' + LE(p.alt || '') + '">';
         }
         cap.textContent = p.caption || '';
         idx.textContent = (self._i + 1) + ' / ' + list.length;
@@ -478,21 +502,33 @@ class AriseLeadNetwork extends HTMLElement {
         lb.setAttribute('data-open', 'false');
         stage.innerHTML = '';
         document.documentElement.style.overflow = '';
+        const op = self._opener; self._opener = null;
+        if (op && op.isConnected && op.focus) op.focus();
       };
       lb.querySelector('.agl-lb__x').addEventListener('click', this._close);
       lb.querySelector('.agl-lb__p').addEventListener('click', function () { self._show(self._i - 1); });
       lb.querySelector('.agl-lb__n').addEventListener('click', function () { self._show(self._i + 1); });
       lb.addEventListener('click', function (e) { if (e.target === lb) self._close(); });
-      document.addEventListener('keydown', function (e) {
+      this._lbKey = function (e) {
         if (lb.getAttribute('data-open') !== 'true') return;
         if (e.key === 'Escape') self._close();
         if (e.key === 'ArrowLeft') self._show(self._i - 1);
         if (e.key === 'ArrowRight') self._show(self._i + 1);
-      });
+        if (e.key === 'Tab') {
+          const fs = lb.querySelectorAll('button, video[controls]');
+          if (!fs.length) return;
+          const first = fs[0], last = fs[fs.length - 1];
+          const inside = lb.contains(document.activeElement);
+          if (e.shiftKey && (!inside || document.activeElement === first)) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && (!inside || document.activeElement === last)) { e.preventDefault(); first.focus(); }
+        }
+      };
+      document.addEventListener('keydown', this._lbKey);
     }
 
     this.querySelectorAll('.gal__t').forEach(function (b) {
       b.addEventListener('click', function () {
+        self._opener = b;
         self._show(parseInt(b.getAttribute('data-i'), 10));
         self._lb.setAttribute('data-open', 'true');
         document.documentElement.style.overflow = 'hidden';
@@ -502,8 +538,33 @@ class AriseLeadNetwork extends HTMLElement {
   }
 
   disconnectedCallback() {
+    if (this._lbKey) document.removeEventListener('keydown', this._lbKey);
     if (this._lb && this._lb.parentNode) this._lb.parentNode.removeChild(this._lb);
     document.documentElement.style.overflow = '';
+  }
+  applyContent() {
+    const raw = this.getAttribute('data-content');
+    if (!raw) return;
+    let map;
+    try { map = JSON.parse(raw); } catch (e) {
+      console.error('bad data-content JSON', e); return;
+    }
+    if (!map || typeof map !== 'object') return;
+
+    const own = Object.prototype.hasOwnProperty;
+    this.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = own.call(map, k) ? (map[k] || {}) : {};
+      if (v.text) el.innerHTML = v.text;
+    });
+    this.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = own.call(map, k) ? (map[k] || {}) : {};
+      if (v.image) {
+        if (el.tagName === 'IMG') el.src = v.image;
+        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+      }
+    });
   }
 }
 

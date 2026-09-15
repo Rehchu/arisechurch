@@ -23,6 +23,8 @@
       resolve in Preview.
 
    Submissions land in CMS -> Form Submissions with formType "serve".
+   Fixed 2026-09-14: form a11y (live status note, aria-required, hint ids + aria-describedby, aria-invalid, focus on thank-you block).
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-serve.json)
    =========================================================================== */
 
 const ASV_FONTS =
@@ -63,6 +65,12 @@ arise-serve{display:block;width:100%}
   box-shadow:62px 0 0 var(--red);margin-right:80px}
 .asv .kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;
   color:var(--red);white-space:nowrap}
+@media(max-width:620px){
+  /* the two dashes eat 188px before the text starts -- too much on a phone */
+  .asv .mark{flex-wrap:nowrap;align-items:flex-start}
+  .asv .mark::before{margin-right:124px;margin-top:5px}
+  .asv .kicker{white-space:normal;letter-spacing:.20em;font-size:11px;line-height:1.5}
+}
 .asv .mark--l .kicker{color:var(--redL)}
 
 .asv .sect{padding:var(--sect) 0;background:var(--paper)}
@@ -166,53 +174,62 @@ class AriseServe extends HTMLElement {
     }
 
     const E = asvEsc;
+    var AC_MAP = { firstName: 'given-name', lastName: 'family-name', name: 'name',
+      email: 'email', phone: 'tel' };
     const fields = FIELDS.map(function (f) {
       const cls = f.half ? '' : ' full';
       const req = f.req ? ' <span class="req">*</span>' : '';
       const control = f.type === 'textarea'
-        ? '<textarea id="asv-' + f.k + '"></textarea>'
-        : '<input id="asv-' + f.k + '" type="' + f.type + '"' +
-          (f.ph ? ' placeholder="' + E(f.ph) + '"' : '') + ' autocomplete="on">';
+        ? '<textarea id="asv-' + f.k + '" name="' + f.k + '"' + (f.req ? ' aria-required="true"' : '') + '></textarea>'
+        : '<input id="asv-' + f.k + '" name="' + f.k + '" type="' + f.type + '"' +
+          (f.ph ? ' placeholder="' + E(f.ph) + '"' : '') +
+          ' autocomplete="' + (AC_MAP[f.k] || 'on') + '"' + (f.req ? ' aria-required="true"' : '') + '>';
       return '<div class="fld' + cls + '" data-k="' + f.k + '">' +
-        '<label for="asv-' + f.k + '">' + E(f.label) + req + '</label>' +
-        control + '<div class="hint"></div></div>';
+        '<label for="asv-' + f.k + '"><span data-ck="serve.form.' + f.k + 'Label">' + E(f.label) + '</span>' + req + '</label>' +
+        control + '<div class="hint" id="asv-' + f.k + '-hint"></div></div>';
     }).join('');
 
     this.innerHTML =
       '<div class="asv">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Volunteer Sign Up</span></div>' +
-          '<h1>Serve</h1>' +
-          '<p class="lede">Join our congregation in making a difference. We&rsquo;re seeking ' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="serve.hero.kicker">Volunteer Sign Up</span></div>' +
+          '<h1 data-ck="serve.hero.heading">Serve</h1>' +
+          '<p class="lede" data-ck="serve.hero.body">Join our congregation in making a difference. We\'re seeking ' +
           'passionate volunteers to fill key roles and help our ministries thrive.</p>' +
         '</div></header>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Positions Needed</span></div>' +
-          '<h2>Where You<br>Could Serve</h2>' +
-          '<div id="asvPos"></div>' +
+          '<div class="mark"><span class="kicker" data-ck="serve.positions.kicker">Positions Needed</span></div>' +
+          '<h2 data-ck="serve.positions.heading">Where You<br>Could Serve</h2>' +
+          '<div id="asvPos" data-cms-source="ServePositions"></div>' +
         '</div></section>' +
 
         '<section class="sect sect--bone" style="padding-top:0"><div class="shell">' +
           '<div class="panel" style="margin-top:var(--sect)">' +
-            '<div class="mark mark--l"><span class="kicker">Sign Up</span></div>' +
-            '<h2>Use Your Gifts</h2>' +
-            '<p class="intro">No experience needed &mdash; just a willingness to show up. ' +
+            '<div class="mark mark--l"><span class="kicker" data-ck="serve.form.kicker">Sign Up</span></div>' +
+            '<h2 data-ck="serve.form.heading">Use Your Gifts</h2>' +
+            '<p class="intro" data-ck="serve.form.body">No experience needed - just a willingness to show up. ' +
             'Someone from that team will reach out about next steps.</p>' +
             '<form novalidate>' + fields +
-              '<div class="note"></div>' +
-              '<div class="full"><button type="submit">Sign Up to Serve</button></div>' +
+              '<div class="note" role="status" aria-live="polite"></div>' +
+              '<div class="full"><button type="submit"><span data-ck="serve.form.button">Sign Up to Serve</span></button></div>' +
             '</form>' +
           '</div>' +
         '</div></section>' +
       '</div>';
 
+    this.applyContent();
+
     this.fillPositions();
     this.wireForm();
   }
 
-  static get observedAttributes() { return ['data-positions']; }
-  attributeChangedCallback() { if (this._b) this.fillPositions(); }
+  static get observedAttributes() { return ['data-positions', 'data-content']; }
+  attributeChangedCallback(name) {
+    if (!this._b) return;
+    if (name === 'data-content') { this.applyContent(); return; }
+    this.fillPositions();
+  }
 
   positions() {
     const raw = this.getAttribute('data-positions');
@@ -236,11 +253,11 @@ class AriseServe extends HTMLElement {
     mount.innerHTML = '<div class="pos">' + list.map(function (p, i) {
       return '<button class="p' + (p.urgent ? ' p--urgent' : '') + '" data-pos="' + i + '" ' +
         'aria-label="Sign up for ' + E(p.title) + '">' +
-        (p.urgent ? '<span class="p__tag">Most Needed</span>' : '') +
+        (p.urgent ? '<span class="p__tag" data-ck="serve.positions.urgentTag">Most Needed</span>' : '') +
         (p.team ? '<div class="p__team">' + E(p.team) + '</div>' : '') +
         '<h3>' + E(p.title) + '</h3>' +
         (p.description ? '<p class="p__d">' + E(p.description) + '</p>' : '') +
-        '<div class="p__go">Sign Up &rarr;</div>' +
+        '<div class="p__go" data-ck="serve.positions.cta">Sign Up &rarr;</div>' +
       '</button>';
     }).join('') + '</div>';
 
@@ -258,6 +275,7 @@ class AriseServe extends HTMLElement {
         if (nameField && nameField.focus) setTimeout(function () { nameField.focus(); }, 500);
       });
     });
+    self.applyContent();
   }
 
   wireForm() {
@@ -273,6 +291,8 @@ class AriseServe extends HTMLElement {
       form.querySelectorAll('.fld').forEach(function (d) {
         d.classList.remove('bad');
         const h = d.querySelector('.hint'); if (h) h.textContent = '';
+        const fe = d.querySelector('input,textarea');
+        if (fe) { fe.removeAttribute('aria-invalid'); fe.removeAttribute('aria-describedby'); }
       });
       note.textContent = '';
       note.removeAttribute('data-err');
@@ -290,10 +310,12 @@ class AriseServe extends HTMLElement {
         if (f.req && !val) {
           wrap.classList.add('bad');
           wrap.querySelector('.hint').textContent = 'Required';
+          if (el) { el.setAttribute('aria-invalid', 'true'); el.setAttribute('aria-describedby', 'asv-' + f.k + '-hint'); }
           if (!firstBad) firstBad = el;
         } else if (f.type === 'email' && val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
           wrap.classList.add('bad');
           wrap.querySelector('.hint').textContent = 'Check this email address';
+          if (el) { el.setAttribute('aria-invalid', 'true'); el.setAttribute('aria-describedby', 'asv-' + f.k + '-hint'); }
           if (!firstBad) firstBad = el;
         }
       });
@@ -301,7 +323,7 @@ class AriseServe extends HTMLElement {
       if (firstBad) { firstBad.focus(); return; }
 
       go.setAttribute('disabled', 'true');
-      note.textContent = 'Sending&hellip;';
+      note.textContent = 'Sending...';
 
       try {
         const res = await fetch(FORM_ENDPOINT, {
@@ -312,9 +334,12 @@ class AriseServe extends HTMLElement {
         if (!res.ok) throw new Error('status ' + res.status);
 
         form.outerHTML =
-          '<div class="done"><h3>Thank You</h3>' +
-          '<p>We&rsquo;ve got your sign-up, and someone from that team will reach out ' +
+          '<div class="done" tabindex="-1"><h3 data-ck="serve.success.heading">Thank You</h3>' +
+          '<p data-ck="serve.success.body">We\'ve got your sign-up, and someone from that team will reach out ' +
           'about next steps.</p></div>';
+        self.applyContent();
+        const done = self.querySelector('.done');
+        if (done && done.focus) done.focus();
 
       } catch (err) {
         console.error('serve form failed:', err);
@@ -323,6 +348,32 @@ class AriseServe extends HTMLElement {
           'arisenow.church@gmail.com.';
         go.removeAttribute('disabled');
       }
+    });
+  }
+  applyContent() {
+    const raw = this.getAttribute('data-content');
+    if (!raw) return;
+    let map;
+    try { map = JSON.parse(raw); } catch (e) {
+      console.error('bad data-content JSON', e); return;
+    }
+    if (!map || typeof map !== 'object') return;
+
+    function asvVal(k) {
+      const v = (k && Object.prototype.hasOwnProperty.call(map, k)) ? map[k] : null;
+      if (typeof v === 'string') return { text: v };
+      return (v && typeof v === 'object') ? v : {};
+    }
+    this.querySelectorAll('[data-ck]').forEach(function (el) {
+      const v = asvVal(el.getAttribute('data-ck'));
+      if (v.text) el.innerHTML = v.text;
+    });
+    this.querySelectorAll('[data-ci]').forEach(function (el) {
+      const v = asvVal(el.getAttribute('data-ci'));
+      const img = v.image || v.imageUrl;
+      if (!img) return;
+      if (el.tagName === 'IMG') el.src = img;
+      else el.style.backgroundImage = 'url("' + String(img).replace(/["\\]/g, '') + '")';
     });
   }
 }

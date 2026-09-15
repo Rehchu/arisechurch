@@ -2,6 +2,8 @@
    ARISE CHURCH ALEXANDRIA
    File: public/custom-elements/arise-alexandria.js
    Tag:  arise-alexandria
+   Fixed 2026-09-14: page path /arise-alexandria; time rows Prayer / Bible Study with data-ck label+value hooks and day trim; address falls back to site.campus.second
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-alexandria.json)
 
    The second campus. Everything on this page is editable in
    CMS -> Page Content, under the keys starting alexandria.*
@@ -12,7 +14,7 @@
    INSTALL
    1. Velo sidebar -> Public -> custom-elements/ -> new file arise-alexandria.js
       -> paste this whole file
-   2. Editor -> new page /alexandria -> Add (+) -> Embed Code -> Custom Element
+   2. Editor -> new page /arise-alexandria -> Add (+) -> Embed Code -> Custom Element
       Choose Source -> Velo file -> arise-alexandria.js
       Tag Name: arise-alexandria
       STRETCH IT FULL WIDTH.
@@ -159,6 +161,12 @@ function aaxEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* Drop a leading day name from a value when the row label already names that day. */
+function aaxTrimDay(label, value) {
+  var m = /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)\b[\s,:\-\u2013\u00b7]*/i.exec(value || '');
+  return (m && String(label || '').toLowerCase().indexOf(m[1].toLowerCase()) > -1) ? value.slice(m[0].length) : value;
+}
+
 class AriseAlexandria extends HTMLElement {
   connectedCallback() {
     if (this._b) return;
@@ -213,25 +221,31 @@ class AriseAlexandria extends HTMLElement {
 
     /* Only show a time row if there is a time. No "TBA" sitting there for months. */
     const times = [
-      ['Sunday Service', T('site.times.sunday.second')],
-      ['Pre-Service Prayer', T('site.times.second.prayer')],
-      ['Midweek Service', T('site.times.second.midweek')]
+      [T('site.times.sunday.second.label') || 'Sunday Service', T('site.times.sunday.second'), 'site.times.sunday.second'],
+      [T('site.times.second.prayer.label') || 'Prayer', T('site.times.second.prayer'), 'site.times.second.prayer'],
+      [T('site.times.second.midweek.label') || 'Bible Study', T('site.times.second.midweek'), 'site.times.second.midweek']
     ].filter(function (r) { return r[1]; });
+
+    /* A CMS alexandria.address wins; otherwise the shared second-campus address; otherwise the text above. */
+    const cmsAddr = (this._c || {})['alexandria.address'];
+    const cmsAddrText = cmsAddr && typeof cmsAddr === 'object' ? cmsAddr.text : cmsAddr;
+    const address = (cmsAddrText ? T('alexandria.address') : '') ||
+      T('site.campus.second') || T('alexandria.address');
 
     this.innerHTML =
       '<div class="aax">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="alexandria.hero.kicker">' +
             E(T('alexandria.hero.kicker')) + '</span></div>' +
-          '<h1>Arise Church<br>Alexandria</h1>' +
+          '<h1 data-ck="alexandria.hero.heading">Arise Church<br>Alexandria</h1>' +
           '<p class="lede" data-ck="alexandria.hero.body">' + E(T('alexandria.hero.body')) + '</p>' +
         '</div></header>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Lead Pastor</span></div>' +
+          '<div class="mark"><span class="kicker" data-ck="alexandria.pastor.kicker">Lead Pastor</span></div>' +
           '<div class="pastor">' +
             (photo
-              ? '<div class="pastor__ph"><img src="' + E(photo) + '" alt="' + E(name) + '"></div>'
+              ? '<div class="pastor__ph"><img data-ci="alexandria.pastor.photo" src="' + E(photo) + '" alt="' + E(name) + '"></div>'
               : '<div class="pastor__init">' + E(initials) + '</div>') +
             '<div class="pastor__b">' +
               '<span class="pastor__r" data-ck="alexandria.pastor.role">' + E(T('alexandria.pastor.role')) + '</span>' +
@@ -243,35 +257,64 @@ class AriseAlexandria extends HTMLElement {
         '</div></section>' +
 
         '<section class="sect sect--bone"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Plan Your Visit</span></div>' +
-          '<h2>Find Us</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="alexandria.visit.kicker">Plan Your Visit</span></div>' +
+          '<h2 data-ck="alexandria.visit.heading">Find Us</h2>' +
           '<div class="visit">' +
             '<div class="visit__c">' +
-              '<div class="visit__l">Where</div>' +
-              '<div class="visit__v" data-ck="alexandria.address">' + E(T('alexandria.address')) + '</div>' +
-              '<a class="btn" href="' + MAPS + '" target="_top">Get Directions</a>' +
+              '<div class="visit__l" data-ck="alexandria.visit.whereLabel">Where</div>' +
+              '<div class="visit__v" data-ck="alexandria.address">' + E(address) + '</div>' +
+              '<a class="btn" href="' + MAPS + '" target="_top" data-ck="alexandria.visit.button">Get Directions</a>' +
             '</div>' +
             '<div class="visit__c">' +
-              '<div class="visit__l">When</div>' +
+              '<div class="visit__l" data-ck="alexandria.visit.whenLabel">When</div>' +
               (times.length
                 ? times.map(function (r) {
-                    return '<div class="visit__r"><span>' + E(r[0]) + '</span><b>' +
-                      E(r[1]) + '</b></div>';
+                    return '<div class="visit__r"><span data-ck="' + r[2] + '.label">' + E(r[0]) + '</span><b data-ck="' + r[2] + '">' +
+                      E(aaxTrimDay(r[0], r[1])) + '</b></div>';
                   }).join('')
-                : '<div class="visit__v">Times coming soon</div>') +
+                : '<div class="visit__v" data-ck="alexandria.visit.empty">Times coming soon</div>') +
             '</div>' +
           '</div>' +
         '</div></section>' +
 
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta"><div class="cta__b">' +
-            '<div class="mark"><span class="kicker">First Time?</span></div>' +
-            '<h2>Come As You Are</h2>' +
-            '<p>Let us know you are coming and we will look out for you.</p>' +
+            '<div class="mark"><span class="kicker" data-ck="alexandria.cta.kicker">First Time?</span></div>' +
+            '<h2 data-ck="alexandria.cta.heading">Come As You Are</h2>' +
+            '<p data-ck="alexandria.cta.body">Let us know you are coming and we will look out for you.</p>' +
           '</div>' +
-          '<a class="btn" href="/contact" target="_top">Plan Your Visit</a>' +
+          '<a class="btn" href="/contact" target="_top" data-ck="alexandria.cta.button">Plan Your Visit</a>' +
         '</div></div></section>' +
       '</div>';
+
+    this.applyContent();
+  }
+
+  /* Static copy hooks (headings, kickers, buttons) take the CMS text as-is.
+     Keys that build() already resolves through T()/IMG() (FALLBACK keys, site.*,
+     the pastor photo) are skipped so their escaping and day-trim logic stay intact. */
+  applyContent() {
+    const map = this._c || {};
+    const handled = function (k) {
+      return Object.prototype.hasOwnProperty.call(FALLBACK, k) || k.indexOf('site.') === 0 ||
+        k === 'alexandria.pastor.photo';
+    };
+    this.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      if (handled(k) || !Object.prototype.hasOwnProperty.call(map, k)) return;
+      const v = map[k];
+      const t = v && typeof v === 'object' ? v.text : v;
+      if (typeof t === 'string' && t.trim()) el.innerHTML = t;
+    });
+    this.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      if (handled(k) || !Object.prototype.hasOwnProperty.call(map, k)) return;
+      const v = map[k] || {};
+      if (v.image) {
+        if (el.tagName === 'IMG') el.src = v.image;
+        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+      }
+    });
   }
 }
 

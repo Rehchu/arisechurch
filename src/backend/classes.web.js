@@ -1,3 +1,6 @@
+/* Arise Church - backend/classes.web.js
+   Fixed 2026-09-14: removed the debug log of the first program; a price of 0
+   now shows Free. Links stay /class-detail/<slug> (the live Online Programs page). */
 import { Permissions, webMethod } from 'wix-web-module';
 import { programs } from '@wix/online-programs';
 import { auth } from '@wix/essentials';
@@ -17,17 +20,15 @@ export const getPrograms = webMethod(
       const res = await query().eq('status', 'PUBLISHED').find();
       const items = res.items || res.programs || [];
 
-      if (items.length) {
-        console.log('Programs: first ->', JSON.stringify(items[0]).slice(0, 1500));
-      }
-
       return items.map((p) => {
         const d = p.description || {};
         const media = d.media || d.image || {};
         const rawImg = typeof media === 'string'
           ? media
           : (media.image || media.url || media.imageInfo || '');
-        const price = p.price && p.price.value
+        // A program priced 0 (or with no price) is Free; '0' is a truthy string.
+        const amount = p.price && p.price.value != null ? Number(p.price.value) : 0;
+        const price = amount > 0
           ? (p.price.currency === 'USD' ? '$' : '') + p.price.value
           : 'Free';
 

@@ -1,5 +1,5 @@
 /* ===========================================================================
-   ARISE CHURCH -- PAST SERMONS
+   ARISE CHURCH -- SERMONS
    File: public/custom-elements/arise-sermons.js
    Tag:  arise-sermons
 
@@ -16,6 +16,10 @@
    All copy is from the live site.
    Videos open on YouTube in a new tab. If you want inline playback,
    keep your Wix Video channel on the page BELOW this element.
+   Fixed 2026-09-14: live player no longer reloads on repeat updates, series band hidden unless active, series text escaped, CMS time hooks in CTA, safer applyContent
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-sermons.json)
+   14 Sept (Bradly): the clips grid shows the newest YouTube Shorts (data-clips from the page code, read by
+   backend/youtube.jsw getLatestShorts). The built-in list is the newest Shorts on 14 Sept; per-clip CMS rows removed.
    =========================================================================== */
 
 const FONTS =
@@ -42,31 +46,18 @@ const GLORY_EMBED = 'https://www.youtube.com/embed/videoseries?list=' + GLORY_LI
 const GLORY_URL   = 'https://www.youtube.com/playlist?list=' + GLORY_LIST;
 const WM = 'https://static.wixstatic.com/media/';
 
+/* Built-in Shorts list. Shown only until the page code sends the newest Shorts
+   from the YouTube channel (data-clips), or if YouTube cannot be reached.
+   These were the 8 newest Shorts on 14 Sept 2026. */
 const CLIPS = [
-  { id:'GatBPIhEMg4', len:'0:35',
-    title:'Upcoming at Arise Church \u2014 Phase Two Launch &amp; Apostle Joanne Hunter',
-    desc:'Big things ahead at Arise Church \u2014 the Phase Two launch and a visit from Apostle Joanne Hunter. Dates and details in the video.' },
-  { id:'Gtu2W5uaBsw', len:'0:38',
-    title:'Baby Shower for Baby Cairo \u2014 Aug 22 | RSVP &amp; Registry',
-    desc:'Celebrating Baby Cairo! Join the Arise Church family Saturday, August 22 \u2014 RSVP and registry details in the video.' },
-  { id:'1FNbubTU_Sg', len:'0:31',
-    title:'Receive Strength for the Journey',
-    desc:'Before the next leg of your journey: stop, breathe, receive. God\u2019s strength for what\u2019s ahead is given, not earned.' },
-  { id:'9ius_ZgQuYA', len:'1:57',
-    title:'Why Abram Refused Sodom\u2019s Wealth',
-    desc:'Not a thread, not a sandal strap \u2014 Abram wouldn\u2019t let Sodom say it made him rich (Genesis 14:22-23). Who funds you matters.' },
-  { id:'0ZF_-1g8Li8', len:'1:48',
-    title:'The Church That Gave Beyond Its Means',
-    desc:'Deep poverty, overflowing joy \u2014 and they begged for the chance to give (2 Corinthians 8:1-7). The Macedonian church rewrites what generosity means.' },
-  { id:'dD0PrqHdmzM', len:'0:50',
-    title:'Offering Confession \u2014 Declare Breakthrough &amp; Blessing',
-    desc:'Don\u2019t just give it \u2014 say something over it. A confession to declare over your offering: breakthrough, favor, and blessing on every seed.' },
-  { id:'J4T4YcOMAgc', len:'1:40',
-    title:'Jesus\u2019 Warning: Give in Secret, Not for Show',
-    desc:'Give to be seen and the applause is your whole reward. Give in secret and your Father who sees in secret rewards you (Matthew 6:1-4).' },
-  { id:'zMLoS0O8YDM', len:'0:58',
-    title:'The Breaker Anointing \u2014 Shatter the Glass Ceiling',
-    desc:'Some limits are invisible but real. The Breaker anointing shatters the ceiling over your increase \u2014 and what held you down loses its grip.' }
+  { id: "m_bDPBzAGUE", title: "Declare: Last Year Was the Last Year I Lived Paycheck to Paycheck" },
+  { id: "BNCJUUBlRis", title: "Don't Pick Battles God Didn't Give You" },
+  { id: "Dqo3tRQVMNs", title: "Walk Through the Doors God Opens" },
+  { id: "U1DXCwVC88M", title: "Revisit the Prophecies Over Your Life" },
+  { id: "ukQKnseBTho", title: "Obey Like a Child: When You Say Go, I'll Go" },
+  { id: "cE7bkakfz08", title: "This Is the Year of Breakthroughs" },
+  { id: "Yj1BsfOaNZ4", title: "Try God This Year: Say What He Says and Watch" },
+  { id: "J1w-TDq-F-E", title: "Ezekiel's Sword: You're Being Sharpened and Polished" }
 ];
 
 const PLAY_SVG = '<svg width="24" height="28" viewBox="0 0 22 26" fill="none" aria-hidden="true">' +
@@ -222,6 +213,9 @@ arise-events,arise-sermons{display:block;width:100%}
   font-size:11px;letter-spacing:.06em;padding:3px 7px}
 .aes .card h3{margin-top:16px}
 .aes .card p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:8px}
+.aes .card__th--short{aspect-ratio:9/16}
+.aes .grid--shorts{grid-template-columns:repeat(4,1fr);gap:28px 20px}
+@media(max-width:760px){.aes .grid--shorts{grid-template-columns:repeat(2,1fr);gap:24px 14px}}
 
 @media(prefers-reduced-motion:reduce){.aes *{transition:none!important}}
 @media (prefers-color-scheme: dark){
@@ -230,6 +224,8 @@ arise-events,arise-sermons{display:block;width:100%}
   .aes .sect--ink,.aes .phead,.aes .feat{background:#0A0A0C}
 }
 `;
+
+function asrEsc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
 
 function injectHead() {
   if (!document.getElementById('aes-sermons-fonts')) {
@@ -248,21 +244,11 @@ class AriseSermons extends HTMLElement {
   connectedCallback() {
     if (this._b) return; this._b = true; injectHead();
 
-    const cards = CLIPS.map(c =>
-      '<a class="card" href="https://www.youtube.com/watch?v=' + c.id + '" target="_blank" rel="noopener">' +
-        '<div class="card__th">' +
-          '<img src="' + YT + c.id + '/maxresdefault.jpg" alt="' + c.title.replace(/&[a-z]+;/g,'and').replace(/<[^>]*>/g,'') + '">' +
-          '<span class="card__len">' + c.len + '</span>' +
-        '</div>' +
-        '<h3>' + c.title + '</h3>' +
-        '<p>' + c.desc + '</p>' +
-      '</a>').join('');
-
     this.innerHTML =
       '<div class="aes">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Arise Church</span></div>' +
-          '<h1>Sermons</h1>' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="sermons.hero.kicker">Arise Church</span></div>' +
+          '<h1 data-ck="sermons.hero.heading">Sermons</h1>' +
         '</div></header>' +
 
         '<section class="sect sect--ink" style="padding-top:64px"><div class="shell">' +
@@ -274,16 +260,16 @@ class AriseSermons extends HTMLElement {
             '</div>' +
             '<div>' +
               '<span class="nowbadge" id="ariseBadge">Latest Service</span>' +
-              '<h2>Sunday Morning<br>Service</h2>' +
-              '<div class="strip" style="margin-top:24px"><span>Arise Church</span></div>' +
+              '<h2 data-ck="sermons.latest.heading">Sunday Morning<br>Service</h2>' +
+              '<div class="strip" style="margin-top:24px"><span data-ck="sermons.latest.strip">Arise Church</span></div>' +
             '</div>' +
           '</div>' +
         '</div></section>' +
 
         '<section style="padding:0"><div class="shell" style="padding-top:var(--sect)">' +
-          '<div class="series" id="ariseSeries">' +
+          '<div class="series" id="ariseSeries" style="display:none" data-cms-source="SiteSettings">' +
             '<div>' +
-              '<div class="mark mark--l" style="margin-bottom:16px"><span class="kicker">Current Series</span></div>' +
+              '<div class="mark mark--l" style="margin-bottom:16px"><span class="kicker" data-ck="sermons.series.kicker">Current Series</span></div>' +
               '<h2 id="ariseSeriesTitle">The Kingdom<br>Culture of Giving</h2>' +
             '</div>' +
             '<a class="btn btn--ghost" id="ariseSeriesBtn" href="https://www.youtube.com/@arisechurch4147/streams" target="_blank" rel="noopener">Watch the Full Message</a>' +
@@ -293,15 +279,15 @@ class AriseSermons extends HTMLElement {
         '<section class="sect sect--ink"><div class="shell">' +
           '<div class="glory">' +
             '<div class="glory__b">' +
-              '<div class="mark mark--l"><span class="kicker">Monday Nights</span></div>' +
-              '<h2>Glory Nights</h2>' +
+              '<div class="mark mark--l"><span class="kicker" data-ck="sermons.glory.kicker">Monday Nights</span></div>' +
+              '<h2 data-ck="sermons.glory.heading">Glory Nights</h2>' +
               '<div class="glory__when">' +
-                '<span>Mondays 7:00 PM</span>' +
-                '<span>Main Campus</span>' +
-                '<span>501 Ates Road, Pineville</span>' +
+                '<span data-ck="site.times.main.glorynight">Monday 7:00 PM</span>' +
+                '<span data-ck="sermons.glory.campus">Main Campus</span>' +
+                '<span data-ck="sermons.glory.address">501 Ates Road, Pineville</span>' +
               '</div>' +
               '<div style="margin-top:34px">' +
-                '<a class="btn btn--ghost" href="' + GLORY_URL + '" target="_blank" rel="noopener">All Glory Nights</a>' +
+                '<a class="btn btn--ghost" href="' + GLORY_URL + '" target="_blank" rel="noopener" data-ck="sermons.glory.button">All Glory Nights</a>' +
               '</div>' +
             '</div>' +
             '<div class="glory__p">' +
@@ -313,23 +299,26 @@ class AriseSermons extends HTMLElement {
         '</div></section>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">More From Arise Church</span></div>' +
-          '<h2>Clips &amp; Announcements</h2>' +
-          '<div class="grid">' + cards + '</div>' +
-          '<div style="margin-top:56px"><a class="btn btn--dark" href="https://www.youtube.com/@arisechurch4147" target="_blank" rel="noopener">All Messages on YouTube</a></div>' +
+          '<div class="mark"><span class="kicker" data-ck="sermons.clips.kicker">More From Arise Church</span></div>' +
+          '<h2 data-ck="sermons.clips.heading">Clips &amp; Announcements</h2>' +
+          '<div class="grid grid--shorts" id="aesClips" data-cms-source="YouTube"></div>' +
+          '<div style="margin-top:56px"><a class="btn btn--dark" href="https://www.youtube.com/@arisechurch4147" target="_blank" rel="noopener" data-ck="sermons.clips.button">All Messages on YouTube</a></div>' +
         '</div></section>' +
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta">' +
             '<div class="cta__b">' +
-              '<div class="mark"><span class="kicker">Join Us In Person</span></div>' +
-              '<h2>Better In The Room</h2>' +
-              '<p>Sunday 10:30 AM in Pineville, 10:00 AM in Alexandria. ' + 'Glory Nights Mondays at 7:00 PM.</p>' +
+              '<div class="mark"><span class="kicker" data-ck="sermons.cta.kicker">Join Us In Person</span></div>' +
+              '<h2 data-ck="sermons.cta.heading">Better In The Room</h2>' +
+              '<p><span data-ck="site.times.sunday.main">Sunday 10:30 AM</span> <span data-ck="sermons.cta.bodyMain">in Pineville,</span> ' +
+              '<span data-ck="site.times.sunday.second">Sunday 10:00 AM</span> <span data-ck="sermons.cta.bodySecond">in Alexandria. ' +
+              'Glory Nights</span> <span data-ck="site.times.main.glorynight">Monday 7:00 PM</span><span data-ck="sermons.cta.bodyEnd">.</span></p>' +
             '</div>' +
-            '<a class="btn" href="/contact" target="_top">Plan Your Visit</a>' +
+            '<a class="btn" href="/contact" target="_top" data-ck="sermons.cta.button">Plan Your Visit</a>' +
           '</div>' +
         '</div></section>' +
       '</div>';
 
+    this.renderClips();
     this.applyContent();
 
     /* If the page code tells us a live stream is running, switch the player.
@@ -340,26 +329,55 @@ class AriseSermons extends HTMLElement {
     this.applySeries();
   }
 
-  static get observedAttributes() { return ['data-live-video', 'data-series-active', 'data-series-title',
+  static get observedAttributes() { return ['data-clips', 'data-live-video', 'data-series-active', 'data-series-title',
             'data-series-line', 'data-series-link', 'data-series-button', 'data-content']; }
 
   attributeChangedCallback(name) {
     if (!this._b) return;   // nothing to patch until it has rendered
     if (name === 'data-content') { this.applyContent(); return; }
+    if (name === 'data-clips') { this.renderClips(); return; }
     if (name === 'data-live-video') this.applyLive();
     else this.applySeries();
   }
 
+  /* Shorts grid. The page code sends the newest Shorts from the YouTube channel
+     as data-clips: [{ id, title }]. Until then, or if YouTube cannot be reached,
+     the built-in CLIPS list shows. Each card opens the Short on YouTube. */
+  renderClips() {
+    const mount = this.querySelector('#aesClips');
+    if (!mount) return;
+    let list = [];
+    const raw = this.getAttribute('data-clips');
+    if (raw) {
+      try { list = JSON.parse(raw); } catch (e) { console.error('arise-sermons: bad data-clips JSON', e); list = []; }
+    }
+    if (!Array.isArray(list)) list = [];
+    list = list.filter(function (c) { return c && /^[A-Za-z0-9_-]{11}$/.test(String(c.id || '')); }).slice(0, 12);
+    if (!list.length) list = CLIPS;
+    const key = list.map(function (c) { return c.id + '|' + (c.title || ''); }).join(',');
+    if (this._clipsKey === key && mount.children.length) return;
+    this._clipsKey = key;
+    mount.innerHTML = list.map(function (c) {
+      const title = String(c.title || '').replace(/\s+/g, ' ').trim();
+      return '<a class="card" href="https://www.youtube.com/shorts/' + c.id + '" target="_blank" rel="noopener">' +
+        '<div class="card__th card__th--short">' +
+          '<img src="' + YT + c.id + '/frame0.jpg" alt="' + asrEsc(title || 'Arise Church Short') + '" loading="lazy">' +
+        '</div>' +
+        (title ? '<h3>' + asrEsc(title) + '</h3>' : '') +
+      '</a>';
+    }).join('');
+  }
+
   /* Series band, driven from the SiteSettings collection by the page code.
-     If seriesActive is false (or nothing is set), the whole band is removed --
+     Unless seriesActive is exactly true, the whole band stays hidden --
      which is what should happen when you're between series. */
   applySeries() {
     const band  = this.querySelector('#ariseSeries');
     if (!band) return;
 
     const active = this.getAttribute('data-series-active');
-    if (active === 'false') { band.style.display = 'none'; return; }
-    if (active === 'true')  band.style.display = '';
+    if (active !== 'true') { band.style.display = 'none'; return; }
+    band.style.display = '';
 
     const title  = this.getAttribute('data-series-title');
     const line   = this.getAttribute('data-series-line');
@@ -367,11 +385,11 @@ class AriseSermons extends HTMLElement {
     const label  = this.getAttribute('data-series-button');
 
     const h = this.querySelector('#ariseSeriesTitle');
-    if (h && title) h.innerHTML = line ? (title + '<br>' + line) : title;
+    if (h && title) h.innerHTML = line ? (asrEsc(title) + '<br>' + asrEsc(line)) : asrEsc(title);
 
     const b = this.querySelector('#ariseSeriesBtn');
     if (b) {
-      if (link)  b.setAttribute('href', link);
+      if (link && /^(https?:\/\/|\/)/i.test(link)) b.setAttribute('href', link);
       if (label) b.textContent = label;
     }
   }
@@ -381,13 +399,15 @@ class AriseSermons extends HTMLElement {
     const badge = this.querySelector('#ariseBadge');
     if (!frame) return;
 
-    const vid = this.getAttribute('data-live-video');
-    if (vid) {
-      frame.src = 'https://www.youtube.com/embed/' + vid + '?rel=0&autoplay=0';
-      if (badge) { badge.textContent = 'Live Now'; badge.setAttribute('data-live', 'true'); }
-    } else {
-      frame.src = LATEST_EMBED;
-      if (badge) { badge.textContent = 'Latest Service'; badge.removeAttribute('data-live'); }
+    let vid = this.getAttribute('data-live-video');
+    if (vid && !/^[A-Za-z0-9_\-]+$/.test(vid)) vid = '';
+    const target = vid ? 'https://www.youtube.com/embed/' + vid + '?rel=0&autoplay=0' : LATEST_EMBED;
+    if (frame.getAttribute('src') !== target) frame.src = target;
+    if (badge) {
+      const txt = vid ? 'Live Now' : 'Latest Service';
+      if (badge.textContent !== txt) badge.textContent = txt;
+      if (vid) { if (badge.getAttribute('data-live') !== 'true') badge.setAttribute('data-live', 'true'); }
+      else if (badge.hasAttribute('data-live')) badge.removeAttribute('data-live');
     }
   }
   applyContent() {
@@ -399,20 +419,18 @@ class AriseSermons extends HTMLElement {
     }
     if (!map || typeof map !== 'object') return;
 
-    const self = this;
-    Object.keys(map).forEach(function (k) {
-      const v = map[k] || {};
-      if (v.text) {
-        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
-          el.innerHTML = v.text;
-        });
-      }
-      if (v.image) {
-        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
-        });
-      }
+    const has = Object.prototype.hasOwnProperty;
+    this.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = has.call(map, k) ? map[k] : null;
+      if (v && v.text) el.innerHTML = v.text;
+    });
+    this.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = has.call(map, k) ? map[k] : null;
+      if (!v || !v.image) return;
+      if (el.tagName === 'IMG') el.src = v.image;
+      else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
     });
   }
 }

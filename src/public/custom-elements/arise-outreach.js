@@ -17,6 +17,8 @@
    NOTE: your live Outreach page contains ONLY the word 'Outreach'. The copy
          here is your own text taken from the Serve page and the About page
          Impact Tioga mission. Nothing is invented, but review it.
+   Fixed 2026-09-14: Photo viewer lightbox is now a dialog (role/aria-modal/label, focus returns to the tile, Tab stays inside); data-photos videoId validated and escaped; CMS content applied without building selectors from keys, background urls quoted; gallery and CMS content now render on first build (stray calls moved out of CLIPS.map).
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-outreach.json)
    =========================================================================== */
 
 const FONTS =
@@ -58,6 +60,12 @@ arise-outreach{display:block;width:100%}
   box-shadow:62px 0 0 var(--red);margin-right:80px}
 .sub .kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;
   color:var(--red);white-space:nowrap}
+@media(max-width:620px){
+  /* the two dashes eat 188px before the text starts -- too much on a phone */
+  .sub .mark{flex-wrap:nowrap;align-items:flex-start}
+  .sub .mark::before{margin-right:124px;margin-top:5px}
+  .sub .kicker{white-space:normal;letter-spacing:.20em;font-size:11px;line-height:1.5}
+}
 .sub .mark--l .kicker{color:var(--redL)}
 .sub .strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:9px 20px}
 .sub .strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;
@@ -210,23 +218,28 @@ function injectHead() {
 
 class AriseOutreach extends HTMLElement {
   connectedCallback() {
-    if (this._built) return;
+    if (this._built) {
+      /* re-attached by Wix: restore the body-mounted lightbox */
+      if (this._lb && !this._lb.isConnected) document.body.appendChild(this._lb);
+      if (this._lbKey) document.addEventListener('keydown', this._lbKey);
+      return;
+    }
     this._built = true;
     injectHead();
 
     this.innerHTML =
       '<div class="sub">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Impact Tioga</span></div>' +
-          '<h1>Outreach</h1>' +
-          '<p class="lede">Share God\u2019s love through community service and evangelism.</p>' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="outreach.hero.kicker">Impact Tioga</span></div>' +
+          '<h1 data-ck="outreach.hero.heading">Outreach</h1>' +
+          '<p class="lede" data-ck="outreach.hero.lede">Share God\u2019s love through community service and evangelism.</p>' +
         '</div></header>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Real Footage</span></div>' +
-          '<h2>Out In The Community</h2>' +
+          '<div class="mark"><span class="kicker" data-ck="outreach.footage.kicker">Real Footage</span></div>' +
+          '<h2 data-ck="outreach.footage.heading">Out In The Community</h2>' +
           '<div class="clips">' +
-            CLIPS.map(function (c) {
+            CLIPS.map(function (c, i) {
               return '<div class="clip">' +
                 '<video controls preload="none" playsinline ' +
                   'poster="' + M + c.id + 'f001.jpg" ' +
@@ -234,72 +247,78 @@ class AriseOutreach extends HTMLElement {
                   '<source src="' + VID + c.id + '/720p/mp4/file.mp4" type="video/mp4">' +
                   '<source src="' + VID + c.id + '/480p/mp4/file.mp4" type="video/mp4">' +
                 '</video>' +
-                '<div class="clip__cap">' + c.label + '</div>' +
+                '<div class="clip__cap" data-ck="outreach.footage.clip' + (i + 1) + '">' + c.label + '</div>' +
               '</div>';
-
-    this.fillGallery();
             }).join('') +
           '</div>' +
         '</div></section>' +
 
         '<section class="sect sect--bone"><div class="shell">' +
-          '<div class="mark"><span class="kicker">How To Help</span></div>' +
-          '<h2>Outreach Supplies<br>Needed</h2>' +
-          '<p class="lede" style="margin-top:24px;max-width:56ch">We are always collecting supplies ' +
+          '<div class="mark"><span class="kicker" data-ck="outreach.supplies.kicker">How To Help</span></div>' +
+          '<h2 data-ck="outreach.supplies.heading">Outreach Supplies<br>Needed</h2>' +
+          '<p class="lede" style="margin-top:24px;max-width:56ch" data-ck="outreach.supplies.body">We are always collecting supplies ' +
           '&amp; monetary donations for the homeless and hungry in our community.</p>' +
           '<div class="supp">' +
-            '<div class="supp__img"><img src="' + SUPPLIES + '" ' +
+            '<div class="supp__img"><img data-ci="outreach.supplies.image" src="' + SUPPLIES + '" ' +
               'alt="Outreach supplies needed list"></div>' +
             '<ul class="supp__list">' +
-              '<li>Socks</li>' +
-              '<li>Winter gloves &amp; hats</li>' +
-              '<li>Blankets</li>' +
-              '<li>Raincoats / ponchos</li>' +
-              '<li>Sleeping bags</li>' +
-              '<li>Hand warmers</li>' +
-              '<li>Flashlights / batteries</li>' +
-              '<li>Wash cloths</li>' +
-              '<li>Bar soap / soap box</li>' +
-              '<li>Baby wipes</li>' +
-              '<li>Toothpaste / toothbrushes</li>' +
-              '<li>Deodorant</li>' +
-              '<li>Bandaids</li>' +
-              '<li>Feminine products</li>' +
+              '<li data-ck="outreach.supplies.item1">Socks</li>' +
+              '<li data-ck="outreach.supplies.item2">Winter gloves &amp; hats</li>' +
+              '<li data-ck="outreach.supplies.item3">Blankets</li>' +
+              '<li data-ck="outreach.supplies.item4">Raincoats / ponchos</li>' +
+              '<li data-ck="outreach.supplies.item5">Sleeping bags</li>' +
+              '<li data-ck="outreach.supplies.item6">Hand warmers</li>' +
+              '<li data-ck="outreach.supplies.item7">Flashlights / batteries</li>' +
+              '<li data-ck="outreach.supplies.item8">Wash cloths</li>' +
+              '<li data-ck="outreach.supplies.item9">Bar soap / soap box</li>' +
+              '<li data-ck="outreach.supplies.item10">Baby wipes</li>' +
+              '<li data-ck="outreach.supplies.item11">Toothpaste / toothbrushes</li>' +
+              '<li data-ck="outreach.supplies.item12">Deodorant</li>' +
+              '<li data-ck="outreach.supplies.item13">Bandaids</li>' +
+              '<li data-ck="outreach.supplies.item14">Feminine products</li>' +
             '</ul>' +
           '</div>' +
         '</div></section>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker">Our Mission</span></div>' +
-          '<h2>Impact Tioga</h2>' +
-          '<p class="lede" style="margin-top:24px;max-width:60ch">Our mission for this year is to ' +
+          '<div class="mark"><span class="kicker" data-ck="outreach.mission.kicker">Our Mission</span></div>' +
+          '<h2 data-ck="outreach.mission.heading">Impact Tioga</h2>' +
+          '<p class="lede" style="margin-top:24px;max-width:60ch" data-ck="outreach.mission.body">Our mission for this year is to ' +
           'Impact Tioga\u2014to bring the life-changing love of Jesus Christ into every corner of our ' +
           'community, transforming lives, families, and the town we call home.</p>' +
-          '<p style="margin-top:24px;max-width:60ch;color:var(--muted)">We are committed to building ' +
+          '<p style="margin-top:24px;max-width:60ch;color:var(--muted)" data-ck="outreach.mission.body2">We are committed to building ' +
           'the community together: partnering with neighbors, schools, businesses, and local leaders ' +
           'to foster unity, serve those in need, and create spaces where everyone feels seen, valued, ' +
           'and loved.</p>' +
-          '<div class="strip" style="margin-top:32px"><span>Impact Tioga</span></div>' +
+          '<div class="strip" style="margin-top:32px"><span data-ck="outreach.mission.strip">Impact Tioga</span></div>' +
         '</div></section>' +
 
         '<section class="sect sect--bone"><div class="shell">' +
-          '<div class="mark"><span class="kicker">In The Community</span></div>' +
-          '<h2>Impact Tioga</h2>' +
-          '<div class="gal-mount"></div>' +
+          '<div class="mark"><span class="kicker" data-ck="outreach.community.kicker">In The Community</span></div>' +
+          '<h2 data-ck="outreach.community.heading">Impact Tioga</h2>' +
+          '<div class="gal-mount" data-cms-source="Portfolio"></div>' +
         '</div></section>' +
 
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta"><div class="cta__b">' +
-            '<div class="mark"><span class="kicker">Serve With Us</span></div>' +
-            '<h2>We Are In Need</h2>' +
-            '<p>Join our congregation in making a difference.</p>' +
+            '<div class="mark"><span class="kicker" data-ck="outreach.cta.kicker">Serve With Us</span></div>' +
+            '<h2 data-ck="outreach.cta.heading">We Are In Need</h2>' +
+            '<p data-ck="outreach.cta.body">Join our congregation in making a difference.</p>' +
           '</div>' +
-          '<a class="btn" href="/serve" target="_top">Sign Up to Serve</a>' +
+          '<a class="btn" href="/serve" target="_top" data-ck="outreach.cta.button">Sign Up to Serve</a>' +
         '</div></div></section>' +
       '</div>';
+
+    this.fillGallery();
+
+    this.applyContent();
   }
-  static get observedAttributes() { return ['data-photos']; }
-  attributeChangedCallback() { if (this._built) this.fillGallery(); }
+  static get observedAttributes() { return ['data-photos', 'data-content']; }
+  attributeChangedCallback(name) {
+    if (!this._built) return;
+    if (name === 'data-content') { this.applyContent(); return; }
+    this.fillGallery();
+  }
 
   galPhotos() {
     const raw = this.getAttribute('data-photos');
@@ -316,7 +335,7 @@ class AriseOutreach extends HTMLElement {
           alt: p.alt || '',
           caption: p.caption || p.title || ''
         };
-      }).filter(function (p) { return p.src || p.video || p.videoId; });
+      }).filter(function (p) { return (p.src || p.video || p.videoId) && (!p.videoId || /^[A-Za-z0-9_\-]+$/.test(p.videoId)); });
     } catch (e) {
       console.error('gallery: bad data-photos JSON', e);
       return [];
@@ -362,6 +381,9 @@ class AriseOutreach extends HTMLElement {
       const lb = document.createElement('div');
       lb.className = 'agl-lb';
       lb.setAttribute('data-open', 'false');
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.setAttribute('aria-label', 'Photo viewer');
       lb.innerHTML =
         '<div class="agl-lb__i"></div>' +
         '<button class="agl-lb__x" aria-label="Close">&times;</button>' +
@@ -376,6 +398,10 @@ class AriseOutreach extends HTMLElement {
       const cap = lb.querySelector('.agl-lb__c');
       const idx = lb.querySelector('.agl-lb__i');
 
+      const LE = function (s) {
+        return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      };
       this._show = function (i) {
         const list = self._pics || [];
         if (!list.length) return;
@@ -385,13 +411,13 @@ class AriseOutreach extends HTMLElement {
           const base = 'https://video.wixstatic.com/video/';
           const srcs = p.videoId
             ? ['1080p', '720p', '480p'].map(function (q) {
-                return '<source src="' + base + p.videoId + '/' + q + '/mp4/file.mp4" type="video/mp4">';
+                return '<source src="' + base + LE(p.videoId) + '/' + q + '/mp4/file.mp4" type="video/mp4">';
               }).join('')
-            : '<source src="' + p.video + '" type="video/mp4">';
-          stage.innerHTML = '<video controls autoplay playsinline poster="' + p.src + '">' +
+            : '<source src="' + LE(p.video) + '" type="video/mp4">';
+          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(p.src) + '">' +
             srcs + '</video>';
         } else {
-          stage.innerHTML = '<img src="' + p.src + '" alt="' + (p.alt || '') + '">';
+          stage.innerHTML = '<img src="' + LE(p.src) + '" alt="' + LE(p.alt || '') + '">';
         }
         cap.textContent = p.caption || '';
         idx.textContent = (self._i + 1) + ' / ' + list.length;
@@ -400,21 +426,33 @@ class AriseOutreach extends HTMLElement {
         lb.setAttribute('data-open', 'false');
         stage.innerHTML = '';
         document.documentElement.style.overflow = '';
+        const op = self._opener; self._opener = null;
+        if (op && op.isConnected && op.focus) op.focus();
       };
       lb.querySelector('.agl-lb__x').addEventListener('click', this._close);
       lb.querySelector('.agl-lb__p').addEventListener('click', function () { self._show(self._i - 1); });
       lb.querySelector('.agl-lb__n').addEventListener('click', function () { self._show(self._i + 1); });
       lb.addEventListener('click', function (e) { if (e.target === lb) self._close(); });
-      document.addEventListener('keydown', function (e) {
+      this._lbKey = function (e) {
         if (lb.getAttribute('data-open') !== 'true') return;
         if (e.key === 'Escape') self._close();
         if (e.key === 'ArrowLeft') self._show(self._i - 1);
         if (e.key === 'ArrowRight') self._show(self._i + 1);
-      });
+        if (e.key === 'Tab') {
+          const fs = lb.querySelectorAll('button, video[controls]');
+          if (!fs.length) return;
+          const first = fs[0], last = fs[fs.length - 1];
+          const inside = lb.contains(document.activeElement);
+          if (e.shiftKey && (!inside || document.activeElement === first)) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && (!inside || document.activeElement === last)) { e.preventDefault(); first.focus(); }
+        }
+      };
+      document.addEventListener('keydown', this._lbKey);
     }
 
     this.querySelectorAll('.gal__t').forEach(function (b) {
       b.addEventListener('click', function () {
+        self._opener = b;
         self._show(parseInt(b.getAttribute('data-i'), 10));
         self._lb.setAttribute('data-open', 'true');
         document.documentElement.style.overflow = 'hidden';
@@ -424,8 +462,33 @@ class AriseOutreach extends HTMLElement {
   }
 
   disconnectedCallback() {
+    if (this._lbKey) document.removeEventListener('keydown', this._lbKey);
     if (this._lb && this._lb.parentNode) this._lb.parentNode.removeChild(this._lb);
     document.documentElement.style.overflow = '';
+  }
+  applyContent() {
+    const raw = this.getAttribute('data-content');
+    if (!raw) return;
+    let map;
+    try { map = JSON.parse(raw); } catch (e) {
+      console.error('bad data-content JSON', e); return;
+    }
+    if (!map || typeof map !== 'object') return;
+
+    const own = Object.prototype.hasOwnProperty;
+    this.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = own.call(map, k) ? (map[k] || {}) : {};
+      if (v.text) el.innerHTML = v.text;
+    });
+    this.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = own.call(map, k) ? (map[k] || {}) : {};
+      if (v.image) {
+        if (el.tagName === 'IMG') el.src = v.image;
+        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+      }
+    });
   }
 }
 

@@ -2,6 +2,8 @@
    ARISE CHURCH -- COMPLETE HOME PAGE  (single Velo Custom Element)
    File: public/custom-elements/arise-home.js
    Tag:  arise-home
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-home.json)
+   Fixed 2026-09-14: culture heading/kicker from CMS, news timer cleanup, re-attach restarts video observer + news, escaped/validated video IDs + posters, lightbox dialog a11y, campus label hooks + day trim, Alexandria labels Prayer/Bible Study, safe data-ck lookup
 
    This is the approved mockup rendered as one element. Everything below the
    header -- hero, who we are, the four-verb pathway, campuses, ministries,
@@ -173,9 +175,11 @@ arise-home{display:block;width:100%}
 .ah .news__go:hover{background:transparent;color:#fff}
 .ah .news__dots{display:flex;gap:7px;padding:0 24px 20px}
 .ah .news__dots[hidden]{display:none}
-.ah .news__dot{width:9px;height:9px;border:0;padding:0;background:rgba(255,255,255,.32);
-  cursor:pointer;transition:background .2s,width .2s}
-.ah .news__dot[aria-current="true"]{background:var(--red);width:22px}
+.ah .news__dot{width:26px;height:26px;border:0;padding:0;background:transparent;position:relative;
+  cursor:pointer}
+.ah .news__dot::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:9px;height:9px;background:rgba(255,255,255,.32);transition:background .2s,width .2s}
+.ah .news__dot[aria-current="true"]::after{background:var(--red);width:22px}
 .ah .news__dot:focus-visible{outline:2px solid var(--red);outline-offset:3px}
 
 /* Stacked under the hero text: keep it compact so it doesn't push the rest
@@ -217,9 +221,10 @@ arise-home{display:block;width:100%}
 .ah .camp__addr{font-size:16px;color:var(--ink);line-height:1.7;margin-top:8px}
 .ah .camp__times{margin-top:24px;padding-top:24px;border-top:1px solid var(--rule)}
 .ah .camp__r{display:flex;justify-content:space-between;gap:14px;padding:6px 0;font-size:14.5px;color:var(--muted)}
+.ah .camp__r[hidden]{display:none}
 .ah .camp__r b{font-weight:500;white-space:nowrap;color:var(--ink)}
 .ah .camp__note{font-size:13.5px;color:var(--muted);font-style:italic;margin-top:12px}
-.ah .camp__link{margin-top:24px;display:inline-block;font-size:12px;font-weight:600;letter-spacing:.15em;
+.ah .camp__link{margin-top:24px;display:inline-block;padding:6px 0;font-size:12px;font-weight:600;letter-spacing:.15em;
   text-transform:uppercase;color:var(--red);text-decoration:none}
 .ah .camp__link:hover{text-decoration:underline}
 .ah .camp__acts{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
@@ -271,15 +276,7 @@ arise-home{display:block;width:100%}
 .ah .give .kicker{color:#fff}
 .ah .give .btn{margin-top:30px}
 
-/* ---------- FOOTER ---------- */
-.ah .foot{background:var(--ink);color:rgba(255,255,255,.82);padding:56px 0 30px;font-size:13.5px}
-.ah .foot__g{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:34px;
-  border-bottom:1px solid var(--ruleD)}
-.ah .foot .lbl{color:#fff;margin-bottom:15px;font-family:'Anton',Impact,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;line-height:1.02}
-.ah .foot a{color:rgba(255,255,255,.82);text-decoration:none;display:block;padding:4px 0}
-.ah .foot a:hover{color:var(--redL)}
-.ah .foot__btm{padding-top:22px;font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-@media(max-width:760px){.ah .foot__g{grid-template-columns:1fr}}
+/* (footer CSS removed -- the sitewide arise-footer element owns the footer now) */
 
 
 /* ---------- PHOTO COLLAGE (fed by page code via data-photos) ---------- */
@@ -388,22 +385,22 @@ const AH_HTML = `
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero__bg" style="background-image:url(${PHOTO.worship})"></div>
+    <div class="hero__bg" data-ci="home.hero.photo" style="background-image:url(${PHOTO.worship})"></div>
     <div class="hero__scrim"></div><div class="hero__floor"></div>
     <div class="hero__in"><div class="shell"><div class="hero__grid"><div class="hero__col">
       <div class="mark mark--l"><span class="kicker" data-ck="home.hero.kicker">Arise Church &middot; Pineville, LA</span></div>
-      <h1>You Belong<br>Here<span class="dot">.</span></h1>
+      <h1 data-ck="home.hero.heading">You Belong<br>Here<span class="dot">.</span></h1>
       <p class="hero__sub" data-ck="home.hero.body">Welcome to our multicultural, multiethnic, and multigenerational church!
       We are thrilled to have you join our vibrant community. Here, you will find a place of belonging
       and support, where diverse backgrounds come together to share in faith and fellowship.</p>
       <div class="hero__acts">
-        <a class="btn" href="/contact">Plan Your Visit</a>
-        <a class="btn btn--ghost" href="/sermons">Sermons</a>
+        <a class="btn" href="/contact" data-ck="home.hero.button">Plan Your Visit</a>
+        <a class="btn btn--ghost" href="/sermons" data-ck="home.hero.button2">Sermons</a>
       </div>
     </div>
 
-    <aside class="news" id="ahNews" hidden aria-label="Exciting news">
-      <div class="news__hd"><div class="mark mark--l"><span class="kicker">Exciting News</span></div></div>
+    <aside class="news" id="ahNews" data-cms-source="Portfolio" hidden aria-label="Exciting news">
+      <div class="news__hd"><div class="mark mark--l"><span class="kicker" data-ck="home.news.kicker">Exciting News</span></div></div>
       <div id="ahNewsSlides"></div>
       <div class="news__dots" id="ahNewsDots" hidden></div>
     </aside>
@@ -413,63 +410,63 @@ const AH_HTML = `
 
   <!-- WHO WE ARE -->
   <section class="sect"><div class="shell">
-    <div class="mark"><span class="kicker">Who We Are</span></div>
-     data-ck="home.who.h2">Who We Are</h2>
+    <div class="mark"><span class="kicker" data-ck="home.who.kicker">Who We Are</span></div>
+     <h2 data-ck="home.who.h2">Who We Are</h2>
     <p class="lede" style="margin-top:24px" data-ck="home.who.body">We can't wait to grow together and embrace the unique gifts each person brings.</p>
-    <div class="strip" style="margin-top:24px"><span>Apostle Bryant Sanders &middot; Pastor Vanessa Sanders</span></div>
+    <div class="strip" style="margin-top:24px"><span data-ck="home.who.pastors">Apostle Bryant Sanders &middot; Pastor Vanessa Sanders</span></div>
 
     <div class="path">
-      <div class="path__i"><div class="path__n">01</div><h3>Connect</h3><p>With God and His family.</p></div>
-      <div class="path__i"><div class="path__n">02</div><h3>Grow</h3><p>In God's character.</p></div>
-      <div class="path__i"><div class="path__n">03</div><h3>Serve</h3><p>In God's Church.</p></div>
-      <div class="path__i"><div class="path__n">04</div><h3>Share</h3><p>God's message.</p></div>
+      <div class="path__i"><div class="path__n" data-ck="home.path.item1Number">01</div><h3 data-ck="home.path.item1">Connect</h3><p data-ck="home.path.item1Body">With God and His family.</p></div>
+      <div class="path__i"><div class="path__n" data-ck="home.path.item2Number">02</div><h3 data-ck="home.path.item2">Grow</h3><p data-ck="home.path.item2Body">In God's character.</p></div>
+      <div class="path__i"><div class="path__n" data-ck="home.path.item3Number">03</div><h3 data-ck="home.path.item3">Serve</h3><p data-ck="home.path.item3Body">In God's Church.</p></div>
+      <div class="path__i"><div class="path__n" data-ck="home.path.item4Number">04</div><h3 data-ck="home.path.item4">Share</h3><p data-ck="home.path.item4Body">God's message.</p></div>
     </div>
   </div></section>
 
 
   <!-- CHURCH CULTURE -->
   <section class="sect sect--bone">
-    <div class="shell">
-      <div class="mark"><span class="kicker">Church Culture</span></div>
-      <h2>This Is Arise</h2>
+    <div class="shell" data-cms-source="HomeSettings">
+      <div class="mark"><span class="kicker" id="ahCultureKicker">Church Culture</span></div>
+      <h2 id="ahCultureH2">This Is Arise</h2>
       <div id="ahCulture"></div>
     </div>
   </section>
 
   <!-- CAMPUSES -->
   <section class="sect sect--bone"><div class="shell">
-    <div class="mark"><span class="kicker">Our Locations</span></div>
-     data-ck="home.campus.h2">One Church,<br>Two Campuses</h2>
+    <div class="mark"><span class="kicker" data-ck="home.campus.kicker">Our Locations</span></div>
+     <h2 data-ck="home.campus.h2">One Church,<br>Two Campuses</h2>
 
     <div class="camp">
       <div class="camp__c">
         <div class="camp__img"><img data-ci="home.campus.main.photo" src="${CAMPUS_PINEVILLE}" alt="Arise Church Main Campus building in Pineville, Louisiana"></div>
         <div class="camp__b">
-          <span class="camp__tag">Main Campus</span>
+          <span class="camp__tag" data-ck="home.campus.main.tag">Main Campus</span>
           <p class="camp__addr" data-ck="site.campus.main">501 Ates Road<br>Pineville, LA 71360</p>
           <div class="camp__times">
-            <div class="camp__r"><span>Sunday Service</span><b data-ck="site.times.sunday.main">10:30 AM</b></div>
-            <div class="camp__r"><span>Glory Night</span><b data-ck="site.times.main.glorynight">Mon 7:00 PM</b></div>
-            <div class="camp__r"><span>Midweek Service</span><b data-ck="site.times.main.midweek">Wed 7:00 PM</b></div>
-            <div class="camp__r"><span>Corporate Prayer</span><b data-ck="site.times.main.prayer">Mon-Thu 5:00 AM</b></div>
+            <div class="camp__r"><span data-ck="site.times.sunday.main.label">Sunday Service</span><b data-ck="site.times.sunday.main">10:30 AM</b></div>
+            <div class="camp__r"><span data-ck="site.times.main.glorynight.label">Glory Night</span><b data-ck="site.times.main.glorynight">Mon 7:00 PM</b></div>
+            <div class="camp__r"><span data-ck="site.times.main.midweek.label">Midweek Service</span><b data-ck="site.times.main.midweek">Wed 7:00 PM</b></div>
+            <div class="camp__r"><span data-ck="site.times.main.prayer.label">Corporate Prayer</span><b data-ck="site.times.main.prayer">Mon-Thu 5:00 AM</b></div>
           </div>
-          <a class="camp__link" href="https://www.google.com/maps/dir//501+Ates+Rd,+Pineville,+LA+71360" target="_top">Get Directions &rarr;</a>
+          <a class="camp__link" href="https://www.google.com/maps/dir//501+Ates+Rd,+Pineville,+LA+71360" target="_blank" rel="noopener" data-ck="home.campus.main.directions">Get Directions &rarr;</a>
         </div>
       </div>
 
       <div class="camp__c">
         <div class="camp__img"><img data-ci="home.campus.second.photo" src="${CAMPUS_ALEXANDRIA}" alt="Arise Church Alexandria Campus building on North Blvd"></div>
         <div class="camp__b">
-          <span class="camp__tag">Second Campus</span>
+          <span class="camp__tag" data-ck="home.campus.second.tag">Second Campus</span>
           <p class="camp__addr" data-ck="site.campus.second">5305 North Blvd<br>Alexandria, LA 71301</p>
           <div class="camp__times">
-            <div class="camp__r"><span>Sunday Service</span><b data-ck="site.times.sunday.second">10:00 AM</b></div>
-            <div class="camp__r"><span>Pre-Service Prayer</span><b data-ck="site.times.second.prayer">TBA</b></div>
-            <div class="camp__r"><span>Midweek Service</span><b data-ck="site.times.second.midweek">TBA</b></div>
+            <div class="camp__r"><span data-ck="site.times.sunday.second.label">Sunday Service</span><b data-ck="site.times.sunday.second">10:00 AM</b></div>
+            <div class="camp__r" data-ckrow="site.times.second.prayer" hidden><span data-ck="site.times.second.prayer.label">Prayer</span><b data-ck="site.times.second.prayer"></b></div>
+            <div class="camp__r" data-ckrow="site.times.second.midweek" hidden><span data-ck="site.times.second.midweek.label">Bible Study</span><b data-ck="site.times.second.midweek"></b></div>
           </div>
           <div class="camp__acts">
-            <a class="camp__link" href="https://www.google.com/maps/dir//5305+North+Blvd,+Alexandria,+LA+71301" target="_top">Get Directions &rarr;</a>
-            <a class="camp__link camp__link--more" href="/arise-alexandria" target="_top">Interested in this Campus? &rarr;</a>
+            <a class="camp__link" href="https://www.google.com/maps/dir//5305+North+Blvd,+Alexandria,+LA+71301" target="_blank" rel="noopener" data-ck="home.campus.second.directions">Get Directions &rarr;</a>
+            <a class="camp__link camp__link--more" href="/arise-alexandria" target="_top" data-ck="home.campus.second.more">Interested in this Campus? &rarr;</a>
           </div>
         </div>
       </div>
@@ -478,59 +475,74 @@ const AH_HTML = `
 
   <!-- MINISTRIES -->
   <section class="sect sect--ink"><div class="shell">
-    <div class="mark mark--l"><span class="kicker">Ministries</span></div>
-    <h2>Find Your People</h2>
+    <div class="mark mark--l"><span class="kicker" data-ck="home.ministries.kicker">Ministries</span></div>
+    <h2 data-ck="home.ministries.heading">Find Your People</h2>
     <div class="min">
-      <a class="min__c min__c--logo" href="/lead-network"><img src="${PHOTO.lead}" alt="Lead Network"><div class="min__t"><h3>Lead Network</h3><span>Learn More</span></div></a>
-      <a class="min__c" href="/childrens"><img src="${PHOTO.kids}" alt="Children's Ministry"><div class="min__t"><h3>Children's Ministry</h3><span>Learn More</span></div></a>
-      <a class="min__c" href="/youth"><img src="${PHOTO.youth}" alt="Youth Ministry"><div class="min__t"><h3>Youth Ministry</h3><span>Learn More</span></div></a>
-      <a class="min__c" href="/outreach"><img src="${PHOTO.outreach}" alt="Outreach"><div class="min__t"><h3>Outreach</h3><span>Learn More</span></div></a>
+      <a class="min__c min__c--logo" href="/lead-network"><img data-ci="home.ministries.item1.photo" src="${PHOTO.lead}" alt="Lead Network"><div class="min__t"><h3 data-ck="home.ministries.item1">Lead Network</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
+      <a class="min__c" href="/childrens"><img data-ci="home.ministries.item2.photo" src="${PHOTO.kids}" alt="Children's Ministry"><div class="min__t"><h3 data-ck="home.ministries.item2">Children's Ministry</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
+      <a class="min__c" href="/youth"><img data-ci="home.ministries.item3.photo" src="${PHOTO.youth}" alt="Youth Ministry"><div class="min__t"><h3 data-ck="home.ministries.item3">Youth Ministry</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
+      <a class="min__c" href="/outreach"><img data-ci="home.ministries.item4.photo" src="${PHOTO.outreach}" alt="Outreach"><div class="min__t"><h3 data-ck="home.ministries.item4">Outreach</h3><span data-ck="home.ministries.learnMore">Learn More</span></div></a>
     </div>
-    <div style="margin-top:48px"><a class="btn btn--ghost" href="/ministries">All Ministries</a></div>
+    <div style="margin-top:48px"><a class="btn btn--ghost" href="/ministries" data-ck="home.ministries.button">All Ministries</a></div>
   </div></section>
 
   <!-- WHAT TO EXPECT -->
   <section class="sect sect--ink" id="plan-your-visit" style="padding-top:0"><div class="shell">
-    <div class="mark mark--l"><span class="kicker">First Time?</span></div>
-     data-ck="home.visit.h2">What To Expect</h2>
+    <div class="mark mark--l"><span class="kicker" data-ck="home.visit.kicker">First Time?</span></div>
+     <h2 data-ck="home.visit.h2">What To Expect</h2>
     <div class="visit">
-      <div class="visit__i"><h3>Parking</h3><p data-ck="home.visit.parking">Park without rushing and find a seat. Our X-Edge team is out on Sunday mornings to guide you in and send you toward the right door.</p></div>
-      <div class="visit__i"><h3>What To Wear</h3><p data-ck="home.visit.whattowear">Come as you are. You'll see jeans and you'll see suits, and God sees the same thing in both. There's no dress code here - we mean it.</p></div>
-      <div class="visit__i"><h3>When To Arrive</h3><p data-ck="home.visit.whentoarrive">Arrive a little early and have time for fellowship. Meet a few faces, settle in, and share a moment together before the first song.</p></div>
+      <div class="visit__i"><h3 data-ck="home.visit.parkingTitle">Parking</h3><p data-ck="home.visit.parking">Park without rushing and find a seat. Our X-Edge team is out on Sunday mornings to guide you in and send you toward the right door.</p></div>
+      <div class="visit__i"><h3 data-ck="home.visit.whatToWearTitle">What To Wear</h3><p data-ck="home.visit.whattowear">Come as you are. You'll see jeans and you'll see suits, and God sees the same thing in both. There's no dress code here - we mean it.</p></div>
+      <div class="visit__i"><h3 data-ck="home.visit.whenToArriveTitle">When To Arrive</h3><p data-ck="home.visit.whentoarrive">Arrive a little early and have time for fellowship. Meet a few faces, settle in, and share a moment together before the first song.</p></div>
     </div>
     <div class="visit__acts">
-      <a class="btn" href="https://www.google.com/maps/dir//501+Ates+Rd,+Pineville,+LA+71360" target="_top">Get Directions</a>
-      <a class="btn btn--ghost" href="/contact" target="_top">Ask Us a Question</a>
+      <a class="btn" href="https://www.google.com/maps/dir//501+Ates+Rd,+Pineville,+LA+71360" target="_blank" rel="noopener" data-ck="home.visit.button">Get Directions</a>
+      <a class="btn btn--ghost" href="/contact" target="_top" data-ck="home.visit.button2">Ask Us a Question</a>
     </div>
   </div></section>
 
   <!-- PRAYER REQUEST -->
   <section class="sect"><div class="shell">
-    <div class="mark"><span class="kicker">Prayer Request</span></div>
+    <div class="mark"><span class="kicker" data-ck="home.prayer.kicker">Prayer Request</span></div>
     <div class="prayer" style="margin-top:40px">
       <div>
-        <blockquote>"There are parts of our calling, works of the Holy Spirit, and defeats of the darkness that will come no other way than through furious, fervent, faith-filled, unceasing prayer."</blockquote>
-        <cite>- Beth Moore</cite>
-        <div style="margin-top:32px"><a class="btn btn--dark" href="mailto:arisechurchprayer@gmail.com">Prayer Request</a></div>
+        <blockquote data-ck="home.prayer.quote">"There are parts of our calling, works of the Holy Spirit, and defeats of the darkness that will come no other way than through furious, fervent, faith-filled, unceasing prayer."</blockquote>
+        <cite data-ck="home.prayer.cite">- Beth Moore</cite>
+        <div style="margin-top:32px"><a class="btn btn--dark" href="mailto:arisechurchprayer@gmail.com" data-ck="home.prayer.button">Prayer Request</a></div>
       </div>
-      <div class="prayer__img"><img src="${PHOTO.service}" alt="Arise Church congregation in prayer"></div>
+      <div class="prayer__img"><img data-ci="home.prayer.photo" src="${PHOTO.service}" alt="Arise Church congregation in prayer"></div>
     </div>
   </div></section>
 
   <!-- GIVE -->
   <section class="give"><div class="shell">
-    <div class="mark"><span class="kicker">Give</span></div>
-    <h2>Give Online</h2>
-    <p>Your giving supports everything that happens here - both campuses, every ministry, and everyone who walks through the door.</p>
-    <a class="btn btn--onRed" href="/tithes-and-offerings" target="_top">Give Online</a>
+    <div class="mark"><span class="kicker" data-ck="home.give.kicker">Give</span></div>
+    <h2 data-ck="home.give.heading">Give Online</h2>
+    <p data-ck="home.give.body">Your giving supports everything that happens here - both campuses, every ministry, and everyone who walks through the door.</p>
+    <a class="btn btn--onRed" href="/tithes-and-offerings" target="_top" data-ck="home.give.button">Give Online</a>
   </div></section>
 
 
 </div>`;
 
+function ahoEsc(s) {
+  return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+function ahoVidOk(id) { return typeof id === 'string' && /^[A-Za-z0-9_\-]+$/.test(id); }
+function ahoTrimDay(label, value) { var m = /^(sunday|monday|tuesday|wednesday|thursday|friday|saturday)\b[\s,:\-\u2013\u00b7]*/i.exec(value || ''); return (m && String(label || '').toLowerCase().indexOf(m[1].toLowerCase()) > -1) ? value.slice(m[0].length) : value; }
+
 class AriseHome extends HTMLElement {
   connectedCallback() {
-    if (this._built) return;
+    if (this._built) {
+      /* re-attached by Wix: restore the body-mounted lightbox */
+      if (this._lb && !this._lb.isConnected) document.body.appendChild(this._lb);
+      if (this._lbKey) document.addEventListener('keydown', this._lbKey);
+      /* ...and the culture-video observer and news rotation torn down on detach */
+      const cv = this.querySelector('#ahCulture video');
+      if (this._cultureIO && cv) this._cultureIO.observe(cv);
+      if (this.newsItems().length) this.fillNews();
+      return;
+    }
     this._built = true;
 
     if (!document.getElementById('ah-home-fonts')) {
@@ -595,6 +607,12 @@ class AriseHome extends HTMLElement {
     const dots  = this.querySelector('#ahNewsDots');
     if (!panel || !stage) return;
 
+    /* clear any previous rotation and hover listeners before anything else */
+    if (this._newsTimer) { clearInterval(this._newsTimer); this._newsTimer = null; }
+    if (this._newsEnter) panel.removeEventListener('mouseenter', this._newsEnter);
+    if (this._newsLeave) panel.removeEventListener('mouseleave', this._newsLeave);
+    this._newsEnter = null; this._newsLeave = null;
+
     const items = this.newsItems();
     if (!items.length) { panel.setAttribute('hidden', ''); return; }
     panel.removeAttribute('hidden');
@@ -605,7 +623,7 @@ class AriseHome extends HTMLElement {
     };
 
     stage.innerHTML = items.map(function (it, i) {
-      const media = it.videoId
+      const media = ahoVidOk(it.videoId)
         ? '<div class="news__media" data-v="' + i + '">' +
             (it.src ? '<img class="news__img" src="' + E(it.src) + '" alt="' + E(it.alt || it.title) + '">' : '') +
             '<button class="news__play" data-play="' + i + '" ' +
@@ -657,7 +675,7 @@ class AriseHome extends HTMLElement {
         const i = parseInt(b.getAttribute('data-play'), 10);
         const it = items[i];
         const box = stage.querySelector('.news__media[data-v="' + i + '"]');
-        if (!box || !it.videoId) return;
+        if (!box || !ahoVidOk(it.videoId)) return;
         const base = 'https://video.wixstatic.com/video/';
         box.innerHTML = '<video controls autoplay playsinline poster="' + E(it.src) + '">' +
           ['1080p', '720p', '480p'].map(function (q) {
@@ -676,6 +694,9 @@ class AriseHome extends HTMLElement {
       self._newsTimer = setInterval(function () { show(at + 1); }, 8000);
     }
 
+    if (this._newsEnter) panel.removeEventListener('mouseenter', this._newsEnter);
+    if (this._newsLeave) panel.removeEventListener('mouseleave', this._newsLeave);
+    this._newsEnter = stop; this._newsLeave = start;
     panel.addEventListener('mouseenter', stop);
     panel.addEventListener('mouseleave', start);
     start();
@@ -699,7 +720,16 @@ class AriseHome extends HTMLElement {
       }
     }
 
-    if (!cfg || !cfg.videoId || cfg.active === false) {
+    /* heading / kicker from CMS Home Settings, falling back to the built-in copy */
+    const cKick = this.querySelector('#ahCultureKicker');
+    const cHead = this.querySelector('#ahCultureH2');
+    if (cKick) cKick.textContent = (cfg && typeof cfg.kicker === 'string' && cfg.kicker.trim()) ? cfg.kicker : 'Church Culture';
+    if (cHead) cHead.textContent = (cfg && typeof cfg.heading === 'string' && cfg.heading.trim()) ? cfg.heading : 'This Is Arise';
+
+    /* a re-render replaces the video, so drop the observer tied to the old one */
+    if (this._cultureIO) { this._cultureIO.disconnect(); this._cultureIO = null; }
+
+    if (!cfg || !ahoVidOk(cfg.videoId) || cfg.active === false) {
       /* Nothing set -- fall back to the photo collage. */
       mount.innerHTML = '<div class="gal-mount"></div>';
       this.fillGallery();
@@ -722,7 +752,7 @@ class AriseHome extends HTMLElement {
       '<div class="cvid">' +
         '<video playsinline loop preload="' + (autoplay ? 'metadata' : 'none') + '"' +
           (autoplay ? ' muted' : ' controls') +
-          ' poster="' + poster + '" aria-label="Church culture at Arise Church">' +
+          ' poster="' + ahoEsc(poster) + '" aria-label="Church culture at Arise Church">' +
           ['1080p', '720p', '480p'].map(function (q) {
             return '<source src="' + base + cfg.videoId + '/' + q +
                    '/mp4/file.mp4" type="video/mp4">';
@@ -784,7 +814,7 @@ class AriseHome extends HTMLElement {
         return {
           src: p.src || p.url || p.poster || '',
           video: p.video || '',
-          videoId: p.videoId || '',
+          videoId: ahoVidOk(p.videoId) ? p.videoId : '',
           alt: p.alt || '',
           caption: p.caption || p.title || ''
         };
@@ -834,6 +864,9 @@ class AriseHome extends HTMLElement {
       const lb = document.createElement('div');
       lb.className = 'agl-lb';
       lb.setAttribute('data-open', 'false');
+      lb.setAttribute('role', 'dialog');
+      lb.setAttribute('aria-modal', 'true');
+      lb.setAttribute('aria-label', 'Photo viewer');
       lb.innerHTML =
         '<div class="agl-lb__i"></div>' +
         '<button class="agl-lb__x" aria-label="Close">&times;</button>' +
@@ -848,6 +881,10 @@ class AriseHome extends HTMLElement {
       const cap = lb.querySelector('.agl-lb__c');
       const idx = lb.querySelector('.agl-lb__i');
 
+      const LE = function (s) {
+        return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      };
       this._show = function (i) {
         const list = self._pics || [];
         if (!list.length) return;
@@ -859,11 +896,11 @@ class AriseHome extends HTMLElement {
             ? ['1080p', '720p', '480p'].map(function (q) {
                 return '<source src="' + base + p.videoId + '/' + q + '/mp4/file.mp4" type="video/mp4">';
               }).join('')
-            : '<source src="' + p.video + '" type="video/mp4">';
-          stage.innerHTML = '<video controls autoplay playsinline poster="' + p.src + '">' +
+            : '<source src="' + LE(p.video) + '" type="video/mp4">';
+          stage.innerHTML = '<video controls autoplay playsinline poster="' + LE(p.src) + '">' +
             srcs + '</video>';
         } else {
-          stage.innerHTML = '<img src="' + p.src + '" alt="' + (p.alt || '') + '">';
+          stage.innerHTML = '<img src="' + LE(p.src) + '" alt="' + LE(p.alt || '') + '">';
         }
         cap.textContent = p.caption || '';
         idx.textContent = (self._i + 1) + ' / ' + list.length;
@@ -872,21 +909,35 @@ class AriseHome extends HTMLElement {
         lb.setAttribute('data-open', 'false');
         stage.innerHTML = '';
         document.documentElement.style.overflow = '';
+        const op = self._lbOpener;
+        self._lbOpener = null;
+        if (op && op.isConnected) op.focus();
       };
       lb.querySelector('.agl-lb__x').addEventListener('click', this._close);
       lb.querySelector('.agl-lb__p').addEventListener('click', function () { self._show(self._i - 1); });
       lb.querySelector('.agl-lb__n').addEventListener('click', function () { self._show(self._i + 1); });
       lb.addEventListener('click', function (e) { if (e.target === lb) self._close(); });
-      document.addEventListener('keydown', function (e) {
+      this._lbKey = function (e) {
         if (lb.getAttribute('data-open') !== 'true') return;
         if (e.key === 'Escape') self._close();
         if (e.key === 'ArrowLeft') self._show(self._i - 1);
         if (e.key === 'ArrowRight') self._show(self._i + 1);
-      });
+        if (e.key === 'Tab') {
+          /* keep keyboard focus inside the open viewer */
+          const f = lb.querySelectorAll('button, video[controls]');
+          if (!f.length) return;
+          const first = f[0], last = f[f.length - 1];
+          if (!lb.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+          else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+      };
+      document.addEventListener('keydown', this._lbKey);
     }
 
     this.querySelectorAll('.gal__t').forEach(function (b) {
       b.addEventListener('click', function () {
+        self._lbOpener = b;
         self._show(parseInt(b.getAttribute('data-i'), 10));
         self._lb.setAttribute('data-open', 'true');
         document.documentElement.style.overflow = 'hidden';
@@ -897,7 +948,8 @@ class AriseHome extends HTMLElement {
 
   disconnectedCallback() {
     if (this._cultureIO) this._cultureIO.disconnect();
-    if (this._newsTimer) clearInterval(this._newsTimer);
+    if (this._newsTimer) { clearInterval(this._newsTimer); this._newsTimer = null; }
+    if (this._lbKey) document.removeEventListener('keydown', this._lbKey);
     if (this._lb && this._lb.parentNode) this._lb.parentNode.removeChild(this._lb);
     document.documentElement.style.overflow = '';
   }
@@ -911,19 +963,32 @@ class AriseHome extends HTMLElement {
     if (!map || typeof map !== 'object') return;
 
     const self = this;
-    Object.keys(map).forEach(function (k) {
-      const v = map[k] || {};
-      if (v.text) {
-        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
-          el.innerHTML = v.text;
-        });
-      }
-      if (v.image) {
-        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
-        });
-      }
+    const entry = function (k) {
+      return (k && Object.prototype.hasOwnProperty.call(map, k)) ? (map[k] || {}) : {};
+    };
+    self.querySelectorAll('[data-ck]').forEach(function (el) {
+      const v = entry(el.getAttribute('data-ck'));
+      if (v.text) el.innerHTML = v.text;
+    });
+    self.querySelectorAll('[data-ci]').forEach(function (el) {
+      const v = entry(el.getAttribute('data-ci'));
+      if (!v.image) return;
+      if (el.tagName === 'IMG') el.src = v.image;
+      else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+    });
+    self.querySelectorAll('[data-ckrow]').forEach(function (el) {
+      const v = entry(el.getAttribute('data-ckrow'));
+      if (v.text) el.removeAttribute('hidden');
+    });
+
+    /* CMS times carry the day ("Sunday 10:30 AM"); drop it where the row label already says it */
+    self.querySelectorAll('.camp__r').forEach(function (row) {
+      const lab = row.querySelector('span');
+      const val = row.querySelector('b[data-ck]');
+      if (!lab || !val) return;
+      const t = val.textContent;
+      const n = ahoTrimDay(lab.textContent, t);
+      if (n !== t) val.textContent = n;
     });
   }
 }

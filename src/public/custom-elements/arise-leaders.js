@@ -16,6 +16,8 @@
    All copy is from the live site.
    Leader content is hardcoded below -- edit this file to change a bio,
    a role, or a photo.
+   Fixed 2026-09-14: escape CMS leader fields, extra featured rows fall into grid, Sunday times CMS hooks, safer applyContent.
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-leaders.json)
    =========================================================================== */
 
 const FONTS =
@@ -242,6 +244,12 @@ arise-leaders,arise-ministries,arise-about,arise-contact{display:block;width:100
 }
 `;
 
+/* Escape CMS text for HTML; existing entities (&amp; &middot; ...) are kept. */
+function aldEsc(s) {
+  return String(s == null ? '' : s).replace(/&(?!(#\d+|#x[0-9a-f]+|[a-z]+);)/gi, '&amp;')
+    .replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
 function injectHead() {
   if (!document.getElementById('ap-leaders-fonts')) {
     const l = document.createElement('link');
@@ -272,8 +280,8 @@ class AriseLeaders extends HTMLElement {
       const d = JSON.parse(raw);
       if (!Array.isArray(d) || !d.length) return LEADERS;
       return d.map(function (l) {
-        return { name: l.name || '', role: l.role || '', bio: l.bio || '',
-                 photo: l.photo || '', feat: !!l.featured };
+        return { name: aldEsc(l.name), role: aldEsc(l.role), bio: aldEsc(l.bio),
+                 photo: aldEsc(l.photo), feat: !!l.featured };
       });
     } catch (e) {
       console.error('arise-leaders: bad data-leaders JSON', e);
@@ -288,8 +296,9 @@ class AriseLeaders extends HTMLElement {
 
   build() {
     const LIST = this.people();
-    const lead = LIST.filter(l => l.feat)[0];
-    const rest = LIST.filter(l => !l.feat);
+    const feats = LIST.filter(l => l.feat);
+    const lead = feats[0];
+    const rest = LIST.filter(l => l !== lead);
 
     const featCard = !lead ? '' :
       '<div class="lead__feat">' +
@@ -315,22 +324,22 @@ class AriseLeaders extends HTMLElement {
     this.innerHTML =
       '<div class="ap">' +
         '<header class="phead"><div class="shell">' +
-          '<div class="mark mark--l"><span class="kicker">Arise Church</span></div>' +
-          '<h1>Meet our Leaders</h1>' +
-          '<p class="lede">Welcome to our community. We are pleased to present our esteemed ministers, ' +
+          '<div class="mark mark--l"><span class="kicker" data-ck="leaders.hero.kicker">Arise Church</span></div>' +
+          '<h1 data-ck="leaders.hero.heading">Meet our Leaders</h1>' +
+          '<p class="lede" data-ck="leaders.hero.body">Welcome to our community. We are pleased to present our esteemed ministers, ' +
           'leaders, and staff who are dedicated to our mission. Each individual contributes unique talents ' +
           'and a commitment to cultivating an inclusive environment. We invite you to explore their ' +
           'significant contributions to our organization.</p>' +
         '</div></header>' +
-        '<section class="sect"><div class="shell"><div class="lead">' + featCard + cards + '</div></div></section>' +
+        '<section class="sect"><div class="shell"><div class="lead" data-cms-source="Leaders">' + featCard + cards + '</div></div></section>' +
         '<section class="sect" style="padding-top:0"><div class="shell">' +
           '<div class="cta">' +
             '<div class="cta__b">' +
-              '<div class="mark"><span class="kicker">Visit</span></div>' +
-              '<h2>Come Meet Them<br>On a Sunday</h2>' +
-              '<p>Sunday 10:30 AM in Pineville, 10:00 AM in Alexandria. Come as you are.</p>' +
+              '<div class="mark"><span class="kicker" data-ck="leaders.cta.kicker">Visit</span></div>' +
+              '<h2 data-ck="leaders.cta.heading">Come Meet Them<br>On a Sunday</h2>' +
+              '<p><span data-ck="site.times.sunday.main">Sunday 10:30 AM</span> <span data-ck="leaders.cta.where1">in Pineville,</span> <span data-ck="site.times.sunday.second">Sunday 10:00 AM</span> <span data-ck="leaders.cta.where2">in Alexandria.</span> ' + '<span data-ck="leaders.cta.body">Come as you are.</span></p>' +
             '</div>' +
-            '<a class="btn" href="/contact" target="_top">Plan Your Visit</a>' +
+            '<a class="btn" href="/contact" target="_top" data-ck="leaders.cta.button">Plan Your Visit</a>' +
           '</div>' +
         '</div></section>' +
       '</div>';
@@ -347,18 +356,18 @@ class AriseLeaders extends HTMLElement {
     if (!map || typeof map !== 'object') return;
 
     const self = this;
-    Object.keys(map).forEach(function (k) {
-      const v = map[k] || {};
-      if (v.text) {
-        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
-          el.innerHTML = v.text;
-        });
-      }
-      if (v.image) {
-        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
-          if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
-        });
+    const has = function (k) { return !!k && Object.prototype.hasOwnProperty.call(map, k) && map[k]; };
+    self.querySelectorAll('[data-ck]').forEach(function (el) {
+      const k = el.getAttribute('data-ck');
+      const v = has(k) ? map[k] : null;
+      if (v && v.text) el.innerHTML = v.text;
+    });
+    self.querySelectorAll('[data-ci]').forEach(function (el) {
+      const k = el.getAttribute('data-ci');
+      const v = has(k) ? map[k] : null;
+      if (v && v.image) {
+        if (el.tagName === 'IMG') el.src = v.image;
+        else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
       }
     });
   }

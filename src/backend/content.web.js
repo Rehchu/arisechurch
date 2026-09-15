@@ -13,12 +13,26 @@ function imgUrl(v) {
     v.split('wix:image://v1/')[1].split('/')[0].split('#')[0];
 }
 
-/* Page text and images. Edit in CMS -> Page Content. */
+/* Page text and images. Edit in CMS -> Page Content.
+   Fixed 2026-09-15: reads EVERY row. The old version stopped at 500 rows, and
+   the collection grows to 571 once the new editable rows are imported, so rows
+   past 500 (possibly the service times) would have silently disappeared.
+   One query returns at most 1000 items, so this pages through the rest. */
 export const getPageContent = webMethod(Permissions.Anyone, async () => {
-  const res = await q('PageContent').limit(500).find(opts)
-    .catch(empty('getPageContent'));
+  const items = [];
+  try {
+    let res = await q('PageContent').limit(1000).find(opts);
+    items.push.apply(items, res.items);
+    let pages = 0;
+    while (res.hasNext() && pages++ < 20) {
+      res = await res.next();
+      items.push.apply(items, res.items);
+    }
+  } catch (e) {
+    console.error('getPageContent:', e);
+  }
   const out = {};
-  res.items.forEach((r) => {
+  items.forEach((r) => {
     if (r.contentKey) {
       out[r.contentKey] = {
         text: r.text || '',

@@ -25,6 +25,8 @@
 
    EDIT THE MENU below in NAV. Keep it in sync with your Wix pages --
    this nav is hardcoded, it does not read your Pages list.
+   Fixed 2026-09-14: CMS content reaches the mobile panel (service times hooked), no CSS selectors built from CMS keys, quoted bg urls, Anton 18px floor, page inert + Tab wrap while menu open
+   CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-header.json)
    =========================================================================== */
 
 const AHD_FONTS =
@@ -36,29 +38,29 @@ const GIVE_URL = '/tithes-and-offerings';
 
 /* Top-level items. `kids` makes it a dropdown on desktop / accordion on mobile. */
 const NAV = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about', kids: [
-      { label: 'Our Story',       href: '/about' },
-      { label: 'Meet our Leaders',href: '/leaders' },
-      { label: 'Contact',         href: '/contact' }
+  { label: 'Home', href: '/', ck: 'site.header.nav.home' },
+  { label: 'About', href: '/about', ck: 'site.header.nav.about', kids: [
+      { label: 'Our Story',       href: '/about', ck: 'site.header.nav.about.story' },
+      { label: 'Meet our Leaders',href: '/leaders', ck: 'site.header.nav.about.leaders' },
+      { label: 'Contact',         href: '/contact', ck: 'site.header.nav.about.contact' }
   ]},
-  { label: 'Ministries', href: '/ministries', kids: [
-      { label: 'All Ministries',      href: '/ministries' },
-      { label: 'Connect Groups',      href: '/connect-groups' },
-      { label: 'Arise Creative Arts', href: '/creative-arts' },
-      { label: "Children's Ministry", href: '/childrens' },
-      { label: 'Youth Ministry',      href: '/youth' },
-      { label: 'Outreach',            href: '/outreach' },
-      { label: 'Lead Network',        href: '/lead-network' }
+  { label: 'Ministries', href: '/ministries', ck: 'site.header.nav.ministries', kids: [
+      { label: 'All Ministries',      href: '/ministries', ck: 'site.header.nav.ministries.all' },
+      { label: 'Connect Groups',      href: '/connect-groups', ck: 'site.header.nav.ministries.connect' },
+      { label: 'Arise Creative Arts', href: '/creative-arts', ck: 'site.header.nav.ministries.creative' },
+      { label: "Children's Ministry", href: '/childrens', ck: 'site.header.nav.ministries.children' },
+      { label: 'Youth Ministry',      href: '/youth', ck: 'site.header.nav.ministries.youth' },
+      { label: 'Outreach',            href: '/outreach', ck: 'site.header.nav.ministries.outreach' },
+      { label: 'Lead Network',        href: '/lead-network', ck: 'site.header.nav.ministries.lead' }
   ]},
-  { label: 'Media', href: '/sermons', kids: [
-      { label: 'Sermons', href: '/sermons' },
-      { label: 'Bible Search', href: '/arise-bible' },
-      { label: 'Podcast',      href: '/podcast' }
+  { label: 'Media', href: '/sermons', ck: 'site.header.nav.media', kids: [
+      { label: 'Sermons', href: '/sermons', ck: 'site.header.nav.media.sermons' },
+      { label: 'Bible Search', href: '/arise-bible', ck: 'site.header.nav.media.bible' },
+      { label: 'Podcast',      href: '/podcast', ck: 'site.header.nav.media.podcast' }
   ]},
-  { label: 'Classes', href: '/classes' },
-  { label: 'Events', href: '/events' },
-  { label: 'Serve', href: '/serve' }
+  { label: 'Classes', href: '/classes', ck: 'site.header.nav.classes' },
+  { label: 'Events', href: '/events', ck: 'site.header.nav.events' },
+  { label: 'Serve', href: '/serve', ck: 'site.header.nav.serve' }
 ];
 
 const AHD_CSS = `
@@ -75,7 +77,7 @@ arise-header{display:block;width:100%}
 
 .ahd__brand{display:flex;align-items:center;gap:13px;text-decoration:none;flex:0 0 auto}
 .ahd__brand img{height:38px;width:auto;display:block;background:transparent}
-.ahd__wm{display:block;font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:17px;
+.ahd__wm{display:block;font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:18px;
   color:#fff;letter-spacing:.10em;text-transform:uppercase;line-height:1.1}
 .ahd__tag{display:block;font-size:9px;color:var(--redL);letter-spacing:.26em;
   text-transform:uppercase;margin-top:2px}
@@ -130,7 +132,7 @@ arise-header{display:block;width:100%}
 .ahd-panel[data-open="true"] .ahd-panel__box{transform:translateX(0)}
 .ahd-panel__hd{display:flex;align-items:center;justify-content:space-between;
   padding:20px 22px;border-bottom:1px solid rgba(255,255,255,.14)}
-.ahd-panel__hd span{font-family:'Anton',Impact,sans-serif;font-size:15px;color:#fff;
+.ahd-panel__hd span{font-family:'Anton',Impact,sans-serif;font-size:18px;color:#fff;
   letter-spacing:.1em;text-transform:uppercase}
 .ahd-panel__x{width:40px;height:40px;background:transparent;border:1px solid rgba(255,255,255,.24);
   color:#fff;font-size:20px;line-height:1;cursor:pointer}
@@ -139,7 +141,7 @@ arise-header{display:block;width:100%}
 .ahd-panel .top{display:flex;align-items:center;justify-content:space-between;
   border-bottom:1px solid rgba(255,255,255,.08)}
 .ahd-panel .top > a{flex:1 1 auto;display:block;color:#fff;text-decoration:none;
-  font-family:'Anton',Impact,sans-serif;font-size:17px;letter-spacing:.05em;
+  font-family:'Anton',Impact,sans-serif;font-size:18px;letter-spacing:.05em;
   text-transform:uppercase;padding:17px 22px}
 .ahd-panel .top > a:hover{color:#DB3F48}
 .ahd-panel .exp{flex:0 0 auto;width:54px;height:54px;background:transparent;border:0;color:#DB3F48;
@@ -167,12 +169,29 @@ function ahdEsc(s) {
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
 
+/* While the mobile menu is open, make the rest of the page inert (where supported). */
+function ahdSetInert(host, panel, on) {
+  if (!('inert' in HTMLElement.prototype)) return;
+  const list = host._ahdInerted || [];
+  list.forEach(function (c) { c.inert = false; });
+  host._ahdInerted = [];
+  if (!on || !document.body) return;
+  Array.prototype.forEach.call(document.body.children, function (c) {
+    if (c !== panel && !c.inert) { c.inert = true; host._ahdInerted.push(c); }
+  });
+}
+
 class AriseHeader extends HTMLElement {
   static get observedAttributes() { return ['data-content']; }
   attributeChangedCallback() { if (this._built) this.applyContent(); }
 
   connectedCallback() {
-    if (this._built) return;
+    if (this._built) {
+      /* re-attached by Wix: restore the body-mounted panel and key handler */
+      if (this._panel && !this._panel.isConnected) document.body.appendChild(this._panel);
+      if (this._onKey) document.addEventListener('keydown', this._onKey);
+      return;
+    }
     this._built = true;
 
     if (!document.getElementById('ahd-fonts')) {
@@ -197,22 +216,22 @@ class AriseHeader extends HTMLElement {
       const cur = isHere(n.href) ? ' aria-current="page"' : '';
       const drop = n.kids
         ? '<div class="ahd__drop">' + n.kids.map(function (k) {
-            return '<a href="' + E(k.href) + '" target="_top">' + E(k.label) + '</a>';
+            return '<a href="' + E(k.href) + '" target="_top" data-ck="' + E(k.ck) + '">' + E(k.label) + '</a>';
           }).join('') + '</div>'
         : '';
-      return '<div class="ahd__item"><a class="ahd__link" href="' + E(n.href) + '" target="_top"' + cur + '>' +
+      return '<div class="ahd__item"><a class="ahd__link" href="' + E(n.href) + '" target="_top"' + cur + ' data-ck="' + E(n.ck) + '">' +
              E(n.label) + '</a>' + drop + '</div>';
     }).join('');
 
     this.innerHTML =
       '<div class="ahd"><div class="ahd__in">' +
         '<a class="ahd__brand" href="/" target="_top">' +
-          '<img src="' + LOGO + '" alt="Arise Church">' +
-          '<span><span class="ahd__wm">Arise Church</span>' +
+          '<img src="' + LOGO + '" alt="Arise Church" data-ci="site.header.logo">' +
+          '<span><span class="ahd__wm" data-ck="site.header.wordmark">Arise Church</span>' +
           '<span class="ahd__tag" data-ck="site.tagline">#YouBelongHere</span></span>' +
         '</a>' +
         '<nav class="ahd__nav" aria-label="Main">' + desktop + '</nav>' +
-        '<a class="ahd__give" href="' + GIVE_URL + '" target="_top">Give Online</a>' +
+        '<a class="ahd__give" href="' + GIVE_URL + '" target="_top" data-ck="site.header.give">Give Online</a>' +
         '<button class="ahd__burger" id="ahdBurger" aria-label="Open menu" aria-expanded="false">' +
           '<span></span></button>' +
       '</div></div>';
@@ -227,37 +246,39 @@ class AriseHeader extends HTMLElement {
     const mobile = NAV.map(function (n, i) {
       const kids = n.kids
         ? '<div class="sub" data-sub="' + i + '" data-open="false">' + n.kids.map(function (k) {
-            return '<a href="' + E(k.href) + '" target="_top">' + E(k.label) + '</a>';
+            return '<a href="' + E(k.href) + '" target="_top" data-ck="' + E(k.ck) + '">' + E(k.label) + '</a>';
           }).join('') + '</div>'
         : '';
       const btn = n.kids
         ? '<button class="exp" data-exp="' + i + '" aria-label="Show ' + E(n.label) +
           ' pages" aria-expanded="false">+</button>'
         : '';
-      return '<div class="top"><a href="' + E(n.href) + '" target="_top">' + E(n.label) + '</a>' +
+      return '<div class="top"><a href="' + E(n.href) + '" target="_top" data-ck="' + E(n.ck) + '">' + E(n.label) + '</a>' +
              btn + '</div>' + kids;
     }).join('');
 
     panel.innerHTML =
       '<div class="ahd-panel__scrim" data-close></div>' +
       '<div class="ahd-panel__box" role="dialog" aria-modal="true" aria-label="Menu">' +
-        '<div class="ahd-panel__hd"><span>Arise Church</span>' +
+        '<div class="ahd-panel__hd"><span data-ck="site.header.wordmark">Arise Church</span>' +
           '<button class="ahd-panel__x" data-close aria-label="Close menu">&times;</button></div>' +
         '<nav aria-label="Mobile">' + mobile + '</nav>' +
-        '<a class="ahd-panel__give" href="' + GIVE_URL + '" target="_top">Give Online</a>' +
+        '<a class="ahd-panel__give" href="' + GIVE_URL + '" target="_top" data-ck="site.header.give">Give Online</a>' +
         '<div class="ahd-panel__meta">' +
-          '<b>Sunday 10:30 AM</b><br>Pineville<br>' + '<b>Sunday 10:00 AM</b><br>Alexandria<br><br>' +
-          '<b>Glory Night</b><br>Mondays 7:00 PM &middot; Main Campus<br><br>' +
-          '<a href="tel:13186401865" style="color:#DB3F48;text-decoration:none">(318) 640-1865</a>' +
+          '<b data-ck="site.times.sunday.main">Sunday 10:30 AM</b><br><span data-ck="site.header.panel.campus1">Pineville</span><br>' + '<b data-ck="site.times.sunday.second">Sunday 10:00 AM</b><br><span data-ck="site.header.panel.campus2">Alexandria</span><br><br>' +
+          '<b data-ck="site.times.main.glorynight.label">Glory Night</b><br><span data-ck="site.times.main.glorynight">Monday 7:00 PM</span> <span data-ck="site.header.panel.glorynightWhere">&middot; Main Campus</span><br><br>' +
+          '<a href="tel:13186401865" style="color:#DB3F48;text-decoration:none;display:inline-block;padding:8px 0" data-ck="site.phone">(318) 640-1865</a>' +
         '</div>' +
       '</div>';
     document.body.appendChild(panel);
     this._panel = panel;
+    this.applyContent();
 
     const burger = this.querySelector('#ahdBurger');
     const self = this;
 
     function setOpen(open) {
+      ahdSetInert(self, panel, open);
       panel.setAttribute('data-open', String(open));
       burger.setAttribute('aria-expanded', String(open));
       burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
@@ -294,6 +315,15 @@ class AriseHeader extends HTMLElement {
       a.addEventListener('click', function () { setOpen(false); });
     });
 
+    panel.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab' || panel.getAttribute('data-open') !== 'true') return;
+      const f = panel.querySelectorAll('.ahd-panel__box a[href], .ahd-panel__box button');
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
     this._onKey = function (e) { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('keydown', this._onKey);
   }
@@ -301,6 +331,8 @@ class AriseHeader extends HTMLElement {
   disconnectedCallback() {
     if (this._panel && this._panel.parentNode) this._panel.parentNode.removeChild(this._panel);
     if (this._onKey) document.removeEventListener('keydown', this._onKey);
+    ahdSetInert(this, this._panel, false);
+    if (this._panel) this._panel.setAttribute('data-open', 'false');
     document.documentElement.style.overflow = '';
   }
   applyContent() {
@@ -312,21 +344,36 @@ class AriseHeader extends HTMLElement {
     }
     if (!map || typeof map !== 'object') return;
 
-    const self = this;
-    Object.keys(map).forEach(function (k) {
-      const v = map[k] || {};
-      if (v.text) {
-        self.querySelectorAll('[data-ck="' + k + '"]').forEach(function (el) {
-          el.innerHTML = v.text;
-        });
-      }
-      if (v.image) {
-        self.querySelectorAll('[data-ci="' + k + '"]').forEach(function (el) {
+    const roots = [this, this._panel];
+    const has = function (k) { return Object.prototype.hasOwnProperty.call(map, k); };
+    roots.forEach(function (root) {
+      if (!root) return;
+      root.querySelectorAll('[data-ck]').forEach(function (el) {
+        const k = el.getAttribute('data-ck');
+        const v = has(k) ? (map[k] || {}) : {};
+        if (v.text) el.innerHTML = v.text;
+      });
+      root.querySelectorAll('[data-ci]').forEach(function (el) {
+        const k = el.getAttribute('data-ci');
+        const v = has(k) ? (map[k] || {}) : {};
+        if (v.image) {
           if (el.tagName === 'IMG') el.src = v.image;
-          else el.style.backgroundImage = 'url(' + v.image + ')';
-        });
-      }
+          else el.style.backgroundImage = 'url("' + String(v.image).replace(/["\\]/g, '') + '")';
+        }
+      });
     });
+
+    /* Keep the phone link dialling the number the CMS shows. */
+    const phone = has('site.phone') ? String((map['site.phone'] || {}).text || '') : '';
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length >= 10) {
+      roots.forEach(function (root) {
+        if (!root) return;
+        root.querySelectorAll('a[data-ck="site.phone"]').forEach(function (a) {
+          a.setAttribute('href', 'tel:' + (digits.length === 10 ? '1' + digits : digits));
+        });
+      });
+    }
   }
 }
 

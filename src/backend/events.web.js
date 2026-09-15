@@ -1,3 +1,8 @@
+/* Arise Church - backend/events.web.js
+   Fixed 2026-09-14: removed the TEMPORARY debug log, sorts upcoming events by
+   real start time (soonest first) and past events most-recent first, and treats
+   registrationDisabled as a plain View Event link. Delete the old events.jsw -
+   nothing imports it. */
 import { Permissions, webMethod } from 'wix-web-module';
 import { wixEventsV2 } from '@wix/events';
 import { auth } from '@wix/essentials';
@@ -16,6 +21,8 @@ function ctaFor(ev) {
   const reg = ev.registration || {};
   const type = reg.type;
   const status = String(reg.status || '');
+
+  if (reg.registrationDisabled) return { cta: 'View Event', ctaEnabled: true };
 
   if (type === 'TICKETING') {
     if (reg.tickets && reg.tickets.soldOut) return { cta: 'Sold Out', ctaEnabled: false };
@@ -38,6 +45,7 @@ function shape(ev) {
 
   return Object.assign({
     id: ev._id || ev.id,
+    startsAt: dt.startDate || '',
     title: ev.title || '',
     shortDescription: ev.shortDescription || '',
     image: imgUrl(ev.mainImage),
@@ -62,10 +70,6 @@ export const getEvents = webMethod(
 
       const raw = res.items || res.events || [];
 
-      // TEMPORARY -- shows the real field names. Delete once confirmed.
-      if (raw.length) {
-        console.log('Events: first ->', JSON.stringify(raw[0]).slice(0, 1200));
-      }
 
       const upcoming = [], past = [];
       raw.forEach((ev) => {
@@ -75,7 +79,9 @@ export const getEvents = webMethod(
         else if (ev.status === 'ENDED') past.push(s);
       });
 
-      past.reverse();
+      const t = (s) => (s.startsAt ? new Date(s.startsAt).getTime() : 0);
+      upcoming.sort((a, b) => t(a) - t(b));      // soonest first
+      past.sort((a, b) => t(b) - t(a));          // most recent first
       return { upcoming: upcoming, past: past.slice(0, 8) };
 
     } catch (err) {
