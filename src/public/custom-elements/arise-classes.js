@@ -92,6 +92,9 @@ arise-classes{display:block;width:100%}
 .acl .c:hover{box-shadow:0 14px 30px rgba(10,10,12,.13);transform:translateY(-3px)}
 .acl .c__img{aspect-ratio:16/10;overflow:hidden;background:var(--scrim);position:relative}
 .acl .c__img img{width:100%;height:100%;object-fit:cover;display:block}
+/* A square or upright flyer would lose its top and bottom to the crop, so it is
+   shown whole on the dark card instead. Wide photos still fill the box. */
+.acl .c__img img.c__whole{object-fit:contain;background:var(--scrim)}
 .acl .c__price{position:absolute;top:0;left:0;background:var(--red);color:#fff;font-size:11px;
   font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px}
 .acl .c__b{padding:24px;flex:1 1 auto;display:flex;flex-direction:column}
@@ -411,11 +414,28 @@ class AriseClasses extends HTMLElement {
       '</div>';
     }).join('') + '</div>';
 
+    this.fitCardImages();
+
     /* A link straight to one class (#class-<slug>) opens it; otherwise keep
        whichever class was open before the data refreshed. */
     const wanted = this.slugFromHash() || this._open || '';
     if (wanted) this.show(wanted, true);
     else this.applyContent();
+  }
+
+  /* Card pictures are cropped to a wide box. A square or upright flyer would
+     lose its top and bottom that way, so those are shown whole instead. */
+  fitCardImages() {
+    const imgs = this.querySelectorAll('.c__img img');
+    Array.prototype.forEach.call(imgs, function (img) {
+      const mark = function () {
+        if (!img.naturalWidth || !img.naturalHeight) return;
+        if (img.naturalWidth / img.naturalHeight < 1.35) img.classList.add('c__whole');
+        else img.classList.remove('c__whole');
+      };
+      if (img.complete) mark();
+      else img.addEventListener('load', mark);
+    });
   }
 
   applyContent() {
