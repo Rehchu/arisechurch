@@ -8,6 +8,11 @@
    Online Programs dashboard, not here -- this page shows whatever they set,
    and updates itself when they change it.
 
+   29 Sept 2026: "View Class" now opens a class page in the Arise Church look,
+   on this page, instead of sending people to the Wix app page. Registration
+   still happens through the Wix program page, which the Register button opens.
+   A link with #class-<slug> opens that class straight away.
+
    INSTALL
    1. Velo sidebar -> Public -> custom-elements/ -> new file arise-classes.js
       -> paste this whole file
@@ -64,7 +69,7 @@ arise-classes{display:block;width:100%}
 .acl .btn:hover{background:transparent;color:#fff;border-color:#fff}
 .acl .btn--dark{background:transparent;border-color:var(--ink);color:var(--ink)}
 .acl .btn--dark:hover{background:var(--ink);color:#fff}
-.acl a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.acl a:focus-visible,.acl button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 
 .acl .sect{padding:var(--sect) 0;background:var(--paper)}
 .acl .sect--ink{background:var(--ink)}
@@ -97,6 +102,28 @@ arise-classes{display:block;width:100%}
   border-top:1px solid var(--rule);font-size:12.5px;color:var(--muted)}
 .acl .c__facts b{color:var(--ink);font-weight:500}
 .acl .c__go{margin-top:20px}
+
+/* ---- one class, in the Arise Church look ---- */
+.acl .d__back{display:inline-flex;align-items:center;gap:10px;font-family:'Oswald',Helvetica,Arial,sans-serif;
+  font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--red);
+  background:none;border:0;padding:0;cursor:pointer;margin-top:6px}
+.acl .d__back:hover{color:var(--ink)}
+.acl .d__wrap{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);
+  gap:clamp(26px,4vw,52px);align-items:start;margin-top:26px}
+@media(max-width:900px){.acl .d__wrap{grid-template-columns:1fr}}
+.acl .d__img{position:relative;background:var(--scrim);border:1px solid var(--rule)}
+.acl .d__img img{width:100%;height:auto;display:block}
+.acl .d__price{position:absolute;top:0;left:0;background:var(--red);color:#fff;font-size:11px;
+  font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:8px 14px}
+.acl .d__when{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;padding-bottom:18px;
+  border-bottom:1px solid var(--rule);font-size:13px;color:var(--muted);letter-spacing:.04em}
+.acl .d__when .lab{font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-size:11px;
+  align-self:center}
+.acl .d__when b{color:var(--ink);font-weight:500}
+.acl .d__body p{margin-top:15px;color:var(--muted);line-height:1.72}
+.acl .d__note{margin-top:18px;font-size:14px;color:var(--ink);border-left:3px solid var(--red);padding-left:14px}
+.acl .d__go{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.acl .d__go .btn:hover{background:transparent;color:var(--red);border-color:var(--red)}
 
 .acl .empty{border:1.5px dashed var(--ruleD);padding:52px 32px;text-align:center;margin-top:48px}
 .acl .empty h3{color:rgba(255,255,255,.7);margin-bottom:12px}
@@ -135,6 +162,31 @@ function aclImg(u, w) {
   return 'https://static.wixstatic.com/media/' + m[1] + '/v1/fit/w_' + w + ',h_' + w + ',q_85,enc_auto/' + m[1];
 }
 
+var ACL_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'];
+
+/* "2026-10-18" + "2026-11-22" -> "October 18 - November 22, 2026" */
+function aclDates(start, end) {
+  var one = function (s) {
+    var m = String(s || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!m) return null;
+    return { y: m[1], m: ACL_MONTHS[Number(m[2]) - 1], d: String(Number(m[3])) };
+  };
+  var a = one(start), b = one(end);
+  if (!a) return '';
+  if (!b) return a.m + ' ' + a.d + ', ' + a.y;
+  if (a.y === b.y) return a.m + ' ' + a.d + ' – ' + b.m + ' ' + b.d + ', ' + a.y;
+  return a.m + ' ' + a.d + ', ' + a.y + ' – ' + b.m + ' ' + b.d + ', ' + b.y;
+}
+
+/* The program description keeps its paragraph breaks. */
+function aclParas(text) {
+  var parts = String(text || '').split(/\n\s*\n/);
+  return parts.map(function (p) {
+    return '<p>' + aclEsc(p).replace(/\n/g, '<br>') + '</p>';
+  }).join('');
+}
+
 class AriseClasses extends HTMLElement {
   connectedCallback() {
     if (this._built) return;
@@ -162,9 +214,12 @@ class AriseClasses extends HTMLElement {
         '</div></header>' +
 
         '<section class="sect"><div class="shell">' +
-          '<div class="mark"><span class="kicker" data-ck="classes.list.kicker">Available Now</span></div>' +
-          '<h2 data-ck="classes.list.heading">What You Can Take</h2>' +
+          '<div id="aclListHead">' +
+            '<div class="mark"><span class="kicker" data-ck="classes.list.kicker">Available Now</span></div>' +
+            '<h2 data-ck="classes.list.heading">What You Can Take</h2>' +
+          '</div>' +
           '<div id="aclList"></div>' +
+          '<div id="aclDetail" hidden></div>' +
         '</div></section>' +
 
         '<section class="sect" style="padding-top:0"><div class="shell">' +
@@ -177,8 +232,22 @@ class AriseClasses extends HTMLElement {
         '</div></div></section>' +
       '</div>';
 
+    const self = this;
+    this.addEventListener('click', function (e) {
+      const open = e.target.closest ? e.target.closest('[data-acl-open]') : null;
+      if (open) { e.preventDefault(); self.show(open.getAttribute('data-acl-open')); return; }
+      const back = e.target.closest ? e.target.closest('[data-acl-back]') : null;
+      if (back) { e.preventDefault(); self.show(''); }
+    });
+    this._onHash = function () { self.show(self.slugFromHash(), true); };
+    window.addEventListener('hashchange', this._onHash);
+
     this.fill();
     this.applyContent();
+  }
+
+  disconnectedCallback() {
+    if (this._onHash) window.removeEventListener('hashchange', this._onHash);
   }
 
   static get observedAttributes() { return ['data-classes', 'data-content']; }
@@ -200,11 +269,102 @@ class AriseClasses extends HTMLElement {
     }
   }
 
+  /* A class is identified by its slug; older data without one falls back to the
+     last part of its link. */
+  slugOf(c) {
+    if (c && c.slug) return String(c.slug);
+    const u = String((c && c.url) || '');
+    const parts = u.split('/').filter(Boolean);
+    return parts.length ? parts[parts.length - 1] : '';
+  }
+
+  slugFromHash() {
+    const m = String(window.location.hash || '').match(/^#class-(.+)$/);
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
+  /* Opens one class, or the list when slug is empty. */
+  show(slug, fromHash) {
+    const items = this.items() || [];
+    const found = slug ? items.filter(function (c) {
+      return (c.slug || '') === slug || String(c.url || '').indexOf('/' + slug) >= 0;
+    })[0] : null;
+
+    this._open = found ? this.slugOf(found) : '';
+
+    const head = this.querySelector('#aclListHead');
+    const list = this.querySelector('#aclList');
+    const box = this.querySelector('#aclDetail');
+    if (!list || !box) return;
+
+    if (!found) {
+      box.hidden = true;
+      box.innerHTML = '';
+      list.hidden = false;
+      if (head) head.hidden = false;
+      if (!fromHash && this.slugFromHash()) {
+        // leave the page where it is, just drop the #class-... from the address
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        } else { window.location.hash = ''; }
+      }
+      return;
+    }
+
+    box.innerHTML = this.detailHtml(found);
+    box.hidden = false;
+    list.hidden = true;
+    if (head) head.hidden = true;
+    this.applyContent();
+
+    if (!fromHash && window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', '#class-' + encodeURIComponent(this._open));
+    }
+    const top = this.getBoundingClientRect().top + window.pageYOffset - 20;
+    if (window.scrollY > top) window.scrollTo({ top: top, behavior: 'smooth' });
+  }
+
+  detailHtml(c) {
+    const E = aclEsc;
+    const when = aclDates(c.startDate, c.endDate);
+    const facts = [];
+    if (when) facts.push('<span><b>' + E(when) + '</b></span>');
+    if (c.selfPaced) facts.push('<span data-ck="classes.card.selfPaced">Self-paced</span>');
+    if (c.steps) facts.push('<span><b>' + E(c.steps) + '</b> steps</span>');
+
+    return '<div data-cms-source="OnlinePrograms">' +
+      '<button type="button" class="d__back" data-acl-back>' +
+        '<span aria-hidden="true">&larr;</span>' +
+        '<span data-ck="classes.detail.back">All Classes</span>' +
+      '</button>' +
+      '<div class="d__wrap">' +
+        '<div class="d__img">' +
+          (c.image ? '<img src="' + E(aclImg(c.image, 1600)) + '" alt="' + E(c.title) + '">' : '') +
+          '<span class="d__price">' + E(c.price || 'Free') + '</span>' +
+        '</div>' +
+        '<div class="d__body">' +
+          '<h2>' + E(c.title) + '</h2>' +
+          (facts.length ? '<div class="d__when">' +
+            '<span class="lab" data-ck="classes.detail.whenLabel">When</span>' + facts.join('') +
+          '</div>' : '') +
+          aclParas(c.details) +
+          '<p class="d__note" data-ck="classes.detail.note">You can also sign up on the registration sheets in the foyer.</p>' +
+          '<div class="d__go">' +
+            (c.url ? '<a class="btn" href="' + E(c.url) + '" target="_top" ' +
+              'data-ck="classes.detail.register">Register for this Class</a>' : '') +
+            '<a class="btn btn--dark" href="/contact" target="_top" data-ck="classes.detail.ask">Ask a Question</a>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }
+
   fill() {
     const list = this.querySelector('#aclList');
     if (!list) return;
     const items = this.items();
     const E = aclEsc;
+    const self = this;
 
     /* Not loaded yet -- show nothing rather than flashing an empty state. */
     if (items === null) { list.innerHTML = ''; return; }
@@ -222,10 +382,14 @@ class AriseClasses extends HTMLElement {
 
     list.innerHTML = '<div class="list" data-cms-source="OnlinePrograms">' + items.map(function (c, i) {
       const facts = [];
+      const when = aclDates(c.startDate, c.endDate);
+      if (when)       facts.push('<span><b>' + E(when) + '</b></span>');
       if (c.steps)    facts.push('<span><b>' + E(c.steps) + '</b> steps</span>');
       if (c.sections) facts.push('<span><b>' + E(c.sections) + '</b> sections</span>');
       if (c.selfPaced) facts.push('<span data-ck="classes.card.selfPaced">Self-paced</span>');
       else if (c.duration) facts.push('<span><b>' + E(c.duration) + '</b></span>');
+
+      const slug = self.slugOf(c);
 
       return '<div class="c">' +
         '<div class="c__img">' +
@@ -238,13 +402,22 @@ class AriseClasses extends HTMLElement {
           '<h3>' + E(c.title) + '</h3>' +
           (c.details ? '<p class="c__d">' + E(c.details) + '</p>' : '') +
           (facts.length ? '<div class="c__facts">' + facts.join('') + '</div>' : '') +
-          (c.url ? '<div class="c__go"><a class="btn btn--dark" href="' + E(c.url) +
-                   '" target="_top" data-ck="classes.card.button">View Class</a></div>' : '') +
+          (slug || c.url
+            ? '<div class="c__go"><a class="btn btn--dark" href="#class-' + E(slug) + '"' +
+              (slug ? ' data-acl-open="' + E(slug) + '"' : '') +
+              ' data-ck="classes.card.button">View Class</a></div>'
+            : '') +
         '</div>' +
       '</div>';
     }).join('') + '</div>';
-    this.applyContent();
+
+    /* A link straight to one class (#class-<slug>) opens it; otherwise keep
+       whichever class was open before the data refreshed. */
+    const wanted = this.slugFromHash() || this._open || '';
+    if (wanted) this.show(wanted, true);
+    else this.applyContent();
   }
+
   applyContent() {
     const raw = this.getAttribute('data-content');
     if (!raw) return;

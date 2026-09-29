@@ -32,8 +32,20 @@ export const getPrograms = webMethod(
           ? (p.price.currency === 'USD' ? '$' : '') + p.price.value
           : 'Free';
 
+        // Dates for a scheduled class: startDate is a local date, durationInDays
+        // counts the first day, so day 1 + (duration - 1) is the last day.
+        const tl = p.timeline || {};
+        const startDate = tl.startDate || '';
+        let endDate = '';
+        if (startDate && tl.durationInDays) {
+          const d0 = new Date(startDate + 'T00:00:00Z');
+          d0.setUTCDate(d0.getUTCDate() + (Number(tl.durationInDays) - 1));
+          endDate = d0.toISOString().slice(0, 10);
+        }
+
         return {
           id: p.id,
+          slug: (p.seo && p.seo.slug) || '',
           title: d.title || '',
           details: d.details || '',
           image: fromImage(rawImg),
@@ -41,6 +53,8 @@ export const getPrograms = webMethod(
           steps: p.stepCount || 0,
           sections: p.sectionCount || 0,
           selfPaced: !!(p.timeline && p.timeline.selfPaced),
+          startDate: startDate,
+          endDate: endDate,
           url: (p.seo && p.seo.slug) ? '/class-detail/' + p.seo.slug : ''
         };
       });
