@@ -85,3 +85,11 @@ metadata:
 - **Rule learned: never copy `ArchivedFormSubmissions.csv` (or anything derived from it) off this machine.** It belongs in the CMS (admin-only) and on Bradly's disk. Copying a project folder wholesale is how it slipped through — scan for personal details before any upload.
 - All four of Bradly's repos are PRIVATE: arisechurch, arise-church-backup, arise-church-workspace, AriseHub. The site repo holds no secrets or personal details (checked 8 Oct).
 - The old `arise-church-workspace` repo still answers for its pre-rewrite commit IDs. Bradly is deleting it; the gh token lacks the delete_repo scope, so it needs `gh auth refresh -h github.com -s delete_repo` then `gh repo delete Rehchu/arise-church-workspace --yes`, or the Danger Zone on github.com.
+
+## 8 Oct 2026 (later): one repo for everything
+- Bradly: "The Arise Church Workspace should all be in the arisechurch repo." Done in commit **bfbaa44**: `workspace/` added to Rehchu/arisechurch with files2 (live build + INSTALL.md + pre-fix code), files, audit (findings, CMS backups, check.mjs, evidence), sample-site (both suites), claude-memory and chat. 381 files, ~69 MB. **No src/ changes**, so the site was untouched and no publish was needed.
+- Checked against the Wix docs first: Wix syncs only `src/backend`, `src/pages`, `src/public` and `wix.config.json`, and ignores files at the root of `src`. A new top-level folder is invisible to Wix. Note it does ride along on every clone Wix makes when publishing.
+- Root README rewritten for this site (install with `--ignore-scripts`, `wix login` in a real terminal, read-only Editor, preview, never publish Local code, house rules, current state). `workspace/README.md` explains the material and the checks.
+- `workspace/audit/check.mjs` is now portable: results in `workspace/audit/preview-check-results/`, profile in the system temp dir, `ARISE_EDGE`/`ARISE_CHECK_OUT`/`ARISE_EDGE_PROFILE` to override. Tests rerun from the repo: 19/19 and 90/90.
+- `.gitignore` blocks ArchivedFormSubmissions.csv anywhere, plus the check output folder.
+- The separate repos are now duplicates: `arise-church-backup` (clean copy, keep or delete) and `arise-church-workspace` (still holds the PII CSV in old commits — Bradly to delete). Local folder `D:\projects\Arise Church Website\backup-2026-10-08` is also redundant now.
