@@ -1,0 +1,178 @@
+[
+  {
+    "contentKey": "creatives.hero.kicker",
+    "page": "creatives",
+    "label": "Hub hero kicker",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Creative Arts hub, top of page, small red words above the title"
+  },
+  {
+    "contentKey": "creatives.hero.heading",
+    "page": "creatives",
+    "label": "Hub hero heading",
+    "text": "Arise<br>Creative Arts",
+    "imageUrl": "",
+    "where": "Creative Arts hub, top of page, the big two-line title"
+  },
+  {
+    "contentKey": "creatives.hero.body",
+    "page": "creatives",
+    "label": "Hub hero intro",
+    "text": "Every song, every screen, every sound. Creative Arts is the group of teams that serve together to make Sunday happen - each one its own department, all of them one department.",
+    "imageUrl": "",
+    "where": "Creative Arts hub, top of page, paragraph under the title"
+  },
+  {
+    "contentKey": "creatives.depts.kicker",
+    "page": "creatives",
+    "label": "Departments kicker",
+    "text": "The Departments",
+    "imageUrl": "",
+    "where": "Creative Arts hub, second section, small red words at the top"
+  },
+  {
+    "contentKey": "creatives.depts.heading",
+    "page": "creatives",
+    "label": "Departments heading",
+    "text": "Who Does What",
+    "imageUrl": "",
+    "where": "Creative Arts hub, second section, heading above the department tiles"
+  },
+  {
+    "contentKey": "creatives.empty.heading",
+    "page": "creatives",
+    "label": "No departments heading",
+    "text": "Departments coming soon",
+    "imageUrl": "",
+    "where": "Creative Arts hub, dashed box shown only when no departments are in the CMS"
+  },
+  {
+    "contentKey": "creatives.empty.body",
+    "page": "creatives",
+    "label": "No departments text",
+    "text": "The teams that make Sunday happen will be listed here.",
+    "imageUrl": "",
+    "where": "Creative Arts hub, dashed box shown only when no departments are in the CMS"
+  },
+  {
+    "contentKey": "creatives.cta.kicker",
+    "page": "creatives",
+    "label": "Hub bottom banner kicker",
+    "text": "Get Involved",
+    "imageUrl": "",
+    "where": "Creative Arts hub, bottom red banner, small words at the top"
+  },
+  {
+    "contentKey": "creatives.cta.heading",
+    "page": "creatives",
+    "label": "Hub bottom banner heading",
+    "text": "There's Room<br>For You",
+    "imageUrl": "",
+    "where": "Creative Arts hub, bottom red banner, heading"
+  },
+  {
+    "contentKey": "creatives.cta.body",
+    "page": "creatives",
+    "label": "Hub bottom banner text",
+    "text": "If you sing, play, run sound, shoot, edit, or post - we could use you.",
+    "imageUrl": "",
+    "where": "Creative Arts hub, bottom red banner, sentence under the heading"
+  },
+  {
+    "contentKey": "creatives.cta.button",
+    "page": "creatives",
+    "label": "Hub bottom banner button",
+    "text": "Sign Up to Serve",
+    "imageUrl": "",
+    "where": "Creative Arts hub, bottom red banner, white button"
+  },
+  {
+    "contentKey": "creatives.dept.hero.kicker",
+    "page": "creatives",
+    "label": "Department page kicker",
+    "text": "Arise Creative Arts",
+    "imageUrl": "",
+    "where": "Every department page, top, small red words above the department name"
+  },
+  {
+    "contentKey": "creatives.dept.team.kicker",
+    "page": "creatives",
+    "label": "Department team kicker",
+    "text": "The Team",
+    "imageUrl": "",
+    "where": "Every department page, team section, small red words at the top"
+  },
+  {
+    "contentKey": "creatives.dept.team.heading",
+    "page": "creatives",
+    "label": "Department team heading",
+    "text": "Who Serves Here",
+    "imageUrl": "",
+    "where": "Every department page, team section, heading above the people cards"
+  },
+  {
+    "contentKey": "creatives.dept.empty.heading",
+    "page": "creatives",
+    "label": "No team members heading",
+    "text": "Team coming soon",
+    "imageUrl": "",
+    "where": "Every department page, dashed box shown only when the department has no members in the CMS"
+  },
+  {
+    "contentKey": "creatives.dept.empty.body",
+    "page": "creatives",
+    "label": "No team members text",
+    "text": "Photos and bios for this department are on the way.",
+    "imageUrl": "",
+    "where": "Every department page, dashed box shown only when the department has no members in the CMS"
+  },
+  {
+    "contentKey": "creatives.dept.others.kicker",
+    "page": "creatives",
+    "label": "Other teams kicker",
+    "text": "The Other Teams",
+    "imageUrl": "",
+    "where": "Every department page, grey section, small red words at the top"
+  },
+  {
+    "contentKey": "creatives.dept.others.heading",
+    "page": "creatives",
+    "label": "Other teams heading",
+    "text": "Creative Arts",
+    "imageUrl": "",
+    "where": "Every department page, grey section, heading above the department switcher"
+  },
+  {
+    "contentKey": "creatives.dept.cta.kicker",
+    "page": "creatives",
+    "label": "Department bottom banner kicker",
+    "text": "Serve With Us",
+    "imageUrl": "",
+    "where": "Every department page, bottom red banner, small words at the top"
+  },
+  {
+    "contentKey": "creatives.dept.cta.heading",
+    "page": "creatives",
+    "label": "Department bottom banner heading",
+    "text": "Join This Team",
+    "imageUrl": "",
+    "where": "Every department page, bottom red banner, heading"
+  },
+  {
+    "contentKey": "creatives.dept.cta.body",
+    "page": "creatives",
+    "label": "Department bottom banner text",
+    "text": "No experience needed - just a willingness to show up.",
+    "imageUrl": "",
+    "where": "Every department page, bottom red banner, sentence under the heading"
+  },
+  {
+    "contentKey": "creatives.dept.cta.button",
+    "page": "creatives",
+    "label": "Department bottom banner button",
+    "text": "Sign Up to Serve",
+    "imageUrl": "",
+    "where": "Every department page, bottom red banner, white button"
+  }
+]

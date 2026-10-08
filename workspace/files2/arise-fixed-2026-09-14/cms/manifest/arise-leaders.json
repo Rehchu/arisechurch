@@ -1,0 +1,90 @@
+[
+  {
+    "contentKey": "leaders.hero.kicker",
+    "page": "leaders",
+    "label": "Top banner small red label",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Top of page, above the big title"
+  },
+  {
+    "contentKey": "leaders.hero.heading",
+    "page": "leaders",
+    "label": "Top banner page title",
+    "text": "Meet our Leaders",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "leaders.hero.body",
+    "page": "leaders",
+    "label": "Top banner intro paragraph",
+    "text": "Welcome to our community. We are pleased to present our esteemed ministers, leaders, and staff who are dedicated to our mission. Each individual contributes unique talents and a commitment to cultivating an inclusive environment. We invite you to explore their significant contributions to our organization.",
+    "imageUrl": "",
+    "where": "Top of page, under the big title"
+  },
+  {
+    "contentKey": "leaders.cta.kicker",
+    "page": "leaders",
+    "label": "Visit box small label",
+    "text": "Visit",
+    "imageUrl": "",
+    "where": "Red box near the bottom, small label above the heading"
+  },
+  {
+    "contentKey": "leaders.cta.heading",
+    "page": "leaders",
+    "label": "Visit box heading",
+    "text": "Come Meet Them<br>On a Sunday",
+    "imageUrl": "",
+    "where": "Red box near the bottom, heading"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "site",
+    "label": "Sunday service time, Pineville (shared site fact)",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Red Visit box near the bottom, first time"
+  },
+  {
+    "contentKey": "leaders.cta.where1",
+    "page": "leaders",
+    "label": "Visit box words after first time",
+    "text": "in Pineville,",
+    "imageUrl": "",
+    "where": "Red box near the bottom, after the Pineville time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "site",
+    "label": "Sunday service time, Alexandria (shared site fact)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Red Visit box near the bottom, second time"
+  },
+  {
+    "contentKey": "leaders.cta.where2",
+    "page": "leaders",
+    "label": "Visit box words after second time",
+    "text": "in Alexandria.",
+    "imageUrl": "",
+    "where": "Red box near the bottom, after the Alexandria time"
+  },
+  {
+    "contentKey": "leaders.cta.body",
+    "page": "leaders",
+    "label": "Visit box closing sentence",
+    "text": "Come as you are.",
+    "imageUrl": "",
+    "where": "Red box near the bottom, end of the sentence"
+  },
+  {
+    "contentKey": "leaders.cta.button",
+    "page": "leaders",
+    "label": "Visit box button",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Red box near the bottom, white button"
+  }
+]

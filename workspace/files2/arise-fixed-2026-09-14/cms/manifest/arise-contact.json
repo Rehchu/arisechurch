@@ -1,0 +1,346 @@
+[
+  {
+    "contentKey": "contact.hero.kicker",
+    "page": "contact",
+    "label": "Hero kicker",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Top of page, small red text above \"Contact\""
+  },
+  {
+    "contentKey": "contact.hero.heading",
+    "page": "contact",
+    "label": "Hero heading",
+    "text": "Contact",
+    "imageUrl": "",
+    "where": "Top of page, big heading"
+  },
+  {
+    "contentKey": "contact.reach.emailLabel",
+    "page": "contact",
+    "label": "Email card label",
+    "text": "Email",
+    "imageUrl": "",
+    "where": "Under the header, left card label"
+  },
+  {
+    "contentKey": "site.email",
+    "page": "contact",
+    "label": "Church email (shared)",
+    "text": "arisenow.church@gmail.com",
+    "imageUrl": "",
+    "where": "Under the header, left card (link text only; the mailto link stays the same)"
+  },
+  {
+    "contentKey": "contact.reach.phoneLabel",
+    "page": "contact",
+    "label": "Phone card label",
+    "text": "Phone",
+    "imageUrl": "",
+    "where": "Under the header, right card label"
+  },
+  {
+    "contentKey": "site.phone",
+    "page": "contact",
+    "label": "Church phone (shared)",
+    "text": "(318) 640-1865",
+    "imageUrl": "",
+    "where": "Under the header, right card (link text only; the tel link stays the same)"
+  },
+  {
+    "contentKey": "contact.campus.kicker",
+    "page": "contact",
+    "label": "Locations kicker",
+    "text": "Our Locations",
+    "imageUrl": "",
+    "where": "Locations section, small red text above the heading"
+  },
+  {
+    "contentKey": "contact.campus.heading",
+    "page": "contact",
+    "label": "Locations heading",
+    "text": "One Church,<br>Two Campuses",
+    "imageUrl": "",
+    "where": "Locations section heading"
+  },
+  {
+    "contentKey": "contact.campus.main.photo",
+    "page": "contact",
+    "label": "Main campus photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_d90892fdb5fd40d8bd3c1057ca244d04~mv2.jpg",
+    "where": "Locations section, left card photo"
+  },
+  {
+    "contentKey": "contact.campus.main.tag",
+    "page": "contact",
+    "label": "Main campus badge",
+    "text": "Main Campus",
+    "imageUrl": "",
+    "where": "Locations section, red badge on the left card"
+  },
+  {
+    "contentKey": "site.campus.main",
+    "page": "contact",
+    "label": "Main campus address",
+    "text": "501 Ates Road<br>Pineville, LA 71360",
+    "imageUrl": "",
+    "where": "Locations section, left card address"
+  },
+  {
+    "contentKey": "site.times.sunday.main.label",
+    "page": "contact",
+    "label": "Main campus Sunday label (shared)",
+    "text": "Sunday",
+    "imageUrl": "",
+    "where": "Locations section, left card times, row 1 label"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "contact",
+    "label": "Main campus Sunday time (shared)",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Locations section, left card times, row 1 (the day word is trimmed when the label names it)"
+  },
+  {
+    "contentKey": "site.times.main.glorynight.label",
+    "page": "contact",
+    "label": "Glory Night label (shared)",
+    "text": "Glory Night",
+    "imageUrl": "",
+    "where": "Locations section, left card times, row 2 label"
+  },
+  {
+    "contentKey": "site.times.main.glorynight",
+    "page": "contact",
+    "label": "Glory Night time (shared)",
+    "text": "Mon 7:00 PM",
+    "imageUrl": "",
+    "where": "Locations section, left card times, row 2"
+  },
+  {
+    "contentKey": "site.times.main.midweek.label",
+    "page": "contact",
+    "label": "Main campus midweek label (shared)",
+    "text": "Wednesday",
+    "imageUrl": "",
+    "where": "Locations section, left card times, row 3 label"
+  },
+  {
+    "contentKey": "site.times.main.midweek",
+    "page": "contact",
+    "label": "Main campus midweek time (shared)",
+    "text": "Wednesday 7:00 PM",
+    "imageUrl": "",
+    "where": "Locations section, left card times, row 3 (the day word is trimmed when the label names it)"
+  },
+  {
+    "contentKey": "site.times.main.prayer.label",
+    "page": "contact",
+    "label": "Corporate Prayer label (shared)",
+    "text": "Corporate Prayer",
+    "imageUrl": "",
+    "where": "Locations section, left card times, row 4 label"
+  },
+  {
+    "contentKey": "site.times.main.prayer",
+    "page": "contact",
+    "label": "Corporate Prayer time (shared)",
+    "text": "Mon-Thu 5:00 AM",
+    "imageUrl": "",
+    "where": "Locations section, left card times, row 4"
+  },
+  {
+    "contentKey": "contact.campus.directions",
+    "page": "contact",
+    "label": "Directions link",
+    "text": "Directions &rarr;",
+    "imageUrl": "",
+    "where": "Locations section, red link at the bottom of both campus cards"
+  },
+  {
+    "contentKey": "contact.campus.second.photo",
+    "page": "contact",
+    "label": "Second campus photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_51f64171a5904d5b9b8b492f062db9bc~mv2.jpg",
+    "where": "Locations section, right card photo"
+  },
+  {
+    "contentKey": "contact.campus.second.tag",
+    "page": "contact",
+    "label": "Second campus badge",
+    "text": "Second Campus",
+    "imageUrl": "",
+    "where": "Locations section, red badge on the right card"
+  },
+  {
+    "contentKey": "site.campus.second",
+    "page": "contact",
+    "label": "Second campus address",
+    "text": "5305 North Blvd<br>Alexandria, LA 71301",
+    "imageUrl": "",
+    "where": "Locations section, right card address"
+  },
+  {
+    "contentKey": "site.times.sunday.second.label",
+    "page": "contact",
+    "label": "Alexandria Sunday label (shared)",
+    "text": "Sunday",
+    "imageUrl": "",
+    "where": "Locations section, right card times, row 1 label"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "contact",
+    "label": "Alexandria Sunday time (shared)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Locations section, right card times, row 1 (the day word is trimmed when the label names it)"
+  },
+  {
+    "contentKey": "site.times.second.prayer.label",
+    "page": "contact",
+    "label": "Alexandria prayer label (shared)",
+    "text": "Prayer",
+    "imageUrl": "",
+    "where": "Locations section, right card times, row 2 label (row shows only when the time is filled in)"
+  },
+  {
+    "contentKey": "site.times.second.prayer",
+    "page": "contact",
+    "label": "Alexandria prayer time (shared)",
+    "text": "",
+    "imageUrl": "",
+    "where": "Locations section, right card times, row 2 (hidden while empty)"
+  },
+  {
+    "contentKey": "site.times.second.midweek.label",
+    "page": "contact",
+    "label": "Alexandria midweek label (shared)",
+    "text": "Bible Study",
+    "imageUrl": "",
+    "where": "Locations section, right card times, row 3 label (row shows only when the time is filled in)"
+  },
+  {
+    "contentKey": "site.times.second.midweek",
+    "page": "contact",
+    "label": "Alexandria midweek time (shared)",
+    "text": "",
+    "imageUrl": "",
+    "where": "Locations section, right card times, row 3 (hidden while empty)"
+  },
+  {
+    "contentKey": "contact.form.kicker",
+    "page": "contact",
+    "label": "Form kicker",
+    "text": "Send Us a Message",
+    "imageUrl": "",
+    "where": "Message form section, small red text above the heading"
+  },
+  {
+    "contentKey": "contact.form.heading",
+    "page": "contact",
+    "label": "Form heading",
+    "text": "Get In Touch",
+    "imageUrl": "",
+    "where": "Message form section heading"
+  },
+  {
+    "contentKey": "contact.form.body",
+    "page": "contact",
+    "label": "Form intro",
+    "text": "Questions about a service, a ministry, or planning your first visit — send us a note and someone will get back to you.",
+    "imageUrl": "",
+    "where": "Message form section, paragraph under the heading"
+  },
+  {
+    "contentKey": "contact.form.nameLabel",
+    "page": "contact",
+    "label": "Form name label",
+    "text": "Your Name",
+    "imageUrl": "",
+    "where": "Message form, first field label"
+  },
+  {
+    "contentKey": "contact.form.emailLabel",
+    "page": "contact",
+    "label": "Form email label",
+    "text": "Email",
+    "imageUrl": "",
+    "where": "Message form, second field label"
+  },
+  {
+    "contentKey": "contact.form.phoneLabel",
+    "page": "contact",
+    "label": "Form phone label",
+    "text": "Phone",
+    "imageUrl": "",
+    "where": "Message form, third field label"
+  },
+  {
+    "contentKey": "contact.form.subjectLabel",
+    "page": "contact",
+    "label": "Form subject label",
+    "text": "Subject",
+    "imageUrl": "",
+    "where": "Message form, fourth field label"
+  },
+  {
+    "contentKey": "contact.form.messageLabel",
+    "page": "contact",
+    "label": "Form message label",
+    "text": "Message",
+    "imageUrl": "",
+    "where": "Message form, large text box label"
+  },
+  {
+    "contentKey": "contact.form.button",
+    "page": "contact",
+    "label": "Form button",
+    "text": "Send Message",
+    "imageUrl": "",
+    "where": "Message form, red submit button"
+  },
+  {
+    "contentKey": "contact.success.heading",
+    "page": "contact",
+    "label": "Thank-you heading",
+    "text": "Thank You",
+    "imageUrl": "",
+    "where": "Replaces the message form after it is sent"
+  },
+  {
+    "contentKey": "contact.success.body",
+    "page": "contact",
+    "label": "Thank-you message",
+    "text": "Your message is on its way and someone will be in touch.",
+    "imageUrl": "",
+    "where": "Replaces the message form after it is sent, under \"Thank You\""
+  },
+  {
+    "contentKey": "contact.social.kicker",
+    "page": "contact",
+    "label": "Social kicker",
+    "text": "Follow Along",
+    "imageUrl": "",
+    "where": "Bottom dark section, small red text"
+  },
+  {
+    "contentKey": "contact.social.heading",
+    "page": "contact",
+    "label": "Social heading",
+    "text": "Follow Along",
+    "imageUrl": "",
+    "where": "Bottom dark section heading"
+  },
+  {
+    "contentKey": "site.tagline",
+    "page": "contact",
+    "label": "Church tagline (shared)",
+    "text": "#YouBelongHere",
+    "imageUrl": "",
+    "where": "Bottom dark section, red slanted strip under the social icons"
+  }
+]

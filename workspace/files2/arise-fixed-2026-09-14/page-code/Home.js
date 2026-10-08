@@ -1,0 +1,80 @@
+/* Arise Church - Velo page code
+   Paste into: Code panel -> Page Code -> "Home"  (replaces the whole file)
+   Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss.
+   Sped up 2026-09-15: data-content now comes only from masterPage.js (it was loaded twice);
+   the other backend calls start at once and each attribute is set as soon as its call answers. */
+import { getProjectPhotos } from 'backend/gallery.web';
+import { getHomeSettings } from 'backend/content.web';
+
+const PAGE = 'Home';
+const EL = '#customElement1';
+const EXCITING_NEWS = 'b2697282-735e-42fc-979a-2b8dc2118f1e';   // Portfolio project shown in the hero news panel
+
+/* ---- Arise page helper (identical in every page file) ----------------------
+   EL is the element ID shown in the Properties panel (right-click the custom
+   element -> View Properties). If that ID is not on this page, the helper falls
+   back to every custom element outside the header and footer, so a duplicated
+   or renamed element still receives its data. Every miss is logged. */
+function ariseInMaster(el) {
+  let p = el && el.parent, n = 0;
+  while (p && n++ < 25) {
+    if (p.type === '$w.Header' || p.type === '$w.Footer' ||
+        /^(SITE_HEADER|SITE_FOOTER|header1|footer1)$/.test(p.id || '')) return true;
+    p = p.parent;
+  }
+  return false;
+}
+function ariseTargets() {
+  try {
+    const byId = EL ? $w(EL) : null;
+    if (byId && typeof byId.setAttribute === 'function') return [byId];
+  } catch (e) { /* that ID is not on this page */ }
+  const all = [];
+  try {
+    const sel = $w('CustomElement');
+    if (sel && typeof sel.length === 'number') { for (let i = 0; i < sel.length; i++) all.push(sel[i]); }
+    else if (sel && typeof sel.setAttribute === 'function') all.push(sel);
+  } catch (e) { console.error(PAGE + ': custom element lookup failed', e); }
+  const page = all.filter((el) => !ariseInMaster(el));
+  return page.length ? page : all;
+}
+function ariseSet(attr, value) {
+  const json = typeof value === 'string' ? value : JSON.stringify(value);
+  const attempt = (n) => {
+    const els = ariseTargets();
+    if (els.length) {
+      els.forEach((el) => el.setAttribute(attr, json));
+      console.log(PAGE + ': ' + attr + ' -> ' + els.map((el) => '#' + el.id).join(', '));
+      return;
+    }
+    if (n < 30) setTimeout(() => attempt(n + 1), 300);
+    else console.warn(PAGE + ': no custom element found for ' + attr + ' (looked for ' + EL + ')');
+  };
+  attempt(1);
+}
+
+$w.onReady(async () => {
+  // Every backend call below starts right away, side by side. Each one sets its
+  // own attribute as soon as it answers; onReady finishes once all have answered.
+  const cultureLoad = (async () => {
+    try {
+      const culture = await getHomeSettings();
+      console.log(PAGE + ': culture video ' + (culture && culture.videoId ? culture.videoId : 'none'));
+      if (culture) ariseSet('data-culture', culture);
+    } catch (err) { console.error(PAGE + ': culture failed', err); }
+  })();
+
+  const newsLoad = (async () => {
+    try {
+      const news = await getProjectPhotos(EXCITING_NEWS);
+      const items = news.map((n) => ({
+        src: n.src, videoId: n.videoId || '', title: n.alt,
+        description: n.caption, alt: n.alt
+      }));
+      console.log(PAGE + ': news ' + items.length + ' items');
+      ariseSet('data-news', items);
+    } catch (err) { console.error(PAGE + ': news failed', err); }
+  })();
+
+  await Promise.all([cultureLoad, newsLoad]);
+});

@@ -1,0 +1,106 @@
+[
+  {
+    "contentKey": "classes.hero.kicker",
+    "page": "classes",
+    "label": "Hero kicker",
+    "text": "Learn &amp; Grow",
+    "imageUrl": "",
+    "where": "Top of page, small red words above the big title"
+  },
+  {
+    "contentKey": "classes.hero.heading",
+    "page": "classes",
+    "label": "Hero heading",
+    "text": "Classes",
+    "imageUrl": "",
+    "where": "Top of page, the big title"
+  },
+  {
+    "contentKey": "classes.hero.body",
+    "page": "classes",
+    "label": "Hero intro",
+    "text": "Go deeper at your own pace. Classes and studies you can start whenever you are ready.",
+    "imageUrl": "",
+    "where": "Top of page, paragraph under the big title"
+  },
+  {
+    "contentKey": "classes.list.kicker",
+    "page": "classes",
+    "label": "Classes list kicker",
+    "text": "Available Now",
+    "imageUrl": "",
+    "where": "Second section, small red words at the top"
+  },
+  {
+    "contentKey": "classes.list.heading",
+    "page": "classes",
+    "label": "Classes list heading",
+    "text": "What You Can Take",
+    "imageUrl": "",
+    "where": "Second section, heading above the class cards"
+  },
+  {
+    "contentKey": "classes.card.selfPaced",
+    "page": "classes",
+    "label": "Self-paced label on cards",
+    "text": "Self-paced",
+    "imageUrl": "",
+    "where": "Class cards, small grey fact line (shown on self-paced classes)"
+  },
+  {
+    "contentKey": "classes.card.button",
+    "page": "classes",
+    "label": "Class card button",
+    "text": "View Class",
+    "imageUrl": "",
+    "where": "Class cards, outlined button at the bottom of each card"
+  },
+  {
+    "contentKey": "classes.empty.heading",
+    "page": "classes",
+    "label": "No classes heading",
+    "text": "Classes are coming",
+    "imageUrl": "",
+    "where": "Second section, dashed box shown only when no classes are published"
+  },
+  {
+    "contentKey": "classes.empty.body",
+    "page": "classes",
+    "label": "No classes text",
+    "text": "We are putting the first classes together now. Check back soon, or contact us to hear when they open.",
+    "imageUrl": "",
+    "where": "Second section, dashed box shown only when no classes are published"
+  },
+  {
+    "contentKey": "classes.cta.kicker",
+    "page": "classes",
+    "label": "Bottom banner kicker",
+    "text": "Questions",
+    "imageUrl": "",
+    "where": "Bottom red banner, small words at the top"
+  },
+  {
+    "contentKey": "classes.cta.heading",
+    "page": "classes",
+    "label": "Bottom banner heading",
+    "text": "Not Sure Where<br>To Start?",
+    "imageUrl": "",
+    "where": "Bottom red banner, heading"
+  },
+  {
+    "contentKey": "classes.cta.body",
+    "page": "classes",
+    "label": "Bottom banner text",
+    "text": "Send us a note and we will point you to the right place.",
+    "imageUrl": "",
+    "where": "Bottom red banner, sentence under the heading"
+  },
+  {
+    "contentKey": "classes.cta.button",
+    "page": "classes",
+    "label": "Bottom banner button",
+    "text": "Contact Us",
+    "imageUrl": "",
+    "where": "Bottom red banner, white button on the right"
+  }
+]

@@ -1,45 +1,75 @@
-# Git Integration & Wix CLI <img align="left" src="https://user-images.githubusercontent.com/89579857/185785022-cab37bf5-26be-4f11-85f0-1fac63c07d3b.png">
+# Arise Church — arisecenla.church
 
-This repo is part of Git Integration & Wix CLI, a set of tools that allows you to write, test, and publish code for your Wix site locally on your computer. 
+The code for the Arise Church website, and the working material around it.
+The live site is published from this repo's `main` branch.
 
-Connect your site to GitHub, develop in your favorite IDE, test your code in real time, and publish your site from the command line.
+| Folder | What it is |
+|---|---|
+| `src/backend` | Server-side code: Page Content, YouTube, events, classes, galleries, forms |
+| `src/pages` | One file per page, named `<Page Name>.<page id>.js`, plus `masterPage.js` for every page |
+| `src/public/custom-elements` | The 20 custom elements that draw the site: header, footer, home, sermons, classes and the rest |
+| `wix.config.json` | Ties the repo to the site. Wix maintains it — don't edit it by hand |
+| `workspace/` | Everything that isn't the site itself: the build notes, audits, tests, CMS backups and the project history. **Wix ignores this folder** |
 
-## Set up this repository in your IDE
-This repo is connected to a Wix site. That site tracks this repo's default branch. Any code committed and pushed to that branch from your local IDE appears on the site.
+Wix only reads `src/backend`, `src/pages`, `src/public` and `wix.config.json`. Anything else in the repo, `workspace/` included, is never synced to the Editor and can't affect the site.
 
-Before getting started, make sure you have the following things installed:
-* [Git](https://git-scm.com/download)
-* [Node](https://nodejs.org/en/download/), version 14.8 or later.
-* [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) or [yarn](https://yarnpkg.com/getting-started/install)
-* An SSH key [added to your GitHub account](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+## Working on it
 
-To set up your local environment and start coding locally, do the following:
+```bash
+git clone https://github.com/Rehchu/arisechurch.git
+cd arisechurch
+npm install --ignore-scripts
+npm install -g @wix/cli
+wix login
+```
 
-1. Open your terminal and navigate to where you want to store the repo.
-1. Clone the repo by running `git clone <your-repository-url>`.
-1. Navigate to the repo's directory by running `cd <directory-name>`.
-1. Install the repo's dependencies by running `npm install` or `yarn install`.
-1. Install the Wix CLI by running `npm install -g @wix/cli` or `yarn global add @wix/cli`.  
-   Once you've installed the CLI globally, you can use it with any Wix site's repo.
+Two things that catch people out:
 
-For more information, see [Setting up Git Integration & Wix CLI](https://support.wix.com/en/article/velo-setting-up-git-integration-wix-cli-beta).
+- **Use `npm install --ignore-scripts`.** A plain `npm install` fails on the `wix-test-ports` entry in `package.json`, which only installs from Wix's private registry.
+- **Run `wix login` in a real terminal window**, not inside an app's panel. It shows a one-time code and waits for a keypress, which panels swallow.
 
-## Write Velo code in your IDE
-Once your repo is set up, you can write code in it as you would in any other non-Wix project. The repo's file structure matches the [public](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#public), [backend](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#backend), and [page code](https://support.wix.com/en/article/velo-working-with-the-velo-sidebar#page-code) sections in Editor X.
+While the site is connected to GitHub, **the Editor's code panel is read-only**. Change code here and push to `main`; the Editor picks it up within a few minutes. Design — page backgrounds, section colours, where elements sit — is still only changeable in the Editor.
 
-Learn more about [this repo's file structure](https://support.wix.com/en/article/velo-understanding-your-sites-github-repository-beta).
+## Seeing changes before they go live
 
-## Test your code with the Local Editor
-The Local Editor allows you test changes made to your site in real time. The code in your local IDE is synced with the Local Editor, so you can test your changes before committing them to your repo. You can also change the site design in the Local Editor and sync it with your IDE.
+```bash
+wix preview --source local
+```
 
-Start the Local Editor by navigating to this repo's directory in your terminal and running `wix dev`.
+That builds a private preview from the files on your computer, on the real CMS, and prints a link. It changes neither the live site nor GitHub.
 
-For more information, see [Working with the Local Editor](https://support.wix.com/en/article/velo-working-with-the-local-editor-beta).
+## Publishing
 
-## Preview and publish with the Wix CLI
-The Wix CLI is a tool that allows you to work with your site locally from your computer's terminal. You can use it to build a preview version of your site and publish it. You can also use the CLI to install [approved npm packages](https://support.wix.com/en/article/velo-working-with-npm-packages) to your site.
+```bash
+wix publish --source remote
+```
 
-Learn more about [working with the Wix CLI](https://support.wix.com/en/article/velo-working-with-the-wix-cli-beta).
+Publishes the latest commit on `main`. **Never choose "Local code"** — that puts the live site out of step with GitHub, and the next publish from the repo overwrites your local work.
 
-## Invite contributors to work with you
-Git Integration & Wix CLI extends Editor X's [concurrent editing](https://support.wix.com/en/article/editor-x-about-concurrent-editing) capabilities. Invite other developers as collaborators on your [site](https://support.wix.com/en/article/inviting-people-to-contribute-to-your-site) and your [GitHub repo](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository). Multiple developers can work on a site's code at once.
+Publishing from the command line uses the design version recorded in `wix.config.json`, so Wix warns that the Editor may hold newer design changes. Publishing once from the Editor clears that.
+
+## Checking your work
+
+```bash
+node workspace/sample-site/tests/backend.test.mjs      # 19 tests, the server-side code under Node
+node workspace/sample-site/tests/page-code.test.mjs    # 90 tests, every page file against a fake Wix
+node workspace/audit/check.mjs --pages=home,classes --sites=live --vps=desktop,phone
+```
+
+The last one drives a headless browser over the real pages and reports console errors, broken photos, loading times and screenshots. `--sites=preview` needs `--previewq="siteRevision=2&branchId=..."` from the preview link.
+
+## House rules
+
+- **Every word and photo on the site comes from the CMS** (Page Content, 576 rows). Don't type copy into the code; add or edit a row.
+- **Never copy `ArchivedFormSubmissions` out of the CMS.** It holds real names, emails, phone numbers and addresses from old form submissions. It stays admin-only in the CMS.
+- **Write "Arise Church"**, never just "Arise".
+- Test before handing anything over, and check the published site: custom elements don't run properly in the Editor or in Preview.
+
+## Where things stand (8 October 2026)
+
+- Published: the September fix build, the speed work, the MORE class page and whole-flyer class cards.
+- First visits are about four times faster than in September and download roughly a seventh of the data.
+- **MORE**, a free six-week discipleship course, is published: Sundays 18 Oct – 22 Nov 2026, 9:00–9:45 AM, in person and online. Wix ends it by itself after 22 November.
+- Still to do, and only possible in the Editor: style Wix's own class page like the event pages (background `0A0A0C`, header and footer showing, red buttons), and the stray blue strip on the event pages.
+
+`workspace/README.md` explains the rest of the material and how the site got here.

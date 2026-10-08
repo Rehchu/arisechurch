@@ -1,0 +1,7 @@
+{
+  "note": "Backup before setting the Connect Groups host deadline to September 20 (Bradly, 15 Sept 2026: deadline extended to Sunday Sept 20).",
+  "collection": "PageContent",
+  "rows": [
+    { "id": "ff12da4b-af3a-43fb-9422-5d1d92675165", "contentKey": "connect.season.hostby", "label": "Host deadline", "page": "connect", "where": "Dates card", "sortOrder": 802, "text": "September 2" }
+  ]
+}

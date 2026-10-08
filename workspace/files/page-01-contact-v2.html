@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arise Church — Contact Page Redesign (existing text only)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D6222D; --ink:#0A0A0C; --scrim:#060608; --paper:#fff; --bone:#F4F2F0;
+  --rule:rgba(10,10,12,.12); --ruleD:rgba(255,255,255,.15);
+  --muted:#6A6A6E; --mutedD:rgba(255,255,255,.66);
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px;
+  --shell:1180px; --gut:clamp(20px,5vw,56px); --sect:clamp(64px,9vw,110px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:300;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3,h4{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
+h1{font-size:clamp(42px,7.4vw,88px)}
+h2{font-size:clamp(28px,4vw,50px)}
+h3{font-size:clamp(18px,1.9vw,23px);letter-spacing:.04em}
+h4{font-size:14px;letter-spacing:.10em}
+
+.mark{display:flex;align-items:center;margin-bottom:var(--s2)}
+.mark::before{content:"";flex:0 0 auto;width:44px;height:7px;background:var(--red);box-shadow:60px 0 0 var(--red);margin-right:78px}
+.kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+.mark--l .kicker{color:var(--paper)}
+.strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:8px 19px}
+.strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+
+.btn{display:inline-block;padding:15px 32px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--red);background:var(--red);color:#fff;cursor:pointer;font-family:inherit;transition:background .18s,color .18s}
+.btn:hover{background:transparent;color:var(--red)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+
+.sect{padding:var(--sect) 0}
+.sect--ink{background:var(--ink);color:#fff}
+.sect--ink h2,.sect--ink h3,.sect--ink h4{color:#fff}
+
+.phead{background:var(--ink);color:#fff;padding:clamp(56px,8vw,100px) 0 clamp(44px,6vw,70px);position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;right:-60px;bottom:-90px;width:300px;height:300px;border:44px solid rgba(214,34,45,.13);border-radius:50%}
+.phead h1{color:#fff;position:relative;z-index:1}
+
+/* reach row */
+.reach{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--rule);margin-top:calc(var(--s6) * -1);position:relative;z-index:5}
+.reach__c{background:var(--paper);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s1)}
+.reach__c h4{color:var(--red)}
+.reach__c a{font-size:19px;color:var(--ink);text-decoration:none;font-weight:400;word-break:break-word}
+.reach__c a:hover{color:var(--red)}
+@media(max-width:760px){.reach{grid-template-columns:1fr;margin-top:0}}
+
+/* campuses */
+.camp{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:var(--s5);background:var(--rule)}
+.camp__c{background:var(--paper);display:flex;flex-direction:column}
+.camp__img{aspect-ratio:16/9;background:var(--scrim);overflow:hidden}
+.camp__img img{width:100%;height:100%;object-fit:cover}
+.camp__b{padding:var(--s4);flex:1;display:flex;flex-direction:column}
+.camp__tag{display:inline-block;align-self:flex-start;background:var(--red);color:#fff;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:5px 11px;margin-bottom:var(--s2)}
+.camp__addr{font-size:17px;color:var(--ink);line-height:1.7;margin-top:var(--s1)}
+.camp__times{margin-top:var(--s3);padding-top:var(--s3);border-top:1px solid var(--rule)}
+.camp__r{display:flex;justify-content:space-between;gap:14px;padding:6px 0;font-size:14.5px;color:var(--muted)}
+.camp__r b{font-weight:500;white-space:nowrap;color:var(--ink)}
+.camp__link{margin-top:var(--s3);font-size:12px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--red);text-decoration:none}
+.camp__link:hover{text-decoration:underline}
+@media(max-width:760px){.camp{grid-template-columns:1fr}}
+
+/* form */
+.formwrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,80px);align-items:start}
+@media(max-width:860px){.formwrap{grid-template-columns:1fr}}
+.field{margin-bottom:var(--s3)}
+.field label{display:block;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--mutedD);margin-bottom:var(--s1)}
+.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:1.5px solid rgba(255,255,255,.28);padding:11px 0;font-family:'Oswald',sans-serif;font-weight:300;font-size:16.5px;color:#fff}
+.field input:focus,.field textarea:focus{border-bottom-color:var(--red);outline:none}
+.field textarea{resize:vertical;min-height:110px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+@media(max-width:520px){.row2{grid-template-columns:1fr}}
+.thanks{margin-top:var(--s3);font-size:14px;color:#DB3F48;letter-spacing:.06em}
+
+.social{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s3)}
+.social a{width:46px;height:46px;border:1px solid var(--ruleD);display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;transition:background .18s,border-color .18s}
+.social a:hover{background:var(--red);border-color:var(--red)}
+.social svg{width:19px;height:19px;fill:currentColor}
+
+.note{background:#FFF8E1;border-left:4px solid var(--red);padding:14px 20px;font-size:13px}
+.gap{background:#EEF4FF;border-left:4px solid #2A70DE;padding:14px 20px;font-size:13px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+/* ═══ DARK-CONTEXT SAFETY NET ═══════════════════════════════════════════
+   Anything on a dark ground gets light text. #DB3F48 is the brand red
+   tinted 13% toward white so small labels clear 4.5:1 on near-black;
+   true #D6222D is kept for shapes (dashes, strips, badges).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* body text on dark */
+.sect--ink,
+.sect--ink p, .sect--ink li, .sect--ink td, .sect--ink dd, .sect--ink dt,
+.phead, .phead p,
+.feat__b, .feat__b p,
+.foot, .foot p, .foot a,
+.times__note, .hero__sub, .visit__i p{color:rgba(255,255,255,.82)}
+
+/* headings on dark */
+.sect--ink h1, .sect--ink h2, .sect--ink h3, .sect--ink h5,
+.sect--ink b, .sect--ink strong,
+.phead h1, .phead h2, .phead h3,
+.feat__b h1, .feat__b h2, .feat__b h3,
+.sect--ink .pillar__b p:first-child,
+.sect--ink .lede{color:#fff}
+
+/* small red labels on dark -> lightened red */
+.sect--ink .kicker, .phead .kicker, .feat__b .kicker,
+.sect--ink .pillar__h .sub,
+.sect--ink h4, .feat__b h4, .foot h4,
+.sect--ink .times__day, .times__day,
+.sect--ink cite,
+.meta__r h4,
+.nav__word em,
+.card__len, .player__len,
+.nav__links a:hover, .foot a:hover,
+.sect--ink a:not(.btn):hover{color:#DB3F48}
+
+/* shapes keep the true brand red */
+.sect--ink .mark::before, .phead .mark::before, .feat__b .mark::before{background:#D6222D}
+.sect--ink .strip, .phead .strip, .feat__b .strip{background:#D6222D}
+.sect--ink .strip span, .phead .strip span, .feat__b .strip span{color:#fff}
+
+/* captions over photos: white, never red — photos vary too much */
+.min__t span, .arch__t span{color:#fff;opacity:.92}
+.min__t h3, .arch__t h3{color:#fff}
+
+/* full white on solid red panels */
+.give p, .series p, .feat__date, .feat__date span{color:#fff}
+
+/* links on dark */
+.sect--ink a:not(.btn):not(.arch__c):not(.card):not(.min__c),
+.phead a:not(.btn){color:#fff}
+
+
+/* if an image fails or is slow, its ALT text inherits the img's colour —
+   on a dark tile that renders dark-on-dark. Force it light. */
+img{color:#fff;font-size:12px;font-family:'Oswald',sans-serif}
+.min__c img,.arch__c img,.card__th img,.camp__img img,.info__img img,
+.lead__ph img,.player img,.feat__img img,.hero__bg{color:#fff;background:#1A1A1F}
+
+
+/* ═══ FORCED DARK-MODE DEFENCE ═════════════════════════════════════════
+   iOS in-app browsers (Facebook, Instagram) and Chrome's "Force Dark"
+   invert page backgrounds but leave explicitly-set text colours alone —
+   turning dark-on-white into dark-on-black. Declaring the scheme and
+   pinning every light surface explicitly stops that.
+   ═════════════════════════════════════════════════════════════════════ */
+:root{color-scheme:light only}
+html,body{background-color:#FFFFFF;color:#0A0A0C;-webkit-text-size-adjust:100%}
+
+/* pin light surfaces so nothing can be silently darkened */
+.sect{background-color:#FFFFFF}
+.sect--bone{background-color:#F4F2F0}
+.modal__box{background-color:#FFFFFF}
+.reach__c,.camp__c,.det__c,.info__c,.pillar,.min__c,.lead__c{background-color:#FFFFFF}
+.note{background-color:#FFF8E1}
+.gap{background-color:#EEF4FF}
+
+/* pin dark surfaces too, so they can't be lightened */
+.sect--ink,.phead,.nav,.foot,.feat,.times,.hero,.player,.modal{background-color:#0A0A0C}
+.give,.series,.strip,.feat__date,.camp__tag,.lead__role,.nowbadge{background-color:#D6222D}
+
+/* if the OS asks for dark, we still render our own light design */
+@media (prefers-color-scheme: dark){
+  html,body{background-color:#FFFFFF;color:#0A0A0C}
+  .sect{background-color:#FFFFFF}
+  .sect--bone{background-color:#F4F2F0}
+  .modal__box{background-color:#FFFFFF}
+  .sect--ink,.phead,.nav,.foot,.feat,.times,.hero{background-color:#0A0A0C}
+  h1,h2,h3,h4{color:#0A0A0C}
+  .sect--ink h1,.sect--ink h2,.sect--ink h3,.phead h1,.phead h2,.phead h3,
+  .feat__b h1,.feat__b h2,.feat__b h3,.min__t h3,.arch__t h3{color:#FFFFFF}
+  .sect--ink p,.sect--ink li,.phead p,.feat__b p,.foot,.foot p,.foot a{color:rgba(255,255,255,.82)}
+}
+
+</style>
+</head>
+<body>
+
+<div class="note"><strong>PAGE 1 — CONTACT · v2 (existing text only).</strong> Every word below is either already on your live Contact page or something you told me directly (campus labels, service times). Nothing invented.</div>
+
+<header class="phead"><div class="shell">
+  <div class="mark mark--l"><span class="kicker">Arise Church</span></div>
+  <h1>Contact</h1>
+</div></header>
+
+<div class="shell">
+  <div class="reach">
+    <div class="reach__c">
+      <h4>Email</h4>
+      <a href="mailto:arisenow.church@gmail.com">arisenow.church@gmail.com</a>
+    </div>
+    <div class="reach__c">
+      <h4>Phone</h4>
+      <a href="tel:13186401865">(318) 640-1865</a>
+    </div>
+  </div>
+</div>
+
+<section class="sect"><div class="shell">
+  <div class="mark"><span class="kicker">Our Locations</span></div>
+
+  <div class="camp">
+    <div class="camp__c">
+      <div class="camp__img"><img src="https://static.wixstatic.com/media/c3b2d0_f30b31e02f5c43cd8f33555c4ab08705~mv2.jpg" alt="Arise Church Main Campus in Pineville, Louisiana"></div>
+      <div class="camp__b">
+        <span class="camp__tag">Main Campus</span>
+        <p class="camp__addr">501 Ates Road<br>Pineville, La 71360</p>
+        <div class="camp__times">
+          <div class="camp__r"><span>Sunday</span><b>10:30 AM</b></div>
+          <div class="camp__r"><span>Glory Night</span><b>Mon 7:00 PM</b></div>
+          <div class="camp__r"><span>Wednesday</span><b>7:00 PM</b></div>
+          <div class="camp__r"><span>Corporate Prayer</span><b>Mon–Thu 5:00 AM</b></div>
+        </div>
+        <a class="camp__link" href="https://www.google.com/maps/dir//501+Ates+Rd,+Pineville,+LA+71360">Directions</a>
+      </div>
+    </div>
+
+    <div class="camp__c">
+      <div class="camp__img"><img src="https://static.wixstatic.com/media/c3b2d0_df139d07e67d499993dc5818894f91d1~mv2.jpg" alt="Arise Church Alexandria Campus congregation"></div>
+      <div class="camp__b">
+        <span class="camp__tag">Second Campus</span>
+        <p class="camp__addr">5305 North Blvd<br>Alexandria, LA 71301</p>
+        <div class="camp__times">
+          <div class="camp__r"><span>Sunday</span><b>10:30 AM</b></div>
+        </div>
+        <a class="camp__link" href="http://google.com/maps/dir//5305+North+Blvd,+Alexandria,+LA+71301">Directions</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="sect sect--ink"><div class="shell">
+  <div class="formwrap">
+    <div>
+      <div class="mark mark--l"><span class="kicker">Contact Us</span></div>
+      <h2>Contact Us</h2>
+      <div style="margin-top:var(--s5)">
+        <div class="social">
+          <a href="https://www.facebook.com/arisenow" aria-label="Arise Church on Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>
+          <a href="http://instagram.com/arisechurch.cenla" aria-label="Arise Church on Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c0 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2 0-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c0-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.1A6.7 6.7 0 1018.7 12 6.7 6.7 0 0012 5.3zm0 11A4.3 4.3 0 1116.3 12 4.3 4.3 0 0112 16.3zm6.9-11.2a1.6 1.6 0 11-1.6-1.6 1.6 1.6 0 011.6 1.6z"/></svg></a>
+          <a href="https://www.youtube.com/@arisechurch4147" aria-label="Arise Church on YouTube"><svg viewBox="0 0 24 24"><path d="M23 7.5s-.2-1.6-.9-2.3c-.9-.9-1.8-.9-2.3-1C17.2 4 12 4 12 4s-5.2 0-7.8.2c-.5.1-1.4.1-2.3 1C1.2 5.9 1 7.5 1 7.5S.8 9.4.8 11.3v1.8c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.6.2 7.6.2s5.2 0 7.8-.2c.5-.1 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.8c0-1.9-.2-3.8-.2-3.8zM9.8 15.1V8.9l6.2 3.1z"/></svg></a>
+          <a href="http://twitter.com/AriseChurch_C" aria-label="Arise Church on X"><svg viewBox="0 0 24 24"><path d="M18.2 2.3h3.4l-7.4 8.5 8.7 11.5h-6.8l-5.3-7-6.1 7H1.3l7.9-9.1L.9 2.3h7l4.8 6.4zm-1.2 17.9h1.9L7.1 4.2H5z"/></svg></a>
+        </div>
+      </div>
+      <div class="strip" style="margin-top:var(--s5)"><span>#YouBelongHere</span></div>
+    </div>
+
+    <form onsubmit="return false">
+      <div class="row2">
+        <div class="field"><label for="fn">First Name</label><input id="fn" type="text" autocomplete="given-name"></div>
+        <div class="field"><label for="ln">Last Name</label><input id="ln" type="text" autocomplete="family-name"></div>
+      </div>
+      <div class="field"><label for="em">Email</label><input id="em" type="email" autocomplete="email"></div>
+      <div class="field"><label for="ms">Message</label><textarea id="ms" rows="5"></textarea></div>
+      <button class="btn" type="submit">Send</button>
+      <p class="thanks">Thanks for submitting!</p>
+    </form>
+  </div>
+</div></section>
+
+<div class="note">
+<strong>Removed from v1 — copy I wrote that isn't yours:</strong>
+<ul style="margin:9px 0 0 18px;line-height:1.85">
+  <li>"Questions about a visit, a ministry, or prayer — we'd love to hear from you…"</li>
+  <li>"We answer within a couple of days."</li>
+  <li>"Our prayer team reads every one."</li>
+  <li>"Weekdays, and after service on Sundays."</li>
+  <li>"Sunday service runs at both. Everything during the week meets at the Main Campus…"</li>
+  <li>"Planning a first visit? Asking about a ministry?…"</li>
+  <li>Also dropped: the prayer-request email, which lives on your homepage, not on Contact.</li>
+</ul>
+</div>
+
+<div class="gap">
+<strong>Where the page now runs thin.</strong> Contact has 15 strings of text total, so the design has little to hold. Three spots would carry a sentence well, if you ever want to write one — I won't add anything unless you do:
+<ul style="margin:9px 0 0 18px;line-height:1.85">
+  <li><strong>Under the "Contact" heading</strong> — one line saying who reads these and roughly when you reply.</li>
+  <li><strong>Under "Our Locations"</strong> — one line explaining that Sunday runs at both campuses and weeknights are at Main. Right now the times tables imply it, but nothing says it.</li>
+  <li><strong>Beside the form</strong> — one line on what to use it for.</li>
+</ul>
+Send me the wording and I'll drop it in. Or leave them out — the page works without.
+</div>
+
+</body>
+</html>

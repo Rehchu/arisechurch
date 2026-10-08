@@ -1,0 +1,178 @@
+[
+  {
+    "contentKey": "sermons.hero.kicker",
+    "page": "sermons",
+    "label": "Hero kicker",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Top of page, small red text above the big title"
+  },
+  {
+    "contentKey": "sermons.hero.heading",
+    "page": "sermons",
+    "label": "Hero heading",
+    "text": "Sermons",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "sermons.latest.heading",
+    "page": "sermons",
+    "label": "Latest service heading",
+    "text": "Sunday Morning<br>Service",
+    "imageUrl": "",
+    "where": "Dark section beside the video player, title"
+  },
+  {
+    "contentKey": "sermons.latest.strip",
+    "page": "sermons",
+    "label": "Latest service red tag",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Dark section beside the video player, slanted red tag under the title"
+  },
+  {
+    "contentKey": "sermons.series.kicker",
+    "page": "sermons",
+    "label": "Current series kicker",
+    "text": "Current Series",
+    "imageUrl": "",
+    "where": "Red series band (shown only when a series is active), small text"
+  },
+  {
+    "contentKey": "sermons.glory.kicker",
+    "page": "sermons",
+    "label": "Glory Nights kicker",
+    "text": "Monday Nights",
+    "imageUrl": "",
+    "where": "Glory Nights section, small red text"
+  },
+  {
+    "contentKey": "sermons.glory.heading",
+    "page": "sermons",
+    "label": "Glory Nights heading",
+    "text": "Glory Nights",
+    "imageUrl": "",
+    "where": "Glory Nights section, title"
+  },
+  {
+    "contentKey": "site.times.main.glorynight",
+    "page": "sermons",
+    "label": "Glory Night time",
+    "text": "Monday 7:00 PM",
+    "imageUrl": "",
+    "where": "Shared site fact: bottom banner under the videos (\"Glory Nights Monday 7:00 PM\")"
+  },
+  {
+    "contentKey": "sermons.glory.campus",
+    "page": "sermons",
+    "label": "Glory Nights campus tag",
+    "text": "Main Campus",
+    "imageUrl": "",
+    "where": "Glory Nights section, second outlined tag"
+  },
+  {
+    "contentKey": "sermons.glory.address",
+    "page": "sermons",
+    "label": "Glory Nights address tag",
+    "text": "501 Ates Road, Pineville",
+    "imageUrl": "",
+    "where": "Glory Nights section, third outlined tag"
+  },
+  {
+    "contentKey": "sermons.glory.button",
+    "page": "sermons",
+    "label": "Glory Nights button",
+    "text": "All Glory Nights",
+    "imageUrl": "",
+    "where": "Glory Nights section, outlined button"
+  },
+  {
+    "contentKey": "sermons.clips.kicker",
+    "page": "sermons",
+    "label": "Clips kicker",
+    "text": "More From Arise Church",
+    "imageUrl": "",
+    "where": "White clips section, small red text"
+  },
+  {
+    "contentKey": "sermons.clips.heading",
+    "page": "sermons",
+    "label": "Clips heading",
+    "text": "Clips &amp; Announcements",
+    "imageUrl": "",
+    "where": "White clips section, title"
+  },
+  {
+    "contentKey": "sermons.clips.button",
+    "page": "sermons",
+    "label": "Clips button",
+    "text": "All Messages on YouTube",
+    "imageUrl": "",
+    "where": "White clips section, button under the cards"
+  },
+  {
+    "contentKey": "sermons.cta.kicker",
+    "page": "sermons",
+    "label": "Bottom banner kicker",
+    "text": "Join Us In Person",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, small text"
+  },
+  {
+    "contentKey": "sermons.cta.heading",
+    "page": "sermons",
+    "label": "Bottom banner heading",
+    "text": "Better In The Room",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, title"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "sermons",
+    "label": "Main campus Sunday time",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Shared site fact (bottom banner)"
+  },
+  {
+    "contentKey": "sermons.cta.bodyMain",
+    "page": "sermons",
+    "label": "Bottom banner text after main time",
+    "text": "in Pineville,",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, after the Pineville Sunday time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "sermons",
+    "label": "Second campus Sunday time",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Shared site fact (bottom banner)"
+  },
+  {
+    "contentKey": "sermons.cta.bodySecond",
+    "page": "sermons",
+    "label": "Bottom banner text after second time",
+    "text": "in Alexandria. Glory Nights",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, after the Alexandria Sunday time"
+  },
+  {
+    "contentKey": "sermons.cta.bodyEnd",
+    "page": "sermons",
+    "label": "Bottom banner ending punctuation",
+    "text": ".",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, period after the Glory Nights time"
+  },
+  {
+    "contentKey": "sermons.cta.button",
+    "page": "sermons",
+    "label": "Bottom banner button",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, white button"
+  }
+]

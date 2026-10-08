@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arise Church — Ministries &amp; Leaders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D6222D; --redL:#DB3F48; --ink:#0A0A0C; --scrim:#060608; --paper:#fff; --bone:#F4F2F0;
+  --rule:rgba(10,10,12,.12); --ruleD:rgba(255,255,255,.15); --muted:#6A6A6E;
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px;
+  --shell:1180px; --gut:clamp(20px,5vw,56px); --sect:clamp(56px,8vw,104px);
+  color-scheme:light only;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background-color:#fff;color:var(--ink);-webkit-text-size-adjust:100%}
+body{font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3,h4{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
+h1{font-size:clamp(38px,7vw,82px)} h2{font-size:clamp(26px,3.6vw,46px)}
+h3{font-size:clamp(17px,1.8vw,22px);letter-spacing:.03em} h4{font-size:13px;letter-spacing:.12em}
+p{font-size:clamp(15.5px,1.4vw,17px)}
+.lede{font-size:clamp(16.5px,1.6vw,20px);line-height:1.62}
+img{color:#fff;font-size:12px}
+
+.mark{display:flex;align-items:center;margin-bottom:var(--s2)}
+.mark::before{content:"";flex:0 0 auto;width:44px;height:7px;background:var(--red);box-shadow:60px 0 0 var(--red);margin-right:78px}
+.kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+.mark--l .kicker{color:var(--redL)}
+.strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:8px 19px}
+.strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.btn{display:inline-block;padding:14px 30px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--red);background:var(--red);color:#fff;font-family:inherit;cursor:pointer;transition:background .18s,color .18s}
+.btn:hover{background:transparent;color:var(--red)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+.sect{padding:var(--sect) 0;background-color:#fff}
+.sect--bone{background-color:var(--bone)}
+.sect--ink{background-color:var(--ink)}
+.sect--ink h2,.sect--ink h3{color:#fff}
+.sect--ink p{color:rgba(255,255,255,.82)}
+.phead{background-color:var(--ink);color:#fff;padding:clamp(48px,7vw,92px) 0 clamp(38px,5vw,64px);position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;right:-60px;bottom:-90px;width:290px;height:290px;border:42px solid rgba(214,34,45,.13);border-radius:50%}
+.phead h1,.phead p{position:relative;z-index:1}
+.phead h1{color:#fff} .phead p{color:rgba(255,255,255,.82);margin-top:var(--s3);max-width:64ch}
+
+.sw{position:sticky;top:0;z-index:99;background:var(--ink);border-bottom:2px solid var(--red)}
+.sw__in{max-width:var(--shell);margin:0 auto;padding:0 var(--gut);display:flex;gap:2px}
+.sw button{background:transparent;border:0;color:rgba(255,255,255,.62);font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:15px 20px;cursor:pointer}
+.sw button[aria-selected="true"]{background:var(--red);color:#fff}
+.page{display:none}.page[data-on="true"]{display:block}
+.note{background-color:#FFF8E1;border-left:4px solid var(--red);padding:13px 20px;font-size:13px}
+.gap{background-color:#EEF4FF;border-left:4px solid #2A70DE;padding:13px 20px;font-size:13px}
+
+/* MINISTRIES */
+.min{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--rule)}
+@media(max-width:1000px){.min{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:540px){.min{grid-template-columns:1fr}}
+.min__c{position:relative;display:block;text-decoration:none;background:var(--scrim);overflow:hidden;aspect-ratio:4/5}
+.min__c img{width:100%;height:100%;object-fit:cover;filter:grayscale(.28) brightness(.6);transition:transform .5s,filter .35s;background:#1A1A1F}
+.min__c:hover img{transform:scale(1.05);filter:grayscale(0) brightness(.76)}
+.min__t{position:absolute;left:0;right:0;bottom:0;padding:var(--s5) var(--s3) var(--s3);
+  background:linear-gradient(180deg,rgba(6,6,8,0) 0%,rgba(6,6,8,.72) 42%,rgba(6,6,8,.97) 100%)}
+.min__t h3{color:#fff;font-size:18px}
+.min__more{display:inline-block;margin-top:var(--s2);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#fff;opacity:.92}
+.min__more::after{content:" →"}
+.min__c[data-soon]::after{content:"Coming Soon";position:absolute;top:var(--s3);left:var(--s3);background:var(--red);color:#fff;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px}
+.min__c[data-soon] .min__more{display:none}
+
+.needband{background:var(--red);color:#fff;padding:var(--s5) clamp(24px,4vw,52px);margin-top:var(--s5);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s4);flex-wrap:wrap}
+.needband h2{color:#fff}
+.needband .btn{background:#fff;color:var(--red);border-color:#fff}
+.needband .btn:hover{background:transparent;color:#fff}
+
+/* LEADERS */
+.lead{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5) var(--s4);margin-top:var(--s5)}
+@media(max-width:900px){.lead{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.lead{grid-template-columns:1fr}}
+.lead__c{display:flex;flex-direction:column}
+.lead__ph{aspect-ratio:3/4;background:var(--bone);overflow:hidden;position:relative}
+.lead__ph img{width:100%;height:100%;object-fit:cover;object-position:center 15%;background:#1A1A1F}
+.lead__init{position:absolute;inset:0;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:52px;color:var(--redL)}
+.lead__role{display:inline-block;align-self:flex-start;background:var(--red);color:#fff;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;margin-top:var(--s3)}
+.lead__c h3{margin-top:var(--s2);font-size:20px}
+.lead__c p{font-size:14.5px;color:var(--muted);margin-top:var(--s2);line-height:1.7}
+.lead--feat{grid-column:span 2}
+.lead--feat .lead__ph{aspect-ratio:16/10}
+.lead--feat h3{font-size:clamp(24px,2.6vw,34px)}
+.lead--feat p{font-size:15.5px}
+@media(max-width:900px){.lead--feat{grid-column:span 2}}
+@media(max-width:560px){.lead--feat{grid-column:span 1}.lead--feat .lead__ph{aspect-ratio:3/4}}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-color-scheme: dark){
+  html,body{background-color:#fff;color:#0A0A0C}
+  .sect{background-color:#fff}.sect--bone{background-color:#F4F2F0}
+  .sect--ink,.phead{background-color:#0A0A0C}
+  .sect--ink h2,.sect--ink h3,.phead h1{color:#fff}
+}
+</style>
+</head>
+<body>
+
+<div class="note"><strong>MINISTRIES &amp; LEADERS — rebuilt with your real text.</strong> These two replace the earlier versions inside the design-system file, which contained copy I had written. Every word below is from your live pages, with only the errors you confirmed corrected.</div>
+
+<nav class="sw"><div class="sw__in" role="tablist">
+  <button role="tab" aria-selected="true"  data-go="min">Ministries</button>
+  <button role="tab" aria-selected="false" data-go="lead">Meet our Leaders</button>
+</div></nav>
+
+<!-- MINISTRIES -->
+<div class="page" id="min" data-on="true">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Arise Church</span></div>
+    <h1>Ministries</h1>
+  </div></header>
+
+  <section class="sect" style="padding-top:var(--s6)"><div class="shell">
+    <div class="min">
+      <a class="min__c" href="/lead-network">
+        <img src="https://static.wixstatic.com/media/c3b2d0_1c539649f39f48cbb157d4e27efeb843~mv2.png" alt="Lead Network">
+        <div class="min__t"><h3>Lead Network</h3><span class="min__more">Learn More</span></div></a>
+
+      <a class="min__c" href="/childrens">
+        <img src="https://static.wixstatic.com/media/1f9fa2_a5448e514cc14ea08cb657e4f1a9cec4~mv2.jpg" alt="Children's Ministry">
+        <div class="min__t"><h3>Children's Ministry</h3><span class="min__more">Learn More</span></div></a>
+
+      <a class="min__c" href="/youth">
+        <img src="https://static.wixstatic.com/media/1f9fa2_89a44a65090b488ea33de3157f4f3490~mv2.png" alt="Youth Ministry">
+        <div class="min__t"><h3>Youth Ministry</h3><span class="min__more">Learn More</span></div></a>
+
+      <a class="min__c" href="/outreach">
+        <img src="https://static.wixstatic.com/media/1f9fa2_2aea5b909f5e467b9d6aa1c30e513ce4~mv2.png" alt="Outreach">
+        <div class="min__t"><h3>Outreach</h3><span class="min__more">Learn More</span></div></a>
+
+      <a class="min__c" href="#" data-soon>
+        <img src="https://static.wixstatic.com/media/1f9fa2_deb5664679744b2ab198359ec71b4c0d~mv2.jpg" alt="Thrive For Young Adults">
+        <div class="min__t"><h3>Thrive For Young Adults</h3></div></a>
+
+      <a class="min__c" href="#" data-soon>
+        <img src="https://static.wixstatic.com/media/c3b2d0_d18e07d364724ff2b5f01b9f17d78cba~mv2.png" alt="Mvmt 6:14">
+        <div class="min__t"><h3>Mvmt 6:14</h3></div></a>
+
+      <a class="min__c" href="#" data-soon>
+        <img src="https://static.wixstatic.com/media/c3b2d0_df139d07e67d499993dc5818894f91d1~mv2.jpg" alt="Worship Team">
+        <div class="min__t"><h3>Worship Team</h3></div></a>
+
+      <a class="min__c" href="#" data-soon>
+        <img src="https://static.wixstatic.com/media/c3b2d0_f30b31e02f5c43cd8f33555c4ab08705~mv2.jpg" alt="In Edge/ X Edge">
+        <div class="min__t"><h3>In Edge/ X Edge</h3></div></a>
+    </div>
+
+    <div class="needband">
+      <h2>We are In Need</h2>
+      <a class="btn" href="/serve">Sign Up to Serve!</a>
+    </div>
+  </div></section>
+
+  <div class="gap">
+    <strong>Three changes, no new copy.</strong>
+    <ul style="margin:9px 0 0 18px;line-height:1.85">
+      <li><strong>The four dead "Learn More" buttons are gone.</strong> Thrive, Mvmt 6:14, Worship Team and In Edge/X Edge carry a <strong>Coming Soon</strong> flag instead — you said those pages are planned but not built.</li>
+      <li><strong>"We are In Need" now does something.</strong> It's a bare line of text on your live page. Here it's a band linking to Serve, which is where that need actually gets met.</li>
+      <li><strong>Uniform 4:5 crops.</strong> Your live cards mix square and rectangular images at different quality levels.</li>
+    </ul>
+    Also: Lead Network still points at <code>/general-4</code> on the live site — this mockup assumes <code>/lead-network</code>.
+  </div>
+</div>
+
+<!-- LEADERS -->
+<div class="page" id="lead">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Arise Church</span></div>
+    <h1>Meet our Leaders</h1>
+    <p class="lede">Welcome to our community. We are pleased to present our esteemed ministers, leaders, and staff who are dedicated to our mission. Each individual contributes unique talents and a commitment to cultivating an inclusive environment. We invite you to explore their significant contributions to our organization.</p>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="lead">
+
+      <div class="lead__c lead--feat">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_e137cc6737284d6694200ea8feda5552~mv2.png" alt="Apostle Bryant Sanders and Pastor Vanessa Sanders"></div>
+        <span class="lead__role">Apostle &middot; Pastor &amp; Prophet</span>
+        <h3>Bryant &amp; Vanessa Sanders</h3>
+        <p>Apostle Bryant Sanders leads Arise Church in this season as the Apostle of Arise Church and Leader of the Lead Network. His years of dedicated ministry and guidance are invaluable to us, and we extend our heartfelt gratitude for his leadership. He is a source of strength for our community.</p>
+        <p>We are privileged to have Pastor Vanessa Sanders as one of our esteemed leaders at Arise Church! In her role as Prophet, she offers invaluable insight and guidance to our community. We deeply appreciate her dedication and passion for serving others.</p>
+      </div>
+
+      <div class="lead__c">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_b3cdea954391493eba6f3f63878bf2d4~mv2.png" alt="Norman and Margie Youngblood"></div>
+        <span class="lead__role">Elder &middot; Pastoral Team</span>
+        <h3>Norman and<br>Margie Youngblood</h3>
+        <p>Norman and Margie Youngblood are esteemed members of our church community. Norman serves as one of our elders and is an integral part of our pastoral team, offering guidance and support to our congregation. Margie enhances our worship experience with her exceptional vocal talents on the praise and worship team. Their commitment and dedication significantly contribute to the mission and vision of Arise Church.</p>
+      </div>
+
+      <div class="lead__c">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_4fb0f121cb08443a8ca1f72286449c12~mv2.png" alt="Chad and Tabitha Kerik"></div>
+        <span class="lead__role">Elders &middot; Youth Ministers</span>
+        <h3>Chad and<br>Tabitha Kerik</h3>
+        <p>Chad and Tabitha Kerik not only serve as Elders, but they also take on the vital roles of our Youth Ministers and Leaders of Thrive for young adults. Their dedication and passion for youth and young adult ministry shine through in all their efforts. For more information about their ministries and how you can get involved, be sure to check out our Ministry section!</p>
+      </div>
+
+      <div class="lead__c">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_4b62ef589ff047009574fdceb6c39e18~mv2.png" alt="Herbert and Erica Perry"></div>
+        <span class="lead__role">Minister</span>
+        <h3>Herbert and<br>Erica Perry</h3>
+        <p>Herbert and Erica Perry are truly remarkable members of our church community. Their unwavering dedication and commitment inspire us all. Herbert, as one of our esteemed ministers, leads with passion and grace, setting a shining example for everyone. We are grateful for their contributions and the positive impact they have on our congregation.</p>
+      </div>
+
+      <div class="lead__c">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_76391dad01a64c3ba6df7e2e76c77ba8~mv2.png" alt="Pastor Will Robertson"></div>
+        <span class="lead__role">Pastor</span>
+        <h3>Will Robertson</h3>
+        <p>Will Robertson is an exceptional pastor and an even more extraordinary individual! As an essential member of our Pastoral Team, he contributes to our community in meaningful and impactful ways. His kindness and compassion shine through in all his efforts, positively influencing the lives of those he serves. We are truly fortunate to have him on our team!</p>
+      </div>
+
+      <div class="lead__c">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_32361ebeaf7d4f2095bdb7383421ad6d~mv2.png" alt="Minister Ethan Mayes"></div>
+        <span class="lead__role">Minister &middot; Worship</span>
+        <h3>Ethan Mayes</h3>
+        <p>Ethan Mayes is a committed member of our praise and worship team and is also one of our ministers. His passion and dedication to serving the community are inspiring. We are grateful for all the effort and love he brings to everything he does. Thank you, Ethan, for your positive impact!</p>
+      </div>
+
+
+    </div>
+  </div></section>
+
+  <div class="gap">
+    <strong>Every correction, listed — nothing else touched.</strong>
+    <ul style="margin:9px 0 0 18px;line-height:1.85">
+      <li><strong>Heading "Will Robinson" → "Will Robertson".</strong> Two different people; the body was already right.</li>
+      <li><strong>"Chad and Tabitha Ker" → "Kerik".</strong></li>
+      <li><strong>Bryant's bio moved to third person</strong>, as you approved. It was written <em>to</em> him while every other bio was written <em>about</em> its subject.</li>
+      <li><strong>Six missing words restored:</strong> "a source of <u>strength</u>", "truly remarkable <u>members</u>", "one of our esteemed <u>ministers</u>", "in <u>meaningful</u> and impactful ways", "member of <u>our</u> praise and worship team", "shine through in all <u>their</u> efforts".</li>
+      <li><strong>Ethan's closing line</strong> switched from "you/your" to third person to match the rest of the page.</li>
+      <li><strong>Roles pulled out as red tags</strong> so the page is scannable. The Sanders lead, so they open the page — on the live page Vanessa appears before Bryant.</li>
+      <li><strong>Bryant and Vanessa share one portrait</strong>, so they're one wide feature card carrying both bios. That's what the photo actually shows.</li>
+      <li><strong>CORRECTION:</strong> Ethan Mayes <em>does</em> have a photo — my earlier read was wrong. Because the Sanders share the first portrait, every image sits one slot earlier than a naive read suggests, which made it look as though the last person had none. <strong>Every one of the seven has a photo.</strong> No monogram cards needed.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  var tabs=[].slice.call(document.querySelectorAll('.sw button'));
+  tabs.forEach(function(b){
+    b.addEventListener('click',function(){
+      tabs.forEach(function(x){x.setAttribute('aria-selected','false')});
+      b.setAttribute('aria-selected','true');
+      [].slice.call(document.querySelectorAll('.page')).forEach(function(p){
+        p.setAttribute('data-on', String(p.id===b.dataset.go));
+      });
+      window.scrollTo(0,0);
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+[
+  {
+    "contentKey": "youth.hero.kicker",
+    "page": "youth",
+    "label": "Hero kicker",
+    "text": "6th to 12th Grade",
+    "imageUrl": "",
+    "where": "Top of page, small red text above the big title"
+  },
+  {
+    "contentKey": "youth.hero.heading",
+    "page": "youth",
+    "label": "Hero heading",
+    "text": "Youth Ministry",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "youth.banner.image",
+    "page": "youth",
+    "label": "Banner photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_c1f923bf8bb745849bb220060de02a39~mv2.jpg",
+    "where": "Wide photo under the page title"
+  },
+  {
+    "contentKey": "youth.leaders.kicker",
+    "page": "youth",
+    "label": "Leaders kicker",
+    "text": "Our Leaders",
+    "imageUrl": "",
+    "where": "Leaders section, small red text"
+  },
+  {
+    "contentKey": "youth.leaders.heading",
+    "page": "youth",
+    "label": "Leaders heading",
+    "text": "Our Leaders",
+    "imageUrl": "",
+    "where": "Leaders section title"
+  },
+  {
+    "contentKey": "youth.leaders.photo",
+    "page": "youth",
+    "label": "Leaders photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/1f9fa2_4fb0f121cb08443a8ca1f72286449c12~mv2.png",
+    "where": "Leaders section, photo on the card"
+  },
+  {
+    "contentKey": "youth.leaders.role",
+    "page": "youth",
+    "label": "Leaders role badge",
+    "text": "Youth Ministers",
+    "imageUrl": "",
+    "where": "Leaders section, red badge on the card"
+  },
+  {
+    "contentKey": "youth.leaders.name",
+    "page": "youth",
+    "label": "Leaders names",
+    "text": "Chad and Tabitha Kerik",
+    "imageUrl": "",
+    "where": "Leaders section, names on the card"
+  },
+  {
+    "contentKey": "youth.events.kicker",
+    "page": "youth",
+    "label": "Events kicker",
+    "text": "Youth Events",
+    "imageUrl": "",
+    "where": "Events section, small red text"
+  },
+  {
+    "contentKey": "youth.events.heading",
+    "page": "youth",
+    "label": "Events heading",
+    "text": "Youth Events",
+    "imageUrl": "",
+    "where": "Events section title"
+  },
+  {
+    "contentKey": "youth.events.emptyHeading",
+    "page": "youth",
+    "label": "Events empty-box heading",
+    "text": "Nothing listed yet",
+    "imageUrl": "",
+    "where": "Events section, dashed box title"
+  },
+  {
+    "contentKey": "youth.events.emptyBody",
+    "page": "youth",
+    "label": "Events empty-box text",
+    "text": "Youth events will appear here as they are announced.",
+    "imageUrl": "",
+    "where": "Events section, dashed box text"
+  },
+  {
+    "contentKey": "youth.moments.kicker",
+    "page": "youth",
+    "label": "Photos kicker",
+    "text": "Moments",
+    "imageUrl": "",
+    "where": "Photo section, small red text"
+  },
+  {
+    "contentKey": "youth.moments.heading",
+    "page": "youth",
+    "label": "Photos heading",
+    "text": "Youth Life",
+    "imageUrl": "",
+    "where": "Photo section title"
+  },
+  {
+    "contentKey": "youth.cta.kicker",
+    "page": "youth",
+    "label": "Get involved box kicker",
+    "text": "Get Involved",
+    "imageUrl": "",
+    "where": "Red box at the bottom, small text"
+  },
+  {
+    "contentKey": "youth.cta.heading",
+    "page": "youth",
+    "label": "Get involved box heading",
+    "text": "Come Hang Out",
+    "imageUrl": "",
+    "where": "Red box at the bottom, title"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "site",
+    "label": "Sunday service time (Pineville)",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Red box at the bottom, first time (shared site fact)"
+  },
+  {
+    "contentKey": "youth.cta.campus1",
+    "page": "youth",
+    "label": "Box first campus words",
+    "text": "in Pineville,",
+    "imageUrl": "",
+    "where": "Red box at the bottom, after the first time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "site",
+    "label": "Sunday service time (Alexandria)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Red box at the bottom, second time (shared site fact)"
+  },
+  {
+    "contentKey": "youth.cta.campus2",
+    "page": "youth",
+    "label": "Box second campus words",
+    "text": "in Alexandria.",
+    "imageUrl": "",
+    "where": "Red box at the bottom, after the second time"
+  },
+  {
+    "contentKey": "youth.cta.button",
+    "page": "youth",
+    "label": "Get involved box button",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Red box at the bottom, white button"
+  }
+]

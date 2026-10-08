@@ -1,0 +1,194 @@
+[
+  {
+    "contentKey": "events.hero.kicker",
+    "page": "events",
+    "label": "Hero kicker",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Top of page, small red text above the big title"
+  },
+  {
+    "contentKey": "events.hero.heading",
+    "page": "events",
+    "label": "Hero heading",
+    "text": "Events",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "events.upcoming.kicker",
+    "page": "events",
+    "label": "Upcoming kicker",
+    "text": "Upcoming",
+    "imageUrl": "",
+    "where": "Above the featured event (or the empty calendar message)"
+  },
+  {
+    "contentKey": "events.featured.timeLabel",
+    "page": "events",
+    "label": "Featured event Time label",
+    "text": "Time",
+    "imageUrl": "",
+    "where": "Featured event box, label beside the date and time"
+  },
+  {
+    "contentKey": "events.featured.locationLabel",
+    "page": "events",
+    "label": "Featured event Location label",
+    "text": "Location",
+    "imageUrl": "",
+    "where": "Featured event box, label beside the address"
+  },
+  {
+    "contentKey": "events.empty.heading",
+    "page": "events",
+    "label": "No events heading",
+    "text": "Nothing On The Calendar<br>Right Now",
+    "imageUrl": "",
+    "where": "Shown only when there are no upcoming events, big title"
+  },
+  {
+    "contentKey": "events.empty.body",
+    "page": "events",
+    "label": "No events text start",
+    "text": "Join us",
+    "imageUrl": "",
+    "where": "No-events message, first words before the Sunday time"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "events",
+    "label": "Main campus Sunday time",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Shared site fact (no-events message)"
+  },
+  {
+    "contentKey": "events.empty.bodyMain",
+    "page": "events",
+    "label": "No events text after main time",
+    "text": "in Pineville or",
+    "imageUrl": "",
+    "where": "No-events message, after the Pineville Sunday time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "events",
+    "label": "Second campus Sunday time",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Shared site fact (no-events message)"
+  },
+  {
+    "contentKey": "events.empty.bodySecond",
+    "page": "events",
+    "label": "No events text after second time",
+    "text": "in Alexandria, or",
+    "imageUrl": "",
+    "where": "No-events message, after the Alexandria Sunday time"
+  },
+  {
+    "contentKey": "site.times.main.glorynight",
+    "page": "events",
+    "label": "Glory Night time",
+    "text": "Monday 7:00 PM",
+    "imageUrl": "",
+    "where": "Shared site fact (no-events message)"
+  },
+  {
+    "contentKey": "events.empty.bodyEnd",
+    "page": "events",
+    "label": "No events text end",
+    "text": "for Glory Night.",
+    "imageUrl": "",
+    "where": "No-events message, last words"
+  },
+  {
+    "contentKey": "events.empty.button",
+    "page": "events",
+    "label": "No events button",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "No-events message, red button"
+  },
+  {
+    "contentKey": "events.more.kicker",
+    "page": "events",
+    "label": "More events kicker",
+    "text": "Also Coming Up",
+    "imageUrl": "",
+    "where": "Section below the featured event, small red text (only when 2+ events)"
+  },
+  {
+    "contentKey": "events.more.heading",
+    "page": "events",
+    "label": "More events heading",
+    "text": "More Events",
+    "imageUrl": "",
+    "where": "Section below the featured event, title (only when 2+ events)"
+  },
+  {
+    "contentKey": "events.past.kicker",
+    "page": "events",
+    "label": "Past events kicker",
+    "text": "Previous Events",
+    "imageUrl": "",
+    "where": "Dark section with past event photos, small red text"
+  },
+  {
+    "contentKey": "events.past.heading",
+    "page": "events",
+    "label": "Past events heading",
+    "text": "Here You Can Check Out<br>Photos From Our Past Events",
+    "imageUrl": "",
+    "where": "Dark section with past event photos, title"
+  },
+  {
+    "contentKey": "events.past.emptyHeading",
+    "page": "events",
+    "label": "No past events heading",
+    "text": "Photo albums coming soon",
+    "imageUrl": "",
+    "where": "Dark past-events section, dashed box when there are no past events"
+  },
+  {
+    "contentKey": "events.past.emptyBody",
+    "page": "events",
+    "label": "No past events text",
+    "text": "Past event albums will appear here.",
+    "imageUrl": "",
+    "where": "Dark past-events section, dashed box text"
+  },
+  {
+    "contentKey": "events.cta.kicker",
+    "page": "events",
+    "label": "Bottom banner kicker",
+    "text": "Questions",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, small text"
+  },
+  {
+    "contentKey": "events.cta.heading",
+    "page": "events",
+    "label": "Bottom banner heading",
+    "text": "Planning To Come?",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, title"
+  },
+  {
+    "contentKey": "events.cta.body",
+    "page": "events",
+    "label": "Bottom banner text",
+    "text": "Email us and someone will get back to you with details.",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, sentence"
+  },
+  {
+    "contentKey": "events.cta.button",
+    "page": "events",
+    "label": "Bottom banner button",
+    "text": "Contact Us",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, white button"
+  }
+]

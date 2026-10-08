@@ -1,0 +1,146 @@
+[
+  {
+    "contentKey": "serve.hero.kicker",
+    "page": "serve",
+    "label": "Hero kicker",
+    "text": "Volunteer Sign Up",
+    "imageUrl": "",
+    "where": "Top of page, small red text above \"Serve\""
+  },
+  {
+    "contentKey": "serve.hero.heading",
+    "page": "serve",
+    "label": "Hero heading",
+    "text": "Serve",
+    "imageUrl": "",
+    "where": "Top of page, big heading"
+  },
+  {
+    "contentKey": "serve.hero.body",
+    "page": "serve",
+    "label": "Hero intro",
+    "text": "Join our congregation in making a difference. We're seeking passionate volunteers to fill key roles and help our ministries thrive.",
+    "imageUrl": "",
+    "where": "Top of page, paragraph under \"Serve\""
+  },
+  {
+    "contentKey": "serve.positions.kicker",
+    "page": "serve",
+    "label": "Positions kicker",
+    "text": "Positions Needed",
+    "imageUrl": "",
+    "where": "Positions section, small red text above the heading"
+  },
+  {
+    "contentKey": "serve.positions.heading",
+    "page": "serve",
+    "label": "Positions heading",
+    "text": "Where You<br>Could Serve",
+    "imageUrl": "",
+    "where": "Positions section heading"
+  },
+  {
+    "contentKey": "serve.positions.urgentTag",
+    "page": "serve",
+    "label": "Most Needed badge",
+    "text": "Most Needed",
+    "imageUrl": "",
+    "where": "Positions section, red badge on urgent position cards (the cards themselves come from CMS -> Serve Positions)"
+  },
+  {
+    "contentKey": "serve.positions.cta",
+    "page": "serve",
+    "label": "Position card link",
+    "text": "Sign Up &rarr;",
+    "imageUrl": "",
+    "where": "Positions section, red text at the bottom of every position card"
+  },
+  {
+    "contentKey": "serve.form.kicker",
+    "page": "serve",
+    "label": "Form kicker",
+    "text": "Sign Up",
+    "imageUrl": "",
+    "where": "Dark sign-up panel, small red text above the heading"
+  },
+  {
+    "contentKey": "serve.form.heading",
+    "page": "serve",
+    "label": "Form heading",
+    "text": "Use Your Gifts",
+    "imageUrl": "",
+    "where": "Dark sign-up panel heading"
+  },
+  {
+    "contentKey": "serve.form.body",
+    "page": "serve",
+    "label": "Form intro",
+    "text": "No experience needed - just a willingness to show up. Someone from that team will reach out about next steps.",
+    "imageUrl": "",
+    "where": "Dark sign-up panel, paragraph under the heading"
+  },
+  {
+    "contentKey": "serve.form.nameLabel",
+    "page": "serve",
+    "label": "Form name label",
+    "text": "Your Name",
+    "imageUrl": "",
+    "where": "Sign-up form, first field label"
+  },
+  {
+    "contentKey": "serve.form.emailLabel",
+    "page": "serve",
+    "label": "Form email label",
+    "text": "Email",
+    "imageUrl": "",
+    "where": "Sign-up form, second field label"
+  },
+  {
+    "contentKey": "serve.form.phoneLabel",
+    "page": "serve",
+    "label": "Form phone label",
+    "text": "Phone",
+    "imageUrl": "",
+    "where": "Sign-up form, third field label"
+  },
+  {
+    "contentKey": "serve.form.positionLabel",
+    "page": "serve",
+    "label": "Form position label",
+    "text": "Which position?",
+    "imageUrl": "",
+    "where": "Sign-up form, fourth field label"
+  },
+  {
+    "contentKey": "serve.form.messageLabel",
+    "page": "serve",
+    "label": "Form message label",
+    "text": "Anything else we should know?",
+    "imageUrl": "",
+    "where": "Sign-up form, large text box label"
+  },
+  {
+    "contentKey": "serve.form.button",
+    "page": "serve",
+    "label": "Form button",
+    "text": "Sign Up to Serve",
+    "imageUrl": "",
+    "where": "Sign-up form, red submit button"
+  },
+  {
+    "contentKey": "serve.success.heading",
+    "page": "serve",
+    "label": "Thank-you heading",
+    "text": "Thank You",
+    "imageUrl": "",
+    "where": "Replaces the sign-up form after it is sent"
+  },
+  {
+    "contentKey": "serve.success.body",
+    "page": "serve",
+    "label": "Thank-you message",
+    "text": "We've got your sign-up, and someone from that team will reach out about next steps.",
+    "imageUrl": "",
+    "where": "Replaces the sign-up form after it is sent, under \"Thank You\""
+  }
+]

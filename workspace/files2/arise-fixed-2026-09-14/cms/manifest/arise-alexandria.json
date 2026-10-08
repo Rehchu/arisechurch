@@ -1,0 +1,218 @@
+[
+  {
+    "contentKey": "alexandria.hero.kicker",
+    "page": "alexandria",
+    "label": "Hero kicker",
+    "text": "Arise Church Alexandria",
+    "imageUrl": "",
+    "where": "Top of page, small red words above the big title"
+  },
+  {
+    "contentKey": "alexandria.hero.heading",
+    "page": "alexandria",
+    "label": "Hero heading",
+    "text": "Arise Church<br>Alexandria",
+    "imageUrl": "",
+    "where": "Top of page, the big two-line title"
+  },
+  {
+    "contentKey": "alexandria.hero.body",
+    "page": "alexandria",
+    "label": "Hero intro",
+    "text": "Our second campus on North Boulevard. Same vision, same family, closer to home.",
+    "imageUrl": "",
+    "where": "Top of page, paragraph under the big title"
+  },
+  {
+    "contentKey": "alexandria.pastor.kicker",
+    "page": "alexandria",
+    "label": "Lead Pastor kicker",
+    "text": "Lead Pastor",
+    "imageUrl": "",
+    "where": "Second section, small red words at the top"
+  },
+  {
+    "contentKey": "alexandria.pastor.photo",
+    "page": "alexandria",
+    "label": "Pastor photo",
+    "text": "",
+    "imageUrl": "",
+    "where": "Second section, the portrait on the left (a monogram card shows until an image is set)"
+  },
+  {
+    "contentKey": "alexandria.pastor.role",
+    "page": "alexandria",
+    "label": "Pastor role badge",
+    "text": "Lead Pastor, Arise Church Alexandria",
+    "imageUrl": "",
+    "where": "Second section, red badge above the pastor name"
+  },
+  {
+    "contentKey": "alexandria.pastor.name",
+    "page": "alexandria",
+    "label": "Pastor name",
+    "text": "Pastor Sheron Turner",
+    "imageUrl": "",
+    "where": "Second section, the pastor name heading"
+  },
+  {
+    "contentKey": "alexandria.pastor.bio1",
+    "page": "alexandria",
+    "label": "Pastor bio, paragraph 1",
+    "text": "Pastor Sheron Turner serves as the Lead Pastor of Arise Church Alexandria, where she has faithfully guided the congregation since 2024. Known for her heart for ministry and dedication to spiritual growth, she is passionate about helping believers Connect with God and His family, Grow in God's character, Serve in God's Church, and Share God's message.",
+    "imageUrl": "",
+    "where": "Second section, first paragraph under the pastor name"
+  },
+  {
+    "contentKey": "alexandria.pastor.bio2",
+    "page": "alexandria",
+    "label": "Pastor bio, paragraph 2",
+    "text": "Pastor Sheron proudly serves under the spiritual covering and leadership of Apostle Bryant and Prophet Vanessa Sanders, the Lead Pastors of Arise Church in Tioga, Louisiana. Through this strong leadership alignment, she carries out the overarching vision of Arise Church to see lives transformed and communities renewed.",
+    "imageUrl": "",
+    "where": "Second section, second paragraph under the pastor name"
+  },
+  {
+    "contentKey": "alexandria.visit.kicker",
+    "page": "alexandria",
+    "label": "Find Us kicker",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Find Us section, small red words at the top"
+  },
+  {
+    "contentKey": "alexandria.visit.heading",
+    "page": "alexandria",
+    "label": "Find Us heading",
+    "text": "Find Us",
+    "imageUrl": "",
+    "where": "Find Us section, heading"
+  },
+  {
+    "contentKey": "alexandria.visit.whereLabel",
+    "page": "alexandria",
+    "label": "Where label",
+    "text": "Where",
+    "imageUrl": "",
+    "where": "Find Us section, left dark card, small red label"
+  },
+  {
+    "contentKey": "alexandria.address",
+    "page": "alexandria",
+    "label": "Campus address (overrides the shared second-campus address)",
+    "text": "5305 North Blvd, Alexandria, LA 71301",
+    "imageUrl": "",
+    "where": "Find Us section, left dark card, the address"
+  },
+  {
+    "contentKey": "site.campus.second",
+    "page": "alexandria",
+    "label": "Second campus address (shared)",
+    "text": "5305 North Blvd, Alexandria, LA 71301",
+    "imageUrl": "",
+    "where": "Find Us section, left dark card, the address (used when alexandria.address is blank)"
+  },
+  {
+    "contentKey": "alexandria.visit.button",
+    "page": "alexandria",
+    "label": "Directions button",
+    "text": "Get Directions",
+    "imageUrl": "",
+    "where": "Find Us section, red button under the address"
+  },
+  {
+    "contentKey": "alexandria.visit.whenLabel",
+    "page": "alexandria",
+    "label": "When label",
+    "text": "When",
+    "imageUrl": "",
+    "where": "Find Us section, right dark card, small red label"
+  },
+  {
+    "contentKey": "site.times.sunday.second.label",
+    "page": "alexandria",
+    "label": "Sunday service label (Alexandria)",
+    "text": "Sunday Service",
+    "imageUrl": "",
+    "where": "Find Us section, right dark card, first row name"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "alexandria",
+    "label": "Sunday service time (Alexandria)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Find Us section, right dark card, first row time (the day name is dropped when the label already says it)"
+  },
+  {
+    "contentKey": "site.times.second.prayer.label",
+    "page": "alexandria",
+    "label": "Prayer label (Alexandria)",
+    "text": "Prayer",
+    "imageUrl": "",
+    "where": "Find Us section, right dark card, prayer row name (row shows only when a time is set)"
+  },
+  {
+    "contentKey": "site.times.second.prayer",
+    "page": "alexandria",
+    "label": "Prayer time (Alexandria)",
+    "text": "",
+    "imageUrl": "",
+    "where": "Find Us section, right dark card, prayer row time (row hidden while blank)"
+  },
+  {
+    "contentKey": "site.times.second.midweek.label",
+    "page": "alexandria",
+    "label": "Bible Study label (Alexandria)",
+    "text": "Bible Study",
+    "imageUrl": "",
+    "where": "Find Us section, right dark card, Bible Study row name (row shows only when a time is set)"
+  },
+  {
+    "contentKey": "site.times.second.midweek",
+    "page": "alexandria",
+    "label": "Bible Study time (Alexandria)",
+    "text": "",
+    "imageUrl": "",
+    "where": "Find Us section, right dark card, Bible Study row time (row hidden while blank)"
+  },
+  {
+    "contentKey": "alexandria.visit.empty",
+    "page": "alexandria",
+    "label": "No times message",
+    "text": "Times coming soon",
+    "imageUrl": "",
+    "where": "Find Us section, right dark card, shown only when no service times are set"
+  },
+  {
+    "contentKey": "alexandria.cta.kicker",
+    "page": "alexandria",
+    "label": "Bottom banner kicker",
+    "text": "First Time?",
+    "imageUrl": "",
+    "where": "Bottom red banner, small words at the top"
+  },
+  {
+    "contentKey": "alexandria.cta.heading",
+    "page": "alexandria",
+    "label": "Bottom banner heading",
+    "text": "Come As You Are",
+    "imageUrl": "",
+    "where": "Bottom red banner, heading"
+  },
+  {
+    "contentKey": "alexandria.cta.body",
+    "page": "alexandria",
+    "label": "Bottom banner text",
+    "text": "Let us know you are coming and we will look out for you.",
+    "imageUrl": "",
+    "where": "Bottom red banner, sentence under the heading"
+  },
+  {
+    "contentKey": "alexandria.cta.button",
+    "page": "alexandria",
+    "label": "Bottom banner button",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Bottom red banner, white button on the right"
+  }
+]

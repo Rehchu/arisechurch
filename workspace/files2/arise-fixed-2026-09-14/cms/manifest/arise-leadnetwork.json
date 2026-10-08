@@ -1,0 +1,298 @@
+[
+  {
+    "contentKey": "leadnetwork.hero.logo",
+    "page": "leadnetwork",
+    "label": "Lead Network logo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_1c539649f39f48cbb157d4e27efeb843~mv2.png",
+    "where": "Top of page, logo above the title"
+  },
+  {
+    "contentKey": "leadnetwork.hero.kicker",
+    "page": "leadnetwork",
+    "label": "Hero kicker",
+    "text": "Leadership Development",
+    "imageUrl": "",
+    "where": "Top of page, small red text above the big title"
+  },
+  {
+    "contentKey": "leadnetwork.hero.heading",
+    "page": "leadnetwork",
+    "label": "Hero heading",
+    "text": "Lead Network",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "leadnetwork.hero.lede",
+    "page": "leadnetwork",
+    "label": "Hero intro",
+    "text": "We invite you to explore our comprehensive selection of video courses offered through the Lead Network. Our courses are to enhance your skills and facilitate learning across various subjects. Discover the valuable opportunities that await you.",
+    "imageUrl": "",
+    "where": "Top of page, under the big title"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.kicker",
+    "page": "leadnetwork",
+    "label": "Teachings kicker",
+    "text": "Teachings",
+    "imageUrl": "",
+    "where": "Teachings section, small red text"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.heading",
+    "page": "leadnetwork",
+    "label": "Teachings heading",
+    "text": "Watch &amp; Listen",
+    "imageUrl": "",
+    "where": "Teachings section title"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item1Thumb",
+    "page": "leadnetwork",
+    "label": "Teaching 1 thumbnail",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_ef7a4d9e0ebf4c9981f5732070a04e95~mv2.jpg",
+    "where": "Teachings section, first card picture (before Play is pressed)"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item1By",
+    "page": "leadnetwork",
+    "label": "Teaching 1 speaker",
+    "text": "Apostle Bryant Sanders",
+    "imageUrl": "",
+    "where": "Teachings section, first card, red name line"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item1Title",
+    "page": "leadnetwork",
+    "label": "Teaching 1 title",
+    "text": "Guarding the Anointing",
+    "imageUrl": "",
+    "where": "Teachings section, first card title"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item1Sub",
+    "page": "leadnetwork",
+    "label": "Teaching 1 subtitle",
+    "text": "Unmasking the Spirit of Delilah",
+    "imageUrl": "",
+    "where": "Teachings section, first card, under the title"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item1Length",
+    "page": "leadnetwork",
+    "label": "Teaching 1 length",
+    "text": "42 min",
+    "imageUrl": "",
+    "where": "Teachings section, first card, length line"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item2Thumb",
+    "page": "leadnetwork",
+    "label": "Teaching 2 thumbnail",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_d3067c7953ea434db865fc6b7b1f71ee~mv2.jpg",
+    "where": "Teachings section, second card picture (before Play is pressed)"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item2By",
+    "page": "leadnetwork",
+    "label": "Teaching 2 speaker",
+    "text": "Pastor Derrick Calloway",
+    "imageUrl": "",
+    "where": "Teachings section, second card, red name line"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item2Title",
+    "page": "leadnetwork",
+    "label": "Teaching 2 title",
+    "text": "Leading with Purpose",
+    "imageUrl": "",
+    "where": "Teachings section, second card title"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item2Sub",
+    "page": "leadnetwork",
+    "label": "Teaching 2 subtitle",
+    "text": "Spiritual Wisdom and Practical Strategies",
+    "imageUrl": "",
+    "where": "Teachings section, second card, under the title"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.item2Length",
+    "page": "leadnetwork",
+    "label": "Teaching 2 length",
+    "text": "34 min",
+    "imageUrl": "",
+    "where": "Teachings section, second card, length line"
+  },
+  {
+    "contentKey": "leadnetwork.teachings.audioSoon",
+    "page": "leadnetwork",
+    "label": "No-audio note",
+    "text": "Audio coming soon",
+    "imageUrl": "",
+    "where": "Teachings section, shown on a card only when it has no audio"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.kicker",
+    "page": "leadnetwork",
+    "label": "Ministers kicker",
+    "text": "Our Current Ministers",
+    "imageUrl": "",
+    "where": "Ministers section, small red text"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.heading",
+    "page": "leadnetwork",
+    "label": "Ministers heading",
+    "text": "Our Current Ministers",
+    "imageUrl": "",
+    "where": "Ministers section title"
+  },
+  {
+    "contentKey": "leadnetwork.austin.photo",
+    "page": "leadnetwork",
+    "label": "Austin photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/1f9fa2_0118a2141a564a909b5c493b2f55211d~mv2.png",
+    "where": "Ministers section, first card photo"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.austinRole",
+    "page": "leadnetwork",
+    "label": "Austin role badge",
+    "text": "Apostle &amp; Pastor",
+    "imageUrl": "",
+    "where": "Ministers section, first card red badge"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.austinName",
+    "page": "leadnetwork",
+    "label": "Austin names",
+    "text": "Carlos and Melissa Austin",
+    "imageUrl": "",
+    "where": "Ministers section, first card names"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.austinChurch",
+    "page": "leadnetwork",
+    "label": "Austin church and address",
+    "text": "<b>Kingdom Builders Ministry Church</b>200 N. Houston Ave., Suite C<br>Humble, TX 77338",
+    "imageUrl": "",
+    "where": "Ministers section, first card, church name and address"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.austinFacebook",
+    "page": "leadnetwork",
+    "label": "Austin Facebook link text",
+    "text": "Facebook",
+    "imageUrl": "",
+    "where": "Ministers section, first card link"
+  },
+  {
+    "contentKey": "leadnetwork.calloway.photo",
+    "page": "leadnetwork",
+    "label": "Calloway photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/1f9fa2_1331547403e94f94a08912f08d45d1de~mv2.png",
+    "where": "Ministers section, second card photo"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.callowayRole",
+    "page": "leadnetwork",
+    "label": "Calloway role badge",
+    "text": "Lead Pastors",
+    "imageUrl": "",
+    "where": "Ministers section, second card red badge"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.callowayName",
+    "page": "leadnetwork",
+    "label": "Calloway names",
+    "text": "Derrick and Pamla Calloway",
+    "imageUrl": "",
+    "where": "Ministers section, second card names"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.callowayChurch",
+    "page": "leadnetwork",
+    "label": "Calloway church and address",
+    "text": "<b>Faith Culture Church</b>245 Florida Ave SE<br>Denham Springs, LA 70726",
+    "imageUrl": "",
+    "where": "Ministers section, second card, church name and address"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.callowayWebsite",
+    "page": "leadnetwork",
+    "label": "Calloway website link text",
+    "text": "Website",
+    "imageUrl": "",
+    "where": "Ministers section, second card first link"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.callowayFacebook",
+    "page": "leadnetwork",
+    "label": "Calloway Facebook link text",
+    "text": "Facebook",
+    "imageUrl": "",
+    "where": "Ministers section, second card second link"
+  },
+  {
+    "contentKey": "leadnetwork.ministers.button",
+    "page": "leadnetwork",
+    "label": "Watch button",
+    "text": "Watch Now",
+    "imageUrl": "",
+    "where": "Ministers section, dark button under the cards"
+  },
+  {
+    "contentKey": "leadnetwork.gatherings.kicker",
+    "page": "leadnetwork",
+    "label": "Photos kicker",
+    "text": "Gatherings",
+    "imageUrl": "",
+    "where": "Photo section, small red text"
+  },
+  {
+    "contentKey": "leadnetwork.gatherings.heading",
+    "page": "leadnetwork",
+    "label": "Photos heading",
+    "text": "Camp Meetings &amp; Teachings",
+    "imageUrl": "",
+    "where": "Photo section title"
+  },
+  {
+    "contentKey": "leadnetwork.cta.kicker",
+    "page": "leadnetwork",
+    "label": "Camp meeting box kicker",
+    "text": "Camp Meeting",
+    "imageUrl": "",
+    "where": "Red box at the bottom, small text"
+  },
+  {
+    "contentKey": "leadnetwork.cta.heading",
+    "page": "leadnetwork",
+    "label": "Camp meeting box heading",
+    "text": "The Outpour",
+    "imageUrl": "",
+    "where": "Red box at the bottom, title"
+  },
+  {
+    "contentKey": "leadnetwork.cta.body",
+    "page": "leadnetwork",
+    "label": "Camp meeting box text",
+    "text": "The Lead Network 2026 Camp Meeting, October 30 to November 1.",
+    "imageUrl": "",
+    "where": "Red box at the bottom, text"
+  },
+  {
+    "contentKey": "leadnetwork.cta.button",
+    "page": "leadnetwork",
+    "label": "Camp meeting box button",
+    "text": "See the Event",
+    "imageUrl": "",
+    "where": "Red box at the bottom, white button"
+  }
+]

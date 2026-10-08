@@ -1,0 +1,250 @@
+[
+  {
+    "contentKey": "form.contact.kicker",
+    "page": "form",
+    "label": "Contact form kicker",
+    "text": "Send Us a Message",
+    "imageUrl": "",
+    "where": "Small red text above the form heading (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.heading",
+    "page": "form",
+    "label": "Contact form heading",
+    "text": "Get In Touch",
+    "imageUrl": "",
+    "where": "Big heading above the form (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.blurb",
+    "page": "form",
+    "label": "Contact form intro",
+    "text": "Questions about a service, a ministry, or planning your first visit — send us a note and someone will get back to you.",
+    "imageUrl": "",
+    "where": "Paragraph under the form heading (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.nameLabel",
+    "page": "form",
+    "label": "Contact form name label",
+    "text": "Your Name",
+    "imageUrl": "",
+    "where": "Form field 1 label (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.emailLabel",
+    "page": "form",
+    "label": "Contact form email label",
+    "text": "Email",
+    "imageUrl": "",
+    "where": "Form field 2 label (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.phoneLabel",
+    "page": "form",
+    "label": "Contact form phone label",
+    "text": "Phone",
+    "imageUrl": "",
+    "where": "Form field 3 label (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.subjectLabel",
+    "page": "form",
+    "label": "Contact form subject label",
+    "text": "Subject",
+    "imageUrl": "",
+    "where": "Form field 4 label (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.messageLabel",
+    "page": "form",
+    "label": "Contact form message label",
+    "text": "Message",
+    "imageUrl": "",
+    "where": "Form field 5 label (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.button",
+    "page": "form",
+    "label": "Contact form button",
+    "text": "Send Message",
+    "imageUrl": "",
+    "where": "Red submit button (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.success.heading",
+    "page": "form",
+    "label": "Contact form thank-you heading",
+    "text": "Thank You",
+    "imageUrl": "",
+    "where": "Replaces the form after it is sent (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.contact.success.body",
+    "page": "form",
+    "label": "Contact form thank-you message",
+    "text": "Thank you. Your message is on its way and someone will be in touch.",
+    "imageUrl": "",
+    "where": "Replaces the form after it is sent, under \"Thank You\" (arise-form with data-form=\"contact\")"
+  },
+  {
+    "contentKey": "form.serve.kicker",
+    "page": "form",
+    "label": "Serve form kicker",
+    "text": "Volunteer Sign Up",
+    "imageUrl": "",
+    "where": "Small red text above the form heading (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.heading",
+    "page": "form",
+    "label": "Serve form heading",
+    "text": "Sign Up To Serve",
+    "imageUrl": "",
+    "where": "Big heading above the form (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.blurb",
+    "page": "form",
+    "label": "Serve form intro",
+    "text": "Join our congregation in making a difference! We’re seeking passionate volunteers to fill key roles and help our ministries thrive.",
+    "imageUrl": "",
+    "where": "Paragraph under the form heading (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.nameLabel",
+    "page": "form",
+    "label": "Serve form name label",
+    "text": "Your Name",
+    "imageUrl": "",
+    "where": "Form field 1 label (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.emailLabel",
+    "page": "form",
+    "label": "Serve form email label",
+    "text": "Email",
+    "imageUrl": "",
+    "where": "Form field 2 label (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.phoneLabel",
+    "page": "form",
+    "label": "Serve form phone label",
+    "text": "Phone",
+    "imageUrl": "",
+    "where": "Form field 3 label (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.positionLabel",
+    "page": "form",
+    "label": "Serve form position label",
+    "text": "Position",
+    "imageUrl": "",
+    "where": "Form field 4 label (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.messageLabel",
+    "page": "form",
+    "label": "Serve form message label",
+    "text": "Anything else we should know?",
+    "imageUrl": "",
+    "where": "Form field 5 label (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.button",
+    "page": "form",
+    "label": "Serve form button",
+    "text": "Submit",
+    "imageUrl": "",
+    "where": "Red submit button (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.success.heading",
+    "page": "form",
+    "label": "Serve form thank-you heading",
+    "text": "Thank You",
+    "imageUrl": "",
+    "where": "Replaces the form after it is sent (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.serve.success.body",
+    "page": "form",
+    "label": "Serve form thank-you message",
+    "text": "Thank you for signing up. Someone will reach out about next steps.",
+    "imageUrl": "",
+    "where": "Replaces the form after it is sent, under \"Thank You\" (arise-form with data-form=\"serve\")"
+  },
+  {
+    "contentKey": "form.prayer.kicker",
+    "page": "form",
+    "label": "Prayer form kicker",
+    "text": "Prayer Request",
+    "imageUrl": "",
+    "where": "Small red text above the form heading (arise-form with data-form=\"prayer\")"
+  },
+  {
+    "contentKey": "form.prayer.heading",
+    "page": "form",
+    "label": "Prayer form heading",
+    "text": "We’ll Pray With You",
+    "imageUrl": "",
+    "where": "Big heading above the form (arise-form with data-form=\"prayer\")"
+  },
+  {
+    "contentKey": "form.prayer.blurb",
+    "page": "form",
+    "label": "Prayer form intro",
+    "text": "Share what you’re carrying. Our prayer team reads every request.",
+    "imageUrl": "",
+    "where": "Paragraph under the form heading (arise-form with data-form=\"prayer\")"
+  },
+  {
+    "contentKey": "form.prayer.nameLabel",
+    "page": "form",
+    "label": "Prayer form name label",
+    "text": "Your Name",
+    "imageUrl": "",
+    "where": "Form field 1 label (arise-form with data-form=\"prayer\")"
+  },
+  {
+    "contentKey": "form.prayer.emailLabel",
+    "page": "form",
+    "label": "Prayer form email label",
+    "text": "Email",
+    "imageUrl": "",
+    "where": "Form field 2 label (arise-form with data-form=\"prayer\")"
+  },
+  {
+    "contentKey": "form.prayer.messageLabel",
+    "page": "form",
+    "label": "Prayer form message label",
+    "text": "Prayer Request",
+    "imageUrl": "",
+    "where": "Form field 3 label (arise-form with data-form=\"prayer\")"
+  },
+  {
+    "contentKey": "form.prayer.button",
+    "page": "form",
+    "label": "Prayer form button",
+    "text": "Send Request",
+    "imageUrl": "",
+    "where": "Red submit button (arise-form with data-form=\"prayer\")"
+  },
+  {
+    "contentKey": "form.prayer.success.heading",
+    "page": "form",
+    "label": "Prayer form thank-you heading",
+    "text": "Thank You",
+    "imageUrl": "",
+    "where": "Replaces the form after it is sent (arise-form with data-form=\"prayer\")"
+  },
+  {
+    "contentKey": "form.prayer.success.body",
+    "page": "form",
+    "label": "Prayer form thank-you message",
+    "text": "Thank you. Our prayer team has your request.",
+    "imageUrl": "",
+    "where": "Replaces the form after it is sent, under \"Thank You\" (arise-form with data-form=\"prayer\")"
+  }
+]

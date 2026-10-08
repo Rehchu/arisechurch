@@ -1,0 +1,290 @@
+[
+  {
+    "contentKey": "outreach.hero.kicker",
+    "page": "outreach",
+    "label": "Hero kicker",
+    "text": "Impact Tioga",
+    "imageUrl": "",
+    "where": "Top of page, small red text above the big title"
+  },
+  {
+    "contentKey": "outreach.hero.heading",
+    "page": "outreach",
+    "label": "Hero heading",
+    "text": "Outreach",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "outreach.hero.lede",
+    "page": "outreach",
+    "label": "Hero intro line",
+    "text": "Share God’s love through community service and evangelism.",
+    "imageUrl": "",
+    "where": "Top of page, under the big title"
+  },
+  {
+    "contentKey": "outreach.footage.kicker",
+    "page": "outreach",
+    "label": "Videos kicker",
+    "text": "Real Footage",
+    "imageUrl": "",
+    "where": "Video section, small red text"
+  },
+  {
+    "contentKey": "outreach.footage.heading",
+    "page": "outreach",
+    "label": "Videos heading",
+    "text": "Out In The Community",
+    "imageUrl": "",
+    "where": "Video section title"
+  },
+  {
+    "contentKey": "outreach.footage.clip1",
+    "page": "outreach",
+    "label": "First video caption",
+    "text": "Over 40 served",
+    "imageUrl": "",
+    "where": "Video section, caption under the first video"
+  },
+  {
+    "contentKey": "outreach.footage.clip2",
+    "page": "outreach",
+    "label": "Second video caption",
+    "text": "Out in the community",
+    "imageUrl": "",
+    "where": "Video section, caption under the second video"
+  },
+  {
+    "contentKey": "outreach.supplies.kicker",
+    "page": "outreach",
+    "label": "Supplies kicker",
+    "text": "How To Help",
+    "imageUrl": "",
+    "where": "Supplies section, small red text"
+  },
+  {
+    "contentKey": "outreach.supplies.heading",
+    "page": "outreach",
+    "label": "Supplies heading",
+    "text": "Outreach Supplies<br>Needed",
+    "imageUrl": "",
+    "where": "Supplies section title"
+  },
+  {
+    "contentKey": "outreach.supplies.body",
+    "page": "outreach",
+    "label": "Supplies intro",
+    "text": "We are always collecting supplies &amp; monetary donations for the homeless and hungry in our community.",
+    "imageUrl": "",
+    "where": "Supplies section, text under the title"
+  },
+  {
+    "contentKey": "outreach.supplies.image",
+    "page": "outreach",
+    "label": "Supplies image",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/1f9fa2_ef28ad94288a4068ac9c2974b4d4d545~mv2.jpg",
+    "where": "Supplies section, image beside the list"
+  },
+  {
+    "contentKey": "outreach.supplies.item1",
+    "page": "outreach",
+    "label": "Supplies list item 1",
+    "text": "Socks",
+    "imageUrl": "",
+    "where": "Supplies section, list line 1"
+  },
+  {
+    "contentKey": "outreach.supplies.item2",
+    "page": "outreach",
+    "label": "Supplies list item 2",
+    "text": "Winter gloves &amp; hats",
+    "imageUrl": "",
+    "where": "Supplies section, list line 2"
+  },
+  {
+    "contentKey": "outreach.supplies.item3",
+    "page": "outreach",
+    "label": "Supplies list item 3",
+    "text": "Blankets",
+    "imageUrl": "",
+    "where": "Supplies section, list line 3"
+  },
+  {
+    "contentKey": "outreach.supplies.item4",
+    "page": "outreach",
+    "label": "Supplies list item 4",
+    "text": "Raincoats / ponchos",
+    "imageUrl": "",
+    "where": "Supplies section, list line 4"
+  },
+  {
+    "contentKey": "outreach.supplies.item5",
+    "page": "outreach",
+    "label": "Supplies list item 5",
+    "text": "Sleeping bags",
+    "imageUrl": "",
+    "where": "Supplies section, list line 5"
+  },
+  {
+    "contentKey": "outreach.supplies.item6",
+    "page": "outreach",
+    "label": "Supplies list item 6",
+    "text": "Hand warmers",
+    "imageUrl": "",
+    "where": "Supplies section, list line 6"
+  },
+  {
+    "contentKey": "outreach.supplies.item7",
+    "page": "outreach",
+    "label": "Supplies list item 7",
+    "text": "Flashlights / batteries",
+    "imageUrl": "",
+    "where": "Supplies section, list line 7"
+  },
+  {
+    "contentKey": "outreach.supplies.item8",
+    "page": "outreach",
+    "label": "Supplies list item 8",
+    "text": "Wash cloths",
+    "imageUrl": "",
+    "where": "Supplies section, list line 8"
+  },
+  {
+    "contentKey": "outreach.supplies.item9",
+    "page": "outreach",
+    "label": "Supplies list item 9",
+    "text": "Bar soap / soap box",
+    "imageUrl": "",
+    "where": "Supplies section, list line 9"
+  },
+  {
+    "contentKey": "outreach.supplies.item10",
+    "page": "outreach",
+    "label": "Supplies list item 10",
+    "text": "Baby wipes",
+    "imageUrl": "",
+    "where": "Supplies section, list line 10"
+  },
+  {
+    "contentKey": "outreach.supplies.item11",
+    "page": "outreach",
+    "label": "Supplies list item 11",
+    "text": "Toothpaste / toothbrushes",
+    "imageUrl": "",
+    "where": "Supplies section, list line 11"
+  },
+  {
+    "contentKey": "outreach.supplies.item12",
+    "page": "outreach",
+    "label": "Supplies list item 12",
+    "text": "Deodorant",
+    "imageUrl": "",
+    "where": "Supplies section, list line 12"
+  },
+  {
+    "contentKey": "outreach.supplies.item13",
+    "page": "outreach",
+    "label": "Supplies list item 13",
+    "text": "Bandaids",
+    "imageUrl": "",
+    "where": "Supplies section, list line 13"
+  },
+  {
+    "contentKey": "outreach.supplies.item14",
+    "page": "outreach",
+    "label": "Supplies list item 14",
+    "text": "Feminine products",
+    "imageUrl": "",
+    "where": "Supplies section, list line 14"
+  },
+  {
+    "contentKey": "outreach.mission.kicker",
+    "page": "outreach",
+    "label": "Mission kicker",
+    "text": "Our Mission",
+    "imageUrl": "",
+    "where": "Mission section, small red text"
+  },
+  {
+    "contentKey": "outreach.mission.heading",
+    "page": "outreach",
+    "label": "Mission heading",
+    "text": "Impact Tioga",
+    "imageUrl": "",
+    "where": "Mission section title"
+  },
+  {
+    "contentKey": "outreach.mission.body",
+    "page": "outreach",
+    "label": "Mission paragraph 1",
+    "text": "Our mission for this year is to Impact Tioga—to bring the life-changing love of Jesus Christ into every corner of our community, transforming lives, families, and the town we call home.",
+    "imageUrl": "",
+    "where": "Mission section, first paragraph"
+  },
+  {
+    "contentKey": "outreach.mission.body2",
+    "page": "outreach",
+    "label": "Mission paragraph 2",
+    "text": "We are committed to building the community together: partnering with neighbors, schools, businesses, and local leaders to foster unity, serve those in need, and create spaces where everyone feels seen, valued, and loved.",
+    "imageUrl": "",
+    "where": "Mission section, grey second paragraph"
+  },
+  {
+    "contentKey": "outreach.mission.strip",
+    "page": "outreach",
+    "label": "Mission red label",
+    "text": "Impact Tioga",
+    "imageUrl": "",
+    "where": "Mission section, slanted red label"
+  },
+  {
+    "contentKey": "outreach.community.kicker",
+    "page": "outreach",
+    "label": "Photos kicker",
+    "text": "In The Community",
+    "imageUrl": "",
+    "where": "Photo section, small red text"
+  },
+  {
+    "contentKey": "outreach.community.heading",
+    "page": "outreach",
+    "label": "Photos heading",
+    "text": "Impact Tioga",
+    "imageUrl": "",
+    "where": "Photo section title"
+  },
+  {
+    "contentKey": "outreach.cta.kicker",
+    "page": "outreach",
+    "label": "Serve box kicker",
+    "text": "Serve With Us",
+    "imageUrl": "",
+    "where": "Red box at the bottom, small text"
+  },
+  {
+    "contentKey": "outreach.cta.heading",
+    "page": "outreach",
+    "label": "Serve box heading",
+    "text": "We Are In Need",
+    "imageUrl": "",
+    "where": "Red box at the bottom, title"
+  },
+  {
+    "contentKey": "outreach.cta.body",
+    "page": "outreach",
+    "label": "Serve box text",
+    "text": "Join our congregation in making a difference.",
+    "imageUrl": "",
+    "where": "Red box at the bottom, text"
+  },
+  {
+    "contentKey": "outreach.cta.button",
+    "page": "outreach",
+    "label": "Serve box button",
+    "text": "Sign Up to Serve",
+    "imageUrl": "",
+    "where": "Red box at the bottom, white button"
+  }
+]

@@ -1,0 +1,554 @@
+[
+  {
+    "contentKey": "connect.hero.kicker",
+    "page": "connect",
+    "label": "Hero kicker",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Top of page, small red text above the big title"
+  },
+  {
+    "contentKey": "connect.season.name",
+    "page": "connect",
+    "label": "Hero heading / season name",
+    "text": "Fall Connect Groups",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "connect.hero.body",
+    "page": "connect",
+    "label": "Hero body",
+    "text": "Where real people build real faith. Don't do life alone - do life together.",
+    "imageUrl": "",
+    "where": "Top of page, under the big title"
+  },
+  {
+    "contentKey": "connect.hero.strip",
+    "page": "connect",
+    "label": "Hero red strip",
+    "text": "Connect &middot; Grow &middot; Go",
+    "imageUrl": "",
+    "where": "Top of page, red slanted strip"
+  },
+  {
+    "contentKey": "connect.what.kicker",
+    "page": "connect",
+    "label": "What They Are kicker",
+    "text": "What They Are",
+    "imageUrl": "",
+    "where": "Second section, small red text"
+  },
+  {
+    "contentKey": "connect.what.heading",
+    "page": "connect",
+    "label": "What They Are heading",
+    "text": "In Homes,<br>Every Week",
+    "imageUrl": "",
+    "where": "Second section heading"
+  },
+  {
+    "contentKey": "connect.what.body",
+    "page": "connect",
+    "label": "What They Are body",
+    "text": "Connect Groups meet in homes across our community. A host opens their door, a few people gather, and life gets shared around a table instead of a pew.",
+    "imageUrl": "",
+    "where": "Second section, paragraph under the heading"
+  },
+  {
+    "contentKey": "connect.pillars.item1.label",
+    "page": "connect",
+    "label": "Pillar 1 label",
+    "text": "CONNECT",
+    "imageUrl": "",
+    "where": "Second section, first of three boxes, red word"
+  },
+  {
+    "contentKey": "connect.pillars.item1.heading",
+    "page": "connect",
+    "label": "Pillar 1 heading",
+    "text": "Build meaningful relationships",
+    "imageUrl": "",
+    "where": "Second section, first of three boxes, title"
+  },
+  {
+    "contentKey": "connect.pillars.item1.body",
+    "page": "connect",
+    "label": "Pillar 1 body",
+    "text": "Know people and be known by them.",
+    "imageUrl": "",
+    "where": "Second section, first of three boxes, sentence"
+  },
+  {
+    "contentKey": "connect.pillars.item2.label",
+    "page": "connect",
+    "label": "Pillar 2 label",
+    "text": "GROW",
+    "imageUrl": "",
+    "where": "Second section, second of three boxes, red word"
+  },
+  {
+    "contentKey": "connect.pillars.item2.heading",
+    "page": "connect",
+    "label": "Pillar 2 heading",
+    "text": "Do life together",
+    "imageUrl": "",
+    "where": "Second section, second of three boxes, title"
+  },
+  {
+    "contentKey": "connect.pillars.item2.body",
+    "page": "connect",
+    "label": "Pillar 2 body",
+    "text": "Faith grows faster in company than alone.",
+    "imageUrl": "",
+    "where": "Second section, second of three boxes, sentence"
+  },
+  {
+    "contentKey": "connect.pillars.item3.label",
+    "page": "connect",
+    "label": "Pillar 3 label",
+    "text": "GO",
+    "imageUrl": "",
+    "where": "Second section, third of three boxes, red word"
+  },
+  {
+    "contentKey": "connect.pillars.item3.heading",
+    "page": "connect",
+    "label": "Pillar 3 heading",
+    "text": "Live it out and make an impact",
+    "imageUrl": "",
+    "where": "Second section, third of three boxes, title"
+  },
+  {
+    "contentKey": "connect.pillars.item3.body",
+    "page": "connect",
+    "label": "Pillar 3 body",
+    "text": "What happens around the table goes out the door.",
+    "imageUrl": "",
+    "where": "Second section, third of three boxes, sentence"
+  },
+  {
+    "contentKey": "connect.verse.body",
+    "page": "connect",
+    "label": "Scripture text",
+    "text": "And they, continuing daily with one accord in the temple, and breaking bread from house to house, did eat their meat with gladness and singleness of heart, praising God, and having favor with all the people.",
+    "imageUrl": "",
+    "where": "Second section, grey scripture box"
+  },
+  {
+    "contentKey": "connect.verse.ref",
+    "page": "connect",
+    "label": "Scripture reference",
+    "text": "Acts 2:46",
+    "imageUrl": "",
+    "where": "Second section, red reference under the scripture"
+  },
+  {
+    "contentKey": "connect.dates.kicker",
+    "page": "connect",
+    "label": "Dates kicker",
+    "text": "This Season",
+    "imageUrl": "",
+    "where": "Black dates section, small red text"
+  },
+  {
+    "contentKey": "connect.dates.heading",
+    "page": "connect",
+    "label": "Dates heading",
+    "text": "Dates",
+    "imageUrl": "",
+    "where": "Black dates section heading"
+  },
+  {
+    "contentKey": "connect.dates.startsLabel",
+    "page": "connect",
+    "label": "Starts label",
+    "text": "Starts",
+    "imageUrl": "",
+    "where": "Black dates section, first box label"
+  },
+  {
+    "contentKey": "connect.season.starts",
+    "page": "connect",
+    "label": "Season start date",
+    "text": "the week of September 14",
+    "imageUrl": "",
+    "where": "Black dates section, first box"
+  },
+  {
+    "contentKey": "connect.dates.endsLabel",
+    "page": "connect",
+    "label": "Ends label",
+    "text": "Ends",
+    "imageUrl": "",
+    "where": "Black dates section, second box label"
+  },
+  {
+    "contentKey": "connect.season.ends",
+    "page": "connect",
+    "label": "Season end date",
+    "text": "the week of November 16",
+    "imageUrl": "",
+    "where": "Black dates section, second box"
+  },
+  {
+    "contentKey": "connect.dates.hostbyLabel",
+    "page": "connect",
+    "label": "Host deadline label",
+    "text": "Host sign-up closes",
+    "imageUrl": "",
+    "where": "Black dates section, red box label"
+  },
+  {
+    "contentKey": "connect.season.hostby",
+    "page": "connect",
+    "label": "Host sign-up deadline",
+    "text": "September 20",
+    "imageUrl": "",
+    "where": "Black dates section red box, and the Host a Group tab"
+  },
+  {
+    "contentKey": "connect.groups.kicker",
+    "page": "connect",
+    "label": "Groups kicker",
+    "text": "Find a Group",
+    "imageUrl": "",
+    "where": "Groups section, small red text"
+  },
+  {
+    "contentKey": "connect.groups.heading",
+    "page": "connect",
+    "label": "Groups heading",
+    "text": "Groups This Season",
+    "imageUrl": "",
+    "where": "Groups section heading"
+  },
+  {
+    "contentKey": "connect.groups.empty.heading",
+    "page": "connect",
+    "label": "No groups yet heading",
+    "text": "Groups are forming",
+    "imageUrl": "",
+    "where": "Groups section, dashed box shown when no groups are listed"
+  },
+  {
+    "contentKey": "connect.groups.empty.body",
+    "page": "connect",
+    "label": "No groups yet body",
+    "text": "Hosts are signing up now. Check back soon, or add your name below and we will match you with a group when they are set.",
+    "imageUrl": "",
+    "where": "Groups section, dashed box text shown when no groups are listed"
+  },
+  {
+    "contentKey": "connect.groups.card.fullBadge",
+    "page": "connect",
+    "label": "Group card Full badge",
+    "text": "Full",
+    "imageUrl": "",
+    "where": "Groups section, black tag on a full group flyer (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+  },
+  {
+    "contentKey": "connect.groups.card.hostLabel",
+    "page": "connect",
+    "label": "Group card Host label",
+    "text": "Host",
+    "imageUrl": "",
+    "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+  },
+  {
+    "contentKey": "connect.groups.card.whereLabel",
+    "page": "connect",
+    "label": "Group card Where label",
+    "text": "Where",
+    "imageUrl": "",
+    "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+  },
+  {
+    "contentKey": "connect.groups.card.whenLabel",
+    "page": "connect",
+    "label": "Group card When label",
+    "text": "When",
+    "imageUrl": "",
+    "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+  },
+  {
+    "contentKey": "connect.groups.card.datesLabel",
+    "page": "connect",
+    "label": "Group card Dates label",
+    "text": "Dates",
+    "imageUrl": "",
+    "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+  },
+  {
+    "contentKey": "connect.groups.card.forLabel",
+    "page": "connect",
+    "label": "Group card For label",
+    "text": "For",
+    "imageUrl": "",
+    "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+  },
+  {
+    "contentKey": "connect.groups.card.joinButton",
+    "page": "connect",
+    "label": "Group card join button",
+    "text": "Join This Group",
+    "imageUrl": "",
+    "where": "Groups section, button at bottom of each group card (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+  },
+  {
+    "contentKey": "connect.groups.card.fullButton",
+    "page": "connect",
+    "label": "Group card full button",
+    "text": "Group Full",
+    "imageUrl": "",
+    "where": "Groups section, button on a full group card (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+  },
+  {
+    "contentKey": "connect.signup.kicker",
+    "page": "connect",
+    "label": "Sign Up kicker",
+    "text": "Sign Up",
+    "imageUrl": "",
+    "where": "Grey sign-up section, small red text"
+  },
+  {
+    "contentKey": "connect.signup.heading",
+    "page": "connect",
+    "label": "Sign Up heading",
+    "text": "Be a Host.<br>Make a Difference.",
+    "imageUrl": "",
+    "where": "Grey sign-up section heading"
+  },
+  {
+    "contentKey": "connect.signup.tab1.title",
+    "page": "connect",
+    "label": "Host tab title",
+    "text": "Host a Group",
+    "imageUrl": "",
+    "where": "Sign-up section, left tab title"
+  },
+  {
+    "contentKey": "connect.signup.tab1.body",
+    "page": "connect",
+    "label": "Host tab text (before date)",
+    "text": "Open your home.",
+    "imageUrl": "",
+    "where": "Sign-up section, left tab small text, before the deadline date"
+  },
+  {
+    "contentKey": "connect.signup.tab1.signupBy",
+    "page": "connect",
+    "label": "Host tab: words before the sign-up deadline",
+    "text": "Sign up by",
+    "imageUrl": "",
+    "where": "Sign-up section, left tab small text, before the deadline date"
+  },
+  {
+    "contentKey": "connect.signup.tab2.title",
+    "page": "connect",
+    "label": "Join tab title",
+    "text": "Join a Group",
+    "imageUrl": "",
+    "where": "Sign-up section, right tab title"
+  },
+  {
+    "contentKey": "connect.signup.tab2.body",
+    "page": "connect",
+    "label": "Join tab text",
+    "text": "Find a group near you.",
+    "imageUrl": "",
+    "where": "Sign-up section, right tab small text"
+  },
+  {
+    "contentKey": "connect.host.heading",
+    "page": "connect",
+    "label": "Host form heading",
+    "text": "Host a Connect Group",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), heading (also shown after sending)"
+  },
+  {
+    "contentKey": "connect.host.intro",
+    "page": "connect",
+    "label": "Host form intro",
+    "text": "Open your home. Open your heart. Watch God move. Tell us how you would like to run it and we will help you get set up.",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), text under heading"
+  },
+  {
+    "contentKey": "connect.host.label.firstName",
+    "page": "connect",
+    "label": "Host form label: First Name",
+    "text": "First Name",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.label.lastName",
+    "page": "connect",
+    "label": "Host form label: Last Name",
+    "text": "Last Name",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.label.phone",
+    "page": "connect",
+    "label": "Host form label: Phone",
+    "text": "Phone",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.label.email",
+    "page": "connect",
+    "label": "Host form label: Email",
+    "text": "Email",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.label.venue",
+    "page": "connect",
+    "label": "Host form label: Where would you host?",
+    "text": "Where would you host?",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.label.area",
+    "page": "connect",
+    "label": "Host form label: What area?",
+    "text": "What area?",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.label.day",
+    "page": "connect",
+    "label": "Host form label: Which day?",
+    "text": "Which day?",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.label.time",
+    "page": "connect",
+    "label": "Host form label: What time?",
+    "text": "What time?",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.label.audience",
+    "page": "connect",
+    "label": "Host form label: Who is it for?",
+    "text": "Who is it for?",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.label.message",
+    "page": "connect",
+    "label": "Host form label: Anything else we should know?",
+    "text": "Anything else we should know?",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.host.button",
+    "page": "connect",
+    "label": "Host form submit button",
+    "text": "Sign Up to Host",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), red button"
+  },
+  {
+    "contentKey": "connect.host.done",
+    "page": "connect",
+    "label": "Host form thank-you text",
+    "text": "Thank you for stepping up. Someone will be in touch about next steps.",
+    "imageUrl": "",
+    "where": "Sign-up section, host form (black panel), message shown after sending"
+  },
+  {
+    "contentKey": "connect.join.heading",
+    "page": "connect",
+    "label": "Join form heading",
+    "text": "Join a Connect Group",
+    "imageUrl": "",
+    "where": "Sign-up section, join form (black panel), heading (also shown after sending)"
+  },
+  {
+    "contentKey": "connect.join.intro",
+    "page": "connect",
+    "label": "Join form intro",
+    "text": "Pick a group above, or leave it blank and we will help you find one.",
+    "imageUrl": "",
+    "where": "Sign-up section, join form (black panel), text under heading"
+  },
+  {
+    "contentKey": "connect.join.label.firstName",
+    "page": "connect",
+    "label": "Join form label: First Name",
+    "text": "First Name",
+    "imageUrl": "",
+    "where": "Sign-up section, join form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.join.label.lastName",
+    "page": "connect",
+    "label": "Join form label: Last Name",
+    "text": "Last Name",
+    "imageUrl": "",
+    "where": "Sign-up section, join form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.join.label.phone",
+    "page": "connect",
+    "label": "Join form label: Phone",
+    "text": "Phone",
+    "imageUrl": "",
+    "where": "Sign-up section, join form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.join.label.email",
+    "page": "connect",
+    "label": "Join form label: Email",
+    "text": "Email",
+    "imageUrl": "",
+    "where": "Sign-up section, join form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.join.label.subject",
+    "page": "connect",
+    "label": "Join form label: Which group?",
+    "text": "Which group?",
+    "imageUrl": "",
+    "where": "Sign-up section, join form (black panel), field label"
+  },
+  {
+    "contentKey": "connect.join.button",
+    "page": "connect",
+    "label": "Join form submit button",
+    "text": "Sign Me Up",
+    "imageUrl": "",
+    "where": "Sign-up section, join form (black panel), red button"
+  },
+  {
+    "contentKey": "connect.join.done",
+    "page": "connect",
+    "label": "Join form thank-you text",
+    "text": "Thank you. Someone will be in touch about your group.",
+    "imageUrl": "",
+    "where": "Sign-up section, join form (black panel), message shown after sending"
+  },
+  {
+    "contentKey": "connect.success.heading",
+    "page": "connect",
+    "label": "Thank-you heading",
+    "text": "Thank You",
+    "imageUrl": "",
+    "where": "Sign-up section, heading in the message shown after sending"
+  }
+]

@@ -1,0 +1,1728 @@
+[
+ {
+  "site": "live",
+  "page": "Arise Church Alexandria",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-alexandria(1146) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 2468,
+  "dcl": 4930,
+  "load": 5023,
+  "lcp": 5504,
+  "lcpTag": "img in arise-alexandria",
+  "firstElementText": 5274,
+  "backend": [
+   "content.web.js/getPageContent @5434 417ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@5239",
+   "arise-alexandria x1 last@5386",
+   "arise-footer x1 last@5242"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Arise Church Alexandria",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-alexandria(1146) arise-footer(539)",
+  "exceptions": 1,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 108,
+  "dcl": 2819,
+  "load": 7243,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4099,
+  "backend": [
+   "content.web.js/getPageContent @4544 472ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3815",
+   "arise-alexandria x1 last@5453",
+   "arise-footer x1 last@3818"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Home",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-home(2218) arise-footer(539)",
+  "exceptions": 1,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 100,
+  "dcl": 3008,
+  "load": 7229,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 5090,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @4539 247ms 1KB",
+   "content.web.js/getHomeSettings @4538 248ms 1KB",
+   "content.web.js/getPageContent @4537 329ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3806",
+   "arise-home x1 last@5729",
+   "arise-footer x1 last@3801"
+  ],
+  "pageCodeLogs": [
+   "Home: news 1 items",
+   "Home: data-news -> #customElement1",
+   "Home: culture video 1f9fa2_9140261c4e1e41a185fc58fe7f73125f",
+   "Home: data-culture -> #customElement1",
+   "Site content: 571 keys",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Home",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-home(2225) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 2789,
+  "dcl": 5665,
+  "load": 5738,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 6082,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @7103 260ms 1KB",
+   "content.web.js/getHomeSettings @7102 268ms 1KB",
+   "content.web.js/getPageContent @7101 406ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-home x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Home: news 1 items",
+   "Home: data-news -> #customElement1",
+   "Home: culture video 1f9fa2_9140261c4e1e41a185fc58fe7f73125f",
+   "Home: data-culture -> #customElement1",
+   "Site content: 571 keys",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Connect Groups",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-connect(1581) arise-footer(539)",
+  "exceptions": 1,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 38,
+  "dcl": 4085,
+  "load": 4151,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4779,
+  "backend": [
+   "content.web.js/getConnectGroups @4840 317ms 1KB",
+   "content.web.js/getPageContent @4839 355ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-connect x1 last@6359",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Connect Groups: 0 groups",
+   "Connect Groups: data-groups -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Creative Arts",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(629) arise-footer(539)",
+  "exceptions": 1,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 28,
+  "dcl": 2350,
+  "load": 2419,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2734,
+  "backend": [
+   "content.web.js/getCreatives @3073 343ms 1KB",
+   "content.web.js/getPageContent @3072 571ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x1 last@4335",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Creative Arts: 6 departments, 14 members",
+   "Creative Arts: data-depts -> #customElement5",
+   "Creative Arts: data-members -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Creative Arts",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(629) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 844,
+  "dcl": 2944,
+  "load": 3051,
+  "lcp": 3348,
+  "lcpTag": "p in arise-creatives",
+  "firstElementText": 3386,
+  "backend": [
+   "content.web.js/getPageContent @3513 358ms 11KB",
+   "content.web.js/getCreatives @3513 446ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3292",
+   "arise-creatives x1 last@3297",
+   "arise-footer x1 last@3295"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Creative Arts: 6 departments, 14 members",
+   "Creative Arts: data-depts -> #customElement5",
+   "Creative Arts: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Connect Groups",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-connect(1581) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 3370,
+  "dcl": 5832,
+  "load": 5899,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 6230,
+  "backend": [
+   "content.web.js/getConnectGroups @6470 252ms 1KB",
+   "content.web.js/getPageContent @6468 321ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-connect x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Connect Groups: 0 groups",
+   "Connect Groups: data-groups -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Praise and Worship",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(447) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 39,
+  "dcl": 2952,
+  "load": 3029,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3837,
+  "backend": [
+   "content.web.js/getPageContent @3816 352ms 11KB",
+   "content.web.js/getCreatives @3818 358ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3356",
+   "arise-creatives x1 last@3361",
+   "arise-footer x1 last@3340"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Praise and Worship: 6 departments, 14 members",
+   "Praise and Worship: data-depts -> #customElement5",
+   "Praise and Worship: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Musicians",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(323) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 38,
+  "dcl": 2908,
+  "load": 3003,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3717,
+  "backend": [
+   "content.web.js/getPageContent @3766 305ms 11KB",
+   "content.web.js/getCreatives @3768 362ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Musicians: 6 departments, 14 members",
+   "Musicians: data-depts -> #customElement5",
+   "Musicians: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Praise and Worship",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(447) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 2404,
+  "dcl": 4690,
+  "load": 4774,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 5509,
+  "backend": [
+   "content.web.js/getPageContent @5437 327ms 11KB",
+   "content.web.js/getCreatives @5438 345ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Praise and Worship: 6 departments, 14 members",
+   "Praise and Worship: data-depts -> #customElement5",
+   "Praise and Worship: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Musicians",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(323) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 2148,
+  "dcl": 4479,
+  "load": 4574,
+  "lcp": 4892,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 4913,
+  "backend": [
+   "content.web.js/getCreatives @5035 316ms 1KB",
+   "content.web.js/getPageContent @5034 338ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@4843",
+   "arise-creatives x1 last@4840",
+   "arise-footer x1 last@4841"
+  ],
+  "pageCodeLogs": [
+   "Musicians: 6 departments, 14 members",
+   "Musicians: data-depts -> #customElement5",
+   "Musicians: data-members -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Production",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(335) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 40,
+  "dcl": 6213,
+  "load": 6343,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 9054,
+  "backend": [
+   "content.web.js/getPageContent @7072 352ms 11KB",
+   "content.web.js/getCreatives @7075 352ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Production: 6 departments, 14 members",
+   "Production: data-depts -> #customElement5",
+   "Production: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Sound",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(288) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 2444,
+  "load": 2516,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3747,
+  "backend": [
+   "content.web.js/getCreatives @3221 362ms 1KB",
+   "content.web.js/getPageContent @3219 442ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2771",
+   "arise-creatives x1 last@2931",
+   "arise-footer x1 last@2765"
+  ],
+  "pageCodeLogs": [
+   "Sound: 6 departments, 14 members",
+   "Sound: data-depts -> #customElement5",
+   "Sound: data-members -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Production",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(335) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 1790,
+  "dcl": 4410,
+  "load": 4493,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4967,
+  "backend": [
+   "content.web.js/getCreatives @5105 318ms 1KB",
+   "content.web.js/getPageContent @5104 539ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Production: 6 departments, 14 members",
+   "Production: data-depts -> #customElement5",
+   "Production: data-members -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Sound",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(288) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 27,
+  "dcl": 2428,
+  "load": 2455,
+  "lcp": 2772,
+  "lcpTag": "h2 in arise-creatives",
+  "firstElementText": 2754,
+  "backend": [
+   "content.web.js/getPageContent @2887 315ms 11KB",
+   "content.web.js/getCreatives @2888 328ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2699",
+   "arise-creatives x1 last@2697",
+   "arise-footer x1 last@2695"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Sound: 6 departments, 14 members",
+   "Sound: data-depts -> #customElement5",
+   "Sound: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Media",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(312) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 4478,
+  "load": 4549,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4828,
+  "backend": [
+   "content.web.js/getCreatives @5149 333ms 1KB",
+   "content.web.js/getPageContent @5149 363ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Media: 6 departments, 14 members",
+   "Media: data-depts -> #customElement5",
+   "Media: data-members -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Media",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(312) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 2772,
+  "dcl": 4876,
+  "load": 4949,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 5393,
+  "backend": [
+   "content.web.js/getPageContent @5615 340ms 11KB",
+   "content.web.js/getCreatives @5616 453ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Media: 6 departments, 14 members",
+   "Media: data-depts -> #customElement5",
+   "Media: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Social Media and Content",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(380) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 37,
+  "dcl": 5409,
+  "load": 5559,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 7305,
+  "backend": [
+   "content.web.js/getPageContent @6271 349ms 11KB",
+   "content.web.js/getCreatives @6273 382ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Social Media and Content: 6 departments, 14 members",
+   "Social Media and Content: data-depts -> #customElement5",
+   "Social Media and Content: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Social Media and Content",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(380) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 4413,
+  "dcl": 8903,
+  "load": 9003,
+  "lcp": 9296,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 9244,
+  "backend": [
+   "content.web.js/getCreatives @9403 324ms 1KB",
+   "content.web.js/getPageContent @9403 364ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@9249",
+   "arise-creatives x1 last@9264",
+   "arise-footer x1 last@9227"
+  ],
+  "pageCodeLogs": [
+   "Social Media and Content: 6 departments, 14 members",
+   "Social Media and Content: data-depts -> #customElement5",
+   "Social Media and Content: data-members -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Classes",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-classes(368) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 30,
+  "dcl": 2686,
+  "load": 2733,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3530,
+  "backend": [
+   "classes.web.js/getPrograms @3468 245ms 1KB",
+   "content.web.js/getPageContent @3466 364ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3016",
+   "arise-classes x1 last@4634",
+   "arise-footer x1 last@3011"
+  ],
+  "pageCodeLogs": [
+   "Classes: 0 programs",
+   "Classes: data-classes -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Classes",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-classes(368) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 2206,
+  "load": 2327,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2716,
+  "backend": [
+   "classes.web.js/getPrograms @2898 235ms 1KB",
+   "content.web.js/getPageContent @2897 287ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-classes x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Classes: 0 programs",
+   "Classes: data-classes -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Past Sermons",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-sermons(802) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 2882,
+  "load": 2931,
+  "lcp": 4788,
+  "lcpTag": "h1 in arise-sermons",
+  "firstElementText": 3177,
+  "backend": [
+   "youtube.jsw/getLiveVideoId @3479 183ms 1KB",
+   "youtube.jsw/getLatestShorts @3478 222ms 1KB",
+   "content.web.js/getPageContent @3475 326ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3136",
+   "arise-sermons x1 last@4764",
+   "arise-footer x1 last@3134"
+  ],
+  "pageCodeLogs": [
+   "Past Sermons: data-series-title -> #customElement1",
+   "Past Sermons: data-series-line -> #customElement1",
+   "Past Sermons: data-series-link -> #customElement1",
+   "Past Sermons: data-series-button -> #customElement1",
+   "Past Sermons: data-series-active -> #customElement1",
+   "Past Sermons: series band \"The Kingdom\"",
+   "Past Sermons: 8 newest Shorts",
+   "Past Sermons: data-clips -> #customElement1",
+   "Site content: 571 keys",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Past Sermons",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-sermons(802) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 2237,
+  "load": 2326,
+  "lcp": 2600,
+  "lcpTag": "h2 in arise-sermons",
+  "firstElementText": 2572,
+  "backend": [
+   "youtube.jsw/getLiveVideoId @2707 172ms 1KB",
+   "youtube.jsw/getLatestShorts @2707 186ms 1KB",
+   "content.web.js/getPageContent @2706 489ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2519",
+   "arise-sermons x1 last@2525",
+   "arise-footer x1 last@2521"
+  ],
+  "pageCodeLogs": [
+   "Past Sermons: data-series-title -> #customElement1",
+   "Past Sermons: data-series-line -> #customElement1",
+   "Past Sermons: data-series-link -> #customElement1",
+   "Past Sermons: data-series-button -> #customElement1",
+   "Past Sermons: data-series-active -> #customElement1",
+   "Past Sermons: series band \"The Kingdom\"",
+   "Past Sermons: 8 newest Shorts",
+   "Past Sermons: data-clips -> #customElement1",
+   "Site content: 571 keys",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Ministries",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-ministries(468) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 2840,
+  "load": 2924,
+  "lcp": 3216,
+  "lcpTag": "p in arise-footer",
+  "firstElementText": 3448,
+  "backend": [
+   "content.web.js/getPageContent @3554 335ms 11KB",
+   "content.web.js/getMinistries @3556 335ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3176",
+   "arise-ministries x1 last@5331",
+   "arise-footer x1 last@3173"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Ministries: 9 ministries",
+   "Ministries: data-ministries -> #customElement1",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Events",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-events(740) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 2201,
+  "load": 2246,
+  "lcp": 7144,
+  "lcpTag": "img in arise-events",
+  "firstElementText": 2590,
+  "backend": [
+   "content.web.js/getPageContent @2862 324ms 11KB",
+   "events.web.js/getEvents @2862 343ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2502",
+   "arise-events x1 last@3994",
+   "arise-footer x1 last@2499"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Events: 1 upcoming, 8 past",
+   "Events: data-events -> #customElement1",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Ministries",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-ministries(468) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 2645,
+  "load": 2716,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3158,
+  "backend": [
+   "content.web.js/getMinistries @3273 260ms 1KB",
+   "content.web.js/getPageContent @3272 292ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-ministries x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Ministries: 9 ministries",
+   "Ministries: data-ministries -> #customElement1",
+   "Site content: 571 keys",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Events",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-events(740) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 37,
+  "dcl": 5185,
+  "load": 5339,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 7553,
+  "backend": [
+   "content.web.js/getPageContent @6180 341ms 11KB",
+   "events.web.js/getEvents @6181 410ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-events x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Events: 1 upcoming, 8 past",
+   "Events: data-events -> #customElement1",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Contact",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-contact(656) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 37,
+  "dcl": 2287,
+  "load": 2368,
+  "lcp": 4420,
+  "lcpTag": "h2 in arise-contact",
+  "firstElementText": 2609,
+  "backend": [
+   "content.web.js/getPageContent @2893 305ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2571",
+   "arise-contact x1 last@4389",
+   "arise-footer x1 last@2568"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Sign Up to Serve",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-serve(1199) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 30,
+  "dcl": 2361,
+  "load": 2408,
+  "lcp": 4444,
+  "lcpTag": "p in arise-serve",
+  "firstElementText": 2673,
+  "backend": [
+   "content.web.js/getServePositions @2957 295ms 1KB",
+   "content.web.js/getPageContent @2956 347ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2617",
+   "arise-serve x1 last@4421",
+   "arise-footer x1 last@2614"
+  ],
+  "pageCodeLogs": [
+   "Sign Up to Serve!: 7 positions",
+   "Sign Up to Serve!: data-positions -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Contact",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-contact(656) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 2569,
+  "load": 2657,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3216,
+  "backend": [
+   "content.web.js/getPageContent @3301 318ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-contact x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Sign Up to Serve",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-serve(1199) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 28,
+  "dcl": 2771,
+  "load": 2778,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3149,
+  "backend": [
+   "content.web.js/getPageContent @3343 363ms 11KB",
+   "content.web.js/getServePositions @3344 390ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-serve x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Sign Up to Serve!: 7 positions",
+   "Sign Up to Serve!: data-positions -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Meet our Leaders",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-leaders(1502) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": true,
+  "ttfb": 35,
+  "dcl": 5743,
+  "load": 5844,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 8117,
+  "backend": [
+   "content.web.js/getLeaders @6569 296ms 2KB",
+   "content.web.js/getPageContent @6568 404ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-leaders x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Meet our Leaders: 7 leaders",
+   "Meet our Leaders: data-leaders -> #customElement1",
+   "Site content: 571 keys",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Children's Ministry",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-childrens(445) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 2578,
+  "load": 2619,
+  "lcp": 10660,
+  "lcpTag": "img in arise-childrens",
+  "firstElementText": 2885,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @3152 233ms 1KB",
+   "content.web.js/getPageContent @3151 371ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2818",
+   "arise-childrens x1 last@4522",
+   "arise-footer x1 last@2816"
+  ],
+  "pageCodeLogs": [
+   "Children's Ministry: gallery 0 items",
+   "Children's Ministry: data-photos -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Meet our Leaders",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-leaders(1502) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": true,
+  "ttfb": 35,
+  "dcl": 2188,
+  "load": 2263,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3041,
+  "backend": [
+   "content.web.js/getLeaders @2845 330ms 2KB",
+   "content.web.js/getPageContent @2844 534ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-leaders x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Meet our Leaders: 7 leaders",
+   "Meet our Leaders: data-leaders -> #customElement1",
+   "Site content: 571 keys",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Children's Ministry",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-childrens(445) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 35,
+  "dcl": 3451,
+  "load": 3532,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4265,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @4171 244ms 1KB",
+   "content.web.js/getPageContent @4169 343ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-childrens x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Children's Ministry: gallery 0 items",
+   "Children's Ministry: data-photos -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Youth Ministry",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-youth(320) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 2424,
+  "load": 2528,
+  "lcp": 4484,
+  "lcpTag": "img in arise-youth",
+  "firstElementText": 2730,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @3059 223ms 1KB",
+   "content.web.js/getPageContent @3059 475ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2761",
+   "arise-youth x1 last@4398",
+   "arise-footer x1 last@2729"
+  ],
+  "pageCodeLogs": [
+   "Youth Ministry: gallery 0 items",
+   "Youth Ministry: data-photos -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Youth Ministry",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-youth(320) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 40,
+  "dcl": 2618,
+  "load": 2688,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3454,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @3385 286ms 1KB",
+   "content.web.js/getPageContent @3383 315ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-youth x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Youth Ministry: gallery 0 items",
+   "Youth Ministry: data-photos -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Outreach",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-outreach(1077) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 2114,
+  "load": 2166,
+  "lcp": 4164,
+  "lcpTag": "video in arise-outreach",
+  "firstElementText": 2406,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @2703 237ms 1KB",
+   "content.web.js/getPageContent @2702 343ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2368",
+   "arise-outreach x1 last@4054",
+   "arise-footer x1 last@2366"
+  ],
+  "pageCodeLogs": [
+   "Outreach: gallery 0 items",
+   "Outreach: data-photos -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Lead Network",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-leadnetwork(940) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 32,
+  "dcl": 2524,
+  "load": 2580,
+  "lcp": 4524,
+  "lcpTag": "p in arise-leadnetwork",
+  "firstElementText": 2885,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @3125 212ms 1KB",
+   "content.web.js/getPageContent @3125 342ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2789",
+   "arise-leadnetwork x1 last@4498",
+   "arise-footer x1 last@2787"
+  ],
+  "pageCodeLogs": [
+   "Lead Network: gallery 0 items",
+   "Lead Network: data-photos -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Outreach",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-outreach(1077) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 40,
+  "dcl": 2233,
+  "load": 2361,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3012,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @2982 239ms 1KB",
+   "content.web.js/getPageContent @2981 360ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-outreach x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Outreach: gallery 0 items",
+   "Outreach: data-photos -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "About",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-about(2178) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 32,
+  "dcl": 2126,
+  "load": 2178,
+  "lcp": 5036,
+  "lcpTag": "p in arise-about",
+  "firstElementText": 3496,
+  "backend": [
+   "content.web.js/getPageContent @3737 330ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3406",
+   "arise-about x1 last@5003",
+   "arise-footer x1 last@3403"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement3, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Lead Network",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-leadnetwork(940) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 3601,
+  "load": 3731,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 5030,
+  "backend": [
+   "gallery.web.js/getProjectPhotos @4556 225ms 1KB",
+   "content.web.js/getPageContent @4555 318ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@4208",
+   "arise-leadnetwork x1 last@4215",
+   "arise-footer x1 last@4210"
+  ],
+  "pageCodeLogs": [
+   "Lead Network: gallery 0 items",
+   "Lead Network: data-photos -> #customElement5",
+   "Site content: 571 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "About",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-about(2178) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 28,
+  "dcl": 2165,
+  "load": 2284,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2713,
+  "backend": [
+   "content.web.js/getPageContent @2862 373ms 11KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-about x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement3, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Give",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 306,
+  "dcl": 2702,
+  "load": 4169,
+  "lcp": 3920,
+  "lcpTag": "p",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": [
+   "Failed to load resource: the server responded with a status of 404 () https://tithe.ly/give_new/www/%7B%7B%20myChurch.logo_url%20%7D%7D"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Bible Search",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-bible(939) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 32,
+  "dcl": 2595,
+  "load": 2697,
+  "lcp": 2916,
+  "lcpTag": "p in arise-footer",
+  "firstElementText": 2937,
+  "backend": [
+   "content.web.js/getPageContent @3193 322ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2874",
+   "arise-bible x1 last@4651",
+   "arise-footer x1 last@2871"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement3, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Bible Search",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-bible(939) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 2820,
+  "load": 2898,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4998,
+  "backend": [
+   "content.web.js/getPageContent @3540 369ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3210",
+   "arise-bible x1 last@3218",
+   "arise-footer x1 last@3213"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement3, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Give",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 506,
+  "load": 879,
+  "lcp": 1356,
+  "lcpTag": "p",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": [
+   "Failed to load resource: the server responded with a status of 404 () https://tithe.ly/give_new/www/%7B%7B%20myChurch.logo_url%20%7D%7D"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Podcast",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 1,
+  "consoleWarnErr": 28,
+  "brokenImgs": 0,
+  "overflowX": 12,
+  "sundaySunday": false,
+  "ttfb": 96,
+  "dcl": 845,
+  "load": 3057,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": []
+ },
+ {
+  "site": "live",
+  "page": "Podcast",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 1,
+  "consoleWarnErr": 58,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 471,
+  "dcl": 802,
+  "load": 1314,
+  "lcp": 820,
+  "lcpTag": "img",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": []
+ },
+ {
+  "site": "live",
+  "page": "Job Board",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(237) arise-footer(511)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 37,
+  "dcl": 2669,
+  "load": 2756,
+  "lcp": 4172,
+  "lcpTag": "div",
+  "firstElementText": 3071,
+  "backend": [
+   "content.web.js/getPageContent @3340 343ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2983",
+   "arise-footer x1 last@2979"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Job Board",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(237) arise-footer(511)",
+  "exceptions": 0,
+  "consoleWarnErr": 1,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 27,
+  "dcl": 2054,
+  "load": 2145,
+  "lcp": 3096,
+  "lcpTag": "div",
+  "firstElementText": 2367,
+  "backend": [
+   "content.web.js/getPageContent @2545 356ms 11KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2366",
+   "arise-footer x1 last@2370"
+  ],
+  "pageCodeLogs": [
+   "Site content: 571 keys",
+   "Site content -> #customElement2, #customElement4"
+  ]
+ }
+]

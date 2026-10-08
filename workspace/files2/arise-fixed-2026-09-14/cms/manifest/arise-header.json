@@ -1,0 +1,258 @@
+[
+  {
+    "contentKey": "site.header.logo",
+    "page": "site",
+    "label": "Header logo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_e3158f32636f482b84946a09d70b610c~mv2.png",
+    "where": "Header (top of every page), far left"
+  },
+  {
+    "contentKey": "site.header.wordmark",
+    "page": "site",
+    "label": "Church name next to logo",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Header (top of every page), next to the logo; also the title at the top of the mobile menu"
+  },
+  {
+    "contentKey": "site.tagline",
+    "page": "site",
+    "label": "Tagline (shared, header + footer)",
+    "text": "#YouBelongHere",
+    "imageUrl": "",
+    "where": "Header (top of every page), small red line under the church name; also the red strip in the footer"
+  },
+  {
+    "contentKey": "site.header.nav.home",
+    "page": "site",
+    "label": "Menu: Home",
+    "text": "Home",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.about",
+    "page": "site",
+    "label": "Menu: About",
+    "text": "About",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.about.story",
+    "page": "site",
+    "label": "About dropdown: Our Story",
+    "text": "Our Story",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.about.leaders",
+    "page": "site",
+    "label": "About dropdown: Meet our Leaders",
+    "text": "Meet our Leaders",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.about.contact",
+    "page": "site",
+    "label": "About dropdown: Contact",
+    "text": "Contact",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.ministries",
+    "page": "site",
+    "label": "Menu: Ministries",
+    "text": "Ministries",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.ministries.all",
+    "page": "site",
+    "label": "Ministries dropdown: All Ministries",
+    "text": "All Ministries",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.ministries.connect",
+    "page": "site",
+    "label": "Ministries dropdown: Connect Groups",
+    "text": "Connect Groups",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.ministries.creative",
+    "page": "site",
+    "label": "Ministries dropdown: Arise Creative Arts",
+    "text": "Arise Creative Arts",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.ministries.children",
+    "page": "site",
+    "label": "Ministries dropdown: Children's Ministry",
+    "text": "Children's Ministry",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.ministries.youth",
+    "page": "site",
+    "label": "Ministries dropdown: Youth Ministry",
+    "text": "Youth Ministry",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.ministries.outreach",
+    "page": "site",
+    "label": "Ministries dropdown: Outreach",
+    "text": "Outreach",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.ministries.lead",
+    "page": "site",
+    "label": "Ministries dropdown: Lead Network",
+    "text": "Lead Network",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.media",
+    "page": "site",
+    "label": "Menu: Media",
+    "text": "Media",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.media.sermons",
+    "page": "site",
+    "label": "Media dropdown: Sermons",
+    "text": "Sermons",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.media.bible",
+    "page": "site",
+    "label": "Media dropdown: Bible Search",
+    "text": "Bible Search",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.media.podcast",
+    "page": "site",
+    "label": "Media dropdown: Podcast",
+    "text": "Podcast",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.classes",
+    "page": "site",
+    "label": "Menu: Classes",
+    "text": "Classes",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.events",
+    "page": "site",
+    "label": "Menu: Events",
+    "text": "Events",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.nav.serve",
+    "page": "site",
+    "label": "Menu: Serve",
+    "text": "Serve",
+    "imageUrl": "",
+    "where": "Header (top of every page) menu and the mobile menu"
+  },
+  {
+    "contentKey": "site.header.give",
+    "page": "site",
+    "label": "Give button",
+    "text": "Give Online",
+    "imageUrl": "",
+    "where": "Header (top of every page), red button at the right; also the red button in the mobile menu"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "site",
+    "label": "Sunday time - Pineville (shared)",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Mobile menu (tap the three lines on a phone), bottom info block, first line"
+  },
+  {
+    "contentKey": "site.header.panel.campus1",
+    "page": "site",
+    "label": "Mobile menu: Pineville campus name",
+    "text": "Pineville",
+    "imageUrl": "",
+    "where": "Mobile menu (tap the three lines on a phone), under the Pineville Sunday time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "site",
+    "label": "Sunday time - Alexandria (shared)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Mobile menu (tap the three lines on a phone), bottom info block, second time"
+  },
+  {
+    "contentKey": "site.header.panel.campus2",
+    "page": "site",
+    "label": "Mobile menu: Alexandria campus name",
+    "text": "Alexandria",
+    "imageUrl": "",
+    "where": "Mobile menu (tap the three lines on a phone), under the Alexandria Sunday time"
+  },
+  {
+    "contentKey": "site.times.main.glorynight.label",
+    "page": "site",
+    "label": "Glory Night name (shared)",
+    "text": "Glory Night",
+    "imageUrl": "",
+    "where": "Mobile menu (tap the three lines on a phone), bottom info block"
+  },
+  {
+    "contentKey": "site.times.main.glorynight",
+    "page": "site",
+    "label": "Glory Night time (shared)",
+    "text": "Monday 7:00 PM",
+    "imageUrl": "",
+    "where": "Mobile menu (tap the three lines on a phone), under Glory Night"
+  },
+  {
+    "contentKey": "site.header.panel.glorynightWhere",
+    "page": "site",
+    "label": "Mobile menu: Glory Night location",
+    "text": "&middot; Main Campus",
+    "imageUrl": "",
+    "where": "Mobile menu (tap the three lines on a phone), after the Glory Night time"
+  },
+  {
+    "contentKey": "site.phone",
+    "page": "site",
+    "label": "Church phone number (shared)",
+    "text": "(318) 640-1865",
+    "imageUrl": "",
+    "where": "Mobile menu (tap the three lines on a phone), red phone number at the very bottom"
+  }
+]

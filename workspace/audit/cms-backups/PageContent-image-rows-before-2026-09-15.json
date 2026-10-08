@@ -1,0 +1,11 @@
+{
+  "note": "Live PageContent rows read 2026-09-15 before fixing the five broken imageUrl values (c3b2d0_ -> 1f9fa2_). To undo, set imageUrl back to the value here.",
+  "collection": "PageContent",
+  "rows": [
+    { "id": "d009a345-27dc-4fe6-99f4-f440125219ca", "contentKey": "childrens.kids.photo", "page": "childrens", "label": "Kids photo", "where": "Beside the welcome text", "sortOrder": 400, "text": "", "imageUrl": "https://static.wixstatic.com/media/c3b2d0_a5448e514cc14ea08cb657e4f1a9cec4~mv2.jpg" },
+    { "id": "7c679d07-c03b-4cfc-ab97-8cb2add8db2f", "contentKey": "childrens.superkid.logo", "page": "childrens", "label": "Superkid Academy logo", "where": "Curriculum section", "sortOrder": 401, "text": "", "imageUrl": "https://static.wixstatic.com/media/c3b2d0_8c21ef4200d44594bcec41ac5680c2c0~mv2.jpg" },
+    { "id": "c84ecf3b-a6df-46d6-aecb-8efe9ab2dec8", "contentKey": "outreach.supplies.image", "page": "outreach", "label": "Supplies graphic", "where": "Supplies list", "sortOrder": 600, "text": "", "imageUrl": "https://static.wixstatic.com/media/c3b2d0_ef28ad94288a4068ac9c2974b4d4d545~mv2.jpg" },
+    { "id": "57dff57b-6318-482a-ae21-52f2acc170cb", "contentKey": "leadnetwork.austin.photo", "page": "leadnetwork", "label": "Carlos & Melissa Austin", "where": "Our Current Ministers", "sortOrder": 700, "text": "", "imageUrl": "https://static.wixstatic.com/media/c3b2d0_0118a2141a564a909b5c493b2f55211d~mv2.png" },
+    { "id": "1679a9ac-8b61-4166-9376-e52b79505482", "contentKey": "leadnetwork.calloway.photo", "page": "leadnetwork", "label": "Derrick & Pamla Calloway", "where": "Our Current Ministers", "sortOrder": 701, "text": "", "imageUrl": "https://static.wixstatic.com/media/c3b2d0_1331547403e94f94a08912f08d45d1de~mv2.png" }
+  ]
+}

@@ -1,0 +1,386 @@
+[
+  {
+    "contentKey": "about.hero.kicker",
+    "page": "about",
+    "label": "Top banner small red label",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Top of page, above the big title"
+  },
+  {
+    "contentKey": "about.hero.heading",
+    "page": "about",
+    "label": "Top banner page title",
+    "text": "About",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "about.who.kicker",
+    "page": "about",
+    "label": "Who We Are small label",
+    "text": "Who We Are",
+    "imageUrl": "",
+    "where": "First white section, small red label"
+  },
+  {
+    "contentKey": "about.who.body",
+    "page": "about",
+    "label": "Who We Are paragraph",
+    "text": "ARISE CHURCH is designed to change the lives of men, women, and children as they journey towards their own personal greatness within God’s ordained purpose. Arise Church has the mandate to teach people who they are in Christ and how they should function as effective kingdom citizens on earth. The various ministries and outreaches at ARISE CHURCH are aimed to serve both the body of Christ and central Louisiana. We aspire to train ambassadors for Christ who model the glory of God in their lives, while revealing His kingdom on earth.",
+    "imageUrl": "",
+    "where": "First white section, main paragraph"
+  },
+  {
+    "contentKey": "about.who.leaders",
+    "page": "about",
+    "label": "Pastors name strip",
+    "text": "Apostle Bryant Sanders &middot; Pastor Vanessa Sanders",
+    "imageUrl": "",
+    "where": "First white section, red slanted strip under the paragraph"
+  },
+  {
+    "contentKey": "about.believe.button",
+    "page": "about",
+    "label": "We Believe button label",
+    "text": "We Believe",
+    "imageUrl": "",
+    "where": "First white section, left black button"
+  },
+  {
+    "contentKey": "about.promise.button",
+    "page": "about",
+    "label": "We Promise button label",
+    "text": "We Promise",
+    "imageUrl": "",
+    "where": "First white section, right black button"
+  },
+  {
+    "contentKey": "about.vision.kicker",
+    "page": "about",
+    "label": "Vision small label",
+    "text": "Vision",
+    "imageUrl": "",
+    "where": "Grey Vision section, small red label"
+  },
+  {
+    "contentKey": "about.vision.heading",
+    "page": "about",
+    "label": "Vision heading",
+    "text": "2026: The Year of Uncommon Favor",
+    "imageUrl": "",
+    "where": "Grey Vision section, heading"
+  },
+  {
+    "contentKey": "about.vision.body",
+    "page": "about",
+    "label": "Vision paragraph 1",
+    "text": "This is the year the Lord has marked for uncommon favor — favor that cannot be explained by human effort, connections, or circumstance, but favor that comes solely from the hand of a good and generous God.",
+    "imageUrl": "",
+    "where": "Grey Vision section, first paragraph"
+  },
+  {
+    "contentKey": "about.vision.body2",
+    "page": "about",
+    "label": "Vision paragraph 2",
+    "text": "2026 will be remembered as the year God crowned His people with glory, goodness, and grace beyond measure.",
+    "imageUrl": "",
+    "where": "Grey Vision section, second paragraph"
+  },
+  {
+    "contentKey": "about.mission.kicker",
+    "page": "about",
+    "label": "Mission small label",
+    "text": "Mission",
+    "imageUrl": "",
+    "where": "Black Mission section, small red label"
+  },
+  {
+    "contentKey": "about.mission.heading",
+    "page": "about",
+    "label": "Mission heading",
+    "text": "2026 Mission Statement: Impact Tioga",
+    "imageUrl": "",
+    "where": "Black Mission section, heading"
+  },
+  {
+    "contentKey": "about.mission.strip",
+    "page": "about",
+    "label": "Mission red strip",
+    "text": "Impact Tioga",
+    "imageUrl": "",
+    "where": "Black Mission section, red slanted strip under the heading"
+  },
+  {
+    "contentKey": "about.mission.body",
+    "page": "about",
+    "label": "Mission paragraph 1",
+    "text": "Our mission for this year is to Impact Tioga—to bring the life-changing love of Jesus Christ into every corner of our community, transforming lives, families, and the town we call home.",
+    "imageUrl": "",
+    "where": "Black Mission section, paragraph 1"
+  },
+  {
+    "contentKey": "about.mission.body2",
+    "page": "about",
+    "label": "Mission paragraph 2",
+    "text": "We are called to help Tioga discover Christ: to share the Gospel boldly and compassionately, inviting every person to encounter the Savior who redeems, restores, and gives eternal hope.",
+    "imageUrl": "",
+    "where": "Black Mission section, paragraph 2"
+  },
+  {
+    "contentKey": "about.mission.body3",
+    "page": "about",
+    "label": "Mission paragraph 3",
+    "text": "We are committed to building the community together: partnering with neighbors, schools, businesses, and local leaders to foster unity, serve those in need, and create spaces where everyone feels seen, valued, and loved.",
+    "imageUrl": "",
+    "where": "Black Mission section, paragraph 3"
+  },
+  {
+    "contentKey": "about.mission.body4",
+    "page": "about",
+    "label": "Mission paragraph 4",
+    "text": "We are devoted to supporting one another: walking alongside each other in prayer, encouragement, and practical help, strengthening families, lifting up the hurting, and growing together as the family of God.",
+    "imageUrl": "",
+    "where": "Black Mission section, paragraph 4"
+  },
+  {
+    "contentKey": "about.mission.body5",
+    "page": "about",
+    "label": "Mission paragraph 5",
+    "text": "This is our moment. With God’s uncommon favor upon us, we will rise up as one church, one body, to make a lasting impact—for the glory of Jesus and the good of Tioga.",
+    "imageUrl": "",
+    "where": "Black Mission section, paragraph 5"
+  },
+  {
+    "contentKey": "about.cta.kicker",
+    "page": "about",
+    "label": "Visit box small label",
+    "text": "Visit",
+    "imageUrl": "",
+    "where": "Red box near the bottom, small label above the heading"
+  },
+  {
+    "contentKey": "about.cta.heading",
+    "page": "about",
+    "label": "Visit box heading",
+    "text": "You Belong Here",
+    "imageUrl": "",
+    "where": "Red box near the bottom, heading"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "site",
+    "label": "Sunday service time, Pineville (shared site fact)",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Red Visit box near the bottom, first time"
+  },
+  {
+    "contentKey": "about.cta.where1",
+    "page": "about",
+    "label": "Visit box words after first time",
+    "text": "in Pineville,",
+    "imageUrl": "",
+    "where": "Red box near the bottom, after the Pineville time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "site",
+    "label": "Sunday service time, Alexandria (shared site fact)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Red Visit box near the bottom, second time"
+  },
+  {
+    "contentKey": "about.cta.where2",
+    "page": "about",
+    "label": "Visit box words after second time",
+    "text": "in Alexandria.",
+    "imageUrl": "",
+    "where": "Red box near the bottom, after the Alexandria time"
+  },
+  {
+    "contentKey": "about.cta.body",
+    "page": "about",
+    "label": "Visit box closing sentence",
+    "text": "Come as you are — but never leave as you were.",
+    "imageUrl": "",
+    "where": "Red box near the bottom, end of the sentence"
+  },
+  {
+    "contentKey": "about.cta.button",
+    "page": "about",
+    "label": "Visit box button",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Red box near the bottom, white button"
+  },
+  {
+    "contentKey": "about.believe.kicker",
+    "page": "about",
+    "label": "We Believe popup small label",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "We Believe popup, top small label"
+  },
+  {
+    "contentKey": "about.believe.heading",
+    "page": "about",
+    "label": "We Believe popup heading",
+    "text": "We Believe",
+    "imageUrl": "",
+    "where": "We Believe popup, heading"
+  },
+  {
+    "contentKey": "about.believe.itemLead",
+    "page": "about",
+    "label": "We Believe popup bold lead-in (all items)",
+    "text": "WE BELIEVE",
+    "imageUrl": "",
+    "where": "We Believe popup, bold words starting every item"
+  },
+  {
+    "contentKey": "about.believe.item1",
+    "page": "about",
+    "label": "We Believe item 1 text",
+    "text": "that the Bible is the inspired Word of God and that it is unbiblical for anyone to add to it or take away from it.",
+    "imageUrl": "",
+    "where": "We Believe popup, item 1 after the bold words"
+  },
+  {
+    "contentKey": "about.believe.item1Ref",
+    "page": "about",
+    "label": "We Believe item 1 scripture",
+    "text": "(2 Timothy 3:16)",
+    "imageUrl": "",
+    "where": "We Believe popup, red scripture under item 1"
+  },
+  {
+    "contentKey": "about.believe.item2",
+    "page": "about",
+    "label": "We Believe item 2 text",
+    "text": "in the Virgin birth; that Jesus came to earth through the womb of a virgin woman.",
+    "imageUrl": "",
+    "where": "We Believe popup, item 2 after the bold words"
+  },
+  {
+    "contentKey": "about.believe.item2Ref",
+    "page": "about",
+    "label": "We Believe item 2 scripture",
+    "text": "(Matthew 1:23)",
+    "imageUrl": "",
+    "where": "We Believe popup, red scripture under item 2"
+  },
+  {
+    "contentKey": "about.believe.item3",
+    "page": "about",
+    "label": "We Believe item 3 text",
+    "text": "that Jesus Christ died to redeem fallen man and to declare him righteous.",
+    "imageUrl": "",
+    "where": "We Believe popup, item 3 after the bold words"
+  },
+  {
+    "contentKey": "about.believe.item3Ref",
+    "page": "about",
+    "label": "We Believe item 3 scripture",
+    "text": "(John 3:16-17)",
+    "imageUrl": "",
+    "where": "We Believe popup, red scripture under item 3"
+  },
+  {
+    "contentKey": "about.believe.item4",
+    "page": "about",
+    "label": "We Believe item 4 text",
+    "text": "that salvation is only by grace through faith, and not of works.",
+    "imageUrl": "",
+    "where": "We Believe popup, item 4 after the bold words"
+  },
+  {
+    "contentKey": "about.believe.item4Ref",
+    "page": "about",
+    "label": "We Believe item 4 scripture",
+    "text": "(Ephesians 2:8-10)",
+    "imageUrl": "",
+    "where": "We Believe popup, red scripture under item 4"
+  },
+  {
+    "contentKey": "about.believe.item5",
+    "page": "about",
+    "label": "We Believe item 5 text",
+    "text": "that eternal life is given to every sinner that confesses Jesus Christ as Lord.",
+    "imageUrl": "",
+    "where": "We Believe popup, item 5 after the bold words"
+  },
+  {
+    "contentKey": "about.believe.item5Ref",
+    "page": "about",
+    "label": "We Believe item 5 scripture",
+    "text": "(Romans 10:9-10; Philippians 2:9-11)",
+    "imageUrl": "",
+    "where": "We Believe popup, red scripture under item 5"
+  },
+  {
+    "contentKey": "about.promise.kicker",
+    "page": "about",
+    "label": "We Promise popup small label",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "We Promise popup, top small label"
+  },
+  {
+    "contentKey": "about.promise.heading",
+    "page": "about",
+    "label": "We Promise popup heading",
+    "text": "We Promise",
+    "imageUrl": "",
+    "where": "We Promise popup, heading"
+  },
+  {
+    "contentKey": "about.promise.itemLead",
+    "page": "about",
+    "label": "We Promise popup bold lead-in (all items)",
+    "text": "WE PROMISE",
+    "imageUrl": "",
+    "where": "We Promise popup, bold words starting every item"
+  },
+  {
+    "contentKey": "about.promise.item1",
+    "page": "about",
+    "label": "We Promise item 1 text",
+    "text": "that you may come as you are, but you will never leave as you were.",
+    "imageUrl": "",
+    "where": "We Promise popup, item 1 after the bold words"
+  },
+  {
+    "contentKey": "about.promise.item2",
+    "page": "about",
+    "label": "We Promise item 2 text",
+    "text": "that the foundation of all sermons and teachings will come from the truth of the gospel of Jesus and not the opinions of man.",
+    "imageUrl": "",
+    "where": "We Promise popup, item 2 after the bold words"
+  },
+  {
+    "contentKey": "about.promise.item3",
+    "page": "about",
+    "label": "We Promise item 3 text",
+    "text": "that Arise Church will be a safe environment for you and your family to grow spiritually, mentally, emotionally, and physically.",
+    "imageUrl": "",
+    "where": "We Promise popup, item 3 after the bold words"
+  },
+  {
+    "contentKey": "about.promise.item4",
+    "page": "about",
+    "label": "We Promise item 4 text",
+    "text": "that your race, gender, age, sin, past or present circumstances will not prevent you from being loved and cherished here at Arise Church.",
+    "imageUrl": "",
+    "where": "We Promise popup, item 4 after the bold words"
+  },
+  {
+    "contentKey": "about.promise.item5",
+    "page": "about",
+    "label": "We Promise item 5 text",
+    "text": "to help guide you on a path of freedom to know your true identity in the Kingdom of God regardless of what this world might suggest.",
+    "imageUrl": "",
+    "where": "We Promise popup, item 5 after the bold words"
+  }
+]

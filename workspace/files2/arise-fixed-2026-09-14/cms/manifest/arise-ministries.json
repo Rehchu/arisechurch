@@ -1,0 +1,98 @@
+[
+  {
+    "contentKey": "ministries.hero.kicker",
+    "page": "ministries",
+    "label": "Top banner small red label",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Top of page, above the big title"
+  },
+  {
+    "contentKey": "ministries.hero.heading",
+    "page": "ministries",
+    "label": "Top banner page title",
+    "text": "Ministries",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "ministries.need.heading",
+    "page": "ministries",
+    "label": "Serve band heading",
+    "text": "We are In Need",
+    "imageUrl": "",
+    "where": "Red band under the ministry tiles"
+  },
+  {
+    "contentKey": "ministries.need.button",
+    "page": "ministries",
+    "label": "Serve band button",
+    "text": "Sign Up to Serve!",
+    "imageUrl": "",
+    "where": "Red band under the ministry tiles, white button"
+  },
+  {
+    "contentKey": "ministries.cta.kicker",
+    "page": "ministries",
+    "label": "Visit box small label",
+    "text": "Not Sure Where To Start",
+    "imageUrl": "",
+    "where": "Red box near the bottom, small label above the heading"
+  },
+  {
+    "contentKey": "ministries.cta.heading",
+    "page": "ministries",
+    "label": "Visit box heading",
+    "text": "Come Visit First",
+    "imageUrl": "",
+    "where": "Red box near the bottom, heading"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "site",
+    "label": "Sunday service time, Pineville (shared site fact)",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Red Visit box near the bottom, first time"
+  },
+  {
+    "contentKey": "ministries.cta.where1",
+    "page": "ministries",
+    "label": "Visit box words after first time",
+    "text": "in Pineville,",
+    "imageUrl": "",
+    "where": "Red box near the bottom, after the Pineville time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "site",
+    "label": "Sunday service time, Alexandria (shared site fact)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Red Visit box near the bottom, second time"
+  },
+  {
+    "contentKey": "ministries.cta.where2",
+    "page": "ministries",
+    "label": "Visit box words after second time",
+    "text": "in Alexandria.",
+    "imageUrl": "",
+    "where": "Red box near the bottom, after the Alexandria time"
+  },
+  {
+    "contentKey": "ministries.cta.body",
+    "page": "ministries",
+    "label": "Visit box closing sentence",
+    "text": "Find your people once you’re here.",
+    "imageUrl": "",
+    "where": "Red box near the bottom, end of the sentence"
+  },
+  {
+    "contentKey": "ministries.cta.button",
+    "page": "ministries",
+    "label": "Visit box button",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Red box near the bottom, white button"
+  }
+]

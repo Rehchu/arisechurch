@@ -1,0 +1,242 @@
+[
+  {
+    "contentKey": "site.footer.brand.heading",
+    "page": "site",
+    "label": "Footer: church name heading",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), first column heading"
+  },
+  {
+    "contentKey": "site.footer.brand.body",
+    "page": "site",
+    "label": "Footer: short description",
+    "text": "Multicultural, multiethnic, and multigenerational. Pineville &amp; Alexandria, Louisiana.",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), first column, under the church name"
+  },
+  {
+    "contentKey": "site.tagline",
+    "page": "site",
+    "label": "Tagline (shared, header + footer)",
+    "text": "#YouBelongHere",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), red slanted strip in the first column; also under the logo in the header"
+  },
+  {
+    "contentKey": "site.footer.visit.heading",
+    "page": "site",
+    "label": "Footer: Visit heading",
+    "text": "Visit",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), second column heading"
+  },
+  {
+    "contentKey": "site.campus.main",
+    "page": "site",
+    "label": "Main campus address (shared)",
+    "text": "501 Ates Road<br>Pineville, LA 71360",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Visit column, first address"
+  },
+  {
+    "contentKey": "site.campus.second",
+    "page": "site",
+    "label": "Alexandria campus address (shared)",
+    "text": "5305 North Blvd<br>Alexandria, LA 71301",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Visit column, second address"
+  },
+  {
+    "contentKey": "site.times.sunday.main.label",
+    "page": "site",
+    "label": "Sunday label - Pineville (shared)",
+    "text": "Sunday",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Visit column, first service line"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "site",
+    "label": "Sunday time - Pineville (shared)",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Visit column (day name is dropped after the Sunday label) and the bottom strip"
+  },
+  {
+    "contentKey": "site.footer.campus1",
+    "page": "site",
+    "label": "Footer: Pineville campus name",
+    "text": "Pineville",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), after the Pineville Sunday time (Visit column and bottom strip)"
+  },
+  {
+    "contentKey": "site.times.sunday.second.label",
+    "page": "site",
+    "label": "Sunday label - Alexandria (shared)",
+    "text": "Sunday",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Visit column, second service line"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "site",
+    "label": "Sunday time - Alexandria (shared)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Visit column (day name is dropped after the Sunday label) and the bottom strip"
+  },
+  {
+    "contentKey": "site.footer.campus2",
+    "page": "site",
+    "label": "Footer: Alexandria campus name",
+    "text": "Alexandria",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), after the Alexandria Sunday time (Visit column and bottom strip)"
+  },
+  {
+    "contentKey": "site.footer.visit.weeknight",
+    "page": "site",
+    "label": "Footer: weeknight times link",
+    "text": "Weeknight times &rarr;",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Visit column, red link under the Sunday times"
+  },
+  {
+    "contentKey": "site.footer.explore.heading",
+    "page": "site",
+    "label": "Footer: Explore heading",
+    "text": "Explore",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), third column heading"
+  },
+  {
+    "contentKey": "site.footer.explore.item1",
+    "page": "site",
+    "label": "Footer Explore link 1",
+    "text": "About",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Explore column, link 1"
+  },
+  {
+    "contentKey": "site.footer.explore.item2",
+    "page": "site",
+    "label": "Footer Explore link 2",
+    "text": "Meet our Leaders",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Explore column, link 2"
+  },
+  {
+    "contentKey": "site.footer.explore.item3",
+    "page": "site",
+    "label": "Footer Explore link 3",
+    "text": "Ministries",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Explore column, link 3"
+  },
+  {
+    "contentKey": "site.footer.explore.item4",
+    "page": "site",
+    "label": "Footer Explore link 4",
+    "text": "Connect Groups",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Explore column, link 4"
+  },
+  {
+    "contentKey": "site.footer.explore.item5",
+    "page": "site",
+    "label": "Footer Explore link 5",
+    "text": "Arise Creative Arts",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Explore column, link 5"
+  },
+  {
+    "contentKey": "site.footer.explore.item6",
+    "page": "site",
+    "label": "Footer Explore link 6",
+    "text": "Sermons",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Explore column, link 6"
+  },
+  {
+    "contentKey": "site.footer.explore.item7",
+    "page": "site",
+    "label": "Footer Explore link 7",
+    "text": "Classes",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Explore column, link 7"
+  },
+  {
+    "contentKey": "site.footer.explore.item8",
+    "page": "site",
+    "label": "Footer Explore link 8",
+    "text": "Events",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Explore column, link 8"
+  },
+  {
+    "contentKey": "site.footer.explore.item9",
+    "page": "site",
+    "label": "Footer Explore link 9",
+    "text": "Bible Search",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Explore column, link 9"
+  },
+  {
+    "contentKey": "site.footer.connect.heading",
+    "page": "site",
+    "label": "Footer: Connect heading",
+    "text": "Connect",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), fourth column heading"
+  },
+  {
+    "contentKey": "site.footer.connect.item1",
+    "page": "site",
+    "label": "Footer Connect link 1",
+    "text": "Contact",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Connect column, link 1"
+  },
+  {
+    "contentKey": "site.footer.connect.item2",
+    "page": "site",
+    "label": "Footer Connect link 2",
+    "text": "Sign Up to Serve",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Connect column, link 2"
+  },
+  {
+    "contentKey": "site.footer.connect.item3",
+    "page": "site",
+    "label": "Footer Connect link 3",
+    "text": "Give Online",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Connect column, link 3"
+  },
+  {
+    "contentKey": "site.footer.connect.item4",
+    "page": "site",
+    "label": "Footer Connect link 4",
+    "text": "Prayer Request",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Connect column, link 4"
+  },
+  {
+    "contentKey": "site.email",
+    "page": "site",
+    "label": "Church email (shared)",
+    "text": "arisenow.church@gmail.com",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), Connect column, last line"
+  },
+  {
+    "contentKey": "site.footer.bottom.copyright",
+    "page": "site",
+    "label": "Footer: copyright name",
+    "text": "Arise Church",
+    "imageUrl": "",
+    "where": "Footer (bottom of every page), very bottom left, after the copyright year"
+  }
+]

@@ -1,0 +1,149 @@
+<!--
+  ARISE CHURCH — SERVICE TIMES  (v2, built on your existing code)
+
+  WHAT WAS WRONG WITH v1
+  ──────────────────────
+  1. THE MODAL CAN'T ESCAPE THE IFRAME.  Wix "Embed HTML" renders inside an
+     <iframe>. Your .modal uses position:fixed, which inside an iframe is
+     relative to the IFRAME, not the page. Your .modal-content is a fixed
+     412x273 with overflow:hidden — so unless the embed element is at least
+     that big, the times get clipped. And if you DO size it that big, you get
+     a large invisible rectangle sitting on your hero swallowing clicks.
+     -> Fixed here: the panel expands INLINE (no position:fixed), and the
+        container is pointer-events:none so the empty area never blocks the
+        hero. Only the button and the open panel are clickable.
+
+  2. CONTRAST.  rgba(255,255,255,0.15) over a photo measured 2.18:1 at worst.
+     WCAG AA needs 4.5:1.  -> Solid #0A0A0C panel, now >12:1.
+
+  3. OFF-BRAND FONT.  Playfair Display is a serif — your brand kit specifies
+     Anton for display and Oswald for everything else. Playfair was a third
+     font family on the site.  -> Now Anton + Oswald.
+
+  4. MISSING INFO.  No campus split, and Monday wasn't named "Glory Night".
+
+  5. ACCESSIBILITY.  The × was a <span> (not keyboard reachable), no
+     aria-expanded, no Escape to close, and the ▼ was CSS content that some
+     screen readers announce as "black down-pointing triangle".
+     -> Real button, aria-expanded, Escape closes, focus returns, SVG chevron
+        marked aria-hidden.
+
+  ⚠️  CHECK THIS: your v1 said Corporate Prayer is Mon–WED. You told me
+      Mon–THU, and Mon–Thu is what I published in the homepage structured
+      data. This file uses Mon–Thu. If Wed is right, tell me and I'll fix
+      both this and the live schema.
+
+  HOW TO INSTALL
+  ──────────────
+  Wix Editor -> the existing embed element -> Settings -> paste this, replacing
+  everything. Then resize the embed box to about 360 wide x 430 tall.
+  The empty space is click-through, so it won't cover your hero.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --red:#D6222D; --ink:#0A0A0C; --paper:#fff;
+         --muted:rgba(255,255,255,.64); --rule:rgba(255,255,255,.13); }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:transparent;height:100%}
+
+  /* Click-through shell — this is what stops the embed blocking your hero */
+  .wrap{
+    font-family:'Oswald',Helvetica,Arial,sans-serif;
+    width:100%;max-width:360px;margin-left:auto;
+    pointer-events:none;
+  }
+  .card{pointer-events:auto;background:var(--ink);border:1px solid var(--rule);
+        border-radius:12px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.5)}
+
+  .btn{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:17px 22px;background:var(--red);border:0;cursor:pointer;font:inherit;
+    font-weight:600;font-size:17px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--paper);text-align:left;
+  }
+  .btn:hover{background:#c11f29}
+  .btn:focus-visible{outline:3px solid var(--paper);outline-offset:-3px}
+  .chev{flex:0 0 auto;transition:transform .24s ease}
+  .wrap[data-open="true"] .chev{transform:rotate(180deg)}
+
+  .lead{padding:19px 22px 16px;border-bottom:1px solid var(--rule)}
+  .lead__d{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);font-weight:600;margin-bottom:6px}
+  .lead__t{font-family:'Anton',Impact,sans-serif;font-size:35px;color:var(--paper);line-height:1;letter-spacing:.02em}
+  .lead__n{font-size:12.5px;color:var(--muted);margin-top:8px;letter-spacing:.04em}
+
+  .more{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .wrap[data-open="true"] .more{max-height:460px}
+  .more__in{padding:15px 22px 20px}
+  .lbl{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:8px 0;font-size:14.5px;color:var(--paper)}
+  .row+.row{border-top:1px solid rgba(255,255,255,.07)}
+  .row b{font-weight:500;white-space:nowrap}
+  .row em{font-style:normal;color:var(--red);font-size:10px;letter-spacing:.16em;text-transform:uppercase;display:block;margin-top:2px}
+
+  .addr{margin-top:17px;padding-top:15px;border-top:1px solid var(--rule);font-size:12.5px;color:var(--muted);line-height:1.7}
+  .addr b{color:var(--paper);font-weight:500}
+  .cta{display:block;margin-top:15px;padding:12px;text-align:center;background:transparent;
+       border:1px solid var(--red);color:var(--paper);font-size:12px;font-weight:600;
+       letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border-radius:4px}
+  .cta:hover{background:var(--red)}
+  .cta:focus-visible{outline:3px solid var(--paper);outline-offset:2px}
+
+  @media(prefers-reduced-motion:reduce){.chev,.more{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap" id="w" data-open="false">
+  <div class="card">
+    <button class="btn" id="t" aria-expanded="false" aria-controls="m">
+      <span>Service Times</span>
+      <svg class="chev" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true" focusable="false">
+        <path d="M1 1L7.5 7.5L14 1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <!-- Always visible: the one thing everybody came for -->
+    <div class="lead">
+      <div class="lead__d">Sunday Service</div>
+      <div class="lead__t">10:30 AM</div>
+      <div class="lead__n">Both campuses &middot; Come as you are</div>
+    </div>
+
+    <div class="more" id="m">
+      <div class="more__in">
+        <div class="lbl">Main Campus &middot; Pineville</div>
+        <div class="row"><span>Glory Night<em>Monday Nights</em></span><b>7:00 PM</b></div>
+        <div class="row"><span>Midweek Service</span><b>Wed 7:00 PM</b></div>
+        <div class="row"><span>Corporate Prayer</span><b>Mon&ndash;Thu 5:00 AM</b></div>
+
+        <div class="addr">
+          <b>Main Campus</b><br>501 Ates Road, Pineville, LA 71360<br><br>
+          <b>Alexandria Campus</b><br>5305 North Blvd, Alexandria, LA 71301
+        </div>
+        <a class="cta" href="https://www.arisecenla.church/contact" target="_top">Plan Your Visit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var w=document.getElementById('w'), t=document.getElementById('t');
+  function set(open){
+    w.setAttribute('data-open',String(open));
+    t.setAttribute('aria-expanded',String(open));
+  }
+  t.addEventListener('click',function(){ set(w.getAttribute('data-open')!=='true'); });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape' && w.getAttribute('data-open')==='true'){ set(false); t.focus(); }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,4210 @@
+[
+ {
+  "contentKey": "about.believe.button",
+  "page": "about",
+  "label": "We Believe button label",
+  "text": "We Believe",
+  "imageUrl": "",
+  "where": "First white section, left black button"
+ },
+ {
+  "contentKey": "about.believe.heading",
+  "page": "about",
+  "label": "We Believe popup heading",
+  "text": "We Believe",
+  "imageUrl": "",
+  "where": "We Believe popup, heading"
+ },
+ {
+  "contentKey": "about.believe.item1",
+  "page": "about",
+  "label": "We Believe item 1 text",
+  "text": "that the Bible is the inspired Word of God and that it is unbiblical for anyone to add to it or take away from it.",
+  "imageUrl": "",
+  "where": "We Believe popup, item 1 after the bold words"
+ },
+ {
+  "contentKey": "about.believe.item1Ref",
+  "page": "about",
+  "label": "We Believe item 1 scripture",
+  "text": "(2 Timothy 3:16)",
+  "imageUrl": "",
+  "where": "We Believe popup, red scripture under item 1"
+ },
+ {
+  "contentKey": "about.believe.item2",
+  "page": "about",
+  "label": "We Believe item 2 text",
+  "text": "in the Virgin birth; that Jesus came to earth through the womb of a virgin woman.",
+  "imageUrl": "",
+  "where": "We Believe popup, item 2 after the bold words"
+ },
+ {
+  "contentKey": "about.believe.item2Ref",
+  "page": "about",
+  "label": "We Believe item 2 scripture",
+  "text": "(Matthew 1:23)",
+  "imageUrl": "",
+  "where": "We Believe popup, red scripture under item 2"
+ },
+ {
+  "contentKey": "about.believe.item3",
+  "page": "about",
+  "label": "We Believe item 3 text",
+  "text": "that Jesus Christ died to redeem fallen man and to declare him righteous.",
+  "imageUrl": "",
+  "where": "We Believe popup, item 3 after the bold words"
+ },
+ {
+  "contentKey": "about.believe.item3Ref",
+  "page": "about",
+  "label": "We Believe item 3 scripture",
+  "text": "(John 3:16-17)",
+  "imageUrl": "",
+  "where": "We Believe popup, red scripture under item 3"
+ },
+ {
+  "contentKey": "about.believe.item4",
+  "page": "about",
+  "label": "We Believe item 4 text",
+  "text": "that salvation is only by grace through faith, and not of works.",
+  "imageUrl": "",
+  "where": "We Believe popup, item 4 after the bold words"
+ },
+ {
+  "contentKey": "about.believe.item4Ref",
+  "page": "about",
+  "label": "We Believe item 4 scripture",
+  "text": "(Ephesians 2:8-10)",
+  "imageUrl": "",
+  "where": "We Believe popup, red scripture under item 4"
+ },
+ {
+  "contentKey": "about.believe.item5",
+  "page": "about",
+  "label": "We Believe item 5 text",
+  "text": "that eternal life is given to every sinner that confesses Jesus Christ as Lord.",
+  "imageUrl": "",
+  "where": "We Believe popup, item 5 after the bold words"
+ },
+ {
+  "contentKey": "about.believe.item5Ref",
+  "page": "about",
+  "label": "We Believe item 5 scripture",
+  "text": "(Romans 10:9-10; Philippians 2:9-11)",
+  "imageUrl": "",
+  "where": "We Believe popup, red scripture under item 5"
+ },
+ {
+  "contentKey": "about.believe.itemLead",
+  "page": "about",
+  "label": "We Believe popup bold lead-in (all items)",
+  "text": "WE BELIEVE",
+  "imageUrl": "",
+  "where": "We Believe popup, bold words starting every item"
+ },
+ {
+  "contentKey": "about.believe.kicker",
+  "page": "about",
+  "label": "We Believe popup small label",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "We Believe popup, top small label"
+ },
+ {
+  "contentKey": "about.cta.body",
+  "page": "about",
+  "label": "Visit box closing sentence",
+  "text": "Come as you are — but never leave as you were.",
+  "imageUrl": "",
+  "where": "Red box near the bottom, end of the sentence"
+ },
+ {
+  "contentKey": "about.cta.button",
+  "page": "about",
+  "label": "Visit box button",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Red box near the bottom, white button"
+ },
+ {
+  "contentKey": "about.cta.heading",
+  "page": "about",
+  "label": "Visit box heading",
+  "text": "You Belong Here",
+  "imageUrl": "",
+  "where": "Red box near the bottom, heading"
+ },
+ {
+  "contentKey": "about.cta.kicker",
+  "page": "about",
+  "label": "Visit box small label",
+  "text": "Visit",
+  "imageUrl": "",
+  "where": "Red box near the bottom, small label above the heading"
+ },
+ {
+  "contentKey": "about.cta.where1",
+  "page": "about",
+  "label": "Visit box words after first time",
+  "text": "in Pineville,",
+  "imageUrl": "",
+  "where": "Red box near the bottom, after the Pineville time"
+ },
+ {
+  "contentKey": "about.cta.where2",
+  "page": "about",
+  "label": "Visit box words after second time",
+  "text": "in Alexandria.",
+  "imageUrl": "",
+  "where": "Red box near the bottom, after the Alexandria time"
+ },
+ {
+  "contentKey": "about.hero.heading",
+  "page": "about",
+  "label": "Top banner page title",
+  "text": "About",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "about.hero.kicker",
+  "page": "about",
+  "label": "Top banner small red label",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Top of page, above the big title"
+ },
+ {
+  "contentKey": "about.mission.body",
+  "page": "about",
+  "label": "Mission paragraph 1",
+  "text": "Our mission for this year is to Impact Tioga—to bring the life-changing love of Jesus Christ into every corner of our community, transforming lives, families, and the town we call home.",
+  "imageUrl": "",
+  "where": "Black Mission section, paragraph 1"
+ },
+ {
+  "contentKey": "about.mission.body2",
+  "page": "about",
+  "label": "Mission paragraph 2",
+  "text": "We are called to help Tioga discover Christ: to share the Gospel boldly and compassionately, inviting every person to encounter the Savior who redeems, restores, and gives eternal hope.",
+  "imageUrl": "",
+  "where": "Black Mission section, paragraph 2"
+ },
+ {
+  "contentKey": "about.mission.body3",
+  "page": "about",
+  "label": "Mission paragraph 3",
+  "text": "We are committed to building the community together: partnering with neighbors, schools, businesses, and local leaders to foster unity, serve those in need, and create spaces where everyone feels seen, valued, and loved.",
+  "imageUrl": "",
+  "where": "Black Mission section, paragraph 3"
+ },
+ {
+  "contentKey": "about.mission.body4",
+  "page": "about",
+  "label": "Mission paragraph 4",
+  "text": "We are devoted to supporting one another: walking alongside each other in prayer, encouragement, and practical help, strengthening families, lifting up the hurting, and growing together as the family of God.",
+  "imageUrl": "",
+  "where": "Black Mission section, paragraph 4"
+ },
+ {
+  "contentKey": "about.mission.body5",
+  "page": "about",
+  "label": "Mission paragraph 5",
+  "text": "This is our moment. With God’s uncommon favor upon us, we will rise up as one church, one body, to make a lasting impact—for the glory of Jesus and the good of Tioga.",
+  "imageUrl": "",
+  "where": "Black Mission section, paragraph 5"
+ },
+ {
+  "contentKey": "about.mission.heading",
+  "page": "about",
+  "label": "Mission heading",
+  "text": "2026 Mission Statement: Impact Tioga",
+  "imageUrl": "",
+  "where": "Black Mission section, heading"
+ },
+ {
+  "contentKey": "about.mission.kicker",
+  "page": "about",
+  "label": "Mission small label",
+  "text": "Mission",
+  "imageUrl": "",
+  "where": "Black Mission section, small red label"
+ },
+ {
+  "contentKey": "about.mission.strip",
+  "page": "about",
+  "label": "Mission red strip",
+  "text": "Impact Tioga",
+  "imageUrl": "",
+  "where": "Black Mission section, red slanted strip under the heading"
+ },
+ {
+  "contentKey": "about.promise.button",
+  "page": "about",
+  "label": "We Promise button label",
+  "text": "We Promise",
+  "imageUrl": "",
+  "where": "First white section, right black button"
+ },
+ {
+  "contentKey": "about.promise.heading",
+  "page": "about",
+  "label": "We Promise popup heading",
+  "text": "We Promise",
+  "imageUrl": "",
+  "where": "We Promise popup, heading"
+ },
+ {
+  "contentKey": "about.promise.item1",
+  "page": "about",
+  "label": "We Promise item 1 text",
+  "text": "that you may come as you are, but you will never leave as you were.",
+  "imageUrl": "",
+  "where": "We Promise popup, item 1 after the bold words"
+ },
+ {
+  "contentKey": "about.promise.item2",
+  "page": "about",
+  "label": "We Promise item 2 text",
+  "text": "that the foundation of all sermons and teachings will come from the truth of the gospel of Jesus and not the opinions of man.",
+  "imageUrl": "",
+  "where": "We Promise popup, item 2 after the bold words"
+ },
+ {
+  "contentKey": "about.promise.item3",
+  "page": "about",
+  "label": "We Promise item 3 text",
+  "text": "that Arise Church will be a safe environment for you and your family to grow spiritually, mentally, emotionally, and physically.",
+  "imageUrl": "",
+  "where": "We Promise popup, item 3 after the bold words"
+ },
+ {
+  "contentKey": "about.promise.item4",
+  "page": "about",
+  "label": "We Promise item 4 text",
+  "text": "that your race, gender, age, sin, past or present circumstances will not prevent you from being loved and cherished here at Arise Church.",
+  "imageUrl": "",
+  "where": "We Promise popup, item 4 after the bold words"
+ },
+ {
+  "contentKey": "about.promise.item5",
+  "page": "about",
+  "label": "We Promise item 5 text",
+  "text": "to help guide you on a path of freedom to know your true identity in the Kingdom of God regardless of what this world might suggest.",
+  "imageUrl": "",
+  "where": "We Promise popup, item 5 after the bold words"
+ },
+ {
+  "contentKey": "about.promise.itemLead",
+  "page": "about",
+  "label": "We Promise popup bold lead-in (all items)",
+  "text": "WE PROMISE",
+  "imageUrl": "",
+  "where": "We Promise popup, bold words starting every item"
+ },
+ {
+  "contentKey": "about.promise.kicker",
+  "page": "about",
+  "label": "We Promise popup small label",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "We Promise popup, top small label"
+ },
+ {
+  "contentKey": "about.vision.body",
+  "page": "about",
+  "label": "Vision paragraph 1",
+  "text": "This is the year the Lord has marked for uncommon favor — favor that cannot be explained by human effort, connections, or circumstance, but favor that comes solely from the hand of a good and generous God.",
+  "imageUrl": "",
+  "where": "Grey Vision section, first paragraph"
+ },
+ {
+  "contentKey": "about.vision.body2",
+  "page": "about",
+  "label": "Vision paragraph 2",
+  "text": "2026 will be remembered as the year God crowned His people with glory, goodness, and grace beyond measure.",
+  "imageUrl": "",
+  "where": "Grey Vision section, second paragraph"
+ },
+ {
+  "contentKey": "about.vision.heading",
+  "page": "about",
+  "label": "Vision heading",
+  "text": "2026: The Year of Uncommon Favor",
+  "imageUrl": "",
+  "where": "Grey Vision section, heading"
+ },
+ {
+  "contentKey": "about.vision.kicker",
+  "page": "about",
+  "label": "Vision small label",
+  "text": "Vision",
+  "imageUrl": "",
+  "where": "Grey Vision section, small red label"
+ },
+ {
+  "contentKey": "about.who.body",
+  "page": "about",
+  "label": "Who We Are paragraph",
+  "text": "ARISE CHURCH is designed to change the lives of men, women, and children as they journey towards their own personal greatness within God’s ordained purpose. Arise Church has the mandate to teach people who they are in Christ and how they should function as effective kingdom citizens on earth. The various ministries and outreaches at ARISE CHURCH are aimed to serve both the body of Christ and central Louisiana. We aspire to train ambassadors for Christ who model the glory of God in their lives, while revealing His kingdom on earth.",
+  "imageUrl": "",
+  "where": "First white section, main paragraph"
+ },
+ {
+  "contentKey": "about.who.kicker",
+  "page": "about",
+  "label": "Who We Are small label",
+  "text": "Who We Are",
+  "imageUrl": "",
+  "where": "First white section, small red label"
+ },
+ {
+  "contentKey": "about.who.leaders",
+  "page": "about",
+  "label": "Pastors name strip",
+  "text": "Apostle Bryant Sanders &middot; Pastor Vanessa Sanders",
+  "imageUrl": "",
+  "where": "First white section, red slanted strip under the paragraph"
+ },
+ {
+  "contentKey": "alexandria.cta.body",
+  "page": "alexandria",
+  "label": "Bottom banner text",
+  "text": "Let us know you are coming and we will look out for you.",
+  "imageUrl": "",
+  "where": "Bottom red banner, sentence under the heading"
+ },
+ {
+  "contentKey": "alexandria.cta.button",
+  "page": "alexandria",
+  "label": "Bottom banner button",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Bottom red banner, white button on the right"
+ },
+ {
+  "contentKey": "alexandria.cta.heading",
+  "page": "alexandria",
+  "label": "Bottom banner heading",
+  "text": "Come As You Are",
+  "imageUrl": "",
+  "where": "Bottom red banner, heading"
+ },
+ {
+  "contentKey": "alexandria.cta.kicker",
+  "page": "alexandria",
+  "label": "Bottom banner kicker",
+  "text": "First Time?",
+  "imageUrl": "",
+  "where": "Bottom red banner, small words at the top"
+ },
+ {
+  "contentKey": "alexandria.hero.heading",
+  "page": "alexandria",
+  "label": "Hero heading",
+  "text": "Arise Church<br>Alexandria",
+  "imageUrl": "",
+  "where": "Top of page, the big two-line title"
+ },
+ {
+  "contentKey": "alexandria.pastor.kicker",
+  "page": "alexandria",
+  "label": "Lead Pastor kicker",
+  "text": "Lead Pastor",
+  "imageUrl": "",
+  "where": "Second section, small red words at the top"
+ },
+ {
+  "contentKey": "alexandria.visit.button",
+  "page": "alexandria",
+  "label": "Directions button",
+  "text": "Get Directions",
+  "imageUrl": "",
+  "where": "Find Us section, red button under the address"
+ },
+ {
+  "contentKey": "alexandria.visit.empty",
+  "page": "alexandria",
+  "label": "No times message",
+  "text": "Times coming soon",
+  "imageUrl": "",
+  "where": "Find Us section, right dark card, shown only when no service times are set"
+ },
+ {
+  "contentKey": "alexandria.visit.heading",
+  "page": "alexandria",
+  "label": "Find Us heading",
+  "text": "Find Us",
+  "imageUrl": "",
+  "where": "Find Us section, heading"
+ },
+ {
+  "contentKey": "alexandria.visit.kicker",
+  "page": "alexandria",
+  "label": "Find Us kicker",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Find Us section, small red words at the top"
+ },
+ {
+  "contentKey": "alexandria.visit.whenLabel",
+  "page": "alexandria",
+  "label": "When label",
+  "text": "When",
+  "imageUrl": "",
+  "where": "Find Us section, right dark card, small red label"
+ },
+ {
+  "contentKey": "alexandria.visit.whereLabel",
+  "page": "alexandria",
+  "label": "Where label",
+  "text": "Where",
+  "imageUrl": "",
+  "where": "Find Us section, left dark card, small red label"
+ },
+ {
+  "contentKey": "bible.cta.alexandria",
+  "page": "bible",
+  "label": "Go Deeper sentence: words after the Alexandria time",
+  "text": "in Alexandria. Glory Nights",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, sentence after the Pineville Sunday time"
+ },
+ {
+  "contentKey": "bible.cta.button",
+  "page": "bible",
+  "label": "Bottom banner button",
+  "text": "Sermons",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, white button"
+ },
+ {
+  "contentKey": "bible.cta.end",
+  "page": "bible",
+  "label": "Go Deeper sentence: closing punctuation",
+  "text": ".",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, sentence after the Pineville Sunday time"
+ },
+ {
+  "contentKey": "bible.cta.heading",
+  "page": "bible",
+  "label": "Bottom banner heading",
+  "text": "Hear It Taught",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, title"
+ },
+ {
+  "contentKey": "bible.cta.kicker",
+  "page": "bible",
+  "label": "Bottom banner kicker",
+  "text": "Go Deeper",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, small text"
+ },
+ {
+  "contentKey": "bible.cta.pineville",
+  "page": "bible",
+  "label": "Go Deeper sentence: words after the Pineville time",
+  "text": "in Pineville,",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, sentence after the Pineville Sunday time"
+ },
+ {
+  "contentKey": "bible.form.button",
+  "page": "bible",
+  "label": "Search button",
+  "text": "Search",
+  "imageUrl": "",
+  "where": "Dark search box, red button"
+ },
+ {
+  "contentKey": "bible.form.verseLabel",
+  "page": "bible",
+  "label": "Verse field label",
+  "text": "Verse",
+  "imageUrl": "",
+  "where": "Dark search box, label above the verse typing box"
+ },
+ {
+  "contentKey": "bible.form.versionLabel",
+  "page": "bible",
+  "label": "Version field label",
+  "text": "Version",
+  "imageUrl": "",
+  "where": "Dark search box, label above the translation dropdown"
+ },
+ {
+  "contentKey": "bible.hero.heading",
+  "page": "bible",
+  "label": "Hero heading",
+  "text": "Bible Search",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "bible.hero.kicker",
+  "page": "bible",
+  "label": "Hero kicker",
+  "text": "Resources",
+  "imageUrl": "",
+  "where": "Top of page, small red text above the big title"
+ },
+ {
+  "contentKey": "bible.results.ready",
+  "page": "bible",
+  "label": "Results area starting message",
+  "text": "Ready! Select version &amp; enter verse (e.g., john 3:16 or john 3:16-20)",
+  "imageUrl": "",
+  "where": "Dark search box, grey text under the suggestion buttons before searching"
+ },
+ {
+  "contentKey": "bible.search.heading",
+  "page": "bible",
+  "label": "Search section heading",
+  "text": "Read It<br>For Yourself",
+  "imageUrl": "",
+  "where": "White section above the search box, title"
+ },
+ {
+  "contentKey": "bible.search.kicker",
+  "page": "bible",
+  "label": "Search section kicker",
+  "text": "Look Up A Passage",
+  "imageUrl": "",
+  "where": "White section above the search box, small red text"
+ },
+ {
+  "contentKey": "bible.suggest.item1",
+  "page": "bible",
+  "label": "Suggestion button 1 label",
+  "text": "John 3:16",
+  "imageUrl": "",
+  "where": "Dark search box, outlined suggestion button 1 (label only; it still searches john 3:16)"
+ },
+ {
+  "contentKey": "bible.suggest.item2",
+  "page": "bible",
+  "label": "Suggestion button 2 label",
+  "text": "Psalm 23",
+  "imageUrl": "",
+  "where": "Dark search box, outlined suggestion button 2 (label only; it still searches psalm 23)"
+ },
+ {
+  "contentKey": "bible.suggest.item3",
+  "page": "bible",
+  "label": "Suggestion button 3 label",
+  "text": "Romans 8:28",
+  "imageUrl": "",
+  "where": "Dark search box, outlined suggestion button 3 (label only; it still searches romans 8:28)"
+ },
+ {
+  "contentKey": "bible.suggest.item4",
+  "page": "bible",
+  "label": "Suggestion button 4 label",
+  "text": "1 Corinthians 13:4-7",
+  "imageUrl": "",
+  "where": "Dark search box, outlined suggestion button 4 (label only; it still searches 1 corinthians 13:4-7)"
+ },
+ {
+  "contentKey": "bible.suggest.item5",
+  "page": "bible",
+  "label": "Suggestion button 5 label",
+  "text": "Philippians 4:6-7",
+  "imageUrl": "",
+  "where": "Dark search box, outlined suggestion button 5 (label only; it still searches philippians 4:6-7)"
+ },
+ {
+  "contentKey": "bible.suggest.item6",
+  "page": "bible",
+  "label": "Suggestion button 6 label",
+  "text": "Isaiah 40:31",
+  "imageUrl": "",
+  "where": "Dark search box, outlined suggestion button 6 (label only; it still searches isaiah 40:31)"
+ },
+ {
+  "contentKey": "childrens.cta.button",
+  "page": "childrens",
+  "label": "Visit box button",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Red box at the bottom, white button"
+ },
+ {
+  "contentKey": "childrens.cta.campus1",
+  "page": "childrens",
+  "label": "Visit box first campus words",
+  "text": "in Pineville,",
+  "imageUrl": "",
+  "where": "Red box at the bottom, after the first time"
+ },
+ {
+  "contentKey": "childrens.cta.campus2",
+  "page": "childrens",
+  "label": "Visit box second campus words",
+  "text": "in Alexandria.",
+  "imageUrl": "",
+  "where": "Red box at the bottom, after the second time"
+ },
+ {
+  "contentKey": "childrens.cta.heading",
+  "page": "childrens",
+  "label": "Visit box heading",
+  "text": "Bring The Kids",
+  "imageUrl": "",
+  "where": "Red box at the bottom, title"
+ },
+ {
+  "contentKey": "childrens.cta.kicker",
+  "page": "childrens",
+  "label": "Visit box kicker",
+  "text": "Visit",
+  "imageUrl": "",
+  "where": "Red box at the bottom, small text"
+ },
+ {
+  "contentKey": "childrens.curriculum.body",
+  "page": "childrens",
+  "label": "Curriculum description",
+  "text": "Our Children’s Ministry uses the Superkid Academy curriculum — teaching kids who they are in Christ through lessons built for their age group.",
+  "imageUrl": "",
+  "where": "Curriculum section, text under the logo"
+ },
+ {
+  "contentKey": "childrens.curriculum.heading",
+  "page": "childrens",
+  "label": "Curriculum heading",
+  "text": "Superkid Academy",
+  "imageUrl": "",
+  "where": "Curriculum section title"
+ },
+ {
+  "contentKey": "childrens.curriculum.kicker",
+  "page": "childrens",
+  "label": "Curriculum kicker",
+  "text": "Our Curriculum",
+  "imageUrl": "",
+  "where": "Curriculum section, small red text"
+ },
+ {
+  "contentKey": "childrens.hero.heading",
+  "page": "childrens",
+  "label": "Hero heading",
+  "text": "Children’s<br>Ministry",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "childrens.hero.kicker",
+  "page": "childrens",
+  "label": "Hero kicker",
+  "text": "Birth to 5th Grade",
+  "imageUrl": "",
+  "where": "Top of page, small red text above the big title"
+ },
+ {
+  "contentKey": "childrens.hero.lede",
+  "page": "childrens",
+  "label": "Hero intro line",
+  "text": "Inspiring kids to live a life of purpose.",
+  "imageUrl": "",
+  "where": "Top of page, under the big title"
+ },
+ {
+  "contentKey": "childrens.leaders.heading",
+  "page": "childrens",
+  "label": "Leaders heading",
+  "text": "Our Leaders",
+  "imageUrl": "",
+  "where": "Leaders section title"
+ },
+ {
+  "contentKey": "childrens.leaders.initials",
+  "page": "childrens",
+  "label": "Leader monogram",
+  "text": "TS",
+  "imageUrl": "",
+  "where": "Leaders section, initials on the dark card"
+ },
+ {
+  "contentKey": "childrens.leaders.kicker",
+  "page": "childrens",
+  "label": "Leaders kicker",
+  "text": "Our Leaders",
+  "imageUrl": "",
+  "where": "Leaders section, small red text"
+ },
+ {
+  "contentKey": "childrens.leaders.name",
+  "page": "childrens",
+  "label": "Leader name",
+  "text": "Tonya Sizemore",
+  "imageUrl": "",
+  "where": "Leaders section, name on the card"
+ },
+ {
+  "contentKey": "childrens.leaders.role",
+  "page": "childrens",
+  "label": "Leader role badge",
+  "text": "Children’s Director",
+  "imageUrl": "",
+  "where": "Leaders section, red badge on the card"
+ },
+ {
+  "contentKey": "childrens.moments.heading",
+  "page": "childrens",
+  "label": "Photos heading",
+  "text": "Sunday Mornings",
+  "imageUrl": "",
+  "where": "Photo section title"
+ },
+ {
+  "contentKey": "childrens.moments.kicker",
+  "page": "childrens",
+  "label": "Photos kicker",
+  "text": "Moments",
+  "imageUrl": "",
+  "where": "Photo section, small red text"
+ },
+ {
+  "contentKey": "classes.card.button",
+  "page": "classes",
+  "label": "Class card button",
+  "text": "View Class",
+  "imageUrl": "",
+  "where": "Class cards, outlined button at the bottom of each card"
+ },
+ {
+  "contentKey": "classes.card.selfPaced",
+  "page": "classes",
+  "label": "Self-paced label on cards",
+  "text": "Self-paced",
+  "imageUrl": "",
+  "where": "Class cards, small grey fact line (shown on self-paced classes)"
+ },
+ {
+  "contentKey": "classes.cta.body",
+  "page": "classes",
+  "label": "Bottom banner text",
+  "text": "Send us a note and we will point you to the right place.",
+  "imageUrl": "",
+  "where": "Bottom red banner, sentence under the heading"
+ },
+ {
+  "contentKey": "classes.cta.button",
+  "page": "classes",
+  "label": "Bottom banner button",
+  "text": "Contact Us",
+  "imageUrl": "",
+  "where": "Bottom red banner, white button on the right"
+ },
+ {
+  "contentKey": "classes.cta.heading",
+  "page": "classes",
+  "label": "Bottom banner heading",
+  "text": "Not Sure Where<br>To Start?",
+  "imageUrl": "",
+  "where": "Bottom red banner, heading"
+ },
+ {
+  "contentKey": "classes.cta.kicker",
+  "page": "classes",
+  "label": "Bottom banner kicker",
+  "text": "Questions",
+  "imageUrl": "",
+  "where": "Bottom red banner, small words at the top"
+ },
+ {
+  "contentKey": "classes.empty.body",
+  "page": "classes",
+  "label": "No classes text",
+  "text": "We are putting the first classes together now. Check back soon, or contact us to hear when they open.",
+  "imageUrl": "",
+  "where": "Second section, dashed box shown only when no classes are published"
+ },
+ {
+  "contentKey": "classes.empty.heading",
+  "page": "classes",
+  "label": "No classes heading",
+  "text": "Classes are coming",
+  "imageUrl": "",
+  "where": "Second section, dashed box shown only when no classes are published"
+ },
+ {
+  "contentKey": "classes.hero.heading",
+  "page": "classes",
+  "label": "Hero heading",
+  "text": "Classes",
+  "imageUrl": "",
+  "where": "Top of page, the big title"
+ },
+ {
+  "contentKey": "classes.hero.kicker",
+  "page": "classes",
+  "label": "Hero kicker",
+  "text": "Learn &amp; Grow",
+  "imageUrl": "",
+  "where": "Top of page, small red words above the big title"
+ },
+ {
+  "contentKey": "classes.list.heading",
+  "page": "classes",
+  "label": "Classes list heading",
+  "text": "What You Can Take",
+  "imageUrl": "",
+  "where": "Second section, heading above the class cards"
+ },
+ {
+  "contentKey": "classes.list.kicker",
+  "page": "classes",
+  "label": "Classes list kicker",
+  "text": "Available Now",
+  "imageUrl": "",
+  "where": "Second section, small red words at the top"
+ },
+ {
+  "contentKey": "connect.dates.endsLabel",
+  "page": "connect",
+  "label": "Ends label",
+  "text": "Ends",
+  "imageUrl": "",
+  "where": "Black dates section, second box label"
+ },
+ {
+  "contentKey": "connect.dates.heading",
+  "page": "connect",
+  "label": "Dates heading",
+  "text": "Dates",
+  "imageUrl": "",
+  "where": "Black dates section heading"
+ },
+ {
+  "contentKey": "connect.dates.hostbyLabel",
+  "page": "connect",
+  "label": "Host deadline label",
+  "text": "Host sign-up closes",
+  "imageUrl": "",
+  "where": "Black dates section, red box label"
+ },
+ {
+  "contentKey": "connect.dates.kicker",
+  "page": "connect",
+  "label": "Dates kicker",
+  "text": "This Season",
+  "imageUrl": "",
+  "where": "Black dates section, small red text"
+ },
+ {
+  "contentKey": "connect.dates.startsLabel",
+  "page": "connect",
+  "label": "Starts label",
+  "text": "Starts",
+  "imageUrl": "",
+  "where": "Black dates section, first box label"
+ },
+ {
+  "contentKey": "connect.groups.card.datesLabel",
+  "page": "connect",
+  "label": "Group card Dates label",
+  "text": "Dates",
+  "imageUrl": "",
+  "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+ },
+ {
+  "contentKey": "connect.groups.card.forLabel",
+  "page": "connect",
+  "label": "Group card For label",
+  "text": "For",
+  "imageUrl": "",
+  "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+ },
+ {
+  "contentKey": "connect.groups.card.fullBadge",
+  "page": "connect",
+  "label": "Group card Full badge",
+  "text": "Full",
+  "imageUrl": "",
+  "where": "Groups section, black tag on a full group flyer (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+ },
+ {
+  "contentKey": "connect.groups.card.fullButton",
+  "page": "connect",
+  "label": "Group card full button",
+  "text": "Group Full",
+  "imageUrl": "",
+  "where": "Groups section, button on a full group card (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+ },
+ {
+  "contentKey": "connect.groups.card.hostLabel",
+  "page": "connect",
+  "label": "Group card Host label",
+  "text": "Host",
+  "imageUrl": "",
+  "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+ },
+ {
+  "contentKey": "connect.groups.card.joinButton",
+  "page": "connect",
+  "label": "Group card join button",
+  "text": "Join This Group",
+  "imageUrl": "",
+  "where": "Groups section, button at bottom of each group card (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+ },
+ {
+  "contentKey": "connect.groups.card.whenLabel",
+  "page": "connect",
+  "label": "Group card When label",
+  "text": "When",
+  "imageUrl": "",
+  "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+ },
+ {
+  "contentKey": "connect.groups.card.whereLabel",
+  "page": "connect",
+  "label": "Group card Where label",
+  "text": "Where",
+  "imageUrl": "",
+  "where": "Groups section, each group card, red row label (Static label inside ConnectGroups collection cards; hook sits under data-cms-source and must still be imported)"
+ },
+ {
+  "contentKey": "connect.groups.empty.body",
+  "page": "connect",
+  "label": "No groups yet body",
+  "text": "Hosts are signing up now. Check back soon, or add your name below and we will match you with a group when they are set.",
+  "imageUrl": "",
+  "where": "Groups section, dashed box text shown when no groups are listed"
+ },
+ {
+  "contentKey": "connect.groups.empty.heading",
+  "page": "connect",
+  "label": "No groups yet heading",
+  "text": "Groups are forming",
+  "imageUrl": "",
+  "where": "Groups section, dashed box shown when no groups are listed"
+ },
+ {
+  "contentKey": "connect.groups.heading",
+  "page": "connect",
+  "label": "Groups heading",
+  "text": "Groups This Season",
+  "imageUrl": "",
+  "where": "Groups section heading"
+ },
+ {
+  "contentKey": "connect.groups.kicker",
+  "page": "connect",
+  "label": "Groups kicker",
+  "text": "Find a Group",
+  "imageUrl": "",
+  "where": "Groups section, small red text"
+ },
+ {
+  "contentKey": "connect.hero.kicker",
+  "page": "connect",
+  "label": "Hero kicker",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Top of page, small red text above the big title"
+ },
+ {
+  "contentKey": "connect.hero.strip",
+  "page": "connect",
+  "label": "Hero red strip",
+  "text": "Connect &middot; Grow &middot; Go",
+  "imageUrl": "",
+  "where": "Top of page, red slanted strip"
+ },
+ {
+  "contentKey": "connect.host.button",
+  "page": "connect",
+  "label": "Host form submit button",
+  "text": "Sign Up to Host",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), red button"
+ },
+ {
+  "contentKey": "connect.host.done",
+  "page": "connect",
+  "label": "Host form thank-you text",
+  "text": "Thank you for stepping up. Someone will be in touch about next steps.",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), message shown after sending"
+ },
+ {
+  "contentKey": "connect.host.heading",
+  "page": "connect",
+  "label": "Host form heading",
+  "text": "Host a Connect Group",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), heading (also shown after sending)"
+ },
+ {
+  "contentKey": "connect.host.intro",
+  "page": "connect",
+  "label": "Host form intro",
+  "text": "Open your home. Open your heart. Watch God move. Tell us how you would like to run it and we will help you get set up.",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), text under heading"
+ },
+ {
+  "contentKey": "connect.host.label.area",
+  "page": "connect",
+  "label": "Host form label: What area?",
+  "text": "What area?",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.host.label.audience",
+  "page": "connect",
+  "label": "Host form label: Who is it for?",
+  "text": "Who is it for?",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.host.label.day",
+  "page": "connect",
+  "label": "Host form label: Which day?",
+  "text": "Which day?",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.host.label.email",
+  "page": "connect",
+  "label": "Host form label: Email",
+  "text": "Email",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.host.label.firstName",
+  "page": "connect",
+  "label": "Host form label: First Name",
+  "text": "First Name",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.host.label.lastName",
+  "page": "connect",
+  "label": "Host form label: Last Name",
+  "text": "Last Name",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.host.label.message",
+  "page": "connect",
+  "label": "Host form label: Anything else we should know?",
+  "text": "Anything else we should know?",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.host.label.phone",
+  "page": "connect",
+  "label": "Host form label: Phone",
+  "text": "Phone",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.host.label.time",
+  "page": "connect",
+  "label": "Host form label: What time?",
+  "text": "What time?",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.host.label.venue",
+  "page": "connect",
+  "label": "Host form label: Where would you host?",
+  "text": "Where would you host?",
+  "imageUrl": "",
+  "where": "Sign-up section, host form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.join.button",
+  "page": "connect",
+  "label": "Join form submit button",
+  "text": "Sign Me Up",
+  "imageUrl": "",
+  "where": "Sign-up section, join form (black panel), red button"
+ },
+ {
+  "contentKey": "connect.join.done",
+  "page": "connect",
+  "label": "Join form thank-you text",
+  "text": "Thank you. Someone will be in touch about your group.",
+  "imageUrl": "",
+  "where": "Sign-up section, join form (black panel), message shown after sending"
+ },
+ {
+  "contentKey": "connect.join.heading",
+  "page": "connect",
+  "label": "Join form heading",
+  "text": "Join a Connect Group",
+  "imageUrl": "",
+  "where": "Sign-up section, join form (black panel), heading (also shown after sending)"
+ },
+ {
+  "contentKey": "connect.join.intro",
+  "page": "connect",
+  "label": "Join form intro",
+  "text": "Pick a group above, or leave it blank and we will help you find one.",
+  "imageUrl": "",
+  "where": "Sign-up section, join form (black panel), text under heading"
+ },
+ {
+  "contentKey": "connect.join.label.email",
+  "page": "connect",
+  "label": "Join form label: Email",
+  "text": "Email",
+  "imageUrl": "",
+  "where": "Sign-up section, join form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.join.label.firstName",
+  "page": "connect",
+  "label": "Join form label: First Name",
+  "text": "First Name",
+  "imageUrl": "",
+  "where": "Sign-up section, join form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.join.label.lastName",
+  "page": "connect",
+  "label": "Join form label: Last Name",
+  "text": "Last Name",
+  "imageUrl": "",
+  "where": "Sign-up section, join form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.join.label.phone",
+  "page": "connect",
+  "label": "Join form label: Phone",
+  "text": "Phone",
+  "imageUrl": "",
+  "where": "Sign-up section, join form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.join.label.subject",
+  "page": "connect",
+  "label": "Join form label: Which group?",
+  "text": "Which group?",
+  "imageUrl": "",
+  "where": "Sign-up section, join form (black panel), field label"
+ },
+ {
+  "contentKey": "connect.pillars.item1.body",
+  "page": "connect",
+  "label": "Pillar 1 body",
+  "text": "Know people and be known by them.",
+  "imageUrl": "",
+  "where": "Second section, first of three boxes, sentence"
+ },
+ {
+  "contentKey": "connect.pillars.item1.heading",
+  "page": "connect",
+  "label": "Pillar 1 heading",
+  "text": "Build meaningful relationships",
+  "imageUrl": "",
+  "where": "Second section, first of three boxes, title"
+ },
+ {
+  "contentKey": "connect.pillars.item1.label",
+  "page": "connect",
+  "label": "Pillar 1 label",
+  "text": "CONNECT",
+  "imageUrl": "",
+  "where": "Second section, first of three boxes, red word"
+ },
+ {
+  "contentKey": "connect.pillars.item2.body",
+  "page": "connect",
+  "label": "Pillar 2 body",
+  "text": "Faith grows faster in company than alone.",
+  "imageUrl": "",
+  "where": "Second section, second of three boxes, sentence"
+ },
+ {
+  "contentKey": "connect.pillars.item2.heading",
+  "page": "connect",
+  "label": "Pillar 2 heading",
+  "text": "Do life together",
+  "imageUrl": "",
+  "where": "Second section, second of three boxes, title"
+ },
+ {
+  "contentKey": "connect.pillars.item2.label",
+  "page": "connect",
+  "label": "Pillar 2 label",
+  "text": "GROW",
+  "imageUrl": "",
+  "where": "Second section, second of three boxes, red word"
+ },
+ {
+  "contentKey": "connect.pillars.item3.body",
+  "page": "connect",
+  "label": "Pillar 3 body",
+  "text": "What happens around the table goes out the door.",
+  "imageUrl": "",
+  "where": "Second section, third of three boxes, sentence"
+ },
+ {
+  "contentKey": "connect.pillars.item3.heading",
+  "page": "connect",
+  "label": "Pillar 3 heading",
+  "text": "Live it out and make an impact",
+  "imageUrl": "",
+  "where": "Second section, third of three boxes, title"
+ },
+ {
+  "contentKey": "connect.pillars.item3.label",
+  "page": "connect",
+  "label": "Pillar 3 label",
+  "text": "GO",
+  "imageUrl": "",
+  "where": "Second section, third of three boxes, red word"
+ },
+ {
+  "contentKey": "connect.signup.heading",
+  "page": "connect",
+  "label": "Sign Up heading",
+  "text": "Be a Host.<br>Make a Difference.",
+  "imageUrl": "",
+  "where": "Grey sign-up section heading"
+ },
+ {
+  "contentKey": "connect.signup.kicker",
+  "page": "connect",
+  "label": "Sign Up kicker",
+  "text": "Sign Up",
+  "imageUrl": "",
+  "where": "Grey sign-up section, small red text"
+ },
+ {
+  "contentKey": "connect.signup.tab1.body",
+  "page": "connect",
+  "label": "Host tab text (before date)",
+  "text": "Open your home.",
+  "imageUrl": "",
+  "where": "Sign-up section, left tab small text, before the deadline date"
+ },
+ {
+  "contentKey": "connect.signup.tab1.signupBy",
+  "page": "connect",
+  "label": "Host tab: words before the sign-up deadline",
+  "text": "Sign up by",
+  "imageUrl": "",
+  "where": "Sign-up section, left tab small text, before the deadline date"
+ },
+ {
+  "contentKey": "connect.signup.tab1.title",
+  "page": "connect",
+  "label": "Host tab title",
+  "text": "Host a Group",
+  "imageUrl": "",
+  "where": "Sign-up section, left tab title"
+ },
+ {
+  "contentKey": "connect.signup.tab2.body",
+  "page": "connect",
+  "label": "Join tab text",
+  "text": "Find a group near you.",
+  "imageUrl": "",
+  "where": "Sign-up section, right tab small text"
+ },
+ {
+  "contentKey": "connect.signup.tab2.title",
+  "page": "connect",
+  "label": "Join tab title",
+  "text": "Join a Group",
+  "imageUrl": "",
+  "where": "Sign-up section, right tab title"
+ },
+ {
+  "contentKey": "connect.success.heading",
+  "page": "connect",
+  "label": "Thank-you heading",
+  "text": "Thank You",
+  "imageUrl": "",
+  "where": "Sign-up section, heading in the message shown after sending"
+ },
+ {
+  "contentKey": "connect.verse.body",
+  "page": "connect",
+  "label": "Scripture text",
+  "text": "And they, continuing daily with one accord in the temple, and breaking bread from house to house, did eat their meat with gladness and singleness of heart, praising God, and having favor with all the people.",
+  "imageUrl": "",
+  "where": "Second section, grey scripture box"
+ },
+ {
+  "contentKey": "connect.verse.ref",
+  "page": "connect",
+  "label": "Scripture reference",
+  "text": "Acts 2:46",
+  "imageUrl": "",
+  "where": "Second section, red reference under the scripture"
+ },
+ {
+  "contentKey": "connect.what.body",
+  "page": "connect",
+  "label": "What They Are body",
+  "text": "Connect Groups meet in homes across our community. A host opens their door, a few people gather, and life gets shared around a table instead of a pew.",
+  "imageUrl": "",
+  "where": "Second section, paragraph under the heading"
+ },
+ {
+  "contentKey": "connect.what.heading",
+  "page": "connect",
+  "label": "What They Are heading",
+  "text": "In Homes,<br>Every Week",
+  "imageUrl": "",
+  "where": "Second section heading"
+ },
+ {
+  "contentKey": "connect.what.kicker",
+  "page": "connect",
+  "label": "What They Are kicker",
+  "text": "What They Are",
+  "imageUrl": "",
+  "where": "Second section, small red text"
+ },
+ {
+  "contentKey": "contact.campus.directions",
+  "page": "contact",
+  "label": "Directions link",
+  "text": "Directions &rarr;",
+  "imageUrl": "",
+  "where": "Locations section, red link at the bottom of both campus cards"
+ },
+ {
+  "contentKey": "contact.campus.heading",
+  "page": "contact",
+  "label": "Locations heading",
+  "text": "One Church,<br>Two Campuses",
+  "imageUrl": "",
+  "where": "Locations section heading"
+ },
+ {
+  "contentKey": "contact.campus.kicker",
+  "page": "contact",
+  "label": "Locations kicker",
+  "text": "Our Locations",
+  "imageUrl": "",
+  "where": "Locations section, small red text above the heading"
+ },
+ {
+  "contentKey": "contact.campus.main.photo",
+  "page": "contact",
+  "label": "Main campus photo",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/c3b2d0_d90892fdb5fd40d8bd3c1057ca244d04~mv2.jpg",
+  "where": "Locations section, left card photo"
+ },
+ {
+  "contentKey": "contact.campus.main.tag",
+  "page": "contact",
+  "label": "Main campus badge",
+  "text": "Main Campus",
+  "imageUrl": "",
+  "where": "Locations section, red badge on the left card"
+ },
+ {
+  "contentKey": "contact.campus.second.photo",
+  "page": "contact",
+  "label": "Second campus photo",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/c3b2d0_51f64171a5904d5b9b8b492f062db9bc~mv2.jpg",
+  "where": "Locations section, right card photo"
+ },
+ {
+  "contentKey": "contact.campus.second.tag",
+  "page": "contact",
+  "label": "Second campus badge",
+  "text": "Second Campus",
+  "imageUrl": "",
+  "where": "Locations section, red badge on the right card"
+ },
+ {
+  "contentKey": "contact.form.body",
+  "page": "contact",
+  "label": "Form intro",
+  "text": "Questions about a service, a ministry, or planning your first visit — send us a note and someone will get back to you.",
+  "imageUrl": "",
+  "where": "Message form section, paragraph under the heading"
+ },
+ {
+  "contentKey": "contact.form.button",
+  "page": "contact",
+  "label": "Form button",
+  "text": "Send Message",
+  "imageUrl": "",
+  "where": "Message form, red submit button"
+ },
+ {
+  "contentKey": "contact.form.emailLabel",
+  "page": "contact",
+  "label": "Form email label",
+  "text": "Email",
+  "imageUrl": "",
+  "where": "Message form, second field label"
+ },
+ {
+  "contentKey": "contact.form.heading",
+  "page": "contact",
+  "label": "Form heading",
+  "text": "Get In Touch",
+  "imageUrl": "",
+  "where": "Message form section heading"
+ },
+ {
+  "contentKey": "contact.form.kicker",
+  "page": "contact",
+  "label": "Form kicker",
+  "text": "Send Us a Message",
+  "imageUrl": "",
+  "where": "Message form section, small red text above the heading"
+ },
+ {
+  "contentKey": "contact.form.messageLabel",
+  "page": "contact",
+  "label": "Form message label",
+  "text": "Message",
+  "imageUrl": "",
+  "where": "Message form, large text box label"
+ },
+ {
+  "contentKey": "contact.form.nameLabel",
+  "page": "contact",
+  "label": "Form name label",
+  "text": "Your Name",
+  "imageUrl": "",
+  "where": "Message form, first field label"
+ },
+ {
+  "contentKey": "contact.form.phoneLabel",
+  "page": "contact",
+  "label": "Form phone label",
+  "text": "Phone",
+  "imageUrl": "",
+  "where": "Message form, third field label"
+ },
+ {
+  "contentKey": "contact.form.subjectLabel",
+  "page": "contact",
+  "label": "Form subject label",
+  "text": "Subject",
+  "imageUrl": "",
+  "where": "Message form, fourth field label"
+ },
+ {
+  "contentKey": "contact.hero.heading",
+  "page": "contact",
+  "label": "Hero heading",
+  "text": "Contact",
+  "imageUrl": "",
+  "where": "Top of page, big heading"
+ },
+ {
+  "contentKey": "contact.hero.kicker",
+  "page": "contact",
+  "label": "Hero kicker",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Top of page, small red text above \"Contact\""
+ },
+ {
+  "contentKey": "contact.reach.emailLabel",
+  "page": "contact",
+  "label": "Email card label",
+  "text": "Email",
+  "imageUrl": "",
+  "where": "Under the header, left card label"
+ },
+ {
+  "contentKey": "contact.reach.phoneLabel",
+  "page": "contact",
+  "label": "Phone card label",
+  "text": "Phone",
+  "imageUrl": "",
+  "where": "Under the header, right card label"
+ },
+ {
+  "contentKey": "contact.social.heading",
+  "page": "contact",
+  "label": "Social heading",
+  "text": "Follow Along",
+  "imageUrl": "",
+  "where": "Bottom dark section heading"
+ },
+ {
+  "contentKey": "contact.social.kicker",
+  "page": "contact",
+  "label": "Social kicker",
+  "text": "Follow Along",
+  "imageUrl": "",
+  "where": "Bottom dark section, small red text"
+ },
+ {
+  "contentKey": "contact.success.body",
+  "page": "contact",
+  "label": "Thank-you message",
+  "text": "Your message is on its way and someone will be in touch.",
+  "imageUrl": "",
+  "where": "Replaces the message form after it is sent, under \"Thank You\""
+ },
+ {
+  "contentKey": "contact.success.heading",
+  "page": "contact",
+  "label": "Thank-you heading",
+  "text": "Thank You",
+  "imageUrl": "",
+  "where": "Replaces the message form after it is sent"
+ },
+ {
+  "contentKey": "creatives.cta.body",
+  "page": "creatives",
+  "label": "Hub bottom banner text",
+  "text": "If you sing, play, run sound, shoot, edit, or post - we could use you.",
+  "imageUrl": "",
+  "where": "Creative Arts hub, bottom red banner, sentence under the heading"
+ },
+ {
+  "contentKey": "creatives.cta.button",
+  "page": "creatives",
+  "label": "Hub bottom banner button",
+  "text": "Sign Up to Serve",
+  "imageUrl": "",
+  "where": "Creative Arts hub, bottom red banner, white button"
+ },
+ {
+  "contentKey": "creatives.cta.heading",
+  "page": "creatives",
+  "label": "Hub bottom banner heading",
+  "text": "There's Room<br>For You",
+  "imageUrl": "",
+  "where": "Creative Arts hub, bottom red banner, heading"
+ },
+ {
+  "contentKey": "creatives.cta.kicker",
+  "page": "creatives",
+  "label": "Hub bottom banner kicker",
+  "text": "Get Involved",
+  "imageUrl": "",
+  "where": "Creative Arts hub, bottom red banner, small words at the top"
+ },
+ {
+  "contentKey": "creatives.dept.cta.body",
+  "page": "creatives",
+  "label": "Department bottom banner text",
+  "text": "No experience needed - just a willingness to show up.",
+  "imageUrl": "",
+  "where": "Every department page, bottom red banner, sentence under the heading"
+ },
+ {
+  "contentKey": "creatives.dept.cta.button",
+  "page": "creatives",
+  "label": "Department bottom banner button",
+  "text": "Sign Up to Serve",
+  "imageUrl": "",
+  "where": "Every department page, bottom red banner, white button"
+ },
+ {
+  "contentKey": "creatives.dept.cta.heading",
+  "page": "creatives",
+  "label": "Department bottom banner heading",
+  "text": "Join This Team",
+  "imageUrl": "",
+  "where": "Every department page, bottom red banner, heading"
+ },
+ {
+  "contentKey": "creatives.dept.cta.kicker",
+  "page": "creatives",
+  "label": "Department bottom banner kicker",
+  "text": "Serve With Us",
+  "imageUrl": "",
+  "where": "Every department page, bottom red banner, small words at the top"
+ },
+ {
+  "contentKey": "creatives.dept.empty.body",
+  "page": "creatives",
+  "label": "No team members text",
+  "text": "Photos and bios for this department are on the way.",
+  "imageUrl": "",
+  "where": "Every department page, dashed box shown only when the department has no members in the CMS"
+ },
+ {
+  "contentKey": "creatives.dept.empty.heading",
+  "page": "creatives",
+  "label": "No team members heading",
+  "text": "Team coming soon",
+  "imageUrl": "",
+  "where": "Every department page, dashed box shown only when the department has no members in the CMS"
+ },
+ {
+  "contentKey": "creatives.dept.hero.kicker",
+  "page": "creatives",
+  "label": "Department page kicker",
+  "text": "Arise Creative Arts",
+  "imageUrl": "",
+  "where": "Every department page, top, small red words above the department name"
+ },
+ {
+  "contentKey": "creatives.dept.others.heading",
+  "page": "creatives",
+  "label": "Other teams heading",
+  "text": "Creative Arts",
+  "imageUrl": "",
+  "where": "Every department page, grey section, heading above the department switcher"
+ },
+ {
+  "contentKey": "creatives.dept.others.kicker",
+  "page": "creatives",
+  "label": "Other teams kicker",
+  "text": "The Other Teams",
+  "imageUrl": "",
+  "where": "Every department page, grey section, small red words at the top"
+ },
+ {
+  "contentKey": "creatives.dept.team.heading",
+  "page": "creatives",
+  "label": "Department team heading",
+  "text": "Who Serves Here",
+  "imageUrl": "",
+  "where": "Every department page, team section, heading above the people cards"
+ },
+ {
+  "contentKey": "creatives.dept.team.kicker",
+  "page": "creatives",
+  "label": "Department team kicker",
+  "text": "The Team",
+  "imageUrl": "",
+  "where": "Every department page, team section, small red words at the top"
+ },
+ {
+  "contentKey": "creatives.depts.heading",
+  "page": "creatives",
+  "label": "Departments heading",
+  "text": "Who Does What",
+  "imageUrl": "",
+  "where": "Creative Arts hub, second section, heading above the department tiles"
+ },
+ {
+  "contentKey": "creatives.depts.kicker",
+  "page": "creatives",
+  "label": "Departments kicker",
+  "text": "The Departments",
+  "imageUrl": "",
+  "where": "Creative Arts hub, second section, small red words at the top"
+ },
+ {
+  "contentKey": "creatives.empty.body",
+  "page": "creatives",
+  "label": "No departments text",
+  "text": "The teams that make Sunday happen will be listed here.",
+  "imageUrl": "",
+  "where": "Creative Arts hub, dashed box shown only when no departments are in the CMS"
+ },
+ {
+  "contentKey": "creatives.empty.heading",
+  "page": "creatives",
+  "label": "No departments heading",
+  "text": "Departments coming soon",
+  "imageUrl": "",
+  "where": "Creative Arts hub, dashed box shown only when no departments are in the CMS"
+ },
+ {
+  "contentKey": "creatives.hero.heading",
+  "page": "creatives",
+  "label": "Hub hero heading",
+  "text": "Arise<br>Creative Arts",
+  "imageUrl": "",
+  "where": "Creative Arts hub, top of page, the big two-line title"
+ },
+ {
+  "contentKey": "creatives.hero.kicker",
+  "page": "creatives",
+  "label": "Hub hero kicker",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Creative Arts hub, top of page, small red words above the title"
+ },
+ {
+  "contentKey": "events.cta.body",
+  "page": "events",
+  "label": "Bottom banner text",
+  "text": "Email us and someone will get back to you with details.",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, sentence"
+ },
+ {
+  "contentKey": "events.cta.button",
+  "page": "events",
+  "label": "Bottom banner button",
+  "text": "Contact Us",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, white button"
+ },
+ {
+  "contentKey": "events.cta.heading",
+  "page": "events",
+  "label": "Bottom banner heading",
+  "text": "Planning To Come?",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, title"
+ },
+ {
+  "contentKey": "events.cta.kicker",
+  "page": "events",
+  "label": "Bottom banner kicker",
+  "text": "Questions",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, small text"
+ },
+ {
+  "contentKey": "events.empty.body",
+  "page": "events",
+  "label": "No events text start",
+  "text": "Join us",
+  "imageUrl": "",
+  "where": "No-events message, first words before the Sunday time"
+ },
+ {
+  "contentKey": "events.empty.bodyEnd",
+  "page": "events",
+  "label": "No events text end",
+  "text": "for Glory Night.",
+  "imageUrl": "",
+  "where": "No-events message, last words"
+ },
+ {
+  "contentKey": "events.empty.bodyMain",
+  "page": "events",
+  "label": "No events text after main time",
+  "text": "in Pineville or",
+  "imageUrl": "",
+  "where": "No-events message, after the Pineville Sunday time"
+ },
+ {
+  "contentKey": "events.empty.bodySecond",
+  "page": "events",
+  "label": "No events text after second time",
+  "text": "in Alexandria, or",
+  "imageUrl": "",
+  "where": "No-events message, after the Alexandria Sunday time"
+ },
+ {
+  "contentKey": "events.empty.button",
+  "page": "events",
+  "label": "No events button",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "No-events message, red button"
+ },
+ {
+  "contentKey": "events.empty.heading",
+  "page": "events",
+  "label": "No events heading",
+  "text": "Nothing On The Calendar<br>Right Now",
+  "imageUrl": "",
+  "where": "Shown only when there are no upcoming events, big title"
+ },
+ {
+  "contentKey": "events.featured.locationLabel",
+  "page": "events",
+  "label": "Featured event Location label",
+  "text": "Location",
+  "imageUrl": "",
+  "where": "Featured event box, label beside the address"
+ },
+ {
+  "contentKey": "events.featured.timeLabel",
+  "page": "events",
+  "label": "Featured event Time label",
+  "text": "Time",
+  "imageUrl": "",
+  "where": "Featured event box, label beside the date and time"
+ },
+ {
+  "contentKey": "events.hero.heading",
+  "page": "events",
+  "label": "Hero heading",
+  "text": "Events",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "events.hero.kicker",
+  "page": "events",
+  "label": "Hero kicker",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Top of page, small red text above the big title"
+ },
+ {
+  "contentKey": "events.more.heading",
+  "page": "events",
+  "label": "More events heading",
+  "text": "More Events",
+  "imageUrl": "",
+  "where": "Section below the featured event, title (only when 2+ events)"
+ },
+ {
+  "contentKey": "events.more.kicker",
+  "page": "events",
+  "label": "More events kicker",
+  "text": "Also Coming Up",
+  "imageUrl": "",
+  "where": "Section below the featured event, small red text (only when 2+ events)"
+ },
+ {
+  "contentKey": "events.past.emptyBody",
+  "page": "events",
+  "label": "No past events text",
+  "text": "Past event albums will appear here.",
+  "imageUrl": "",
+  "where": "Dark past-events section, dashed box text"
+ },
+ {
+  "contentKey": "events.past.emptyHeading",
+  "page": "events",
+  "label": "No past events heading",
+  "text": "Photo albums coming soon",
+  "imageUrl": "",
+  "where": "Dark past-events section, dashed box when there are no past events"
+ },
+ {
+  "contentKey": "events.past.heading",
+  "page": "events",
+  "label": "Past events heading",
+  "text": "Here You Can Check Out<br>Photos From Our Past Events",
+  "imageUrl": "",
+  "where": "Dark section with past event photos, title"
+ },
+ {
+  "contentKey": "events.past.kicker",
+  "page": "events",
+  "label": "Past events kicker",
+  "text": "Previous Events",
+  "imageUrl": "",
+  "where": "Dark section with past event photos, small red text"
+ },
+ {
+  "contentKey": "events.upcoming.kicker",
+  "page": "events",
+  "label": "Upcoming kicker",
+  "text": "Upcoming",
+  "imageUrl": "",
+  "where": "Above the featured event (or the empty calendar message)"
+ },
+ {
+  "contentKey": "form.contact.blurb",
+  "page": "form",
+  "label": "Contact form intro",
+  "text": "Questions about a service, a ministry, or planning your first visit — send us a note and someone will get back to you.",
+  "imageUrl": "",
+  "where": "Paragraph under the form heading (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.button",
+  "page": "form",
+  "label": "Contact form button",
+  "text": "Send Message",
+  "imageUrl": "",
+  "where": "Red submit button (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.emailLabel",
+  "page": "form",
+  "label": "Contact form email label",
+  "text": "Email",
+  "imageUrl": "",
+  "where": "Form field 2 label (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.heading",
+  "page": "form",
+  "label": "Contact form heading",
+  "text": "Get In Touch",
+  "imageUrl": "",
+  "where": "Big heading above the form (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.kicker",
+  "page": "form",
+  "label": "Contact form kicker",
+  "text": "Send Us a Message",
+  "imageUrl": "",
+  "where": "Small red text above the form heading (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.messageLabel",
+  "page": "form",
+  "label": "Contact form message label",
+  "text": "Message",
+  "imageUrl": "",
+  "where": "Form field 5 label (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.nameLabel",
+  "page": "form",
+  "label": "Contact form name label",
+  "text": "Your Name",
+  "imageUrl": "",
+  "where": "Form field 1 label (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.phoneLabel",
+  "page": "form",
+  "label": "Contact form phone label",
+  "text": "Phone",
+  "imageUrl": "",
+  "where": "Form field 3 label (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.subjectLabel",
+  "page": "form",
+  "label": "Contact form subject label",
+  "text": "Subject",
+  "imageUrl": "",
+  "where": "Form field 4 label (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.success.body",
+  "page": "form",
+  "label": "Contact form thank-you message",
+  "text": "Thank you. Your message is on its way and someone will be in touch.",
+  "imageUrl": "",
+  "where": "Replaces the form after it is sent, under \"Thank You\" (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.contact.success.heading",
+  "page": "form",
+  "label": "Contact form thank-you heading",
+  "text": "Thank You",
+  "imageUrl": "",
+  "where": "Replaces the form after it is sent (arise-form with data-form=\"contact\")"
+ },
+ {
+  "contentKey": "form.prayer.blurb",
+  "page": "form",
+  "label": "Prayer form intro",
+  "text": "Share what you’re carrying. Our prayer team reads every request.",
+  "imageUrl": "",
+  "where": "Paragraph under the form heading (arise-form with data-form=\"prayer\")"
+ },
+ {
+  "contentKey": "form.prayer.button",
+  "page": "form",
+  "label": "Prayer form button",
+  "text": "Send Request",
+  "imageUrl": "",
+  "where": "Red submit button (arise-form with data-form=\"prayer\")"
+ },
+ {
+  "contentKey": "form.prayer.emailLabel",
+  "page": "form",
+  "label": "Prayer form email label",
+  "text": "Email",
+  "imageUrl": "",
+  "where": "Form field 2 label (arise-form with data-form=\"prayer\")"
+ },
+ {
+  "contentKey": "form.prayer.heading",
+  "page": "form",
+  "label": "Prayer form heading",
+  "text": "We’ll Pray With You",
+  "imageUrl": "",
+  "where": "Big heading above the form (arise-form with data-form=\"prayer\")"
+ },
+ {
+  "contentKey": "form.prayer.kicker",
+  "page": "form",
+  "label": "Prayer form kicker",
+  "text": "Prayer Request",
+  "imageUrl": "",
+  "where": "Small red text above the form heading (arise-form with data-form=\"prayer\")"
+ },
+ {
+  "contentKey": "form.prayer.messageLabel",
+  "page": "form",
+  "label": "Prayer form message label",
+  "text": "Prayer Request",
+  "imageUrl": "",
+  "where": "Form field 3 label (arise-form with data-form=\"prayer\")"
+ },
+ {
+  "contentKey": "form.prayer.nameLabel",
+  "page": "form",
+  "label": "Prayer form name label",
+  "text": "Your Name",
+  "imageUrl": "",
+  "where": "Form field 1 label (arise-form with data-form=\"prayer\")"
+ },
+ {
+  "contentKey": "form.prayer.success.body",
+  "page": "form",
+  "label": "Prayer form thank-you message",
+  "text": "Thank you. Our prayer team has your request.",
+  "imageUrl": "",
+  "where": "Replaces the form after it is sent, under \"Thank You\" (arise-form with data-form=\"prayer\")"
+ },
+ {
+  "contentKey": "form.prayer.success.heading",
+  "page": "form",
+  "label": "Prayer form thank-you heading",
+  "text": "Thank You",
+  "imageUrl": "",
+  "where": "Replaces the form after it is sent (arise-form with data-form=\"prayer\")"
+ },
+ {
+  "contentKey": "form.serve.blurb",
+  "page": "form",
+  "label": "Serve form intro",
+  "text": "Join our congregation in making a difference! We’re seeking passionate volunteers to fill key roles and help our ministries thrive.",
+  "imageUrl": "",
+  "where": "Paragraph under the form heading (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.button",
+  "page": "form",
+  "label": "Serve form button",
+  "text": "Submit",
+  "imageUrl": "",
+  "where": "Red submit button (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.emailLabel",
+  "page": "form",
+  "label": "Serve form email label",
+  "text": "Email",
+  "imageUrl": "",
+  "where": "Form field 2 label (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.heading",
+  "page": "form",
+  "label": "Serve form heading",
+  "text": "Sign Up To Serve",
+  "imageUrl": "",
+  "where": "Big heading above the form (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.kicker",
+  "page": "form",
+  "label": "Serve form kicker",
+  "text": "Volunteer Sign Up",
+  "imageUrl": "",
+  "where": "Small red text above the form heading (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.messageLabel",
+  "page": "form",
+  "label": "Serve form message label",
+  "text": "Anything else we should know?",
+  "imageUrl": "",
+  "where": "Form field 5 label (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.nameLabel",
+  "page": "form",
+  "label": "Serve form name label",
+  "text": "Your Name",
+  "imageUrl": "",
+  "where": "Form field 1 label (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.phoneLabel",
+  "page": "form",
+  "label": "Serve form phone label",
+  "text": "Phone",
+  "imageUrl": "",
+  "where": "Form field 3 label (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.positionLabel",
+  "page": "form",
+  "label": "Serve form position label",
+  "text": "Position",
+  "imageUrl": "",
+  "where": "Form field 4 label (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.success.body",
+  "page": "form",
+  "label": "Serve form thank-you message",
+  "text": "Thank you for signing up. Someone will reach out about next steps.",
+  "imageUrl": "",
+  "where": "Replaces the form after it is sent, under \"Thank You\" (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "form.serve.success.heading",
+  "page": "form",
+  "label": "Serve form thank-you heading",
+  "text": "Thank You",
+  "imageUrl": "",
+  "where": "Replaces the form after it is sent (arise-form with data-form=\"serve\")"
+ },
+ {
+  "contentKey": "home.campus.kicker",
+  "page": "home",
+  "label": "Locations kicker",
+  "text": "Our Locations",
+  "imageUrl": "",
+  "where": "Campuses section, small red line above the heading"
+ },
+ {
+  "contentKey": "home.campus.main.directions",
+  "page": "home",
+  "label": "Main Campus directions link",
+  "text": "Get Directions &rarr;",
+  "imageUrl": "",
+  "where": "Campuses section, left card, red link at the bottom"
+ },
+ {
+  "contentKey": "home.campus.main.tag",
+  "page": "home",
+  "label": "Main Campus tag",
+  "text": "Main Campus",
+  "imageUrl": "",
+  "where": "Campuses section, left card, red tag under the photo"
+ },
+ {
+  "contentKey": "home.campus.second.directions",
+  "page": "home",
+  "label": "Second Campus directions link",
+  "text": "Get Directions &rarr;",
+  "imageUrl": "",
+  "where": "Campuses section, right card, first red link at the bottom"
+ },
+ {
+  "contentKey": "home.campus.second.more",
+  "page": "home",
+  "label": "Second Campus more link",
+  "text": "Interested in this Campus? &rarr;",
+  "imageUrl": "",
+  "where": "Campuses section, right card, second red link at the bottom"
+ },
+ {
+  "contentKey": "home.campus.second.tag",
+  "page": "home",
+  "label": "Second Campus tag",
+  "text": "Second Campus",
+  "imageUrl": "",
+  "where": "Campuses section, right card, red tag under the photo"
+ },
+ {
+  "contentKey": "home.give.body",
+  "page": "home",
+  "label": "Give text",
+  "text": "Your giving supports everything that happens here - both campuses, every ministry, and everyone who walks through the door.",
+  "imageUrl": "",
+  "where": "Give section, paragraph under the heading"
+ },
+ {
+  "contentKey": "home.give.button",
+  "page": "home",
+  "label": "Give button",
+  "text": "Give Online",
+  "imageUrl": "",
+  "where": "Give section, white button"
+ },
+ {
+  "contentKey": "home.give.heading",
+  "page": "home",
+  "label": "Give heading",
+  "text": "Give Online",
+  "imageUrl": "",
+  "where": "Give section (red band) heading"
+ },
+ {
+  "contentKey": "home.give.kicker",
+  "page": "home",
+  "label": "Give kicker",
+  "text": "Give",
+  "imageUrl": "",
+  "where": "Give section (red band), small line above the heading"
+ },
+ {
+  "contentKey": "home.hero.button",
+  "page": "home",
+  "label": "Hero button 1",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Top of page, red button under the welcome text"
+ },
+ {
+  "contentKey": "home.hero.button2",
+  "page": "home",
+  "label": "Hero button 2",
+  "text": "Sermons",
+  "imageUrl": "",
+  "where": "Top of page, outlined button under the welcome text"
+ },
+ {
+  "contentKey": "home.hero.heading",
+  "page": "home",
+  "label": "Hero heading",
+  "text": "You Belong<br>Here<span class=\"dot\">.</span>",
+  "imageUrl": "",
+  "where": "Top of page, the big headline"
+ },
+ {
+  "contentKey": "home.hero.photo",
+  "page": "home",
+  "label": "Hero background photo",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/c3b2d0_df139d07e67d499993dc5818894f91d1~mv2.jpg",
+  "where": "Top of page, big photo behind the headline"
+ },
+ {
+  "contentKey": "home.ministries.button",
+  "page": "home",
+  "label": "Ministries button",
+  "text": "All Ministries",
+  "imageUrl": "",
+  "where": "Ministries section, outlined button under the cards"
+ },
+ {
+  "contentKey": "home.ministries.heading",
+  "page": "home",
+  "label": "Ministries heading",
+  "text": "Find Your People",
+  "imageUrl": "",
+  "where": "Ministries section (dark) heading"
+ },
+ {
+  "contentKey": "home.ministries.item1",
+  "page": "home",
+  "label": "Ministry card 1 title",
+  "text": "Lead Network",
+  "imageUrl": "",
+  "where": "Ministries section, card 1 title"
+ },
+ {
+  "contentKey": "home.ministries.item1.photo",
+  "page": "home",
+  "label": "Ministry card 1 image",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/c3b2d0_1c539649f39f48cbb157d4e27efeb843~mv2.png",
+  "where": "Ministries section, card 1 image"
+ },
+ {
+  "contentKey": "home.ministries.item2",
+  "page": "home",
+  "label": "Ministry card 2 title",
+  "text": "Children's Ministry",
+  "imageUrl": "",
+  "where": "Ministries section, card 2 title"
+ },
+ {
+  "contentKey": "home.ministries.item2.photo",
+  "page": "home",
+  "label": "Ministry card 2 image",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/1f9fa2_a5448e514cc14ea08cb657e4f1a9cec4~mv2.jpg",
+  "where": "Ministries section, card 2 image"
+ },
+ {
+  "contentKey": "home.ministries.item3",
+  "page": "home",
+  "label": "Ministry card 3 title",
+  "text": "Youth Ministry",
+  "imageUrl": "",
+  "where": "Ministries section, card 3 title"
+ },
+ {
+  "contentKey": "home.ministries.item3.photo",
+  "page": "home",
+  "label": "Ministry card 3 image",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/1f9fa2_89a44a65090b488ea33de3157f4f3490~mv2.png",
+  "where": "Ministries section, card 3 image"
+ },
+ {
+  "contentKey": "home.ministries.item4",
+  "page": "home",
+  "label": "Ministry card 4 title",
+  "text": "Outreach",
+  "imageUrl": "",
+  "where": "Ministries section, card 4 title"
+ },
+ {
+  "contentKey": "home.ministries.item4.photo",
+  "page": "home",
+  "label": "Ministry card 4 image",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/1f9fa2_2aea5b909f5e467b9d6aa1c30e513ce4~mv2.png",
+  "where": "Ministries section, card 4 image"
+ },
+ {
+  "contentKey": "home.ministries.kicker",
+  "page": "home",
+  "label": "Ministries kicker",
+  "text": "Ministries",
+  "imageUrl": "",
+  "where": "Ministries section (dark), small red line above the heading"
+ },
+ {
+  "contentKey": "home.ministries.learnMore",
+  "page": "home",
+  "label": "Ministry card link text",
+  "text": "Learn More",
+  "imageUrl": "",
+  "where": "Ministries section, small text under each card title (all four cards)"
+ },
+ {
+  "contentKey": "home.news.kicker",
+  "page": "home",
+  "label": "Exciting News label",
+  "text": "Exciting News",
+  "imageUrl": "",
+  "where": "Top of page, right side, label on the news panel (only shows when news items exist)"
+ },
+ {
+  "contentKey": "home.path.item1",
+  "page": "home",
+  "label": "Pathway step 1 title",
+  "text": "Connect",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 1 title"
+ },
+ {
+  "contentKey": "home.path.item1Body",
+  "page": "home",
+  "label": "Pathway step 1 text",
+  "text": "With God and His family.",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 1 text"
+ },
+ {
+  "contentKey": "home.path.item1Number",
+  "page": "home",
+  "label": "Pathway step 1 number",
+  "text": "01",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 1 number"
+ },
+ {
+  "contentKey": "home.path.item2",
+  "page": "home",
+  "label": "Pathway step 2 title",
+  "text": "Grow",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 2 title"
+ },
+ {
+  "contentKey": "home.path.item2Body",
+  "page": "home",
+  "label": "Pathway step 2 text",
+  "text": "In God's character.",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 2 text"
+ },
+ {
+  "contentKey": "home.path.item2Number",
+  "page": "home",
+  "label": "Pathway step 2 number",
+  "text": "02",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 2 number"
+ },
+ {
+  "contentKey": "home.path.item3",
+  "page": "home",
+  "label": "Pathway step 3 title",
+  "text": "Serve",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 3 title"
+ },
+ {
+  "contentKey": "home.path.item3Body",
+  "page": "home",
+  "label": "Pathway step 3 text",
+  "text": "In God's Church.",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 3 text"
+ },
+ {
+  "contentKey": "home.path.item3Number",
+  "page": "home",
+  "label": "Pathway step 3 number",
+  "text": "03",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 3 number"
+ },
+ {
+  "contentKey": "home.path.item4",
+  "page": "home",
+  "label": "Pathway step 4 title",
+  "text": "Share",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 4 title"
+ },
+ {
+  "contentKey": "home.path.item4Body",
+  "page": "home",
+  "label": "Pathway step 4 text",
+  "text": "God's message.",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 4 text"
+ },
+ {
+  "contentKey": "home.path.item4Number",
+  "page": "home",
+  "label": "Pathway step 4 number",
+  "text": "04",
+  "imageUrl": "",
+  "where": "Who We Are section, four-step row, step 4 number"
+ },
+ {
+  "contentKey": "home.prayer.button",
+  "page": "home",
+  "label": "Prayer button",
+  "text": "Prayer Request",
+  "imageUrl": "",
+  "where": "Prayer Request section, button under the quote"
+ },
+ {
+  "contentKey": "home.prayer.cite",
+  "page": "home",
+  "label": "Prayer quote author",
+  "text": "- Beth Moore",
+  "imageUrl": "",
+  "where": "Prayer Request section, red name under the quote"
+ },
+ {
+  "contentKey": "home.prayer.kicker",
+  "page": "home",
+  "label": "Prayer kicker",
+  "text": "Prayer Request",
+  "imageUrl": "",
+  "where": "Prayer Request section, small red line at the top"
+ },
+ {
+  "contentKey": "home.prayer.photo",
+  "page": "home",
+  "label": "Prayer photo",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/c3b2d0_f30b31e02f5c43cd8f33555c4ab08705~mv2.jpg",
+  "where": "Prayer Request section, photo on the right"
+ },
+ {
+  "contentKey": "home.prayer.quote",
+  "page": "home",
+  "label": "Prayer quote",
+  "text": "\"There are parts of our calling, works of the Holy Spirit, and defeats of the darkness that will come no other way than through furious, fervent, faith-filled, unceasing prayer.\"",
+  "imageUrl": "",
+  "where": "Prayer Request section, the large quote"
+ },
+ {
+  "contentKey": "home.visit.button",
+  "page": "home",
+  "label": "What To Expect button 1",
+  "text": "Get Directions",
+  "imageUrl": "",
+  "where": "What To Expect section, red button"
+ },
+ {
+  "contentKey": "home.visit.button2",
+  "page": "home",
+  "label": "What To Expect button 2",
+  "text": "Ask Us a Question",
+  "imageUrl": "",
+  "where": "What To Expect section, outlined button"
+ },
+ {
+  "contentKey": "home.visit.kicker",
+  "page": "home",
+  "label": "What To Expect kicker",
+  "text": "First Time?",
+  "imageUrl": "",
+  "where": "What To Expect section (dark), small red line above the heading"
+ },
+ {
+  "contentKey": "home.visit.parkingTitle",
+  "page": "home",
+  "label": "Parking title",
+  "text": "Parking",
+  "imageUrl": "",
+  "where": "What To Expect section, column 1 title"
+ },
+ {
+  "contentKey": "home.visit.whatToWearTitle",
+  "page": "home",
+  "label": "What To Wear title",
+  "text": "What To Wear",
+  "imageUrl": "",
+  "where": "What To Expect section, column 2 title"
+ },
+ {
+  "contentKey": "home.visit.whenToArriveTitle",
+  "page": "home",
+  "label": "When To Arrive title",
+  "text": "When To Arrive",
+  "imageUrl": "",
+  "where": "What To Expect section, column 3 title"
+ },
+ {
+  "contentKey": "home.who.kicker",
+  "page": "home",
+  "label": "Who We Are kicker",
+  "text": "Who We Are",
+  "imageUrl": "",
+  "where": "Who We Are section, small red line above the heading"
+ },
+ {
+  "contentKey": "home.who.pastors",
+  "page": "home",
+  "label": "Pastors strip",
+  "text": "Apostle Bryant Sanders &middot; Pastor Vanessa Sanders",
+  "imageUrl": "",
+  "where": "Who We Are section, red slanted strip with the pastor names"
+ },
+ {
+  "contentKey": "leaders.cta.body",
+  "page": "leaders",
+  "label": "Visit box closing sentence",
+  "text": "Come as you are.",
+  "imageUrl": "",
+  "where": "Red box near the bottom, end of the sentence"
+ },
+ {
+  "contentKey": "leaders.cta.button",
+  "page": "leaders",
+  "label": "Visit box button",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Red box near the bottom, white button"
+ },
+ {
+  "contentKey": "leaders.cta.heading",
+  "page": "leaders",
+  "label": "Visit box heading",
+  "text": "Come Meet Them<br>On a Sunday",
+  "imageUrl": "",
+  "where": "Red box near the bottom, heading"
+ },
+ {
+  "contentKey": "leaders.cta.kicker",
+  "page": "leaders",
+  "label": "Visit box small label",
+  "text": "Visit",
+  "imageUrl": "",
+  "where": "Red box near the bottom, small label above the heading"
+ },
+ {
+  "contentKey": "leaders.cta.where1",
+  "page": "leaders",
+  "label": "Visit box words after first time",
+  "text": "in Pineville,",
+  "imageUrl": "",
+  "where": "Red box near the bottom, after the Pineville time"
+ },
+ {
+  "contentKey": "leaders.cta.where2",
+  "page": "leaders",
+  "label": "Visit box words after second time",
+  "text": "in Alexandria.",
+  "imageUrl": "",
+  "where": "Red box near the bottom, after the Alexandria time"
+ },
+ {
+  "contentKey": "leaders.hero.body",
+  "page": "leaders",
+  "label": "Top banner intro paragraph",
+  "text": "Welcome to our community. We are pleased to present our esteemed ministers, leaders, and staff who are dedicated to our mission. Each individual contributes unique talents and a commitment to cultivating an inclusive environment. We invite you to explore their significant contributions to our organization.",
+  "imageUrl": "",
+  "where": "Top of page, under the big title"
+ },
+ {
+  "contentKey": "leaders.hero.heading",
+  "page": "leaders",
+  "label": "Top banner page title",
+  "text": "Meet our Leaders",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "leaders.hero.kicker",
+  "page": "leaders",
+  "label": "Top banner small red label",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Top of page, above the big title"
+ },
+ {
+  "contentKey": "leadnetwork.cta.body",
+  "page": "leadnetwork",
+  "label": "Camp meeting box text",
+  "text": "The Lead Network 2026 Camp Meeting, October 30 to November 1.",
+  "imageUrl": "",
+  "where": "Red box at the bottom, text"
+ },
+ {
+  "contentKey": "leadnetwork.cta.button",
+  "page": "leadnetwork",
+  "label": "Camp meeting box button",
+  "text": "See the Event",
+  "imageUrl": "",
+  "where": "Red box at the bottom, white button"
+ },
+ {
+  "contentKey": "leadnetwork.cta.heading",
+  "page": "leadnetwork",
+  "label": "Camp meeting box heading",
+  "text": "The Outpour",
+  "imageUrl": "",
+  "where": "Red box at the bottom, title"
+ },
+ {
+  "contentKey": "leadnetwork.cta.kicker",
+  "page": "leadnetwork",
+  "label": "Camp meeting box kicker",
+  "text": "Camp Meeting",
+  "imageUrl": "",
+  "where": "Red box at the bottom, small text"
+ },
+ {
+  "contentKey": "leadnetwork.gatherings.heading",
+  "page": "leadnetwork",
+  "label": "Photos heading",
+  "text": "Camp Meetings &amp; Teachings",
+  "imageUrl": "",
+  "where": "Photo section title"
+ },
+ {
+  "contentKey": "leadnetwork.gatherings.kicker",
+  "page": "leadnetwork",
+  "label": "Photos kicker",
+  "text": "Gatherings",
+  "imageUrl": "",
+  "where": "Photo section, small red text"
+ },
+ {
+  "contentKey": "leadnetwork.hero.heading",
+  "page": "leadnetwork",
+  "label": "Hero heading",
+  "text": "Lead Network",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "leadnetwork.hero.kicker",
+  "page": "leadnetwork",
+  "label": "Hero kicker",
+  "text": "Leadership Development",
+  "imageUrl": "",
+  "where": "Top of page, small red text above the big title"
+ },
+ {
+  "contentKey": "leadnetwork.hero.lede",
+  "page": "leadnetwork",
+  "label": "Hero intro",
+  "text": "We invite you to explore our comprehensive selection of video courses offered through the Lead Network. Our courses are to enhance your skills and facilitate learning across various subjects. Discover the valuable opportunities that await you.",
+  "imageUrl": "",
+  "where": "Top of page, under the big title"
+ },
+ {
+  "contentKey": "leadnetwork.hero.logo",
+  "page": "leadnetwork",
+  "label": "Lead Network logo",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/c3b2d0_1c539649f39f48cbb157d4e27efeb843~mv2.png",
+  "where": "Top of page, logo above the title"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.austinChurch",
+  "page": "leadnetwork",
+  "label": "Austin church and address",
+  "text": "<b>Kingdom Builders Ministry Church</b>200 N. Houston Ave., Suite C<br>Humble, TX 77338",
+  "imageUrl": "",
+  "where": "Ministers section, first card, church name and address"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.austinFacebook",
+  "page": "leadnetwork",
+  "label": "Austin Facebook link text",
+  "text": "Facebook",
+  "imageUrl": "",
+  "where": "Ministers section, first card link"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.austinName",
+  "page": "leadnetwork",
+  "label": "Austin names",
+  "text": "Carlos and Melissa Austin",
+  "imageUrl": "",
+  "where": "Ministers section, first card names"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.austinRole",
+  "page": "leadnetwork",
+  "label": "Austin role badge",
+  "text": "Apostle &amp; Pastor",
+  "imageUrl": "",
+  "where": "Ministers section, first card red badge"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.button",
+  "page": "leadnetwork",
+  "label": "Watch button",
+  "text": "Watch Now",
+  "imageUrl": "",
+  "where": "Ministers section, dark button under the cards"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.callowayChurch",
+  "page": "leadnetwork",
+  "label": "Calloway church and address",
+  "text": "<b>Faith Culture Church</b>245 Florida Ave SE<br>Denham Springs, LA 70726",
+  "imageUrl": "",
+  "where": "Ministers section, second card, church name and address"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.callowayFacebook",
+  "page": "leadnetwork",
+  "label": "Calloway Facebook link text",
+  "text": "Facebook",
+  "imageUrl": "",
+  "where": "Ministers section, second card second link"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.callowayName",
+  "page": "leadnetwork",
+  "label": "Calloway names",
+  "text": "Derrick and Pamla Calloway",
+  "imageUrl": "",
+  "where": "Ministers section, second card names"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.callowayRole",
+  "page": "leadnetwork",
+  "label": "Calloway role badge",
+  "text": "Lead Pastors",
+  "imageUrl": "",
+  "where": "Ministers section, second card red badge"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.callowayWebsite",
+  "page": "leadnetwork",
+  "label": "Calloway website link text",
+  "text": "Website",
+  "imageUrl": "",
+  "where": "Ministers section, second card first link"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.heading",
+  "page": "leadnetwork",
+  "label": "Ministers heading",
+  "text": "Our Current Ministers",
+  "imageUrl": "",
+  "where": "Ministers section title"
+ },
+ {
+  "contentKey": "leadnetwork.ministers.kicker",
+  "page": "leadnetwork",
+  "label": "Ministers kicker",
+  "text": "Our Current Ministers",
+  "imageUrl": "",
+  "where": "Ministers section, small red text"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.audioSoon",
+  "page": "leadnetwork",
+  "label": "No-audio note",
+  "text": "Audio coming soon",
+  "imageUrl": "",
+  "where": "Teachings section, shown on a card only when it has no audio"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.heading",
+  "page": "leadnetwork",
+  "label": "Teachings heading",
+  "text": "Watch &amp; Listen",
+  "imageUrl": "",
+  "where": "Teachings section title"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item1By",
+  "page": "leadnetwork",
+  "label": "Teaching 1 speaker",
+  "text": "Apostle Bryant Sanders",
+  "imageUrl": "",
+  "where": "Teachings section, first card, red name line"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item1Length",
+  "page": "leadnetwork",
+  "label": "Teaching 1 length",
+  "text": "42 min",
+  "imageUrl": "",
+  "where": "Teachings section, first card, length line"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item1Sub",
+  "page": "leadnetwork",
+  "label": "Teaching 1 subtitle",
+  "text": "Unmasking the Spirit of Delilah",
+  "imageUrl": "",
+  "where": "Teachings section, first card, under the title"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item1Thumb",
+  "page": "leadnetwork",
+  "label": "Teaching 1 thumbnail",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/c3b2d0_ef7a4d9e0ebf4c9981f5732070a04e95~mv2.jpg",
+  "where": "Teachings section, first card picture (before Play is pressed)"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item1Title",
+  "page": "leadnetwork",
+  "label": "Teaching 1 title",
+  "text": "Guarding the Anointing",
+  "imageUrl": "",
+  "where": "Teachings section, first card title"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item2By",
+  "page": "leadnetwork",
+  "label": "Teaching 2 speaker",
+  "text": "Pastor Derrick Calloway",
+  "imageUrl": "",
+  "where": "Teachings section, second card, red name line"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item2Length",
+  "page": "leadnetwork",
+  "label": "Teaching 2 length",
+  "text": "34 min",
+  "imageUrl": "",
+  "where": "Teachings section, second card, length line"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item2Sub",
+  "page": "leadnetwork",
+  "label": "Teaching 2 subtitle",
+  "text": "Spiritual Wisdom and Practical Strategies",
+  "imageUrl": "",
+  "where": "Teachings section, second card, under the title"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item2Thumb",
+  "page": "leadnetwork",
+  "label": "Teaching 2 thumbnail",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/c3b2d0_d3067c7953ea434db865fc6b7b1f71ee~mv2.jpg",
+  "where": "Teachings section, second card picture (before Play is pressed)"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.item2Title",
+  "page": "leadnetwork",
+  "label": "Teaching 2 title",
+  "text": "Leading with Purpose",
+  "imageUrl": "",
+  "where": "Teachings section, second card title"
+ },
+ {
+  "contentKey": "leadnetwork.teachings.kicker",
+  "page": "leadnetwork",
+  "label": "Teachings kicker",
+  "text": "Teachings",
+  "imageUrl": "",
+  "where": "Teachings section, small red text"
+ },
+ {
+  "contentKey": "ministries.cta.body",
+  "page": "ministries",
+  "label": "Visit box closing sentence",
+  "text": "Find your people once you’re here.",
+  "imageUrl": "",
+  "where": "Red box near the bottom, end of the sentence"
+ },
+ {
+  "contentKey": "ministries.cta.button",
+  "page": "ministries",
+  "label": "Visit box button",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Red box near the bottom, white button"
+ },
+ {
+  "contentKey": "ministries.cta.heading",
+  "page": "ministries",
+  "label": "Visit box heading",
+  "text": "Come Visit First",
+  "imageUrl": "",
+  "where": "Red box near the bottom, heading"
+ },
+ {
+  "contentKey": "ministries.cta.kicker",
+  "page": "ministries",
+  "label": "Visit box small label",
+  "text": "Not Sure Where To Start",
+  "imageUrl": "",
+  "where": "Red box near the bottom, small label above the heading"
+ },
+ {
+  "contentKey": "ministries.cta.where1",
+  "page": "ministries",
+  "label": "Visit box words after first time",
+  "text": "in Pineville,",
+  "imageUrl": "",
+  "where": "Red box near the bottom, after the Pineville time"
+ },
+ {
+  "contentKey": "ministries.cta.where2",
+  "page": "ministries",
+  "label": "Visit box words after second time",
+  "text": "in Alexandria.",
+  "imageUrl": "",
+  "where": "Red box near the bottom, after the Alexandria time"
+ },
+ {
+  "contentKey": "ministries.hero.heading",
+  "page": "ministries",
+  "label": "Top banner page title",
+  "text": "Ministries",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "ministries.hero.kicker",
+  "page": "ministries",
+  "label": "Top banner small red label",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Top of page, above the big title"
+ },
+ {
+  "contentKey": "ministries.need.button",
+  "page": "ministries",
+  "label": "Serve band button",
+  "text": "Sign Up to Serve!",
+  "imageUrl": "",
+  "where": "Red band under the ministry tiles, white button"
+ },
+ {
+  "contentKey": "ministries.need.heading",
+  "page": "ministries",
+  "label": "Serve band heading",
+  "text": "We are In Need",
+  "imageUrl": "",
+  "where": "Red band under the ministry tiles"
+ },
+ {
+  "contentKey": "outreach.community.heading",
+  "page": "outreach",
+  "label": "Photos heading",
+  "text": "Impact Tioga",
+  "imageUrl": "",
+  "where": "Photo section title"
+ },
+ {
+  "contentKey": "outreach.community.kicker",
+  "page": "outreach",
+  "label": "Photos kicker",
+  "text": "In The Community",
+  "imageUrl": "",
+  "where": "Photo section, small red text"
+ },
+ {
+  "contentKey": "outreach.cta.body",
+  "page": "outreach",
+  "label": "Serve box text",
+  "text": "Join our congregation in making a difference.",
+  "imageUrl": "",
+  "where": "Red box at the bottom, text"
+ },
+ {
+  "contentKey": "outreach.cta.button",
+  "page": "outreach",
+  "label": "Serve box button",
+  "text": "Sign Up to Serve",
+  "imageUrl": "",
+  "where": "Red box at the bottom, white button"
+ },
+ {
+  "contentKey": "outreach.cta.heading",
+  "page": "outreach",
+  "label": "Serve box heading",
+  "text": "We Are In Need",
+  "imageUrl": "",
+  "where": "Red box at the bottom, title"
+ },
+ {
+  "contentKey": "outreach.cta.kicker",
+  "page": "outreach",
+  "label": "Serve box kicker",
+  "text": "Serve With Us",
+  "imageUrl": "",
+  "where": "Red box at the bottom, small text"
+ },
+ {
+  "contentKey": "outreach.footage.clip1",
+  "page": "outreach",
+  "label": "First video caption",
+  "text": "Over 40 served",
+  "imageUrl": "",
+  "where": "Video section, caption under the first video"
+ },
+ {
+  "contentKey": "outreach.footage.clip2",
+  "page": "outreach",
+  "label": "Second video caption",
+  "text": "Out in the community",
+  "imageUrl": "",
+  "where": "Video section, caption under the second video"
+ },
+ {
+  "contentKey": "outreach.footage.heading",
+  "page": "outreach",
+  "label": "Videos heading",
+  "text": "Out In The Community",
+  "imageUrl": "",
+  "where": "Video section title"
+ },
+ {
+  "contentKey": "outreach.footage.kicker",
+  "page": "outreach",
+  "label": "Videos kicker",
+  "text": "Real Footage",
+  "imageUrl": "",
+  "where": "Video section, small red text"
+ },
+ {
+  "contentKey": "outreach.hero.heading",
+  "page": "outreach",
+  "label": "Hero heading",
+  "text": "Outreach",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "outreach.hero.kicker",
+  "page": "outreach",
+  "label": "Hero kicker",
+  "text": "Impact Tioga",
+  "imageUrl": "",
+  "where": "Top of page, small red text above the big title"
+ },
+ {
+  "contentKey": "outreach.hero.lede",
+  "page": "outreach",
+  "label": "Hero intro line",
+  "text": "Share God’s love through community service and evangelism.",
+  "imageUrl": "",
+  "where": "Top of page, under the big title"
+ },
+ {
+  "contentKey": "outreach.mission.body",
+  "page": "outreach",
+  "label": "Mission paragraph 1",
+  "text": "Our mission for this year is to Impact Tioga—to bring the life-changing love of Jesus Christ into every corner of our community, transforming lives, families, and the town we call home.",
+  "imageUrl": "",
+  "where": "Mission section, first paragraph"
+ },
+ {
+  "contentKey": "outreach.mission.body2",
+  "page": "outreach",
+  "label": "Mission paragraph 2",
+  "text": "We are committed to building the community together: partnering with neighbors, schools, businesses, and local leaders to foster unity, serve those in need, and create spaces where everyone feels seen, valued, and loved.",
+  "imageUrl": "",
+  "where": "Mission section, grey second paragraph"
+ },
+ {
+  "contentKey": "outreach.mission.heading",
+  "page": "outreach",
+  "label": "Mission heading",
+  "text": "Impact Tioga",
+  "imageUrl": "",
+  "where": "Mission section title"
+ },
+ {
+  "contentKey": "outreach.mission.kicker",
+  "page": "outreach",
+  "label": "Mission kicker",
+  "text": "Our Mission",
+  "imageUrl": "",
+  "where": "Mission section, small red text"
+ },
+ {
+  "contentKey": "outreach.mission.strip",
+  "page": "outreach",
+  "label": "Mission red label",
+  "text": "Impact Tioga",
+  "imageUrl": "",
+  "where": "Mission section, slanted red label"
+ },
+ {
+  "contentKey": "outreach.supplies.body",
+  "page": "outreach",
+  "label": "Supplies intro",
+  "text": "We are always collecting supplies &amp; monetary donations for the homeless and hungry in our community.",
+  "imageUrl": "",
+  "where": "Supplies section, text under the title"
+ },
+ {
+  "contentKey": "outreach.supplies.heading",
+  "page": "outreach",
+  "label": "Supplies heading",
+  "text": "Outreach Supplies<br>Needed",
+  "imageUrl": "",
+  "where": "Supplies section title"
+ },
+ {
+  "contentKey": "outreach.supplies.item1",
+  "page": "outreach",
+  "label": "Supplies list item 1",
+  "text": "Socks",
+  "imageUrl": "",
+  "where": "Supplies section, list line 1"
+ },
+ {
+  "contentKey": "outreach.supplies.item10",
+  "page": "outreach",
+  "label": "Supplies list item 10",
+  "text": "Baby wipes",
+  "imageUrl": "",
+  "where": "Supplies section, list line 10"
+ },
+ {
+  "contentKey": "outreach.supplies.item11",
+  "page": "outreach",
+  "label": "Supplies list item 11",
+  "text": "Toothpaste / toothbrushes",
+  "imageUrl": "",
+  "where": "Supplies section, list line 11"
+ },
+ {
+  "contentKey": "outreach.supplies.item12",
+  "page": "outreach",
+  "label": "Supplies list item 12",
+  "text": "Deodorant",
+  "imageUrl": "",
+  "where": "Supplies section, list line 12"
+ },
+ {
+  "contentKey": "outreach.supplies.item13",
+  "page": "outreach",
+  "label": "Supplies list item 13",
+  "text": "Bandaids",
+  "imageUrl": "",
+  "where": "Supplies section, list line 13"
+ },
+ {
+  "contentKey": "outreach.supplies.item14",
+  "page": "outreach",
+  "label": "Supplies list item 14",
+  "text": "Feminine products",
+  "imageUrl": "",
+  "where": "Supplies section, list line 14"
+ },
+ {
+  "contentKey": "outreach.supplies.item2",
+  "page": "outreach",
+  "label": "Supplies list item 2",
+  "text": "Winter gloves &amp; hats",
+  "imageUrl": "",
+  "where": "Supplies section, list line 2"
+ },
+ {
+  "contentKey": "outreach.supplies.item3",
+  "page": "outreach",
+  "label": "Supplies list item 3",
+  "text": "Blankets",
+  "imageUrl": "",
+  "where": "Supplies section, list line 3"
+ },
+ {
+  "contentKey": "outreach.supplies.item4",
+  "page": "outreach",
+  "label": "Supplies list item 4",
+  "text": "Raincoats / ponchos",
+  "imageUrl": "",
+  "where": "Supplies section, list line 4"
+ },
+ {
+  "contentKey": "outreach.supplies.item5",
+  "page": "outreach",
+  "label": "Supplies list item 5",
+  "text": "Sleeping bags",
+  "imageUrl": "",
+  "where": "Supplies section, list line 5"
+ },
+ {
+  "contentKey": "outreach.supplies.item6",
+  "page": "outreach",
+  "label": "Supplies list item 6",
+  "text": "Hand warmers",
+  "imageUrl": "",
+  "where": "Supplies section, list line 6"
+ },
+ {
+  "contentKey": "outreach.supplies.item7",
+  "page": "outreach",
+  "label": "Supplies list item 7",
+  "text": "Flashlights / batteries",
+  "imageUrl": "",
+  "where": "Supplies section, list line 7"
+ },
+ {
+  "contentKey": "outreach.supplies.item8",
+  "page": "outreach",
+  "label": "Supplies list item 8",
+  "text": "Wash cloths",
+  "imageUrl": "",
+  "where": "Supplies section, list line 8"
+ },
+ {
+  "contentKey": "outreach.supplies.item9",
+  "page": "outreach",
+  "label": "Supplies list item 9",
+  "text": "Bar soap / soap box",
+  "imageUrl": "",
+  "where": "Supplies section, list line 9"
+ },
+ {
+  "contentKey": "outreach.supplies.kicker",
+  "page": "outreach",
+  "label": "Supplies kicker",
+  "text": "How To Help",
+  "imageUrl": "",
+  "where": "Supplies section, small red text"
+ },
+ {
+  "contentKey": "sermons.clips.button",
+  "page": "sermons",
+  "label": "Clips button",
+  "text": "All Messages on YouTube",
+  "imageUrl": "",
+  "where": "White clips section, button under the cards"
+ },
+ {
+  "contentKey": "sermons.clips.heading",
+  "page": "sermons",
+  "label": "Clips heading",
+  "text": "Clips &amp; Announcements",
+  "imageUrl": "",
+  "where": "White clips section, title"
+ },
+ {
+  "contentKey": "sermons.clips.kicker",
+  "page": "sermons",
+  "label": "Clips kicker",
+  "text": "More From Arise Church",
+  "imageUrl": "",
+  "where": "White clips section, small red text"
+ },
+ {
+  "contentKey": "sermons.cta.bodyEnd",
+  "page": "sermons",
+  "label": "Bottom banner ending punctuation",
+  "text": ".",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, period after the Glory Nights time"
+ },
+ {
+  "contentKey": "sermons.cta.bodyMain",
+  "page": "sermons",
+  "label": "Bottom banner text after main time",
+  "text": "in Pineville,",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, after the Pineville Sunday time"
+ },
+ {
+  "contentKey": "sermons.cta.bodySecond",
+  "page": "sermons",
+  "label": "Bottom banner text after second time",
+  "text": "in Alexandria. Glory Nights",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, after the Alexandria Sunday time"
+ },
+ {
+  "contentKey": "sermons.cta.button",
+  "page": "sermons",
+  "label": "Bottom banner button",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, white button"
+ },
+ {
+  "contentKey": "sermons.cta.heading",
+  "page": "sermons",
+  "label": "Bottom banner heading",
+  "text": "Better In The Room",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, title"
+ },
+ {
+  "contentKey": "sermons.cta.kicker",
+  "page": "sermons",
+  "label": "Bottom banner kicker",
+  "text": "Join Us In Person",
+  "imageUrl": "",
+  "where": "Red banner at the bottom, small text"
+ },
+ {
+  "contentKey": "sermons.glory.address",
+  "page": "sermons",
+  "label": "Glory Nights address tag",
+  "text": "501 Ates Road, Pineville",
+  "imageUrl": "",
+  "where": "Glory Nights section, third outlined tag"
+ },
+ {
+  "contentKey": "sermons.glory.button",
+  "page": "sermons",
+  "label": "Glory Nights button",
+  "text": "All Glory Nights",
+  "imageUrl": "",
+  "where": "Glory Nights section, outlined button"
+ },
+ {
+  "contentKey": "sermons.glory.campus",
+  "page": "sermons",
+  "label": "Glory Nights campus tag",
+  "text": "Main Campus",
+  "imageUrl": "",
+  "where": "Glory Nights section, second outlined tag"
+ },
+ {
+  "contentKey": "sermons.glory.heading",
+  "page": "sermons",
+  "label": "Glory Nights heading",
+  "text": "Glory Nights",
+  "imageUrl": "",
+  "where": "Glory Nights section, title"
+ },
+ {
+  "contentKey": "sermons.glory.kicker",
+  "page": "sermons",
+  "label": "Glory Nights kicker",
+  "text": "Monday Nights",
+  "imageUrl": "",
+  "where": "Glory Nights section, small red text"
+ },
+ {
+  "contentKey": "sermons.hero.heading",
+  "page": "sermons",
+  "label": "Hero heading",
+  "text": "Sermons",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "sermons.hero.kicker",
+  "page": "sermons",
+  "label": "Hero kicker",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Top of page, small red text above the big title"
+ },
+ {
+  "contentKey": "sermons.latest.heading",
+  "page": "sermons",
+  "label": "Latest service heading",
+  "text": "Sunday Morning<br>Service",
+  "imageUrl": "",
+  "where": "Dark section beside the video player, title"
+ },
+ {
+  "contentKey": "sermons.latest.strip",
+  "page": "sermons",
+  "label": "Latest service red tag",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Dark section beside the video player, slanted red tag under the title"
+ },
+ {
+  "contentKey": "sermons.series.kicker",
+  "page": "sermons",
+  "label": "Current series kicker",
+  "text": "Current Series",
+  "imageUrl": "",
+  "where": "Red series band (shown only when a series is active), small text"
+ },
+ {
+  "contentKey": "serve.form.body",
+  "page": "serve",
+  "label": "Form intro",
+  "text": "No experience needed - just a willingness to show up. Someone from that team will reach out about next steps.",
+  "imageUrl": "",
+  "where": "Dark sign-up panel, paragraph under the heading"
+ },
+ {
+  "contentKey": "serve.form.button",
+  "page": "serve",
+  "label": "Form button",
+  "text": "Sign Up to Serve",
+  "imageUrl": "",
+  "where": "Sign-up form, red submit button"
+ },
+ {
+  "contentKey": "serve.form.emailLabel",
+  "page": "serve",
+  "label": "Form email label",
+  "text": "Email",
+  "imageUrl": "",
+  "where": "Sign-up form, second field label"
+ },
+ {
+  "contentKey": "serve.form.heading",
+  "page": "serve",
+  "label": "Form heading",
+  "text": "Use Your Gifts",
+  "imageUrl": "",
+  "where": "Dark sign-up panel heading"
+ },
+ {
+  "contentKey": "serve.form.kicker",
+  "page": "serve",
+  "label": "Form kicker",
+  "text": "Sign Up",
+  "imageUrl": "",
+  "where": "Dark sign-up panel, small red text above the heading"
+ },
+ {
+  "contentKey": "serve.form.messageLabel",
+  "page": "serve",
+  "label": "Form message label",
+  "text": "Anything else we should know?",
+  "imageUrl": "",
+  "where": "Sign-up form, large text box label"
+ },
+ {
+  "contentKey": "serve.form.nameLabel",
+  "page": "serve",
+  "label": "Form name label",
+  "text": "Your Name",
+  "imageUrl": "",
+  "where": "Sign-up form, first field label"
+ },
+ {
+  "contentKey": "serve.form.phoneLabel",
+  "page": "serve",
+  "label": "Form phone label",
+  "text": "Phone",
+  "imageUrl": "",
+  "where": "Sign-up form, third field label"
+ },
+ {
+  "contentKey": "serve.form.positionLabel",
+  "page": "serve",
+  "label": "Form position label",
+  "text": "Which position?",
+  "imageUrl": "",
+  "where": "Sign-up form, fourth field label"
+ },
+ {
+  "contentKey": "serve.hero.heading",
+  "page": "serve",
+  "label": "Hero heading",
+  "text": "Serve",
+  "imageUrl": "",
+  "where": "Top of page, big heading"
+ },
+ {
+  "contentKey": "serve.hero.kicker",
+  "page": "serve",
+  "label": "Hero kicker",
+  "text": "Volunteer Sign Up",
+  "imageUrl": "",
+  "where": "Top of page, small red text above \"Serve\""
+ },
+ {
+  "contentKey": "serve.positions.cta",
+  "page": "serve",
+  "label": "Position card link",
+  "text": "Sign Up &rarr;",
+  "imageUrl": "",
+  "where": "Positions section, red text at the bottom of every position card"
+ },
+ {
+  "contentKey": "serve.positions.heading",
+  "page": "serve",
+  "label": "Positions heading",
+  "text": "Where You<br>Could Serve",
+  "imageUrl": "",
+  "where": "Positions section heading"
+ },
+ {
+  "contentKey": "serve.positions.kicker",
+  "page": "serve",
+  "label": "Positions kicker",
+  "text": "Positions Needed",
+  "imageUrl": "",
+  "where": "Positions section, small red text above the heading"
+ },
+ {
+  "contentKey": "serve.positions.urgentTag",
+  "page": "serve",
+  "label": "Most Needed badge",
+  "text": "Most Needed",
+  "imageUrl": "",
+  "where": "Positions section, red badge on urgent position cards (the cards themselves come from CMS -> Serve Positions)"
+ },
+ {
+  "contentKey": "serve.success.body",
+  "page": "serve",
+  "label": "Thank-you message",
+  "text": "We've got your sign-up, and someone from that team will reach out about next steps.",
+  "imageUrl": "",
+  "where": "Replaces the sign-up form after it is sent, under \"Thank You\""
+ },
+ {
+  "contentKey": "serve.success.heading",
+  "page": "serve",
+  "label": "Thank-you heading",
+  "text": "Thank You",
+  "imageUrl": "",
+  "where": "Replaces the sign-up form after it is sent"
+ },
+ {
+  "contentKey": "site.footer.bottom.copyright",
+  "page": "site",
+  "label": "Footer: copyright name",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), very bottom left, after the copyright year"
+ },
+ {
+  "contentKey": "site.footer.brand.body",
+  "page": "site",
+  "label": "Footer: short description",
+  "text": "Multicultural, multiethnic, and multigenerational. Pineville &amp; Alexandria, Louisiana.",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), first column, under the church name"
+ },
+ {
+  "contentKey": "site.footer.brand.heading",
+  "page": "site",
+  "label": "Footer: church name heading",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), first column heading"
+ },
+ {
+  "contentKey": "site.footer.campus1",
+  "page": "site",
+  "label": "Footer: Pineville campus name",
+  "text": "Pineville",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), after the Pineville Sunday time (Visit column and bottom strip)"
+ },
+ {
+  "contentKey": "site.footer.campus2",
+  "page": "site",
+  "label": "Footer: Alexandria campus name",
+  "text": "Alexandria",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), after the Alexandria Sunday time (Visit column and bottom strip)"
+ },
+ {
+  "contentKey": "site.footer.connect.heading",
+  "page": "site",
+  "label": "Footer: Connect heading",
+  "text": "Connect",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), fourth column heading"
+ },
+ {
+  "contentKey": "site.footer.connect.item1",
+  "page": "site",
+  "label": "Footer Connect link 1",
+  "text": "Contact",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Connect column, link 1"
+ },
+ {
+  "contentKey": "site.footer.connect.item2",
+  "page": "site",
+  "label": "Footer Connect link 2",
+  "text": "Sign Up to Serve",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Connect column, link 2"
+ },
+ {
+  "contentKey": "site.footer.connect.item3",
+  "page": "site",
+  "label": "Footer Connect link 3",
+  "text": "Give Online",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Connect column, link 3"
+ },
+ {
+  "contentKey": "site.footer.connect.item4",
+  "page": "site",
+  "label": "Footer Connect link 4",
+  "text": "Prayer Request",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Connect column, link 4"
+ },
+ {
+  "contentKey": "site.footer.explore.heading",
+  "page": "site",
+  "label": "Footer: Explore heading",
+  "text": "Explore",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), third column heading"
+ },
+ {
+  "contentKey": "site.footer.explore.item1",
+  "page": "site",
+  "label": "Footer Explore link 1",
+  "text": "About",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Explore column, link 1"
+ },
+ {
+  "contentKey": "site.footer.explore.item2",
+  "page": "site",
+  "label": "Footer Explore link 2",
+  "text": "Meet our Leaders",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Explore column, link 2"
+ },
+ {
+  "contentKey": "site.footer.explore.item3",
+  "page": "site",
+  "label": "Footer Explore link 3",
+  "text": "Ministries",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Explore column, link 3"
+ },
+ {
+  "contentKey": "site.footer.explore.item4",
+  "page": "site",
+  "label": "Footer Explore link 4",
+  "text": "Connect Groups",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Explore column, link 4"
+ },
+ {
+  "contentKey": "site.footer.explore.item5",
+  "page": "site",
+  "label": "Footer Explore link 5",
+  "text": "Arise Creative Arts",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Explore column, link 5"
+ },
+ {
+  "contentKey": "site.footer.explore.item6",
+  "page": "site",
+  "label": "Footer Explore link 6",
+  "text": "Sermons",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Explore column, link 6"
+ },
+ {
+  "contentKey": "site.footer.explore.item7",
+  "page": "site",
+  "label": "Footer Explore link 7",
+  "text": "Classes",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Explore column, link 7"
+ },
+ {
+  "contentKey": "site.footer.explore.item8",
+  "page": "site",
+  "label": "Footer Explore link 8",
+  "text": "Events",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Explore column, link 8"
+ },
+ {
+  "contentKey": "site.footer.explore.item9",
+  "page": "site",
+  "label": "Footer Explore link 9",
+  "text": "Bible Search",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Explore column, link 9"
+ },
+ {
+  "contentKey": "site.footer.visit.heading",
+  "page": "site",
+  "label": "Footer: Visit heading",
+  "text": "Visit",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), second column heading"
+ },
+ {
+  "contentKey": "site.footer.visit.weeknight",
+  "page": "site",
+  "label": "Footer: weeknight times link",
+  "text": "Weeknight times &rarr;",
+  "imageUrl": "",
+  "where": "Footer (bottom of every page), Visit column, red link under the Sunday times"
+ },
+ {
+  "contentKey": "site.header.give",
+  "page": "site",
+  "label": "Give button",
+  "text": "Give Online",
+  "imageUrl": "",
+  "where": "Header (top of every page), red button at the right; also the red button in the mobile menu"
+ },
+ {
+  "contentKey": "site.header.logo",
+  "page": "site",
+  "label": "Header logo",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/c3b2d0_e3158f32636f482b84946a09d70b610c~mv2.png",
+  "where": "Header (top of every page), far left"
+ },
+ {
+  "contentKey": "site.header.nav.about",
+  "page": "site",
+  "label": "Menu: About",
+  "text": "About",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.about.contact",
+  "page": "site",
+  "label": "About dropdown: Contact",
+  "text": "Contact",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.about.leaders",
+  "page": "site",
+  "label": "About dropdown: Meet our Leaders",
+  "text": "Meet our Leaders",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.about.story",
+  "page": "site",
+  "label": "About dropdown: Our Story",
+  "text": "Our Story",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.classes",
+  "page": "site",
+  "label": "Menu: Classes",
+  "text": "Classes",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.events",
+  "page": "site",
+  "label": "Menu: Events",
+  "text": "Events",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.home",
+  "page": "site",
+  "label": "Menu: Home",
+  "text": "Home",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.media",
+  "page": "site",
+  "label": "Menu: Media",
+  "text": "Media",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.media.bible",
+  "page": "site",
+  "label": "Media dropdown: Bible Search",
+  "text": "Bible Search",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.media.podcast",
+  "page": "site",
+  "label": "Media dropdown: Podcast",
+  "text": "Podcast",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.media.sermons",
+  "page": "site",
+  "label": "Media dropdown: Sermons",
+  "text": "Sermons",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.ministries",
+  "page": "site",
+  "label": "Menu: Ministries",
+  "text": "Ministries",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.ministries.all",
+  "page": "site",
+  "label": "Ministries dropdown: All Ministries",
+  "text": "All Ministries",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.ministries.children",
+  "page": "site",
+  "label": "Ministries dropdown: Children's Ministry",
+  "text": "Children's Ministry",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.ministries.connect",
+  "page": "site",
+  "label": "Ministries dropdown: Connect Groups",
+  "text": "Connect Groups",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.ministries.creative",
+  "page": "site",
+  "label": "Ministries dropdown: Arise Creative Arts",
+  "text": "Arise Creative Arts",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.ministries.lead",
+  "page": "site",
+  "label": "Ministries dropdown: Lead Network",
+  "text": "Lead Network",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.ministries.outreach",
+  "page": "site",
+  "label": "Ministries dropdown: Outreach",
+  "text": "Outreach",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.ministries.youth",
+  "page": "site",
+  "label": "Ministries dropdown: Youth Ministry",
+  "text": "Youth Ministry",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.nav.serve",
+  "page": "site",
+  "label": "Menu: Serve",
+  "text": "Serve",
+  "imageUrl": "",
+  "where": "Header (top of every page) menu and the mobile menu"
+ },
+ {
+  "contentKey": "site.header.panel.campus1",
+  "page": "site",
+  "label": "Mobile menu: Pineville campus name",
+  "text": "Pineville",
+  "imageUrl": "",
+  "where": "Mobile menu (tap the three lines on a phone), under the Pineville Sunday time"
+ },
+ {
+  "contentKey": "site.header.panel.campus2",
+  "page": "site",
+  "label": "Mobile menu: Alexandria campus name",
+  "text": "Alexandria",
+  "imageUrl": "",
+  "where": "Mobile menu (tap the three lines on a phone), under the Alexandria Sunday time"
+ },
+ {
+  "contentKey": "site.header.panel.glorynightWhere",
+  "page": "site",
+  "label": "Mobile menu: Glory Night location",
+  "text": "&middot; Main Campus",
+  "imageUrl": "",
+  "where": "Mobile menu (tap the three lines on a phone), after the Glory Night time"
+ },
+ {
+  "contentKey": "site.header.wordmark",
+  "page": "site",
+  "label": "Church name next to logo",
+  "text": "Arise Church",
+  "imageUrl": "",
+  "where": "Header (top of every page), next to the logo; also the title at the top of the mobile menu"
+ },
+ {
+  "contentKey": "site.phone",
+  "page": "contact",
+  "label": "Church phone (shared)",
+  "text": "(318) 640-1865",
+  "imageUrl": "",
+  "where": "Under the header, right card (link text only; the tel link stays the same)"
+ },
+ {
+  "contentKey": "site.servicetimes.addr.mainLabel",
+  "page": "site",
+  "label": "Service Times: main campus label",
+  "text": "Main Campus",
+  "imageUrl": "",
+  "where": "Service Times dropdown (red Service Times button), address block, first name"
+ },
+ {
+  "contentKey": "site.servicetimes.addr.secondLabel",
+  "page": "site",
+  "label": "Service Times: Alexandria campus label",
+  "text": "Alexandria Campus",
+  "imageUrl": "",
+  "where": "Service Times dropdown (red Service Times button), address block, second name"
+ },
+ {
+  "contentKey": "site.servicetimes.button",
+  "page": "site",
+  "label": "Service Times button text",
+  "text": "Service Times",
+  "imageUrl": "",
+  "where": "Red Service Times button"
+ },
+ {
+  "contentKey": "site.servicetimes.cta.button",
+  "page": "site",
+  "label": "Service Times: bottom button",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Service Times dropdown (red Service Times button), outlined button at the bottom"
+ },
+ {
+  "contentKey": "site.servicetimes.lead.campus1",
+  "page": "site",
+  "label": "Service Times: Pineville name",
+  "text": "Pineville",
+  "imageUrl": "",
+  "where": "Service Times dropdown (red Service Times button), small word after the first big time"
+ },
+ {
+  "contentKey": "site.servicetimes.lead.campus2",
+  "page": "site",
+  "label": "Service Times: Alexandria name",
+  "text": "Alexandria",
+  "imageUrl": "",
+  "where": "Service Times dropdown (red Service Times button), small word after the second big time"
+ },
+ {
+  "contentKey": "site.servicetimes.lead.kicker",
+  "page": "site",
+  "label": "Service Times: top label",
+  "text": "Sunday Service",
+  "imageUrl": "",
+  "where": "Service Times dropdown (red Service Times button), small red label at the top"
+ },
+ {
+  "contentKey": "site.servicetimes.lead.note",
+  "page": "site",
+  "label": "Service Times: note under times",
+  "text": "Come as you are",
+  "imageUrl": "",
+  "where": "Service Times dropdown (red Service Times button), grey line under the Sunday times"
+ },
+ {
+  "contentKey": "site.servicetimes.main.glorynightNote",
+  "page": "site",
+  "label": "Service Times: Glory Night note",
+  "text": "Monday Nights",
+  "imageUrl": "",
+  "where": "Service Times dropdown (red Service Times button), small red text under Glory Night"
+ },
+ {
+  "contentKey": "site.servicetimes.main.glorynightTime",
+  "page": "site",
+  "label": "Service Times dropdown: Glory Night time",
+  "text": "7:00 PM",
+  "imageUrl": "",
+  "where": "Service Times dropdown (homepage hero), Main Campus section"
+ },
+ {
+  "contentKey": "site.servicetimes.main.label",
+  "page": "site",
+  "label": "Service Times: weeknight section label",
+  "text": "Main Campus &middot; Pineville",
+  "imageUrl": "",
+  "where": "Service Times dropdown (red Service Times button), label above the weeknight list"
+ },
+ {
+  "contentKey": "site.servicetimes.main.midweekTime",
+  "page": "site",
+  "label": "Service Times dropdown: Midweek Service time",
+  "text": "Wed 7:00 PM",
+  "imageUrl": "",
+  "where": "Service Times dropdown (homepage hero), Main Campus section"
+ },
+ {
+  "contentKey": "site.servicetimes.main.prayerTime",
+  "page": "site",
+  "label": "Service Times dropdown: Corporate Prayer time",
+  "text": "Mon&ndash;Thu 5:00 AM",
+  "imageUrl": "",
+  "where": "Service Times dropdown (homepage hero), Main Campus section"
+ },
+ {
+  "contentKey": "youth.cta.button",
+  "page": "youth",
+  "label": "Get involved box button",
+  "text": "Plan Your Visit",
+  "imageUrl": "",
+  "where": "Red box at the bottom, white button"
+ },
+ {
+  "contentKey": "youth.cta.campus1",
+  "page": "youth",
+  "label": "Box first campus words",
+  "text": "in Pineville,",
+  "imageUrl": "",
+  "where": "Red box at the bottom, after the first time"
+ },
+ {
+  "contentKey": "youth.cta.campus2",
+  "page": "youth",
+  "label": "Box second campus words",
+  "text": "in Alexandria.",
+  "imageUrl": "",
+  "where": "Red box at the bottom, after the second time"
+ },
+ {
+  "contentKey": "youth.cta.heading",
+  "page": "youth",
+  "label": "Get involved box heading",
+  "text": "Come Hang Out",
+  "imageUrl": "",
+  "where": "Red box at the bottom, title"
+ },
+ {
+  "contentKey": "youth.cta.kicker",
+  "page": "youth",
+  "label": "Get involved box kicker",
+  "text": "Get Involved",
+  "imageUrl": "",
+  "where": "Red box at the bottom, small text"
+ },
+ {
+  "contentKey": "youth.events.emptyBody",
+  "page": "youth",
+  "label": "Events empty-box text",
+  "text": "Youth events will appear here as they are announced.",
+  "imageUrl": "",
+  "where": "Events section, dashed box text"
+ },
+ {
+  "contentKey": "youth.events.emptyHeading",
+  "page": "youth",
+  "label": "Events empty-box heading",
+  "text": "Nothing listed yet",
+  "imageUrl": "",
+  "where": "Events section, dashed box title"
+ },
+ {
+  "contentKey": "youth.events.heading",
+  "page": "youth",
+  "label": "Events heading",
+  "text": "Youth Events",
+  "imageUrl": "",
+  "where": "Events section title"
+ },
+ {
+  "contentKey": "youth.events.kicker",
+  "page": "youth",
+  "label": "Events kicker",
+  "text": "Youth Events",
+  "imageUrl": "",
+  "where": "Events section, small red text"
+ },
+ {
+  "contentKey": "youth.hero.heading",
+  "page": "youth",
+  "label": "Hero heading",
+  "text": "Youth Ministry",
+  "imageUrl": "",
+  "where": "Top of page, big title"
+ },
+ {
+  "contentKey": "youth.hero.kicker",
+  "page": "youth",
+  "label": "Hero kicker",
+  "text": "6th to 12th Grade",
+  "imageUrl": "",
+  "where": "Top of page, small red text above the big title"
+ },
+ {
+  "contentKey": "youth.leaders.heading",
+  "page": "youth",
+  "label": "Leaders heading",
+  "text": "Our Leaders",
+  "imageUrl": "",
+  "where": "Leaders section title"
+ },
+ {
+  "contentKey": "youth.leaders.kicker",
+  "page": "youth",
+  "label": "Leaders kicker",
+  "text": "Our Leaders",
+  "imageUrl": "",
+  "where": "Leaders section, small red text"
+ },
+ {
+  "contentKey": "youth.leaders.name",
+  "page": "youth",
+  "label": "Leaders names",
+  "text": "Chad and Tabitha Kerik",
+  "imageUrl": "",
+  "where": "Leaders section, names on the card"
+ },
+ {
+  "contentKey": "youth.leaders.photo",
+  "page": "youth",
+  "label": "Leaders photo",
+  "text": "",
+  "imageUrl": "https://static.wixstatic.com/media/1f9fa2_4fb0f121cb08443a8ca1f72286449c12~mv2.png",
+  "where": "Leaders section, photo on the card"
+ },
+ {
+  "contentKey": "youth.leaders.role",
+  "page": "youth",
+  "label": "Leaders role badge",
+  "text": "Youth Ministers",
+  "imageUrl": "",
+  "where": "Leaders section, red badge on the card"
+ },
+ {
+  "contentKey": "youth.moments.heading",
+  "page": "youth",
+  "label": "Photos heading",
+  "text": "Youth Life",
+  "imageUrl": "",
+  "where": "Photo section title"
+ },
+ {
+  "contentKey": "youth.moments.kicker",
+  "page": "youth",
+  "label": "Photos kicker",
+  "text": "Moments",
+  "imageUrl": "",
+  "where": "Photo section, small red text"
+ }
+]

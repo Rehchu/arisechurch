@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arise Church — About Page Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D6222D; --ink:#0A0A0C; --scrim:#060608; --paper:#fff; --bone:#F4F2F0;
+  --rule:rgba(10,10,12,.12); --ruleD:rgba(255,255,255,.15);
+  --muted:#6A6A6E; --mutedD:rgba(255,255,255,.66);
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px;
+  --shell:1180px; --gut:clamp(20px,5vw,56px); --sect:clamp(64px,9vw,110px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:300;color:var(--ink);background:var(--paper);line-height:1.62;-webkit-font-smoothing:antialiased}
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3,h4{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
+h1{font-size:clamp(42px,7.4vw,88px)}
+h2{font-size:clamp(28px,4vw,50px)}
+h3{font-size:clamp(19px,2vw,26px);letter-spacing:.03em}
+h4{font-size:14px;letter-spacing:.10em}
+p{font-size:clamp(15.5px,1.4vw,17px)}
+.lede{font-size:clamp(18px,1.8vw,22px);line-height:1.58}
+
+.mark{display:flex;align-items:center;margin-bottom:var(--s2)}
+.mark::before{content:"";flex:0 0 auto;width:44px;height:7px;background:var(--red);box-shadow:60px 0 0 var(--red);margin-right:78px}
+.kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+.mark--l .kicker{color:var(--paper)}
+.strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:8px 19px}
+.strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+
+.sect{padding:var(--sect) 0}
+.sect--bone{background:var(--bone)}
+.sect--ink{background:var(--ink);color:#fff}
+.sect--ink h2,.sect--ink h3{color:#fff}
+.sect--ink p{color:var(--mutedD)}
+
+.phead{background:var(--ink);color:#fff;padding:clamp(56px,8vw,100px) 0 clamp(44px,6vw,70px);position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;right:-60px;bottom:-90px;width:300px;height:300px;border:44px solid rgba(214,34,45,.13);border-radius:50%}
+.phead h1,.phead p{position:relative;z-index:1}
+.phead h1{color:#fff}
+.phead p{color:var(--mutedD);margin-top:var(--s3);max-width:58ch}
+
+
+.creedlist{list-style:none;padding:0;margin:0}
+.creedlist li{position:relative;padding:0 0 var(--s3) 30px;margin-bottom:var(--s3);border-bottom:1px solid var(--rule);font-size:16px;line-height:1.72}
+.creedlist li:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.creedlist li::before{content:"";position:absolute;left:0;top:11px;width:16px;height:5px;background:var(--red)}
+.creedlist b{font-family:'Anton',Impact,sans-serif;font-weight:400;letter-spacing:.05em;color:var(--ink)}
+.creedlist cite{display:block;margin-top:6px;font-style:normal;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:500}
+
+/* THE TWO POPUP BUTTONS */
+.creed{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:var(--s5);background:var(--rule)}
+.creed button{
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s3);width:100%;
+  padding:var(--s5) var(--s4);background:var(--ink);color:#fff;border:0;border-left:5px solid var(--red);
+  cursor:pointer;font-family:'Anton',Impact,sans-serif;font-size:clamp(21px,2.3vw,30px);
+  text-transform:uppercase;letter-spacing:.03em;text-align:left;transition:background .2s ease;
+}
+.creed button:hover{background:#17171d}
+.creed button:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.creed .arrow{color:var(--red);font-size:26px;font-family:'Oswald',sans-serif;flex:0 0 auto}
+@media(max-width:640px){.creed{grid-template-columns:1fr}}
+
+/* PILLARS */
+.pillar{display:grid;grid-template-columns:.42fr .58fr;gap:clamp(28px,5vw,72px);align-items:start;padding:var(--s6) 0;border-top:1px solid var(--rule)}
+.pillar:first-of-type{border-top:0;padding-top:var(--s5)}
+.pillar__h h2{margin-top:var(--s1)}
+.pillar__h .sub{font-size:15px;color:var(--red);letter-spacing:.14em;text-transform:uppercase;font-weight:500;margin-top:var(--s3);display:block}
+.pillar__b p + p{margin-top:var(--s3)}
+.pillar__b p{color:var(--muted);max-width:64ch}
+.pillar__b p:first-child{color:var(--ink);font-size:clamp(17px,1.6vw,19px)}
+@media(max-width:860px){.pillar{grid-template-columns:1fr;gap:var(--s3)}}
+
+/* MODALS */
+.modal{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center;padding:var(--s3);background:rgba(6,6,8,.86)}
+.modal[data-open="true"]{display:flex}
+.modal__box{background:var(--paper);max-width:720px;width:100%;max-height:86vh;overflow:auto;position:relative;border-top:6px solid var(--red)}
+.modal__hd{padding:var(--s5) var(--s5) var(--s3);border-bottom:1px solid var(--rule)}
+.modal__bd{padding:var(--s4) var(--s5) var(--s6)}
+.modal__x{position:absolute;top:var(--s3);right:var(--s3);width:40px;height:40px;border:1px solid var(--rule);background:transparent;cursor:pointer;font-size:22px;line-height:1;color:var(--ink);font-family:'Oswald',sans-serif}
+.modal__x:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.ph{border:2px dashed var(--red);background:#FFF6F6;padding:var(--s4);color:var(--muted);font-size:14.5px;line-height:1.75}
+.ph strong{color:var(--ink)}
+
+.note{background:#FFF8E1;border-left:4px solid var(--red);padding:14px 20px;font-size:13px}
+.gap{background:#EEF4FF;border-left:4px solid #2A70DE;padding:14px 20px;font-size:13px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+/* ═══ DARK-CONTEXT SAFETY NET ═══════════════════════════════════════════
+   Anything on a dark ground gets light text. #DB3F48 is the brand red
+   tinted 13% toward white so small labels clear 4.5:1 on near-black;
+   true #D6222D is kept for shapes (dashes, strips, badges).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* body text on dark */
+.sect--ink,
+.sect--ink p, .sect--ink li, .sect--ink td, .sect--ink dd, .sect--ink dt,
+.phead, .phead p,
+.feat__b, .feat__b p,
+.foot, .foot p, .foot a,
+.times__note, .hero__sub, .visit__i p{color:rgba(255,255,255,.82)}
+
+/* headings on dark */
+.sect--ink h1, .sect--ink h2, .sect--ink h3, .sect--ink h5,
+.sect--ink b, .sect--ink strong,
+.phead h1, .phead h2, .phead h3,
+.feat__b h1, .feat__b h2, .feat__b h3,
+.sect--ink .pillar__b p:first-child,
+.sect--ink .lede{color:#fff}
+
+/* small red labels on dark -> lightened red */
+.sect--ink .kicker, .phead .kicker, .feat__b .kicker,
+.sect--ink .pillar__h .sub,
+.sect--ink h4, .feat__b h4, .foot h4,
+.sect--ink .times__day, .times__day,
+.sect--ink cite,
+.meta__r h4,
+.nav__word em,
+.card__len, .player__len,
+.nav__links a:hover, .foot a:hover,
+.sect--ink a:not(.btn):hover{color:#DB3F48}
+
+/* shapes keep the true brand red */
+.sect--ink .mark::before, .phead .mark::before, .feat__b .mark::before{background:#D6222D}
+.sect--ink .strip, .phead .strip, .feat__b .strip{background:#D6222D}
+.sect--ink .strip span, .phead .strip span, .feat__b .strip span{color:#fff}
+
+/* captions over photos: white, never red — photos vary too much */
+.min__t span, .arch__t span{color:#fff;opacity:.92}
+.min__t h3, .arch__t h3{color:#fff}
+
+/* full white on solid red panels */
+.give p, .series p, .feat__date, .feat__date span{color:#fff}
+
+/* links on dark */
+.sect--ink a:not(.btn):not(.arch__c):not(.card):not(.min__c),
+.phead a:not(.btn){color:#fff}
+
+
+/* if an image fails or is slow, its ALT text inherits the img's colour —
+   on a dark tile that renders dark-on-dark. Force it light. */
+img{color:#fff;font-size:12px;font-family:'Oswald',sans-serif}
+.min__c img,.arch__c img,.card__th img,.camp__img img,.info__img img,
+.lead__ph img,.player img,.feat__img img,.hero__bg{color:#fff;background:#1A1A1F}
+
+
+/* ═══ FORCED DARK-MODE DEFENCE ═════════════════════════════════════════
+   iOS in-app browsers (Facebook, Instagram) and Chrome's "Force Dark"
+   invert page backgrounds but leave explicitly-set text colours alone —
+   turning dark-on-white into dark-on-black. Declaring the scheme and
+   pinning every light surface explicitly stops that.
+   ═════════════════════════════════════════════════════════════════════ */
+:root{color-scheme:light only}
+html,body{background-color:#FFFFFF;color:#0A0A0C;-webkit-text-size-adjust:100%}
+
+/* pin light surfaces so nothing can be silently darkened */
+.sect{background-color:#FFFFFF}
+.sect--bone{background-color:#F4F2F0}
+.modal__box{background-color:#FFFFFF}
+.reach__c,.camp__c,.det__c,.info__c,.pillar,.min__c,.lead__c{background-color:#FFFFFF}
+.note{background-color:#FFF8E1}
+.gap{background-color:#EEF4FF}
+
+/* pin dark surfaces too, so they can't be lightened */
+.sect--ink,.phead,.nav,.foot,.feat,.times,.hero,.player,.modal{background-color:#0A0A0C}
+.give,.series,.strip,.feat__date,.camp__tag,.lead__role,.nowbadge{background-color:#D6222D}
+
+/* if the OS asks for dark, we still render our own light design */
+@media (prefers-color-scheme: dark){
+  html,body{background-color:#FFFFFF;color:#0A0A0C}
+  .sect{background-color:#FFFFFF}
+  .sect--bone{background-color:#F4F2F0}
+  .modal__box{background-color:#FFFFFF}
+  .sect--ink,.phead,.nav,.foot,.feat,.times,.hero{background-color:#0A0A0C}
+  h1,h2,h3,h4{color:#0A0A0C}
+  .sect--ink h1,.sect--ink h2,.sect--ink h3,.phead h1,.phead h2,.phead h3,
+  .feat__b h1,.feat__b h2,.feat__b h3,.min__t h3,.arch__t h3{color:#FFFFFF}
+  .sect--ink p,.sect--ink li,.phead p,.feat__b p,.foot,.foot p,.foot a{color:rgba(255,255,255,.82)}
+}
+
+</style>
+</head>
+<body>
+
+<div class="note"><strong>PAGE 3 — ABOUT.</strong> Structure unchanged: intro, the two popup buttons, then Vision, Mission and Purpose in that order. All body text is <strong>verbatim from your live page</strong>. Click <strong>We Believe</strong> or <strong>We Promise</strong> to see the popups working.</div>
+
+<header class="phead"><div class="shell">
+  <div class="mark mark--l"><span class="kicker">Arise Church</span></div>
+  <h1>About</h1>
+  <p class="lede">We are a multicultural and multigenerational congregation that shares the love of Christ as we join together!</p>
+</div></header>
+
+<section class="sect"><div class="shell">
+  <div class="mark"><span class="kicker">Who We Are</span></div>
+  <p class="lede" style="max-width:74ch">ARISE CHURCH is designed to change the lives of men, women, and children as they journey towards their own personal greatness within God's ordained purpose. Arise Church has the mandate to teach people who they are in Christ and how they should function as effective kingdom citizens on earth. The various ministries and outreaches at ARISE CHURCH are aimed to serve both the body of Christ and central Louisiana. We aspire to train ambassadors for Christ who model the glory of God in their lives, while revealing His kingdom on earth.</p>
+
+  <div class="creed">
+    <button type="button" data-modal="believe">We Believe <span class="arrow">&rarr;</span></button>
+    <button type="button" data-modal="promise">We Promise <span class="arrow">&rarr;</span></button>
+  </div>
+</div></section>
+
+<section class="sect sect--bone"><div class="shell">
+  <div class="pillar">
+    <div class="pillar__h">
+      <div class="mark"><span class="kicker">Vision</span></div>
+      <h2>2026: The Year of Uncommon Favor</h2>
+    </div>
+    <div class="pillar__b">
+      <p>This is the year the Lord has marked for His people to walk in uncommon favor—favor that cannot be explained by human effort, connections, or circumstance; favor that comes solely from the hand of a good, generous God.</p>
+      <p>We declare, by faith, that doors long closed will swing open, resources will flow in unexpected ways, healing will manifest suddenly, opportunities will arise divinely, and the light of Christ in us will shine brighter than ever before. As it is written: "For You, O Lord, will bless the righteous; with favor You will surround him as with a shield." (Psalm 5:12)</p>
+      <p>This uncommon favor is not just for a few—it is for every believer who dares to trust God's promises, live in obedience, and expect the extraordinary in the ordinary moments of life.</p>
+      <p>2026 will be remembered as the year God crowned His people with glory, goodness, and grace beyond measure.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="sect sect--ink"><div class="shell">
+  <div class="pillar" style="border-top:0;padding-top:0">
+    <div class="pillar__h">
+      <div class="mark mark--l"><span class="kicker">Mission</span></div>
+      <h2>2026 Mission Statement: Impact Tioga</h2>
+      <div class="strip" style="margin-top:var(--s4)"><span>Impact Tioga</span></div>
+    </div>
+    <div class="pillar__b">
+      <p>Our mission for this year is to Impact Tioga—to bring the life-changing love of Jesus Christ into every corner of our community, transforming lives, families, and the town we call home.</p>
+      <p>We are called to help Tioga discover Christ: to share the Gospel boldly and compassionately, inviting every person to encounter the Savior who redeems, restores, and gives eternal hope.</p>
+      <p>We are committed to building the community together: partnering with neighbors, schools, businesses, and local leaders to foster unity, serve those in need, and create spaces where everyone feels seen, valued, and loved.</p>
+      <p>We are devoted to supporting one another: walking alongside each other in prayer, encouragement, and practical help, strengthening families, lifting up the hurting, and growing together as the family of God.</p>
+      <p>This is our moment. With God's uncommon favor upon us, we will rise up as one church, one body, to make a lasting impact—for the glory of Jesus and the good of Tioga.</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="sect"><div class="shell">
+  <div class="pillar" style="border-top:0;padding-top:0">
+    <div class="pillar__h">
+      <div class="mark"><span class="kicker">Purpose</span></div>
+      <h2>Character &amp; Compassion</h2>
+    </div>
+    <div class="pillar__b">
+      <p>To produce a group of disciples who confidently display the character of our God, while compassionately sharing the love of Jesus with others.</p>
+      <p>We exist to raise up devoted followers of Christ—men, women, and young people who are deeply rooted in God's Word, transformed by His Spirit, and boldly reflecting His nature in every area of life. These are disciples who walk in holiness, wisdom, joy, strength, and humility, mirroring the very heart of our Heavenly Father to a watching world.</p>
+      <p>At the same time, we are called to reach outward with the same tender love that Jesus showed. We share His Gospel not out of duty, but out of overflowing compassion—meeting people where they are, listening to their stories, serving their needs, and gently leading them to the Savior who heals, forgives, and makes all things new.</p>
+      <p>This is more than a statement; it is our daily pursuit. Through worship, teaching, fellowship, prayer, and outreach, we equip every believer to live with confidence in who God is and compassion for those He loves. Together, we are becoming a radiant community that reveals God's character and extends Christ's love to Tioga and beyond—for His glory and the salvation of many.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- POPUPS -->
+<div class="modal" id="m-believe" role="dialog" aria-modal="true" aria-labelledby="t-believe">
+  <div class="modal__box">
+    <button class="modal__x" data-close aria-label="Close">&times;</button>
+    <div class="modal__hd"><div class="mark"><span class="kicker">Arise Church</span></div><h2 id="t-believe">We Believe</h2></div>
+    <div class="modal__bd">
+      <ul class="creedlist">
+        <li><b>WE BELIEVE</b> that the Bible is the inspired Word of God and that it is unbiblical for anyone to add to it or take away from it. <cite>(2 Timothy 3:16)</cite></li>
+        <li><b>WE BELIEVE</b> in the Virgin birth; that Jesus came to earth through the womb of a virgin woman. <cite>(Matthew 1:23)</cite></li>
+        <li><b>WE BELIEVE</b> that Jesus Christ died to redeem fallen man and to declare him righteous. <cite>(John 3:16-17)</cite></li>
+        <li><b>WE BELIEVE</b> that salvation is only by grace through faith, and not of works. <cite>(Ephesians 2:8-10)</cite></li>
+        <li><b>WE BELIEVE</b> that eternal life is given to every sinner that confesses Jesus Christ as Lord. <cite>(Romans 10:9-10; Philippians 2:9-11)</cite></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="m-promise" role="dialog" aria-modal="true" aria-labelledby="t-promise">
+  <div class="modal__box">
+    <button class="modal__x" data-close aria-label="Close">&times;</button>
+    <div class="modal__hd"><div class="mark"><span class="kicker">Arise Church</span></div><h2 id="t-promise">We Promise</h2></div>
+    <div class="modal__bd">
+      <ul class="creedlist">
+        <li><b>WE PROMISE</b> that you may come as you are, but you will never leave as you were.</li>
+        <li><b>WE PROMISE</b> that the foundation of all sermons and teachings will come from the truth of the gospel of Jesus and not the opinions of man.</li>
+        <li><b>WE PROMISE</b> that Arise Church will be a safe environment for you and your family to grow spiritually, mentally, emotionally, and physically.</li>
+        <li><b>WE PROMISE</b> that your race, gender, age, sin, past or present circumstances will not prevent you from being loved and cherished here at Arise Church.</li>
+        <li><b>WE PROMISE</b> to help guide you on a path of freedom to know your true identity in the Kingdom of God regardless of what this world might suggest.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="note">
+<strong>Correction to something I told you earlier.</strong> I previously said "We Believe" and "We Promise" were plain text with no links. <strong>That was wrong</strong> — both are real Wix buttons already wired to popups (<code>data-popupid="zrgdv"</code> and <code>data-popupid="iq9bz"</code>). My earlier read stripped the button markup, so I only saw the labels. They work today; the redesign just makes them look like buttons.
+</div>
+
+<div class="note">
+<strong>Both popups are now filled with your actual Beliefs and Promises text</strong> — verbatim, five statements each. Click the buttons to see them. Scripture references are pulled out as red captions so each statement scans on its own.
+</div>
+
+<script>
+  function setModal(id, open){
+    var m = document.getElementById(id);
+    m.setAttribute('data-open', String(open));
+    if(open){ m.querySelector('[data-close]').focus(); }
+  }
+  document.querySelectorAll('[data-modal]').forEach(function(b){
+    b.addEventListener('click', function(){ setModal('m-'+b.dataset.modal, true); });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(b){
+    b.addEventListener('click', function(){ b.closest('.modal').setAttribute('data-open','false'); });
+  });
+  document.querySelectorAll('.modal').forEach(function(m){
+    m.addEventListener('click', function(e){ if(e.target===m) m.setAttribute('data-open','false'); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape') document.querySelectorAll('.modal').forEach(function(m){ m.setAttribute('data-open','false'); });
+  });
+</script>
+</body>
+</html>

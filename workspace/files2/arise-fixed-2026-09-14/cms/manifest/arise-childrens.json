@@ -1,0 +1,186 @@
+[
+  {
+    "contentKey": "childrens.hero.kicker",
+    "page": "childrens",
+    "label": "Hero kicker",
+    "text": "Birth to 5th Grade",
+    "imageUrl": "",
+    "where": "Top of page, small red text above the big title"
+  },
+  {
+    "contentKey": "childrens.hero.heading",
+    "page": "childrens",
+    "label": "Hero heading",
+    "text": "Children’s<br>Ministry",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "childrens.hero.lede",
+    "page": "childrens",
+    "label": "Hero intro line",
+    "text": "Inspiring kids to live a life of purpose.",
+    "imageUrl": "",
+    "where": "Top of page, under the big title"
+  },
+  {
+    "contentKey": "childrens.welcome.image",
+    "page": "childrens",
+    "label": "Welcome banner image",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_418deb3b5dbb44d0a443dfd47e8ce6c5~mv2.png",
+    "where": "Dark band under the page title"
+  },
+  {
+    "contentKey": "childrens.curriculum.kicker",
+    "page": "childrens",
+    "label": "Curriculum kicker",
+    "text": "Our Curriculum",
+    "imageUrl": "",
+    "where": "Curriculum section, small red text"
+  },
+  {
+    "contentKey": "childrens.curriculum.heading",
+    "page": "childrens",
+    "label": "Curriculum heading",
+    "text": "Superkid Academy",
+    "imageUrl": "",
+    "where": "Curriculum section title"
+  },
+  {
+    "contentKey": "childrens.kids.photo",
+    "page": "childrens",
+    "label": "Curriculum kids photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/1f9fa2_a5448e514cc14ea08cb657e4f1a9cec4~mv2.jpg",
+    "where": "Curriculum section, photo on the left"
+  },
+  {
+    "contentKey": "childrens.superkid.logo",
+    "page": "childrens",
+    "label": "Superkid Academy logo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/1f9fa2_8c21ef4200d44594bcec41ac5680c2c0~mv2.jpg",
+    "where": "Curriculum section, logo in the dark box"
+  },
+  {
+    "contentKey": "childrens.curriculum.body",
+    "page": "childrens",
+    "label": "Curriculum description",
+    "text": "Our Children’s Ministry uses the Superkid Academy curriculum — teaching kids who they are in Christ through lessons built for their age group.",
+    "imageUrl": "",
+    "where": "Curriculum section, text under the logo"
+  },
+  {
+    "contentKey": "childrens.leaders.kicker",
+    "page": "childrens",
+    "label": "Leaders kicker",
+    "text": "Our Leaders",
+    "imageUrl": "",
+    "where": "Leaders section, small red text"
+  },
+  {
+    "contentKey": "childrens.leaders.heading",
+    "page": "childrens",
+    "label": "Leaders heading",
+    "text": "Our Leaders",
+    "imageUrl": "",
+    "where": "Leaders section title"
+  },
+  {
+    "contentKey": "childrens.leaders.initials",
+    "page": "childrens",
+    "label": "Leader monogram",
+    "text": "TS",
+    "imageUrl": "",
+    "where": "Leaders section, initials on the dark card"
+  },
+  {
+    "contentKey": "childrens.leaders.role",
+    "page": "childrens",
+    "label": "Leader role badge",
+    "text": "Children’s Director",
+    "imageUrl": "",
+    "where": "Leaders section, red badge on the card"
+  },
+  {
+    "contentKey": "childrens.leaders.name",
+    "page": "childrens",
+    "label": "Leader name",
+    "text": "Tonya Sizemore",
+    "imageUrl": "",
+    "where": "Leaders section, name on the card"
+  },
+  {
+    "contentKey": "childrens.moments.kicker",
+    "page": "childrens",
+    "label": "Photos kicker",
+    "text": "Moments",
+    "imageUrl": "",
+    "where": "Photo section, small red text"
+  },
+  {
+    "contentKey": "childrens.moments.heading",
+    "page": "childrens",
+    "label": "Photos heading",
+    "text": "Sunday Mornings",
+    "imageUrl": "",
+    "where": "Photo section title"
+  },
+  {
+    "contentKey": "childrens.cta.kicker",
+    "page": "childrens",
+    "label": "Visit box kicker",
+    "text": "Visit",
+    "imageUrl": "",
+    "where": "Red box at the bottom, small text"
+  },
+  {
+    "contentKey": "childrens.cta.heading",
+    "page": "childrens",
+    "label": "Visit box heading",
+    "text": "Bring The Kids",
+    "imageUrl": "",
+    "where": "Red box at the bottom, title"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "site",
+    "label": "Sunday service time (Pineville)",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Red box at the bottom, first time (shared site fact)"
+  },
+  {
+    "contentKey": "childrens.cta.campus1",
+    "page": "childrens",
+    "label": "Visit box first campus words",
+    "text": "in Pineville,",
+    "imageUrl": "",
+    "where": "Red box at the bottom, after the first time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "site",
+    "label": "Sunday service time (Alexandria)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Red box at the bottom, second time (shared site fact)"
+  },
+  {
+    "contentKey": "childrens.cta.campus2",
+    "page": "childrens",
+    "label": "Visit box second campus words",
+    "text": "in Alexandria.",
+    "imageUrl": "",
+    "where": "Red box at the bottom, after the second time"
+  },
+  {
+    "contentKey": "childrens.cta.button",
+    "page": "childrens",
+    "label": "Visit box button",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Red box at the bottom, white button"
+  }
+]

@@ -4,3 +4,11 @@ node_modules/
 .idea/
 .wix/
 jsconfig.json
+
+# Real names, emails, phone numbers and addresses from old form submissions.
+# They belong in the CMS (admin-only), never in this repo.
+ArchivedFormSubmissions.csv
+**/ArchivedFormSubmissions.csv
+
+# Output of workspace/audit/check.mjs (screenshots and result files)
+workspace/audit/preview-check-results/

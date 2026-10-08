@@ -1,0 +1,148 @@
+<!--
+  ARISE CHURCH — SERVICE TIMES DROPDOWN
+  Drop-in replacement for the hero panel.
+
+  Fixes vs. the current one:
+    • Solid panel fill  -> contrast goes from 2.18:1 (failing) to >12:1
+    • Sunday times shown by default; the click reveals the rest
+    • Campus split made explicit (Sunday at both / weeknights at Main)
+    • Brand-correct: Arise Red #D6222D, near-black #0A0A0C, Oswald, uppercase, tracked
+    • Real <button> with aria-expanded — keyboard and screen-reader operable
+
+  HOW TO USE
+    Wix Editor -> Add (+) -> Embed Code -> Embed HTML -> paste all of this.
+    Fonts load from Google Fonts inside the iframe, so no Editor font upload needed here.
+
+  NOTE: an Embed HTML element renders in an iframe, so its text is NOT read by
+  search engines. That's fine — the Church JSON-LD already added to the homepage
+  carries these same times for crawlers. This component is for humans.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --arise-red:#D6222D;
+    --ink:#0A0A0C;
+    --paper:#FFFFFF;
+    --muted:rgba(255,255,255,.62);
+    --rule:rgba(255,255,255,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:transparent}
+
+  .st{
+    font-family:'Oswald',Helvetica,Arial,sans-serif;
+    width:100%;max-width:360px;margin-left:auto;
+    background:var(--ink);
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:4px;
+    overflow:hidden;
+    box-shadow:0 10px 34px rgba(0,0,0,.42);
+  }
+
+  .st__toggle{
+    width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:16px 20px;background:var(--arise-red);border:0;cursor:pointer;
+    font:inherit;font-weight:600;font-size:17px;letter-spacing:.10em;
+    text-transform:uppercase;color:var(--paper);text-align:left;
+  }
+  .st__toggle:hover{background:#c01f29}
+  .st__toggle:focus-visible{outline:3px solid var(--paper);outline-offset:-3px}
+  .st__chev{flex:0 0 auto;transition:transform .22s ease}
+  .st[data-open="true"] .st__chev{transform:rotate(180deg)}
+
+  /* Always-visible primary time */
+  .st__primary{padding:18px 20px 16px;border-bottom:1px solid var(--rule)}
+  .st__day{
+    font-size:12px;letter-spacing:.20em;text-transform:uppercase;
+    color:var(--arise-red);font-weight:600;margin-bottom:5px;
+  }
+  .st__time{font-size:31px;font-weight:500;color:var(--paper);line-height:1.05;letter-spacing:.01em}
+  .st__note{font-size:12.5px;color:var(--muted);margin-top:6px;letter-spacing:.03em}
+
+  /* Revealed detail */
+  .st__more{max-height:0;overflow:hidden;transition:max-height .28s ease}
+  .st[data-open="true"] .st__more{max-height:520px}
+  .st__inner{padding:6px 20px 18px}
+
+  .st__campusLabel{
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);margin:14px 0 8px;
+  }
+  .st__row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:7px 0}
+  .st__row + .st__row{border-top:1px solid rgba(255,255,255,.07)}
+  .st__name{font-size:14.5px;color:var(--paper);letter-spacing:.03em}
+  .st__at{font-size:14.5px;color:var(--paper);font-weight:500;white-space:nowrap;letter-spacing:.02em}
+
+  .st__addr{
+    margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);
+    font-size:12.5px;color:var(--muted);line-height:1.65;letter-spacing:.02em;
+  }
+  .st__addr strong{color:var(--paper);font-weight:500}
+  .st__cta{
+    display:block;margin-top:14px;padding:11px;text-align:center;
+    background:transparent;border:1px solid var(--arise-red);color:var(--paper);
+    font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    text-decoration:none;border-radius:3px;transition:background .18s ease;
+  }
+  .st__cta:hover{background:var(--arise-red)}
+
+  @media (prefers-reduced-motion:reduce){
+    .st__chev,.st__more{transition:none}
+  }
+</style>
+
+<div class="st" id="st" data-open="false">
+  <button class="st__toggle" id="stToggle" aria-expanded="false" aria-controls="stMore">
+    <span>Service Times</span>
+    <svg class="st__chev" width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true">
+      <path d="M1 1L7.5 7.5L14 1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <div class="st__primary">
+    <div class="st__day">Sunday Service</div>
+    <div class="st__time">10:30 AM</div>
+    <div class="st__note">Both campuses &middot; Come as you are</div>
+  </div>
+
+  <div class="st__more" id="stMore">
+    <div class="st__inner">
+      <div class="st__campusLabel">Main Campus &middot; Pineville</div>
+
+      <div class="st__row">
+        <span class="st__name">Glory Night</span>
+        <span class="st__at">Mon 7:00 PM</span>
+      </div>
+      <div class="st__row">
+        <span class="st__name">Midweek Service</span>
+        <span class="st__at">Wed 7:00 PM</span>
+      </div>
+      <div class="st__row">
+        <span class="st__name">Corporate Prayer</span>
+        <span class="st__at">Mon&ndash;Thu 5:00 AM</span>
+      </div>
+
+      <div class="st__addr">
+        <strong>Main Campus</strong><br>501 Ates Road, Pineville, LA 71360<br><br>
+        <strong>Alexandria Campus</strong><br>5305 North Blvd, Alexandria, LA 71301
+      </div>
+
+      <a class="st__cta" href="https://www.arisecenla.church/contact" target="_top">Plan Your Visit</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var wrap = document.getElementById('st');
+    var btn  = document.getElementById('stToggle');
+    btn.addEventListener('click', function(){
+      var open = wrap.getAttribute('data-open') === 'true';
+      wrap.setAttribute('data-open', String(!open));
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+  })();
+</script>

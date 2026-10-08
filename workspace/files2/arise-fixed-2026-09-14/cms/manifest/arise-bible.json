@@ -1,0 +1,186 @@
+[
+  {
+    "contentKey": "bible.hero.kicker",
+    "page": "bible",
+    "label": "Hero kicker",
+    "text": "Resources",
+    "imageUrl": "",
+    "where": "Top of page, small red text above the big title"
+  },
+  {
+    "contentKey": "bible.hero.heading",
+    "page": "bible",
+    "label": "Hero heading",
+    "text": "Bible Search",
+    "imageUrl": "",
+    "where": "Top of page, big title"
+  },
+  {
+    "contentKey": "bible.search.kicker",
+    "page": "bible",
+    "label": "Search section kicker",
+    "text": "Look Up A Passage",
+    "imageUrl": "",
+    "where": "White section above the search box, small red text"
+  },
+  {
+    "contentKey": "bible.search.heading",
+    "page": "bible",
+    "label": "Search section heading",
+    "text": "Read It<br>For Yourself",
+    "imageUrl": "",
+    "where": "White section above the search box, title"
+  },
+  {
+    "contentKey": "bible.form.versionLabel",
+    "page": "bible",
+    "label": "Version field label",
+    "text": "Version",
+    "imageUrl": "",
+    "where": "Dark search box, label above the translation dropdown"
+  },
+  {
+    "contentKey": "bible.form.verseLabel",
+    "page": "bible",
+    "label": "Verse field label",
+    "text": "Verse",
+    "imageUrl": "",
+    "where": "Dark search box, label above the verse typing box"
+  },
+  {
+    "contentKey": "bible.form.button",
+    "page": "bible",
+    "label": "Search button",
+    "text": "Search",
+    "imageUrl": "",
+    "where": "Dark search box, red button"
+  },
+  {
+    "contentKey": "bible.suggest.item1",
+    "page": "bible",
+    "label": "Suggestion button 1 label",
+    "text": "John 3:16",
+    "imageUrl": "",
+    "where": "Dark search box, outlined suggestion button 1 (label only; it still searches john 3:16)"
+  },
+  {
+    "contentKey": "bible.suggest.item2",
+    "page": "bible",
+    "label": "Suggestion button 2 label",
+    "text": "Psalm 23",
+    "imageUrl": "",
+    "where": "Dark search box, outlined suggestion button 2 (label only; it still searches psalm 23)"
+  },
+  {
+    "contentKey": "bible.suggest.item3",
+    "page": "bible",
+    "label": "Suggestion button 3 label",
+    "text": "Romans 8:28",
+    "imageUrl": "",
+    "where": "Dark search box, outlined suggestion button 3 (label only; it still searches romans 8:28)"
+  },
+  {
+    "contentKey": "bible.suggest.item4",
+    "page": "bible",
+    "label": "Suggestion button 4 label",
+    "text": "1 Corinthians 13:4-7",
+    "imageUrl": "",
+    "where": "Dark search box, outlined suggestion button 4 (label only; it still searches 1 corinthians 13:4-7)"
+  },
+  {
+    "contentKey": "bible.suggest.item5",
+    "page": "bible",
+    "label": "Suggestion button 5 label",
+    "text": "Philippians 4:6-7",
+    "imageUrl": "",
+    "where": "Dark search box, outlined suggestion button 5 (label only; it still searches philippians 4:6-7)"
+  },
+  {
+    "contentKey": "bible.suggest.item6",
+    "page": "bible",
+    "label": "Suggestion button 6 label",
+    "text": "Isaiah 40:31",
+    "imageUrl": "",
+    "where": "Dark search box, outlined suggestion button 6 (label only; it still searches isaiah 40:31)"
+  },
+  {
+    "contentKey": "bible.results.ready",
+    "page": "bible",
+    "label": "Results area starting message",
+    "text": "Ready! Select version &amp; enter verse (e.g., john 3:16 or john 3:16-20)",
+    "imageUrl": "",
+    "where": "Dark search box, grey text under the suggestion buttons before searching"
+  },
+  {
+    "contentKey": "bible.cta.kicker",
+    "page": "bible",
+    "label": "Bottom banner kicker",
+    "text": "Go Deeper",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, small text"
+  },
+  {
+    "contentKey": "bible.cta.heading",
+    "page": "bible",
+    "label": "Bottom banner heading",
+    "text": "Hear It Taught",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, title"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "bible",
+    "label": "Main campus Sunday time",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Shared site fact (bottom banner)"
+  },
+  {
+    "contentKey": "bible.cta.pineville",
+    "page": "bible",
+    "label": "Go Deeper sentence: words after the Pineville time",
+    "text": "in Pineville,",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, sentence after the Pineville Sunday time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "site",
+    "label": "Sunday service time, Alexandria",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, sentence after the Pineville Sunday time"
+  },
+  {
+    "contentKey": "bible.cta.alexandria",
+    "page": "bible",
+    "label": "Go Deeper sentence: words after the Alexandria time",
+    "text": "in Alexandria. Glory Nights",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, sentence after the Pineville Sunday time"
+  },
+  {
+    "contentKey": "site.times.main.glorynight",
+    "page": "site",
+    "label": "Glory Night time, main campus",
+    "text": "Monday 7:00 PM",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, sentence after the Pineville Sunday time"
+  },
+  {
+    "contentKey": "bible.cta.end",
+    "page": "bible",
+    "label": "Go Deeper sentence: closing punctuation",
+    "text": ".",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, sentence after the Pineville Sunday time"
+  },
+  {
+    "contentKey": "bible.cta.button",
+    "page": "bible",
+    "label": "Bottom banner button",
+    "text": "Sermons",
+    "imageUrl": "",
+    "where": "Red banner at the bottom, white button"
+  }
+]

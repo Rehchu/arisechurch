@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arise Church — Past Sermons Page Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D6222D; --ink:#0A0A0C; --scrim:#060608; --paper:#fff; --bone:#F4F2F0;
+  --rule:rgba(10,10,12,.12); --ruleD:rgba(255,255,255,.15);
+  --muted:#6A6A6E; --mutedD:rgba(255,255,255,.66);
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px;
+  --shell:1180px; --gut:clamp(20px,5vw,56px); --sect:clamp(64px,9vw,110px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:300;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3,h4{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
+h1{font-size:clamp(42px,7.4vw,88px)}
+h2{font-size:clamp(26px,3.6vw,44px)}
+h3{font-size:clamp(16px,1.6vw,19px);letter-spacing:.03em;line-height:1.16}
+h4{font-size:14px;letter-spacing:.10em}
+
+.mark{display:flex;align-items:center;margin-bottom:var(--s2)}
+.mark::before{content:"";flex:0 0 auto;width:44px;height:7px;background:var(--red);box-shadow:60px 0 0 var(--red);margin-right:78px}
+.kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+.mark--l .kicker{color:var(--paper)}
+.strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:8px 19px}
+.strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+
+.btn{display:inline-block;padding:15px 32px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--red);background:var(--red);color:#fff;font-family:inherit;cursor:pointer;transition:background .18s,color .18s}
+.btn:hover{background:transparent;color:var(--red)}
+.btn--onDark{background:transparent;color:#fff;border-color:#fff}
+.btn--onDark:hover{background:#fff;color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+.sect{padding:var(--sect) 0}
+.sect--bone{background:var(--bone)}
+.sect--ink{background:var(--ink);color:#fff}
+.sect--ink h2,.sect--ink h3{color:#fff}
+
+.phead{background:var(--ink);color:#fff;padding:clamp(56px,8vw,100px) 0 clamp(44px,6vw,70px);position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;right:-60px;bottom:-90px;width:300px;height:300px;border:44px solid rgba(214,34,45,.13);border-radius:50%}
+.phead h1{color:#fff;position:relative;z-index:1}
+
+/* FEATURED — now playing */
+.feat{display:grid;grid-template-columns:1.35fr .65fr;gap:clamp(28px,4vw,56px);align-items:center}
+@media(max-width:900px){.feat{grid-template-columns:1fr}}
+.player{position:relative;aspect-ratio:16/9;background:var(--scrim);overflow:hidden}
+.player img{width:100%;height:100%;object-fit:cover;opacity:.66}
+.player__play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border:0;background:transparent;cursor:pointer}
+.player__play i{width:82px;height:82px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;transition:transform .22s ease}
+.player__play:hover i{transform:scale(1.08)}
+.player__len{position:absolute;right:var(--s2);bottom:var(--s2);background:rgba(6,6,8,.86);color:#fff;font-size:12px;letter-spacing:.08em;padding:5px 10px}
+.nowbadge{display:inline-block;background:var(--red);color:#fff;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:5px 12px;margin-bottom:var(--s2)}
+
+/* SEARCH */
+.searchbar{display:flex;gap:0;max-width:520px;margin-top:var(--s5);border:1.5px solid var(--ruleD)}
+.searchbar input{flex:1;background:transparent;border:0;padding:15px 18px;font-family:'Oswald',sans-serif;font-weight:300;font-size:15.5px;color:#fff}
+.searchbar input::placeholder{color:rgba(255,255,255,.45)}
+.searchbar input:focus{outline:none}
+.searchbar button{background:var(--red);border:0;color:#fff;padding:0 24px;font-family:'Oswald',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+
+/* SHORTS GRID */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4) var(--s3);margin-top:var(--s5)}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}}
+.card{display:block;text-decoration:none;color:inherit}
+.card__th{position:relative;aspect-ratio:16/9;background:var(--scrim);overflow:hidden}
+.card__th img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease,filter .3s ease;filter:brightness(.9)}
+.card:hover .card__th img{transform:scale(1.05);filter:brightness(1)}
+.card__len{position:absolute;right:8px;bottom:8px;background:rgba(6,6,8,.88);color:#fff;font-size:11px;letter-spacing:.06em;padding:3px 7px}
+.card__th::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.card:hover .card__th::after{transform:scaleX(1)}
+.card h3{margin-top:var(--s2)}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.6;margin-top:var(--s1)}
+.sect--ink .card p{color:var(--mutedD)}
+
+/* SERIES BAND */
+.series{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;
+        background:var(--red);color:#fff;padding:var(--s5) clamp(24px,4vw,52px)}
+.series h2{color:#fff}
+.series p{max-width:46ch;margin-top:var(--s2);font-size:15.5px;color:rgba(255,255,255,.92)}
+
+.note{background:#FFF8E1;border-left:4px solid var(--red);padding:14px 20px;font-size:13px}
+.gap{background:#EEF4FF;border-left:4px solid #2A70DE;padding:14px 20px;font-size:13px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+/* ═══ DARK-CONTEXT SAFETY NET ═══════════════════════════════════════════
+   Anything on a dark ground gets light text. #DB3F48 is the brand red
+   tinted 13% toward white so small labels clear 4.5:1 on near-black;
+   true #D6222D is kept for shapes (dashes, strips, badges).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* body text on dark */
+.sect--ink,
+.sect--ink p, .sect--ink li, .sect--ink td, .sect--ink dd, .sect--ink dt,
+.phead, .phead p,
+.feat__b, .feat__b p,
+.foot, .foot p, .foot a,
+.times__note, .hero__sub, .visit__i p{color:rgba(255,255,255,.82)}
+
+/* headings on dark */
+.sect--ink h1, .sect--ink h2, .sect--ink h3, .sect--ink h5,
+.sect--ink b, .sect--ink strong,
+.phead h1, .phead h2, .phead h3,
+.feat__b h1, .feat__b h2, .feat__b h3,
+.sect--ink .pillar__b p:first-child,
+.sect--ink .lede{color:#fff}
+
+/* small red labels on dark -> lightened red */
+.sect--ink .kicker, .phead .kicker, .feat__b .kicker,
+.sect--ink .pillar__h .sub,
+.sect--ink h4, .feat__b h4, .foot h4,
+.sect--ink .times__day, .times__day,
+.sect--ink cite,
+.meta__r h4,
+.nav__word em,
+.card__len, .player__len,
+.nav__links a:hover, .foot a:hover,
+.sect--ink a:not(.btn):hover{color:#DB3F48}
+
+/* shapes keep the true brand red */
+.sect--ink .mark::before, .phead .mark::before, .feat__b .mark::before{background:#D6222D}
+.sect--ink .strip, .phead .strip, .feat__b .strip{background:#D6222D}
+.sect--ink .strip span, .phead .strip span, .feat__b .strip span{color:#fff}
+
+/* captions over photos: white, never red — photos vary too much */
+.min__t span, .arch__t span{color:#fff;opacity:.92}
+.min__t h3, .arch__t h3{color:#fff}
+
+/* full white on solid red panels */
+.give p, .series p, .feat__date, .feat__date span{color:#fff}
+
+/* links on dark */
+.sect--ink a:not(.btn):not(.arch__c):not(.card):not(.min__c),
+.phead a:not(.btn){color:#fff}
+
+
+/* if an image fails or is slow, its ALT text inherits the img's colour —
+   on a dark tile that renders dark-on-dark. Force it light. */
+img{color:#fff;font-size:12px;font-family:'Oswald',sans-serif}
+.min__c img,.arch__c img,.card__th img,.camp__img img,.info__img img,
+.lead__ph img,.player img,.feat__img img,.hero__bg{color:#fff;background:#1A1A1F}
+
+
+/* ═══ FORCED DARK-MODE DEFENCE ═════════════════════════════════════════
+   iOS in-app browsers (Facebook, Instagram) and Chrome's "Force Dark"
+   invert page backgrounds but leave explicitly-set text colours alone —
+   turning dark-on-white into dark-on-black. Declaring the scheme and
+   pinning every light surface explicitly stops that.
+   ═════════════════════════════════════════════════════════════════════ */
+:root{color-scheme:light only}
+html,body{background-color:#FFFFFF;color:#0A0A0C;-webkit-text-size-adjust:100%}
+
+/* pin light surfaces so nothing can be silently darkened */
+.sect{background-color:#FFFFFF}
+.sect--bone{background-color:#F4F2F0}
+.modal__box{background-color:#FFFFFF}
+.reach__c,.camp__c,.det__c,.info__c,.pillar,.min__c,.lead__c{background-color:#FFFFFF}
+.note{background-color:#FFF8E1}
+.gap{background-color:#EEF4FF}
+
+/* pin dark surfaces too, so they can't be lightened */
+.sect--ink,.phead,.nav,.foot,.feat,.times,.hero,.player,.modal{background-color:#0A0A0C}
+.give,.series,.strip,.feat__date,.camp__tag,.lead__role,.nowbadge{background-color:#D6222D}
+
+/* if the OS asks for dark, we still render our own light design */
+@media (prefers-color-scheme: dark){
+  html,body{background-color:#FFFFFF;color:#0A0A0C}
+  .sect{background-color:#FFFFFF}
+  .sect--bone{background-color:#F4F2F0}
+  .modal__box{background-color:#FFFFFF}
+  .sect--ink,.phead,.nav,.foot,.feat,.times,.hero{background-color:#0A0A0C}
+  h1,h2,h3,h4{color:#0A0A0C}
+  .sect--ink h1,.sect--ink h2,.sect--ink h3,.phead h1,.phead h2,.phead h3,
+  .feat__b h1,.feat__b h2,.feat__b h3,.min__t h3,.arch__t h3{color:#FFFFFF}
+  .sect--ink p,.sect--ink li,.phead p,.feat__b p,.foot,.foot p,.foot a{color:rgba(255,255,255,.82)}
+}
+
+</style>
+</head>
+<body>
+
+<div class="note"><strong>PAGE 2 — PAST SERMONS.</strong> Same structure as your live page: featured video player, video search, then the Shorts feed. Every title and description below is the real text already on the page. Thumbnails are your actual YouTube stills.</div>
+
+<header class="phead"><div class="shell">
+  <div class="mark mark--l"><span class="kicker">Arise Church</span></div>
+  <h1>Past Sermons</h1>
+</div></header>
+
+<!-- FEATURED -->
+<section class="sect sect--ink" style="padding-top:var(--s6)"><div class="shell">
+  <div class="feat">
+    <div class="player">
+      <img src="https://static.wixstatic.com/media/1f9fa2_12d4876114af436c9218929fb186956af002.jpg/v1/fill/w_1520,h_855,enc_auto/file.jpeg" alt="Arise Church Sunday Morning Service">
+      <button class="player__play" aria-label="Play Sunday Morning Service">
+        <i><svg width="24" height="28" viewBox="0 0 22 26" fill="none" aria-hidden="true"><path d="M21 13L0 25.99V0L21 13Z" fill="#fff"/></svg></i>
+      </button>
+      <span class="player__len">02:10:41</span>
+    </div>
+    <div>
+      <span class="nowbadge">Now Playing</span>
+      <h2>Sunday Morning<br>Service</h2>
+      <div class="strip" style="margin-top:var(--s3)"><span>Arise Church</span></div>
+    </div>
+  </div>
+
+  <div class="searchbar">
+    <label for="vs" style="position:absolute;left:-9999px">Search videos</label>
+    <input id="vs" type="search" placeholder="Search videos">
+    <button type="button">Search</button>
+  </div>
+</div></section>
+
+<!-- SERIES BAND -->
+<section style="padding:0"><div class="shell" style="padding-top:var(--sect)">
+  <div class="series">
+    <div>
+      <div class="mark mark--l" style="margin-bottom:var(--s2)"><span class="kicker">Current Series</span></div>
+      <h2>The Kingdom<br>Culture of Giving</h2>
+    </div>
+    <a class="btn btn--onDark" href="https://youtube.com/live/3YFxWtdiJMk">Watch the Full Message</a>
+  </div>
+</div></section>
+
+<!-- SHORTS -->
+<section class="sect"><div class="shell">
+  <div class="mark"><span class="kicker">More From Arise Church</span></div>
+  <h2>Clips &amp; Announcements</h2>
+
+  <div class="grid">
+    <a class="card" href="#">
+      <div class="card__th"><img src="https://i.ytimg.com/vi/GatBPIhEMg4/maxresdefault.jpg" alt="Upcoming at Arise Church — Phase Two Launch and Apostle Joanne Hunter"><span class="card__len">0:35</span></div>
+      <h3>Upcoming at Arise Church — Phase Two Launch &amp; Apostle Joanne Hunter</h3>
+      <p>Big things ahead at Arise Church — the Phase Two launch and a visit from Apostle Joanne Hunter. Dates and details in the video.</p>
+    </a>
+
+    <a class="card" href="#">
+      <div class="card__th"><img src="https://i.ytimg.com/vi/Gtu2W5uaBsw/maxresdefault.jpg" alt="Baby Shower for Baby Cairo on August 22"><span class="card__len">0:38</span></div>
+      <h3>Baby Shower for Baby Cairo — Aug 22 | RSVP &amp; Registry</h3>
+      <p>Celebrating Baby Cairo! Join the Arise Church family Saturday, August 22 — RSVP and registry details in the video.</p>
+    </a>
+
+    <a class="card" href="#">
+      <div class="card__th"><img src="https://i.ytimg.com/vi/1FNbubTU_Sg/maxresdefault.jpg" alt="Receive Strength for the Journey"><span class="card__len">0:31</span></div>
+      <h3>Receive Strength for the Journey</h3>
+      <p>Before the next leg of your journey: stop, breathe, receive. God's strength for what's ahead is given, not earned.</p>
+    </a>
+
+    <a class="card" href="#">
+      <div class="card__th"><img src="https://i.ytimg.com/vi/9ius_ZgQuYA/maxresdefault.jpg" alt="Why Abram Refused Sodom's Wealth"><span class="card__len">1:57</span></div>
+      <h3>Why Abram Refused Sodom's Wealth</h3>
+      <p>Not a thread, not a sandal strap — Abram wouldn't let Sodom say it made him rich (Genesis 14:22-23). Who funds you matters.</p>
+    </a>
+
+    <a class="card" href="#">
+      <div class="card__th"><img src="https://i.ytimg.com/vi/0ZF_-1g8Li8/maxresdefault.jpg" alt="The Church That Gave Beyond Its Means"><span class="card__len">1:48</span></div>
+      <h3>The Church That Gave Beyond Its Means</h3>
+      <p>Deep poverty, overflowing joy — and they begged for the chance to give (2 Corinthians 8:1-7). The Macedonian church rewrites what generosity means.</p>
+    </a>
+
+    <a class="card" href="#">
+      <div class="card__th"><img src="https://i.ytimg.com/vi/dD0PrqHdmzM/maxresdefault.jpg" alt="Offering Confession — Declare Breakthrough and Blessing"><span class="card__len">0:50</span></div>
+      <h3>Offering Confession — Declare Breakthrough &amp; Blessing</h3>
+      <p>Don't just give it — say something over it. A confession to declare over your offering: breakthrough, favor, and blessing on every seed.</p>
+    </a>
+
+    <a class="card" href="#">
+      <div class="card__th"><img src="https://i.ytimg.com/vi/J4T4YcOMAgc/maxresdefault.jpg" alt="Jesus' Warning: Give in Secret, Not for Show"><span class="card__len">1:40</span></div>
+      <h3>Jesus' Warning: Give in Secret, Not for Show</h3>
+      <p>Give to be seen and the applause is your whole reward. Give in secret and your Father who sees in secret rewards you (Matthew 6:1-4).</p>
+    </a>
+
+    <a class="card" href="#">
+      <div class="card__th"><img src="https://i.ytimg.com/vi/zMLoS0O8YDM/maxresdefault.jpg" alt="The Breaker Anointing — Shatter the Glass Ceiling"><span class="card__len">0:58</span></div>
+      <h3>The Breaker Anointing — Shatter the Glass Ceiling</h3>
+      <p>Some limits are invisible but real. The Breaker anointing shatters the ceiling over your increase — and what held you down loses its grip.</p>
+    </a>
+  </div>
+</div></section>
+
+<div class="note">
+<strong>What changed — structure identical, four fixes:</strong>
+<ul style="margin:9px 0 0 18px;line-height:1.85">
+  <li><strong>The page now has an H1.</strong> Your live Sermons page has no main heading at all — it opens straight into the video player. That hurts both screen readers and Google.</li>
+  <li><strong>Sunday service and Shorts are visually separated.</strong> Right now the full 2-hour message and eight 30-second clips sit in one undifferentiated stream, so the sermon doesn't read as the main event.</li>
+  <li><strong>"The Kingdom Culture of Giving" gets a band.</strong> Five of your eight clips already point to that same full message — the page just never says so.</li>
+  <li><strong>Search has a real label.</strong> Currently unlabeled, so screen readers announce it as an unnamed field.</li>
+</ul>
+</div>
+
+<div class="gap">
+<strong>Two things I need from you.</strong>
+<ul style="margin:9px 0 0 18px;line-height:1.85">
+  <li><strong>1,031 of your site's 1,099 accessibility findings are on this page</strong> — every video with no captions or transcript. YouTube auto-generates captions; pulling them across would clear the large majority of your site's total in one pass. Want me to plan that?</li>
+  <li><strong>Your live text says "Big things ahead at Arise —"</strong>. I wrote "Arise Church" per your standing instruction. Tell me if you'd rather the video descriptions stay exactly as published on YouTube.</li>
+</ul>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+[
+  {
+    "contentKey": "site.servicetimes.button",
+    "page": "site",
+    "label": "Service Times button text",
+    "text": "Service Times",
+    "imageUrl": "",
+    "where": "Red Service Times button"
+  },
+  {
+    "contentKey": "site.servicetimes.lead.kicker",
+    "page": "site",
+    "label": "Service Times: top label",
+    "text": "Sunday Service",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), small red label at the top"
+  },
+  {
+    "contentKey": "site.times.sunday.main",
+    "page": "site",
+    "label": "Sunday time - Pineville (shared)",
+    "text": "Sunday 10:30 AM",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), first big time"
+  },
+  {
+    "contentKey": "site.servicetimes.lead.campus1",
+    "page": "site",
+    "label": "Service Times: Pineville name",
+    "text": "Pineville",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), small word after the first big time"
+  },
+  {
+    "contentKey": "site.times.sunday.second",
+    "page": "site",
+    "label": "Sunday time - Alexandria (shared)",
+    "text": "Sunday 10:00 AM",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), second big time"
+  },
+  {
+    "contentKey": "site.servicetimes.lead.campus2",
+    "page": "site",
+    "label": "Service Times: Alexandria name",
+    "text": "Alexandria",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), small word after the second big time"
+  },
+  {
+    "contentKey": "site.servicetimes.lead.note",
+    "page": "site",
+    "label": "Service Times: note under times",
+    "text": "Come as you are",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), grey line under the Sunday times"
+  },
+  {
+    "contentKey": "site.servicetimes.main.label",
+    "page": "site",
+    "label": "Service Times: weeknight section label",
+    "text": "Main Campus &middot; Pineville",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), label above the weeknight list"
+  },
+  {
+    "contentKey": "site.times.main.glorynight.label",
+    "page": "site",
+    "label": "Glory Night name (shared)",
+    "text": "Glory Night",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), weeknight list, first row"
+  },
+  {
+    "contentKey": "site.servicetimes.main.glorynightNote",
+    "page": "site",
+    "label": "Service Times: Glory Night note",
+    "text": "Monday Nights",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), small red text under Glory Night"
+  },
+  {
+    "contentKey": "site.times.main.midweek.label",
+    "page": "site",
+    "label": "Midweek service name (shared)",
+    "text": "Midweek Service",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), weeknight list, second row"
+  },
+  {
+    "contentKey": "site.times.main.prayer.label",
+    "page": "site",
+    "label": "Prayer name (shared)",
+    "text": "Corporate Prayer",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), weeknight list, third row"
+  },
+  {
+    "contentKey": "site.servicetimes.addr.mainLabel",
+    "page": "site",
+    "label": "Service Times: main campus label",
+    "text": "Main Campus",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), address block, first name"
+  },
+  {
+    "contentKey": "site.servicetimes.addr.secondLabel",
+    "page": "site",
+    "label": "Service Times: Alexandria campus label",
+    "text": "Alexandria Campus",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), address block, second name"
+  },
+  {
+    "contentKey": "site.servicetimes.cta.button",
+    "page": "site",
+    "label": "Service Times: bottom button",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Service Times dropdown (red Service Times button), outlined button at the bottom"
+  },
+  {
+    "contentKey": "site.servicetimes.main.glorynightTime",
+    "page": "site",
+    "label": "Service Times dropdown: Glory Night time",
+    "text": "7:00 PM",
+    "imageUrl": "",
+    "where": "Service Times dropdown (homepage hero), Main Campus section"
+  },
+  {
+    "contentKey": "site.servicetimes.main.midweekTime",
+    "page": "site",
+    "label": "Service Times dropdown: Midweek Service time",
+    "text": "Wed 7:00 PM",
+    "imageUrl": "",
+    "where": "Service Times dropdown (homepage hero), Main Campus section"
+  },
+  {
+    "contentKey": "site.servicetimes.main.prayerTime",
+    "page": "site",
+    "label": "Service Times dropdown: Corporate Prayer time",
+    "text": "Mon&ndash;Thu 5:00 AM",
+    "imageUrl": "",
+    "where": "Service Times dropdown (homepage hero), Main Campus section"
+  },
+  {
+    "contentKey": "site.campus.main",
+    "page": "site",
+    "label": "Main campus address",
+    "text": "501 Ates Road, Pineville, LA 71360",
+    "imageUrl": "",
+    "where": "Service Times dropdown, addresses"
+  },
+  {
+    "contentKey": "site.campus.second",
+    "page": "site",
+    "label": "Alexandria campus address",
+    "text": "5305 North Blvd, Alexandria, LA 71301",
+    "imageUrl": "",
+    "where": "Service Times dropdown, addresses"
+  }
+]

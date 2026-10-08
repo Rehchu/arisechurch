@@ -1,0 +1,222 @@
+/* Arise Church - backend/youtube.jsw
+   Reads the public Arise Church YouTube channel pages. No API key needed.
+
+   Fixed 2026-09-14:
+   - Sends a desktop browser User-Agent. YouTube answered the old generic one
+     ("Mozilla/5.0 (compatible)") with its mobile site, which carries none of the
+     data below, so series detection could never work.
+   - Live check ignores upcoming (scheduled) streams. The channel's /live page
+     points at the next scheduled stream too; only a stream playing now counts.
+   - Series detection reads YouTube's current playlist layout.
+   - New getLatestShorts(): the newest Shorts, for the Sermons page. */
+import { fetch } from 'wix-fetch';
+
+const CHANNEL_ID = 'UCGS9j7B_prcJkbTNgzlGrKg';
+const CHANNEL = 'https://www.youtube.com/channel/' + CHANNEL_ID;
+const YT_HEADERS = {
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36',
+  'Accept-Language': 'en-US,en;q=0.9'
+};
+
+async function getPage(path) {
+  const res = await fetch(CHANNEL + path, { method: 'get', headers: YT_HEADERS });
+  if (!res.ok) throw new Error('YouTube ' + path + ' answered ' + res.status);
+  return res.text();
+}
+
+/* Decode a JSON string body taken out of YouTube's page data. */
+function jsonText(raw) {
+  try { return JSON.parse('"' + raw + '"'); } catch (e) { return raw; }
+}
+
+/* =========================================================================
+   1. LIVE STREAM DETECTION
+   Reads the channel's /live page. It is live only when YouTube says the video
+   is playable now, is a live broadcast, and is not an upcoming one.
+   ========================================================================= */
+
+let liveCache = { value: null, at: 0 };
+const LIVE_CACHE_MS = 45000;
+
+export async function getLiveVideoId() {
+  const now = Date.now();
+  if (now - liveCache.at < LIVE_CACHE_MS) return liveCache.value;
+
+  let result = null;
+
+  try {
+    const html = await getPage('/live');
+    const status = (html.match(/"playabilityStatus":\{"status":"([A-Z_]+)"/) || [])[1] || '';
+    const at = html.indexOf('"videoDetails":{');
+    const details = at > -1 ? html.slice(at, at + 4000) : '';
+    const upcoming = details.indexOf('"isUpcoming":true') > -1;
+    const liveNow = details.indexOf('"isLive":true') > -1;
+
+    if (status === 'OK' && liveNow && !upcoming) {
+      const vid = details.match(/"videoId":"([A-Za-z0-9_-]{11})"/) ||
+                  html.match(/<link rel="canonical" href="[^"]*\/watch\?v=([A-Za-z0-9_-]{11})/);
+      if (vid) result = vid[1];
+    }
+  } catch (err) {
+    console.error('Live check failed:', err);
+    result = null;
+  }
+
+  liveCache = { value: result, at: now };
+  return result;
+}
+
+/* =========================================================================
+   2. CURRENT SERIES
+   Reads the channel's playlists, newest first. A playlist counts as the
+   current series if its name contains "series". Anything on IGNORE is never
+   treated as a series. A CMS override in Site Settings wins over this.
+   ========================================================================= */
+
+const IGNORE = [
+  'sunday sermons',
+  'lead network',
+  'iserve september',
+  'glory nights | arise church',
+  'conferences & special events',
+  'apostle bryant sanders - messages'
+];
+
+let seriesCache = { value: null, at: 0 };
+const SERIES_CACHE_MS = 600000;
+
+function listPlaylists(html) {
+  const out = [];
+  const seen = {};
+
+  /* Current layout: lockupViewModel cards */
+  const parts = String(html || '').split('"lockupViewModel":');
+  for (let i = 1; i < parts.length; i++) {
+    const b = parts[i].slice(0, 9000);
+    const idm = b.match(/"contentId":"(PL[A-Za-z0-9_-]{10,})"/);
+    const tm = b.match(/"lockupMetadataViewModel":\{"title":\{"content":"((?:[^"\\]|\\.)*)"/) ||
+               b.match(/"title":\{"content":"((?:[^"\\]|\\.)*)"/);
+    if (!idm || !tm || seen[idm[1]]) continue;
+    seen[idm[1]] = true;
+    out.push({ id: idm[1], title: jsonText(tm[1]).trim() });
+  }
+
+  /* Older layout: playlistId followed by a runs/simpleText title */
+  if (!out.length) {
+    const re = /"playlistId":"(PL[A-Za-z0-9_-]{10,})"/g;
+    let m;
+    while ((m = re.exec(String(html || ''))) !== null) {
+      if (seen[m[1]]) continue;
+      const seg = html.slice(m.index, m.index + 3000);
+      const t = seg.match(/"title":\{"runs":\[\{"text":"((?:[^"\\]|\\.)*)"/) ||
+                seg.match(/"title":\{"simpleText":"((?:[^"\\]|\\.)*)"/);
+      if (!t) continue;
+      seen[m[1]] = true;
+      out.push({ id: m[1], title: jsonText(t[1]).trim() });
+    }
+  }
+  return out;
+}
+
+export async function getCurrentSeries() {
+  const now = Date.now();
+  if (now - seriesCache.at < SERIES_CACHE_MS) return seriesCache.value;
+
+  let result = null;
+
+  try {
+    const list = listPlaylists(await getPage('/playlists'));
+    for (let i = 0; i < list.length; i++) {
+      const title = list[i].title;
+      const lower = title.toLowerCase();
+      if (IGNORE.indexOf(lower) > -1) continue;
+      if (lower.indexOf('series') === -1) continue;   // opt-in by name
+      result = {
+        // drop a trailing "(Series)" so the heading reads cleanly
+        title: title.replace(/\s*\(series\)\s*$/i, '').trim(),
+        url: 'https://www.youtube.com/playlist?list=' + list[i].id
+      };
+      break;                                          // first match = newest
+    }
+  } catch (err) {
+    console.error('Series lookup failed:', err);
+    result = null;
+  }
+
+  seriesCache = { value: result, at: now };
+  return result;
+}
+
+/* =========================================================================
+   3. NEWEST SHORTS
+   Reads the channel's Shorts tab, which YouTube lists newest first.
+   Returns [{ id, title, url, thumb }]. Cached 10 minutes; if YouTube cannot be
+   reached it keeps the last good list, or returns [] and the Sermons page
+   shows its built-in list.
+   ========================================================================= */
+
+let shortsCache = { value: null, at: 0 };
+const SHORTS_CACHE_MS = 600000;
+
+function parseShorts(html) {
+  const out = [];
+  const seen = {};
+  const src = String(html || '');
+  const add = function (id, title) {
+    if (!id || seen[id] || !/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+    seen[id] = true;
+    out.push({
+      id: id,
+      title: String(title || '').replace(/\s+/g, ' ').trim(),
+      url: 'https://www.youtube.com/shorts/' + id,
+      thumb: 'https://i.ytimg.com/vi/' + id + '/frame0.jpg'
+    });
+  };
+
+  /* Current layout: shortsLockupViewModel blocks in the Shorts tab grid */
+  const parts = src.split('"shortsLockupViewModel":');
+  for (let i = 1; i < parts.length; i++) {
+    const b = parts[i].slice(0, 8000);
+    const idm = b.match(/shorts-shelf-item-([A-Za-z0-9_-]{11})/) ||
+                b.match(/"reelWatchEndpoint":\{"videoId":"([A-Za-z0-9_-]{11})"/);
+    if (!idm) continue;
+    let title = '';
+    const tm = b.match(/"primaryText":\{"content":"((?:[^"\\]|\\.)*)"/);
+    if (tm) title = jsonText(tm[1]);
+    if (!title) {
+      const am = b.match(/"accessibilityText":"((?:[^"\\]|\\.)*)"/);
+      if (am) title = jsonText(am[1]).replace(/,\s*[\d.,]+[KMB]?\s+views?\s*-\s*play Short\s*$/i, '');
+    }
+    add(idm[1], title);
+  }
+
+  /* Older layout: reelItemRenderer blocks */
+  if (!out.length) {
+    const old = src.split('"reelItemRenderer":');
+    for (let j = 1; j < old.length; j++) {
+      const b = old[j].slice(0, 6000);
+      const idm = b.match(/"videoId":"([A-Za-z0-9_-]{11})"/);
+      const hm = b.match(/"headline":\{"simpleText":"((?:[^"\\]|\\.)*)"/);
+      if (idm) add(idm[1], hm ? jsonText(hm[1]) : '');
+    }
+  }
+  return out;
+}
+
+export async function getLatestShorts(limit) {
+  const max = Math.max(1, Math.min(Number(limit) || 8, 24));
+  const now = Date.now();
+  if (shortsCache.value && now - shortsCache.at < SHORTS_CACHE_MS) return shortsCache.value.slice(0, max);
+
+  try {
+    const list = parseShorts(await getPage('/shorts'));
+    if (list.length) {
+      shortsCache = { value: list, at: now };
+      return list.slice(0, max);
+    }
+  } catch (err) {
+    console.error('Shorts lookup failed:', err);
+  }
+
+  return shortsCache.value ? shortsCache.value.slice(0, max) : [];
+}

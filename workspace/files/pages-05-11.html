@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arise Church — Pages 5–11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D6222D; --redL:#DB3F48; --ink:#0A0A0C; --scrim:#060608; --paper:#fff; --bone:#F4F2F0;
+  --rule:rgba(10,10,12,.12); --ruleD:rgba(255,255,255,.15); --muted:#6A6A6E;
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px;
+  --shell:1180px; --gut:clamp(20px,5vw,56px); --sect:clamp(56px,8vw,104px);
+  color-scheme:light only;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background-color:#fff;color:var(--ink);-webkit-text-size-adjust:100%}
+body{font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3,h4{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
+h1{font-size:clamp(38px,7vw,82px)} h2{font-size:clamp(26px,3.6vw,46px)}
+h3{font-size:clamp(17px,1.8vw,22px);letter-spacing:.03em} h4{font-size:13px;letter-spacing:.12em}
+p{font-size:clamp(15.5px,1.4vw,17px)}
+.lede{font-size:clamp(16.5px,1.6vw,20px);line-height:1.62}
+
+.mark{display:flex;align-items:center;margin-bottom:var(--s2)}
+.mark::before{content:"";flex:0 0 auto;width:44px;height:7px;background:var(--red);box-shadow:60px 0 0 var(--red);margin-right:78px}
+.kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+.mark--l .kicker{color:var(--redL)}
+.strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:8px 19px}
+.strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+
+.btn{display:inline-block;padding:15px 32px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--red);background:var(--red);color:#fff;font-family:inherit;cursor:pointer;transition:background .18s,color .18s}
+.btn:hover{background:transparent;color:var(--red)}
+.btn--onDark{background:transparent;color:#fff;border-color:#fff}
+.btn--onDark:hover{background:#fff;color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+.sect{padding:var(--sect) 0;background-color:#fff}
+.sect--bone{background-color:var(--bone)}
+.sect--ink{background-color:var(--ink)}
+.phead{background-color:var(--ink);color:#fff;padding:clamp(48px,7vw,92px) 0 clamp(38px,5vw,64px);position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;right:-60px;bottom:-90px;width:290px;height:290px;border:42px solid rgba(214,34,45,.13);border-radius:50%}
+.phead h1,.phead p{position:relative;z-index:1}
+.phead h1{color:#fff} .phead p{color:rgba(255,255,255,.82);margin-top:var(--s2);max-width:58ch}
+.sect--ink h1,.sect--ink h2,.sect--ink h3{color:#fff}
+.sect--ink p,.sect--ink li{color:rgba(255,255,255,.82)}
+.sect--ink h4{color:var(--redL)}
+
+/* switcher */
+.sw{position:sticky;top:0;z-index:99;background:var(--ink);border-bottom:2px solid var(--red)}
+.sw__in{max-width:var(--shell);margin:0 auto;padding:0 var(--gut);display:flex;gap:2px;flex-wrap:wrap}
+.sw button{background:transparent;border:0;color:rgba(255,255,255,.62);font-family:'Oswald',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;padding:15px 15px;cursor:pointer}
+.sw button[aria-selected="true"]{background:var(--red);color:#fff}
+.page{display:none}.page[data-on="true"]{display:block}
+.note{background-color:#FFF8E1;border-left:4px solid var(--red);padding:13px 20px;font-size:13px}
+.gap{background-color:#EEF4FF;border-left:4px solid #2A70DE;padding:13px 20px;font-size:13px}
+
+/* leaders strip */
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2px;background:var(--rule);margin-top:var(--s4)}
+.person{background-color:#fff;padding:var(--s4) var(--s3)}
+.person__ph{aspect-ratio:1/1;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:40px;color:var(--redL);margin-bottom:var(--s3)}
+.person h3{font-size:18px}
+.sect--ink .person{background-color:#141419}
+
+/* roles list (Serve) */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--ruleD);margin-top:var(--s5)}
+.role{background-color:#141419;padding:var(--s4)}
+.role h3{color:#fff;font-size:18px;margin-bottom:var(--s2)}
+.role p{font-size:14.5px;color:rgba(255,255,255,.78)}
+.role__n{font-family:'Anton',sans-serif;font-size:12px;color:var(--redL);letter-spacing:.12em;margin-bottom:var(--s2)}
+
+/* form */
+.form{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3);margin-top:var(--s4)}
+.form .full{grid-column:1/-1}
+@media(max-width:600px){.form{grid-template-columns:1fr}}
+.field label{display:block;font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:var(--s1)}
+.field input,.field select{width:100%;background:transparent;border:0;border-bottom:1.5px solid rgba(255,255,255,.28);padding:11px 0;font-family:'Oswald',sans-serif;font-weight:300;font-size:16px;color:#fff}
+.field select option{background:#0A0A0C;color:#fff}
+.field input:focus,.field select:focus{border-bottom-color:var(--red);outline:none}
+
+/* course / study cards */
+.courses{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s4);margin-top:var(--s5)}
+@media(max-width:820px){.courses{grid-template-columns:1fr}}
+.course{border:1px solid var(--rule);background-color:#fff;display:flex;flex-direction:column}
+.course__th{aspect-ratio:16/9;background:var(--scrim);position:relative;overflow:hidden;color:#fff}
+.course__th img{width:100%;height:100%;object-fit:cover;opacity:.8;color:#fff;background:#1A1A1F}
+.course__play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.course__play i{width:62px;height:62px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center}
+.course__b{padding:var(--s4);flex:1;display:flex;flex-direction:column}
+.course__b h3{margin-bottom:var(--s2)}
+.course__b p{font-size:14.5px;color:var(--muted);line-height:1.68;flex:1}
+.course__b .btn{align-self:flex-start;margin-top:var(--s3)}
+
+/* bible tool */
+.bible{background-color:var(--ink);padding:var(--s5) clamp(24px,4vw,52px);margin-top:var(--s5)}
+.bible__row{display:grid;grid-template-columns:200px 1fr auto;gap:var(--s3);align-items:end}
+@media(max-width:720px){.bible__row{grid-template-columns:1fr}}
+.bible__out{margin-top:var(--s4);padding-top:var(--s3);border-top:1px solid var(--ruleD);font-size:14.5px;color:rgba(255,255,255,.7)}
+
+/* empty-state pattern */
+.empty{border:1.5px dashed var(--rule);padding:var(--s6) var(--s4);text-align:center;margin-top:var(--s4)}
+.empty h3{color:var(--muted);margin-bottom:var(--s2)}
+.empty p{color:var(--muted);font-size:15px;max-width:46ch;margin:0 auto}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-top:var(--s5)}
+@media(max-width:760px){.gal{grid-template-columns:repeat(2,1fr)}}
+.gal__c{aspect-ratio:4/3;background:var(--scrim);position:relative;overflow:hidden;display:block;text-decoration:none;color:#fff}
+.gal__c img{width:100%;height:100%;object-fit:cover;filter:brightness(.66);transition:transform .5s,filter .3s;color:#fff;background:#1A1A1F}
+.gal__c:hover img{transform:scale(1.05);filter:brightness(.82)}
+.gal__t{position:absolute;left:0;right:0;bottom:0;padding:var(--s4) var(--s3) var(--s3);background:linear-gradient(180deg,rgba(6,6,8,0),rgba(6,6,8,.95))}
+.gal__t h3{color:#fff;font-size:16px}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-color-scheme: dark){
+  html,body{background-color:#fff;color:#0A0A0C}
+  .sect{background-color:#fff}.sect--bone{background-color:#F4F2F0}
+  .sect--ink,.phead{background-color:#0A0A0C}
+  .sect--ink h1,.sect--ink h2,.sect--ink h3,.phead h1{color:#fff}
+}
+</style>
+</head>
+<body>
+
+<div class="note"><strong>PAGES 5–11.</strong> Every word is verbatim from your live pages. Structures unchanged. Tabs across the top.</div>
+
+<nav class="sw"><div class="sw__in" role="tablist">
+  <button role="tab" aria-selected="true"  data-go="p5">05 Serve</button>
+  <button role="tab" aria-selected="false" data-go="p6">06 Children's</button>
+  <button role="tab" aria-selected="false" data-go="p7">07 Youth</button>
+  <button role="tab" aria-selected="false" data-go="p8">08 Outreach</button>
+  <button role="tab" aria-selected="false" data-go="p9">09 Lead Network</button>
+  <button role="tab" aria-selected="false" data-go="p10">10 Bible Search</button>
+  <button role="tab" aria-selected="false" data-go="p11">11 Training</button>
+</div></nav>
+
+<!-- 05 SERVE -->
+<div class="page" id="p5" data-on="true">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Arise Church</span></div>
+    <h1>Serve With Us</h1>
+    <p class="lede">Join our congregation in making a difference! We're seeking passionate volunteers to fill key roles and help our ministries thrive.</p>
+  </div></header>
+
+  <section class="sect sect--ink"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Positions Needed</span></div>
+    <h2>Where You Can Serve</h2>
+    <div class="roles">
+      <div class="role"><div class="role__n">01</div><h3>Children's Department</h3><p>Teach, assist, or nurture our youngest members.</p></div>
+      <div class="role"><div class="role__n">02</div><h3>Outreach</h3><p>Share God's love through community service and evangelism.</p></div>
+      <div class="role"><div class="role__n">03</div><h3>Media / Social Media</h3><p>Manage online presence, create content, and spread the word.</p></div>
+      <div class="role"><div class="role__n">04</div><h3>Edge / X Edge</h3><p>Support youth and young adult programs with energy and creativity.</p></div>
+      <div class="role"><div class="role__n">05</div><h3>Maintenance</h3><p>Keep our facilities safe, clean, and welcoming.</p></div>
+    </div>
+    <div class="strip" style="margin-top:var(--s5)"><span>Sign up today and use your gifts to serve!</span></div>
+  </div></section>
+
+  <section class="sect sect--ink" style="padding-top:0"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Volunteer Sign Up</span></div>
+    <h2>Volunteer Sign Up</h2>
+    <form class="form" onsubmit="return false">
+      <div class="field"><label for="s-n">Your Name</label><input id="s-n" type="text"></div>
+      <div class="field"><label for="s-e">Your Email</label><input id="s-e" type="email"></div>
+      <div class="field"><label for="s-p">Position</label>
+        <select id="s-p">
+          <option>Children's Department</option><option>Outreach</option>
+          <option>Media/Social Media</option><option>Edge/X Edge</option><option>Maintenance</option>
+        </select></div>
+      <div class="field"><label for="s-ph">Phone</label><input id="s-ph" type="tel"></div>
+      <div class="full"><button class="btn" type="submit">Submit</button></div>
+    </form>
+  </div></section>
+
+  <div class="gap"><strong>One thing to check.</strong> Your live form has both a "Your Email" field and a separate "Email" field. I've kept one and used the second slot for Phone, which is also on the form. Confirm that's right — or tell me the real field order.</div>
+</div>
+
+<!-- 06 CHILDREN'S -->
+<div class="page" id="p6">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Birth – 5th Grade</span></div>
+    <h1>Children's<br>Ministry</h1>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="mark"><span class="kicker">Our Leaders</span></div>
+    <h2>Our Leaders</h2>
+    <div class="people">
+      <div class="person"><div class="person__ph">JS</div><h3>James and Tonya Sizemore</h3></div>
+      <div class="person"><div class="person__ph">RO</div><h3>Ronnie and Christian Odom</h3></div>
+    </div>
+  </div></section>
+
+  <section class="sect sect--ink"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">VBS 2025</span></div>
+    <h2>VBS 2025</h2>
+    <p class="lede" style="margin-top:var(--s3);max-width:56ch">Join us at Wonder Junction VBS 2025, where kids explore the Old West and the life of Jesus! This exciting theme combines fun adventures with meaningful biblical truths, empowering children to understand and defend their faith.</p>
+    <div class="strip" style="margin-top:var(--s4)"><span>Wonder Junction</span></div>
+  </div></section>
+
+  <div class="gap"><strong>Note.</strong> Your live page splits "James and Tonya" and "Sizemore" across two lines as separate text blocks — I've joined them. Also: <strong>VBS 2025 is in the past.</strong> Worth updating to VBS 2026 or moving it to a past-events section.</div>
+</div>
+
+<!-- 07 YOUTH -->
+<div class="page" id="p7">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">6th – 12th Grade</span></div>
+    <h1>Youth Ministry</h1>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="mark"><span class="kicker">Our Leaders</span></div>
+    <h2>Our Leaders</h2>
+    <div class="people">
+      <div class="person"><div class="person__ph">CK</div><h3>Chad Kerik</h3></div>
+      <div class="person"><div class="person__ph">TK</div><h3>Tabitha Kerik</h3></div>
+    </div>
+  </div></section>
+
+  <section class="sect sect--bone"><div class="shell">
+    <div class="mark"><span class="kicker">Youth Events</span></div>
+    <h2>Youth Events</h2>
+    <div class="empty">
+      <h3>No events listed yet</h3>
+      <p>Your live page has a "Youth Events" heading with nothing under it. This is what an intentional empty state looks like until events are added.</p>
+    </div>
+  </div></section>
+
+  <div class="gap"><strong>Needed:</strong> youth event listings, and photos of Chad and Tabitha if you want faces instead of monograms.</div>
+</div>
+
+<!-- 08 OUTREACH -->
+<div class="page" id="p8">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Impact Tioga</span></div>
+    <h1>Outreach</h1>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="empty">
+      <h3>This page has one word on it</h3>
+      <p>Your live Outreach page contains the heading "Outreach" and nothing else. There's no text for me to lay out — it needs content before it needs design.</p>
+    </div>
+  </div></section>
+
+  <div class="gap"><strong>What would fill this well</strong>, using words you already have elsewhere: the Impact Tioga mission text from your About page, the Outreach volunteer description from your Serve page ("Share God's love through community service and evangelism"), and photos of the team serving. Say the word and I'll assemble it from existing copy only.</div>
+</div>
+
+<!-- 09 LEAD NETWORK -->
+<div class="page" id="p9">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Leadership Development</span></div>
+    <h1>Lead Network</h1>
+    <p class="lede">We invite you to explore our comprehensive selection of video courses offered through the Lead Network. Our courses are to enhance your skills and facilitate learning across various subjects. Discover the valuable opportunities that await you.</p>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="mark"><span class="kicker">Our Current Ministers</span></div>
+    <h2>Our Current Ministers</h2>
+    <div class="people">
+      <div class="person"><div class="person__ph">CA</div><h3>Carlos and Melissa Austin</h3></div>
+      <div class="person"><div class="person__ph">DC</div><h3>Derrick and Pam Calloway</h3></div>
+    </div>
+    <div style="margin-top:var(--s5)"><a class="btn" href="#">Watch Now</a></div>
+  </div></section>
+
+  <div class="gap"><strong>Two things.</strong> This page lives at <code>/general-4</code> — a default Wix slug. It should be <code>/lead-network</code>. And your camp meeting on the Events page is a Lead Network event; these two pages should link to each other.</div>
+</div>
+
+<!-- 10 BIBLE SEARCH -->
+<div class="page" id="p10">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Resources</span></div>
+    <h1>Bible Reference</h1>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="mark"><span class="kicker">Bible Reference</span></div>
+    <h2>Look Up<br>Any Passage</h2>
+
+    <div class="bible">
+      <div class="bible__row">
+        <div class="field"><label for="b-v">Version</label>
+          <select id="b-v"><option>KJV</option><option>NIV</option><option>ESV</option><option>NKJV</option></select></div>
+        <div class="field"><label for="b-q">Verse</label><input id="b-q" type="text" placeholder="john 3:16 or john 3:16-20"></div>
+        <div><button class="btn" type="button">Search</button></div>
+      </div>
+      <p class="bible__out">Ready! Select version &amp; enter verse (e.g., john 3:16 or john 3:16-20)</p>
+    </div>
+  </div></section>
+
+  <div class="gap"><strong>Your Velo tool, restyled only.</strong> Same three controls and the same status line, verbatim. The version list is a guess — tell me which translations your code actually supports.</div>
+</div>
+
+<!-- 11 TRAINING -->
+<div class="page" id="p11">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Teaching</span></div>
+    <h1>Training</h1>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="mark"><span class="kicker">Bible Studies</span></div>
+    <h2>Study Library</h2>
+
+    <div class="courses">
+      <article class="course">
+        <div class="course__th">
+          <img src="https://static.wixstatic.com/media/c3b2d0_f30b31e02f5c43cd8f33555c4ab08705~mv2.jpg" alt="Apostle Bryant Sanders teaching">
+          <div class="course__play"><i><svg width="19" height="22" viewBox="0 0 22 26" fill="none" aria-hidden="true"><path d="M21 13L0 25.99V0L21 13Z" fill="#fff"/></svg></i></div>
+        </div>
+        <div class="course__b">
+          <h3>Guarding the Anointing:<br>Unmasking the Spirit of Delilah</h3>
+          <p>Join Apostle Bryant Sanders for an impactful Bible study on Judges 16:17-22, exploring the story of Samson and Delilah. Learn how the deceptive "Spirit of Delilah" distracts believers through romance, hobbies, and undermining our faith and leading to spiritual slumber. Discover God's promise of restoration through repentance, and be inspired to strengthen your prayer and holiness to protect your anointing for kingdom work. Stay vigilant, for God's grace renews us at the cross! Perfect for those seeking to deepen relationship with Christ!</p>
+          <a class="btn" href="#">Watch Study</a>
+        </div>
+      </article>
+
+      <article class="course">
+        <div class="course__th">
+          <img src="https://static.wixstatic.com/media/c3b2d0_1c539649f39f48cbb157d4e27efeb843~mv2.png" alt="Pastors Derrick and Pam Calloway teaching on leadership">
+          <div class="course__play"><i><svg width="19" height="22" viewBox="0 0 22 26" fill="none" aria-hidden="true"><path d="M21 13L0 25.99V0L21 13Z" fill="#fff"/></svg></i></div>
+        </div>
+        <div class="course__b">
+          <h3>Leading With Purpose:<br>Spiritual Wisdom &amp; Practical Strategies</h3>
+          <p>Explore the principles of effective leadership with Pastors Derrick Calloway and Prophet Pam Calloway. Their insights spiritual wisdom and practical strategies to inspire and empower you on your leadership journey. Join them to deepen your understanding and enhance your ability to lead with purpose and integrity. Embrace the opportunity to learn from their experiences and become the leader you aspire to be.</p>
+          <a class="btn" href="#">Watch Study</a>
+        </div>
+      </article>
+    </div>
+  </div></section>
+
+  <div class="gap">
+    <strong>This page is the biggest find in the batch.</strong>
+    <ul style="margin:9px 0 0 18px;line-height:1.85">
+      <li>It sits at <code>/s-projects-basic</code> — a leftover Wix template slug. Should be <code>/training</code> or <code>/studies</code>.</li>
+      <li><strong>Almost nothing links to it</strong>, so this teaching is invisible.</li>
+      <li><strong>"Annointing" is misspelled</strong> in both the heading and the body on your live page. I've corrected it here — say the word if you'd rather I left it exactly as published.</li>
+      <li>I also fixed two broken sentences: "Delilah Learn how" → "Delilah. Learn how", and "hobbies, and, undermining" → "hobbies, and undermining".</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  var tabs=[].slice.call(document.querySelectorAll('.sw button'));
+  tabs.forEach(function(b){
+    b.addEventListener('click',function(){
+      tabs.forEach(function(x){x.setAttribute('aria-selected','false')});
+      b.setAttribute('aria-selected','true');
+      [].slice.call(document.querySelectorAll('.page')).forEach(function(p){
+        p.setAttribute('data-on', String(p.id===b.dataset.go));
+      });
+      window.scrollTo(0,0);
+    });
+  });
+</script>
+</body>
+</html>

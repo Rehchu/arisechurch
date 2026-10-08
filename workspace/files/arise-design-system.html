@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arise Church — Design System &amp; Page Redesigns</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ══════════════ TOKENS — the whole system in 20 lines ══════════════ */
+:root{
+  --red:#D6222D; --ink:#0A0A0C; --scrim:#060608; --paper:#fff; --bone:#F4F2F0;
+  --rule:rgba(10,10,12,.12); --ruleD:rgba(255,255,255,.15);
+  --muted:#6A6A6E; --mutedD:rgba(255,255,255,.66);
+
+  /* spacing scale — every gap on the site is one of these */
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:96px; --s8:128px;
+
+  --shell:1180px; --gut:clamp(20px,5vw,56px); --sect:clamp(64px,9vw,120px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:300;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gut)}
+
+h1,h2,h3,h4{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
+h1{font-size:clamp(42px,7.4vw,88px)}
+h2{font-size:clamp(30px,4.4vw,56px)}
+h3{font-size:clamp(18px,1.9vw,24px);letter-spacing:.04em}
+h4{font-size:15px;letter-spacing:.10em}
+p{font-size:clamp(15.5px,1.4vw,17px);max-width:66ch}
+.lede{font-size:clamp(17px,1.7vw,20px);line-height:1.62}
+
+/* SIGNATURE — two red dashes + tracked kicker. Lifted from the thumbnail spec. */
+.mark{display:flex;align-items:center;margin-bottom:var(--s2)}
+.mark::before{content:"";flex:0 0 auto;width:44px;height:7px;background:var(--red);box-shadow:60px 0 0 var(--red);margin-right:78px}
+.kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+.mark--l .kicker{color:var(--paper)}
+
+/* SIGNATURE — skewed red strip. The thumbnail's speaker bar. */
+.strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:8px 19px;margin-top:var(--s3)}
+.strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+
+.btn{display:inline-block;padding:14px 29px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--red);background:var(--red);color:#fff;transition:background .18s,color .18s}
+.btn:hover{background:transparent;color:var(--red)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:#fff}
+a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+.sect{padding:var(--sect) 0}
+.sect--bone{background:var(--bone)}
+.sect--ink{background:var(--ink);color:#fff}
+.sect--ink h2,.sect--ink h3{color:#fff}
+.sect--ink p{color:var(--mutedD)}
+
+/* ══════════════ SWITCHER (mockup only — not part of the design) ══════════════ */
+.sw{position:sticky;top:0;z-index:99;background:var(--ink);border-bottom:2px solid var(--red)}
+.sw__in{max-width:var(--shell);margin:0 auto;padding:0 var(--gut);display:flex;gap:2px;flex-wrap:wrap}
+.sw button{background:transparent;border:0;color:rgba(255,255,255,.6);font-family:'Oswald',sans-serif;font-size:12px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;padding:16px 20px;cursor:pointer}
+.sw button[aria-selected="true"]{background:var(--red);color:#fff}
+.page{display:none}.page[data-on="true"]{display:block}
+.note{background:#FFF8E1;border-left:4px solid var(--red);padding:13px 20px;font-size:13px}
+
+/* ══════════════ DESIGN SYSTEM PAGE ══════════════ */
+.swatch{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;margin-top:var(--s3)}
+.sw__c{padding:var(--s5) var(--s3) var(--s3);color:#fff;font-size:12px;letter-spacing:.1em}
+.scale{margin-top:var(--s3);border-top:1px solid var(--rule)}
+.scale__r{display:flex;align-items:baseline;gap:var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--rule)}
+.scale__l{flex:0 0 130px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.bar{height:14px;background:var(--red)}
+
+/* ══════════════ SHARED PAGE HEADER ══════════════ */
+.phead{background:var(--ink);color:#fff;padding:clamp(56px,8vw,104px) 0 clamp(44px,6vw,72px);position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;right:-60px;bottom:-90px;width:300px;height:300px;border:44px solid rgba(214,34,45,.13);border-radius:50%}
+.phead h1{color:#fff;position:relative;z-index:1}
+.phead p{color:var(--mutedD);margin-top:var(--s2);position:relative;z-index:1}
+
+/* ══════════════ ABOUT ══════════════ */
+.pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:var(--s5);background:var(--rule)}
+.pillar{background:var(--paper);padding:var(--s4) var(--s4) var(--s5)}
+.pillar__y{font-family:'Anton',sans-serif;font-size:12px;color:var(--red);letter-spacing:.12em;margin-bottom:var(--s2)}
+.pillar h3{margin-bottom:var(--s2)}
+.pillar p{font-size:15px;color:var(--muted);max-width:none}
+@media(max-width:760px){.pillars{grid-template-columns:1fr}}
+
+.creed{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s3);margin-top:var(--s5)}
+.creed a{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);padding:var(--s4);background:var(--ink);color:#fff;text-decoration:none;border-left:5px solid var(--red)}
+.creed a:hover{background:#16161B}
+.creed h3{font-size:21px}
+.creed span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#E05159}
+@media(max-width:640px){.creed{grid-template-columns:1fr}}
+
+/* Four-verb pathway — their own mission language */
+.path{display:grid;grid-template-columns:repeat(4,1fr);margin-top:var(--s5);border-top:3px solid var(--red)}
+.path__i{padding:var(--s4) var(--s3) var(--s5);border-right:1px solid var(--ruleD)}
+.path__i:last-child{border-right:0}
+.path__n{font-family:'Anton',sans-serif;font-size:12px;color:var(--red);letter-spacing:.12em;margin-bottom:var(--s2)}
+.path__i p{font-size:14.5px;max-width:none}
+@media(max-width:860px){.path{grid-template-columns:repeat(2,1fr)}.path__i:nth-child(2){border-right:0}}
+@media(max-width:520px){.path{grid-template-columns:1fr}.path__i{border-right:0;border-bottom:1px solid var(--ruleD)}}
+
+/* Info card row — the Gather Asheville pattern, adapted for two campuses */
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:var(--s5);background:var(--rule)}
+.info__c{background:var(--paper);padding:0 0 var(--s4)}
+.info__img{aspect-ratio:16/10;background:var(--scrim);overflow:hidden}
+.info__img img{width:100%;height:100%;object-fit:cover}
+.info__b{padding:var(--s3) var(--s3) 0}
+.info__b h4{color:var(--red);margin-bottom:var(--s1)}
+.info__b p{font-size:14.5px;color:var(--muted);max-width:none;line-height:1.7}
+@media(max-width:860px){.info{grid-template-columns:1fr}}
+
+/* ══════════════ MINISTRIES ══════════════ */
+.min{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--rule)}
+.min__c{position:relative;display:block;text-decoration:none;background:var(--scrim);overflow:hidden;aspect-ratio:4/5}
+.min__c img{width:100%;height:100%;object-fit:cover;filter:grayscale(.3) brightness(.6);transition:transform .5s ease,filter .35s ease}
+.min__c:hover img{transform:scale(1.05);filter:grayscale(0) brightness(.75)}
+.min__t{position:absolute;left:0;right:0;bottom:0;padding:var(--s4) var(--s3) var(--s3);background:linear-gradient(180deg,rgba(6,6,8,0) 0%,rgba(6,6,8,.72) 42%,rgba(6,6,8,.97) 100%)}
+.min__t h3{color:#fff;font-size:19px}
+.min__t span{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#fff;opacity:.92;margin-top:5px;font-weight:500}
+.min__c[data-soon]::after{content:"Coming Soon";position:absolute;top:var(--s3);left:var(--s3);background:var(--red);color:#fff;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px}
+@media(max-width:900px){.min{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.min{grid-template-columns:1fr}}
+
+/* ══════════════ LEADERS ══════════════ */
+.lead{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s4) var(--s3);margin-top:var(--s5)}
+.lead__c{}
+.lead__ph{aspect-ratio:3/4;background:var(--bone);overflow:hidden;position:relative}
+.lead__ph img{width:100%;height:100%;object-fit:cover;object-position:center 18%}
+.lead__init{position:absolute;inset:0;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:54px;color:var(--red);letter-spacing:.04em}
+.lead__role{display:inline-block;background:var(--red);color:#fff;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;margin-top:var(--s2)}
+.lead__c h3{margin-top:var(--s1);font-size:19px}
+.lead__c p{font-size:14px;color:var(--muted);margin-top:var(--s1);line-height:1.66;max-width:none}
+.lead--feat{grid-column:span 2}
+.lead--feat .lead__ph{aspect-ratio:3/2}
+.lead--feat h3{font-size:clamp(24px,2.6vw,34px)}
+@media(max-width:900px){.lead{grid-template-columns:repeat(2,1fr)}.lead--feat{grid-column:span 2}}
+@media(max-width:520px){.lead{grid-template-columns:1fr}.lead--feat{grid-column:span 1}}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+/* ═══ DARK-CONTEXT SAFETY NET ═══════════════════════════════════════════
+   Anything on a dark ground gets light text. #DB3F48 is the brand red
+   tinted 13% toward white so small labels clear 4.5:1 on near-black;
+   true #D6222D is kept for shapes (dashes, strips, badges).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* body text on dark */
+.sect--ink,
+.sect--ink p, .sect--ink li, .sect--ink td, .sect--ink dd, .sect--ink dt,
+.phead, .phead p,
+.feat__b, .feat__b p,
+.foot, .foot p, .foot a,
+.times__note, .hero__sub, .visit__i p{color:rgba(255,255,255,.82)}
+
+/* headings on dark */
+.sect--ink h1, .sect--ink h2, .sect--ink h3, .sect--ink h5,
+.sect--ink b, .sect--ink strong,
+.phead h1, .phead h2, .phead h3,
+.feat__b h1, .feat__b h2, .feat__b h3,
+.sect--ink .pillar__b p:first-child,
+.sect--ink .lede{color:#fff}
+
+/* small red labels on dark -> lightened red */
+.sect--ink .kicker, .phead .kicker, .feat__b .kicker,
+.sect--ink .pillar__h .sub,
+.sect--ink h4, .feat__b h4, .foot h4,
+.sect--ink .times__day, .times__day,
+.sect--ink cite,
+.meta__r h4,
+.nav__word em,
+.card__len, .player__len,
+.nav__links a:hover, .foot a:hover,
+.sect--ink a:not(.btn):hover{color:#DB3F48}
+
+/* shapes keep the true brand red */
+.sect--ink .mark::before, .phead .mark::before, .feat__b .mark::before{background:#D6222D}
+.sect--ink .strip, .phead .strip, .feat__b .strip{background:#D6222D}
+.sect--ink .strip span, .phead .strip span, .feat__b .strip span{color:#fff}
+
+/* captions over photos: white, never red — photos vary too much */
+.min__t span, .arch__t span{color:#fff;opacity:.92}
+.min__t h3, .arch__t h3{color:#fff}
+
+/* full white on solid red panels */
+.give p, .series p, .feat__date, .feat__date span{color:#fff}
+
+/* links on dark */
+.sect--ink a:not(.btn):not(.arch__c):not(.card):not(.min__c),
+.phead a:not(.btn){color:#fff}
+
+
+/* if an image fails or is slow, its ALT text inherits the img's colour —
+   on a dark tile that renders dark-on-dark. Force it light. */
+img{color:#fff;font-size:12px;font-family:'Oswald',sans-serif}
+.min__c img,.arch__c img,.card__th img,.camp__img img,.info__img img,
+.lead__ph img,.player img,.feat__img img,.hero__bg{color:#fff;background:#1A1A1F}
+
+
+/* ═══ FORCED DARK-MODE DEFENCE ═════════════════════════════════════════
+   iOS in-app browsers (Facebook, Instagram) and Chrome's "Force Dark"
+   invert page backgrounds but leave explicitly-set text colours alone —
+   turning dark-on-white into dark-on-black. Declaring the scheme and
+   pinning every light surface explicitly stops that.
+   ═════════════════════════════════════════════════════════════════════ */
+:root{color-scheme:light only}
+html,body{background-color:#FFFFFF;color:#0A0A0C;-webkit-text-size-adjust:100%}
+
+/* pin light surfaces so nothing can be silently darkened */
+.sect{background-color:#FFFFFF}
+.sect--bone{background-color:#F4F2F0}
+.modal__box{background-color:#FFFFFF}
+.reach__c,.camp__c,.det__c,.info__c,.pillar,.min__c,.lead__c{background-color:#FFFFFF}
+.note{background-color:#FFF8E1}
+.gap{background-color:#EEF4FF}
+
+/* pin dark surfaces too, so they can't be lightened */
+.sect--ink,.phead,.nav,.foot,.feat,.times,.hero,.player,.modal{background-color:#0A0A0C}
+.give,.series,.strip,.feat__date,.camp__tag,.lead__role,.nowbadge{background-color:#D6222D}
+
+/* if the OS asks for dark, we still render our own light design */
+@media (prefers-color-scheme: dark){
+  html,body{background-color:#FFFFFF;color:#0A0A0C}
+  .sect{background-color:#FFFFFF}
+  .sect--bone{background-color:#F4F2F0}
+  .modal__box{background-color:#FFFFFF}
+  .sect--ink,.phead,.nav,.foot,.feat,.times,.hero{background-color:#0A0A0C}
+  h1,h2,h3,h4{color:#0A0A0C}
+  .sect--ink h1,.sect--ink h2,.sect--ink h3,.phead h1,.phead h2,.phead h3,
+  .feat__b h1,.feat__b h2,.feat__b h3,.min__t h3,.arch__t h3{color:#FFFFFF}
+  .sect--ink p,.sect--ink li,.phead p,.feat__b p,.foot,.foot p,.foot a{color:rgba(255,255,255,.82)}
+}
+
+</style>
+</head>
+<body>
+
+<div class="note"><strong>MOCKUP</strong> — page structures are unchanged from the live site; only layout, type, spacing and hierarchy are redesigned. Photos load from your current site.</div>
+
+<nav class="sw"><div class="sw__in" role="tablist">
+  <button role="tab" aria-selected="true"  data-go="sys">Design System</button>
+  <button role="tab" aria-selected="false" data-go="about">About</button>
+  <button role="tab" aria-selected="false" data-go="min">Ministries</button>
+  <button role="tab" aria-selected="false" data-go="lead">Leaders</button>
+</div></nav>
+
+<!-- ═══════════ DESIGN SYSTEM ═══════════ -->
+<div class="page" id="sys" data-on="true">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">The System</span></div>
+    <h1>Four Rules<br>That Fix It</h1>
+    <p class="lede">Everything in the redesign comes from these. Set them once in Wix's Site Design panel and every page inherits.</p>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="mark"><span class="kicker">01 &middot; One Accent</span></div>
+    <h2>Color</h2>
+    <p style="margin-top:var(--s2)">Your brand kit says it plainly: Arise Red is the only accent. The live site currently also carries a blue and a yellow. Retire both.</p>
+    <div class="swatch">
+      <div class="sw__c" style="background:#D6222D">#D6222D<br>Arise Red</div>
+      <div class="sw__c" style="background:#0A0A0C">#0A0A0C<br>Near-Black</div>
+      <div class="sw__c" style="background:#060608">#060608<br>Scrim</div>
+      <div class="sw__c" style="background:#F4F2F0;color:#0A0A0C">#F4F2F0<br>Bone</div>
+      <div class="sw__c" style="background:#fff;color:#0A0A0C;border:1px solid var(--rule)">#FFFFFF<br>Paper</div>
+    </div>
+  </div></section>
+
+  <section class="sect sect--bone"><div class="shell">
+    <div class="mark"><span class="kicker">02 &middot; Two Faces</span></div>
+    <h2>Type</h2>
+    <div class="scale">
+      <div class="scale__r"><span class="scale__l">H1 &middot; Anton</span><span style="font-family:Anton;font-size:44px;text-transform:uppercase;line-height:1">Uncommon Favor</span></div>
+      <div class="scale__r"><span class="scale__l">H2 &middot; Anton</span><span style="font-family:Anton;font-size:32px;text-transform:uppercase;line-height:1">Who We Are</span></div>
+      <div class="scale__r"><span class="scale__l">H3 &middot; Anton</span><span style="font-family:Anton;font-size:21px;text-transform:uppercase;letter-spacing:.04em">Children's Ministry</span></div>
+      <div class="scale__r"><span class="scale__l">Kicker &middot; Oswald</span><span class="kicker">Arise Church &middot; Pineville, LA</span></div>
+      <div class="scale__r"><span class="scale__l">Body &middot; Oswald 300</span><span style="font-size:16px">Multiethnic, multigenerational, and expecting God to move.</span></div>
+    </div>
+    <p style="margin-top:var(--s4)"><strong>Anton for headings only.</strong> It's built for 148pt thumbnail type — below about 18px it turns into a wall. Oswald 300 handles all body copy.</p>
+  </div></section>
+
+  <section class="sect"><div class="shell">
+    <div class="mark"><span class="kicker">03 &middot; One Ruler</span></div>
+    <h2>Spacing</h2>
+    <p style="margin-top:var(--s2)">Every gap on the site should be one of these eight values. Nothing in between. This is the single biggest reason a site reads as designed rather than assembled.</p>
+    <div class="scale">
+      <div class="scale__r"><span class="scale__l">8 &middot; tight</span><span class="bar" style="width:8px"></span></div>
+      <div class="scale__r"><span class="scale__l">16 &middot; inside</span><span class="bar" style="width:16px"></span></div>
+      <div class="scale__r"><span class="scale__l">24 &middot; between</span><span class="bar" style="width:24px"></span></div>
+      <div class="scale__r"><span class="scale__l">32 &middot; card pad</span><span class="bar" style="width:32px"></span></div>
+      <div class="scale__r"><span class="scale__l">48 &middot; group</span><span class="bar" style="width:48px"></span></div>
+      <div class="scale__r"><span class="scale__l">64 &middot; block</span><span class="bar" style="width:64px"></span></div>
+      <div class="scale__r"><span class="scale__l">96 &middot; section</span><span class="bar" style="width:96px"></span></div>
+      <div class="scale__r"><span class="scale__l">128 &middot; major</span><span class="bar" style="width:128px"></span></div>
+    </div>
+  </div></section>
+
+  <section class="sect sect--ink"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">04 &middot; Two Devices</span></div>
+    <h2>Signature</h2>
+    <p style="margin-top:var(--s2)">Both come straight out of your YouTube thumbnail spec. Reusing them is what makes the site look like the channel instead of a template.</p>
+    <div style="margin-top:var(--s5);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s5)">
+      <div>
+        <div class="mark mark--l"><span class="kicker">Section Marker</span></div>
+        <p style="font-size:14px">Two red dashes plus a tracked uppercase kicker. Opens every section. Replaces the generic centered heading.</p>
+      </div>
+      <div>
+        <div class="strip"><span>Apostle Bryant Sanders</span></div>
+        <p style="font-size:14px;margin-top:var(--s3)">The skewed red bar. For attributions, speaker names, taglines. Never for body copy.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sect sect--bone"><div class="shell">
+    <div class="mark"><span class="kicker">Photography</span></div>
+    <h2>The One That<br>Matters Most</h2>
+    <p class="lede" style="margin-top:var(--s3)">All four sites you picked use real photos of real services. Yours mixes Wix stock — "Group Hug," "Praying Hands," "Concert Stage Setup" — with genuine ones. That contrast is the loudest rushed signal on the site.</p>
+    <p style="margin-top:var(--s3)">You have a YouTube channel full of usable frames. Your brand kit already says how to pick one: <em>speaker mid-gesture, eyes open, lit.</em> Pull stills. Replace every stock image. Nothing else here will move the needle as far.</p>
+    <div class="strip"><span>Fixed Crops &middot; 4:5 Ministries &middot; 3:4 Leaders &middot; 16:10 Info</span></div>
+  </div></section>
+</div>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<div class="page" id="about">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">About Arise Church</span></div>
+    <h1>A Church That<br>Looks Like Heaven</h1>
+    <p class="lede">Multicultural, multiethnic, multigenerational — one church gathering at two campuses in central Louisiana.</p>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="mark"><span class="kicker">Who We Are</span></div>
+    <p class="lede">ARISE CHURCH exists to change the lives of men, women, and children as they journey toward their own personal greatness within God's ordained purpose. We teach people who they are in Christ and how to function as effective kingdom citizens on earth. Our ministries and outreaches serve both the body of Christ and central Louisiana.</p>
+    <div class="strip"><span>Apostle Bryant Sanders &middot; Pastor Vanessa Sanders</span></div>
+
+    <div class="path">
+      <div class="path__i"><div class="path__n">01</div><h3>Connect</h3><p>With God, and with His family.</p></div>
+      <div class="path__i"><div class="path__n">02</div><h3>Grow</h3><p>In God's character.</p></div>
+      <div class="path__i"><div class="path__n">03</div><h3>Serve</h3><p>In God's Church.</p></div>
+      <div class="path__i"><div class="path__n">04</div><h3>Share</h3><p>God's message.</p></div>
+    </div>
+  </div></section>
+
+  <section class="sect sect--bone"><div class="shell">
+    <div class="mark"><span class="kicker">What We Hold To</span></div>
+    <h2>Believe &amp; Promise</h2>
+    <p style="margin-top:var(--s2)">These are already built as lightboxes on your site — they're just plain text right now, so nobody knows they open.</p>
+    <div class="creed">
+      <a href="#"><div><span>Our Doctrine</span><h3>We Believe</h3></div><span style="font-size:26px;color:var(--red)">&rarr;</span></a>
+      <a href="#"><div><span>Our Commitment</span><h3>We Promise</h3></div><span style="font-size:26px;color:var(--red)">&rarr;</span></a>
+    </div>
+  </div></section>
+
+  <section class="sect"><div class="shell">
+    <div class="mark"><span class="kicker">2026</span></div>
+    <h2>Vision, Mission<br>&amp; Purpose</h2>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar__y">Vision &middot; 2026</div>
+        <h3>The Year of<br>Uncommon Favor</h3>
+        <p>Favor that cannot be explained by human effort, connections, or circumstance — favor that comes solely from the hand of a good, generous God. Doors long closed will swing open. "For You, O Lord, will bless the righteous; with favor You will surround him as with a shield." (Psalm 5:12)</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__y">Mission &middot; 2026</div>
+        <h3>Impact Tioga</h3>
+        <p>To bring the life-changing love of Jesus Christ into every corner of our community. To help Tioga discover Christ, to build the community together with neighbors, schools, businesses and local leaders, and to support one another in prayer, encouragement, and practical help.</p>
+      </div>
+      <div class="pillar" style="grid-column:span 2">
+        <div class="pillar__y">Purpose</div>
+        <h3>Character &amp; Compassion</h3>
+        <p>To produce disciples who confidently display the character of our God while compassionately sharing the love of Jesus with others — men, women, and young people rooted in God's Word, transformed by His Spirit, reflecting His nature in every area of life. We share the Gospel not out of duty but out of overflowing compassion: meeting people where they are, listening to their stories, serving their needs.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="sect sect--bone"><div class="shell">
+    <div class="mark"><span class="kicker">Find Us</span></div>
+    <h2>Come See Us</h2>
+    <div class="info">
+      <div class="info__c">
+        <div class="info__img"><img src="https://static.wixstatic.com/media/c3b2d0_df139d07e67d499993dc5818894f91d1~mv2.jpg" alt="Arise Church congregation in worship"></div>
+        <div class="info__b"><h4>Service Times</h4><p>Sunday 10:30 AM — both campuses.<br>Glory Night Mondays 7:00 PM.<br>Midweek Wednesdays 7:00 PM.<br>Corporate Prayer Mon–Thu 5:00 AM.</p></div>
+      </div>
+      <div class="info__c">
+        <div class="info__img"><img src="https://static.wixstatic.com/media/c3b2d0_f30b31e02f5c43cd8f33555c4ab08705~mv2.jpg" alt="The Arise Church Main Campus building in Pineville"></div>
+        <div class="info__b"><h4>Main Campus</h4><p>501 Ates Road<br>Pineville, LA 71360<br><br>Park anywhere — our parking ushers will point you in.</p></div>
+      </div>
+      <div class="info__c">
+        <div class="info__img"><img src="https://static.wixstatic.com/media/1f9fa2_a5448e514cc14ea08cb657e4f1a9cec4~mv2.jpg" alt="Families gathering at Arise Church"></div>
+        <div class="info__b"><h4>Alexandria Campus</h4><p>5305 North Blvd<br>Alexandria, LA 71301<br><br>Sunday service only — weeknights meet at the Main Campus.</p></div>
+      </div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ═══════════ MINISTRIES ═══════════ -->
+<div class="page" id="min">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Get Involved</span></div>
+    <h1>Find Your<br>People</h1>
+    <p class="lede">Eight ministries, one church. Everyone has a place on a team — start wherever fits.</p>
+  </div></header>
+
+  <section class="sect" style="padding-top:var(--s6)"><div class="shell">
+    <div class="min">
+      <a class="min__c" href="#"><img src="https://static.wixstatic.com/media/c3b2d0_1c539649f39f48cbb157d4e27efeb843~mv2.png" alt="Lead Network leaders in a training session"><div class="min__t"><h3>Lead Network</h3><span>Leadership Development</span></div></a>
+      <a class="min__c" href="#"><img src="https://static.wixstatic.com/media/1f9fa2_a5448e514cc14ea08cb657e4f1a9cec4~mv2.jpg" alt="Children in the Arise Church Kids room"><div class="min__t"><h3>Children's Ministry</h3><span>Birth – 5th Grade</span></div></a>
+      <a class="min__c" href="#"><img src="https://static.wixstatic.com/media/1f9fa2_89a44a65090b488ea33de3157f4f3490~mv2.png" alt="Arise Church youth group worshipping"><div class="min__t"><h3>Youth Ministry</h3><span>6th – 12th Grade</span></div></a>
+      <a class="min__c" href="#" data-soon><img src="https://static.wixstatic.com/media/1f9fa2_deb5664679744b2ab198359ec71b4c0d~mv2.jpg" alt="Thrive young adults gathering"><div class="min__t"><h3>Thrive</h3><span>Young Adults</span></div></a>
+      <a class="min__c" href="#" data-soon><img src="https://static.wixstatic.com/media/c3b2d0_d18e07d364724ff2b5f01b9f17d78cba~mv2.png" alt="Mvmt 6:14 gathering"><div class="min__t"><h3>Mvmt 6:14</h3><span>Movement</span></div></a>
+      <a class="min__c" href="#" data-soon><img src="https://static.wixstatic.com/media/c3b2d0_df139d07e67d499993dc5818894f91d1~mv2.jpg" alt="Arise Church praise team leading worship"><div class="min__t"><h3>Worship Team</h3><span>Praise &amp; Worship</span></div></a>
+      <a class="min__c" href="#" data-soon><img src="https://static.wixstatic.com/media/c3b2d0_f30b31e02f5c43cd8f33555c4ab08705~mv2.jpg" alt="In Edge and X Edge gathering"><div class="min__t"><h3>In Edge / X Edge</h3><span>Discipleship</span></div></a>
+      <a class="min__c" href="#"><img src="https://static.wixstatic.com/media/1f9fa2_2aea5b909f5e467b9d6aa1c30e513ce4~mv2.png" alt="Arise Church outreach team serving the community"><div class="min__t"><h3>Outreach</h3><span>Impact Tioga</span></div></a>
+    </div>
+    <div class="note" style="margin-top:var(--s5)"><strong>The dead-button fix.</strong> Four of your eight cards have a "Learn More" that isn't a link. Rather than leaving them broken, the four without pages carry a <strong>Coming Soon</strong> flag instead. Honest, deliberate, and it stops the page looking half-built. Drop the flag as each page ships.</div>
+  </div></section>
+</div>
+
+<!-- ═══════════ LEADERS ═══════════ -->
+<div class="page" id="lead">
+  <header class="phead"><div class="shell">
+    <div class="mark mark--l"><span class="kicker">Meet the Team</span></div>
+    <h1>Our Leaders</h1>
+    <p class="lede">The ministers, elders and leaders serving Arise Church across both campuses.</p>
+  </div></header>
+
+  <section class="sect"><div class="shell">
+    <div class="lead">
+      <div class="lead__c lead--feat">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_b3cdea954391493eba6f3f63878bf2d4~mv2.png" alt="Apostle Bryant Sanders"></div>
+        <span class="lead__role">Apostle</span>
+        <h3>Bryant Sanders</h3>
+        <p>Apostle Bryant Sanders leads Arise Church and serves as Leader of the Lead Network. His years of dedicated ministry and guidance shape the direction of this church, and his leadership is a source of strength for our community.</p>
+      </div>
+      <div class="lead__c lead--feat">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_e137cc6737284d6694200ea8feda5552~mv2.png" alt="Pastor Vanessa Sanders"></div>
+        <span class="lead__role">Pastor &middot; Prophet</span>
+        <h3>Vanessa Sanders</h3>
+        <p>Pastor Vanessa Sanders serves as one of our leaders at Arise Church. In her role as Prophet, she offers insight and guidance to our community, and her dedication to serving others shapes the life of this church.</p>
+      </div>
+
+      <div class="lead__c">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_4fb0f121cb08443a8ca1f72286449c12~mv2.png" alt="Norman and Margie Youngblood"></div>
+        <span class="lead__role">Elder</span>
+        <h3>Norman &amp;<br>Margie Youngblood</h3>
+        <p>Norman serves as one of our elders and is part of our pastoral team. Margie serves on the praise and worship team.</p>
+      </div>
+      <div class="lead__c">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_4b62ef589ff047009574fdceb6c39e18~mv2.png" alt="Chad and Tabitha Kerik"></div>
+        <span class="lead__role">Elders &middot; Youth</span>
+        <h3>Chad &amp;<br>Tabitha Kerik</h3>
+        <p>Elders, Youth Ministers, and Leaders of Thrive for young adults.</p>
+      </div>
+      <div class="lead__c">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_76391dad01a64c3ba6df7e2e76c77ba8~mv2.png" alt="Herbert and Erica Perry"></div>
+        <span class="lead__role">Minister</span>
+        <h3>Herbert &amp;<br>Erica Perry</h3>
+        <p>Herbert serves as one of our ministers, leading with passion and grace.</p>
+      </div>
+      <div class="lead__c">
+        <div class="lead__ph"><img src="https://static.wixstatic.com/media/1f9fa2_32361ebeaf7d4f2095bdb7383421ad6d~mv2.png" alt="Pastor Will Robertson"></div>
+        <span class="lead__role">Pastor</span>
+        <h3>Will Robertson</h3>
+        <p>An essential member of our Pastoral Team, serving our community with kindness and compassion.</p>
+      </div>
+
+      <div class="lead__c">
+        <div class="lead__ph"><div class="lead__init">EM</div></div>
+        <span class="lead__role">Minister &middot; Worship</span>
+        <h3>Ethan Mayes</h3>
+        <p>A committed member of our praise and worship team and one of our ministers.</p>
+      </div>
+      <div class="lead__c">
+        <div class="lead__ph"><div class="lead__init">KR</div></div>
+        <span class="lead__role">Praise Team Leader</span>
+        <h3>Kristina Robinson</h3>
+        <p>Leads the Arise Church praise team.</p>
+      </div>
+    </div>
+
+    <div class="note" style="margin-top:var(--s6)"><strong>The photo-less card.</strong> Instead of a missing image or an empty gap, a red monogram in the same 3:4 frame. The grid stays even, nothing looks broken — and it lets you add Kristina now rather than waiting on a photo shoot. Swap in a real photo whenever you have one. Uniform crops also fix the current mismatch (344×400 vs 251×344).</div>
+  </div></section>
+</div>
+
+<script>
+  var tabs=[].slice.call(document.querySelectorAll('.sw button'));
+  tabs.forEach(function(b){
+    b.addEventListener('click',function(){
+      tabs.forEach(function(x){x.setAttribute('aria-selected','false')});
+      b.setAttribute('aria-selected','true');
+      [].slice.call(document.querySelectorAll('.page')).forEach(function(p){
+        p.setAttribute('data-on', String(p.id===b.dataset.go));
+      });
+      window.scrollTo(0,0);
+    });
+  });
+</script>
+</body>
+</html>

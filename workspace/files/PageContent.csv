@@ -1,0 +1,39 @@
+contentKey,page,label,text,imageUrl,image,where
+home.hero.kicker,home,Hero kicker,"Arise Church - Pineville, LA",,,Above the big headline
+home.hero.body,home,Hero paragraph,"Welcome to our multicultural, multiethnic, and multigenerational church! We are thrilled to have you join our vibrant community. Here, you will find a place of belonging and support, where diverse backgrounds come together to share in faith and fellowship.",,,Under YOU BELONG HERE
+home.who.body,home,Who We Are paragraph,We can't wait to grow together and embrace the unique gifts each person brings.,,,Who We Are section
+home.visit.parking,home,Parking,Park without rushing and find a seat. Our X-Edge team is out on Sunday mornings to guide you in and send you toward the right door.,,,What To Expect
+home.visit.whattowear,home,What To Wear,"Come as you are. You'll see jeans and you'll see suits, and God sees the same thing in both. There's no dress code here - we mean it.",,,What To Expect
+home.visit.whentoarrive,home,When To Arrive,"Arrive a little early and have time for fellowship. Meet a few faces, settle in, and share a moment together before the first song.",,,What To Expect
+site.times.sunday.main,site,Sunday - Main Campus,Sunday 10:30 AM,,,Pineville
+site.times.sunday.second,site,Sunday - Second Campus,Sunday 10:00 AM,,,Alexandria
+site.times.main.glorynight,site,Glory Night - Main,Monday 7:00 PM,,,Pineville
+site.times.main.midweek,site,Midweek - Main,Wednesday 7:00 PM,,,Pineville
+site.times.main.prayer,site,Corporate Prayer - Main,Mon-Thu 5:00 AM,,,Pineville
+site.campus.main,site,Main Campus address,"501 Ates Road, Pineville, LA 71360",,,"Footer, Contact, Home"
+site.campus.second,site,Second Campus address,"5305 North Blvd, Alexandria, LA 71301",,,"Footer, Contact, Home"
+site.email,site,Contact email,arisenow.church@gmail.com,,,"Footer, forms"
+site.tagline,site,Tagline,#YouBelongHere,,,"Header, footer"
+home.who.h2,home,Who We Are heading,Who We Are,,,Section heading
+home.visit.h2,home,What To Expect heading,What To Expect,,,Section heading
+home.campus.h2,home,Campuses heading,"One Church, Two Campuses",,,Section heading
+serve.hero.body,serve,Serve intro,Join our congregation in making a difference. We're seeking passionate volunteers to fill key roles and help our ministries thrive.,,,Under SERVE
+connect.hero.body,connect,Connect Groups intro,Where real people build real faith. Don't do life alone - do life together.,,,Under the headline
+creatives.hero.body,creatives,Creative Arts intro,"Every song, every screen, every sound. Creative Arts is the group of teams that serve together to make Sunday happen - each one its own department, all of them one department.",,,Under the headline
+classes.hero.body,classes,Classes intro,Go deeper at your own pace. Classes and studies you can start whenever you are ready.,,,Under CLASSES
+connect.season.name,connect,Connect season,Fall Connect Groups,,,Page headline
+connect.season.starts,connect,Connect season,the week of September 14,,,Dates card
+connect.season.ends,connect,Connect season,the week of November 16,,,Dates card
+connect.season.hostby,connect,Connect season,September 2,,,Host deadline
+home.campus.main.photo,home,Main Campus photo,,https://static.wixstatic.com/media/c3b2d0_d90892fdb5fd40d8bd3c1057ca244d04~mv2.jpg,,Campuses section
+home.campus.second.photo,home,Second Campus photo,,https://static.wixstatic.com/media/c3b2d0_51f64171a5904d5b9b8b492f062db9bc~mv2.jpg,,Campuses section
+childrens.welcome.image,childrens,Welcome graphic,,https://static.wixstatic.com/media/c3b2d0_418deb3b5dbb44d0a443dfd47e8ce6c5~mv2.png,,Top of the page
+childrens.kids.photo,childrens,Kids photo,,https://static.wixstatic.com/media/1f9fa2_a5448e514cc14ea08cb657e4f1a9cec4~mv2.jpg,,Beside the welcome text
+childrens.superkid.logo,childrens,Superkid Academy logo,,https://static.wixstatic.com/media/1f9fa2_8c21ef4200d44594bcec41ac5680c2c0~mv2.jpg,,Curriculum section
+youth.banner.image,youth,Youth banner,,https://static.wixstatic.com/media/c3b2d0_c1f923bf8bb745849bb220060de02a39~mv2.jpg,,Page header
+outreach.supplies.image,outreach,Supplies graphic,,https://static.wixstatic.com/media/1f9fa2_ef28ad94288a4068ac9c2974b4d4d545~mv2.jpg,,Supplies list section
+leadnetwork.austin.photo,leadnetwork,Carlos & Melissa Austin,,https://static.wixstatic.com/media/1f9fa2_0118a2141a564a909b5c493b2f55211d~mv2.png,,Our Current Ministers
+leadnetwork.calloway.photo,leadnetwork,Derrick & Pamla Calloway,,https://static.wixstatic.com/media/1f9fa2_1331547403e94f94a08912f08d45d1de~mv2.png,,Our Current Ministers
+site.times.second.midweek,site,Midweek - Second,,,,Alexandria - fill in Friday
+site.times.second.prayer,site,Corporate Prayer - Second,,,,Alexandria - fill in Friday
+site.times.second.other,site,Any other service - Second,,,,Alexandria - leave blank if none

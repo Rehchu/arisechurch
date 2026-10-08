@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arise Church — Events Page Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#D6222D; --ink:#0A0A0C; --scrim:#060608; --paper:#fff; --bone:#F4F2F0;
+  --rule:rgba(10,10,12,.12); --ruleD:rgba(255,255,255,.15);
+  --muted:#6A6A6E; --mutedD:rgba(255,255,255,.66);
+  --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px;
+  --shell:1180px; --gut:clamp(20px,5vw,56px); --sect:clamp(64px,9vw,110px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Oswald',Helvetica,Arial,sans-serif;font-weight:300;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+.shell{max-width:var(--shell);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3,h4{font-family:'Anton',Impact,sans-serif;font-weight:400;text-transform:uppercase;line-height:1.02;letter-spacing:.02em}
+h1{font-size:clamp(42px,7.4vw,88px)}
+h2{font-size:clamp(26px,3.6vw,46px)}
+h3{font-size:clamp(17px,1.7vw,21px);letter-spacing:.03em;line-height:1.16}
+h4{font-size:13px;letter-spacing:.12em}
+
+.mark{display:flex;align-items:center;margin-bottom:var(--s2)}
+.mark::before{content:"";flex:0 0 auto;width:44px;height:7px;background:var(--red);box-shadow:60px 0 0 var(--red);margin-right:78px}
+.kicker{font-size:12px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;color:var(--red);white-space:nowrap}
+.mark--l .kicker{color:var(--paper)}
+.strip{display:inline-block;transform:skewX(-9deg);background:var(--red);padding:8px 19px}
+.strip span{display:block;transform:skewX(9deg);color:#fff;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+
+.btn{display:inline-block;padding:15px 34px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;border:1.5px solid var(--red);background:var(--red);color:#fff;font-family:inherit;cursor:pointer;transition:background .18s,color .18s}
+.btn:hover{background:transparent;color:var(--red)}
+.btn--onDark{background:transparent;color:#fff;border-color:#fff}
+.btn--onDark:hover{background:#fff;color:var(--ink)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:#fff}
+a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+
+.sect{padding:var(--sect) 0}
+.sect--bone{background:var(--bone)}
+.sect--ink{background:var(--ink);color:#fff}
+.sect--ink h2,.sect--ink h3,.sect--ink h4{color:#fff}
+
+.phead{background:var(--ink);color:#fff;padding:clamp(56px,8vw,100px) 0 clamp(44px,6vw,70px);position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;right:-60px;bottom:-90px;width:300px;height:300px;border:44px solid rgba(214,34,45,.13);border-radius:50%}
+.phead h1{color:#fff;position:relative;z-index:1}
+
+/* FEATURED EVENT */
+.feat{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--ink);color:#fff}
+@media(max-width:900px){.feat{grid-template-columns:1fr}}
+.feat__img{position:relative;min-height:420px;background:var(--scrim);overflow:hidden}
+.feat__img img{width:100%;height:100%;object-fit:cover;filter:brightness(.72)}
+.feat__date{position:absolute;top:var(--s4);left:var(--s4);background:var(--red);color:#fff;text-align:center;padding:var(--s2) var(--s3);min-width:96px}
+.feat__date .m{display:block;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+.feat__date .d{display:block;font-family:'Anton',Impact,sans-serif;font-size:42px;line-height:1;margin-top:4px}
+.feat__b{padding:clamp(32px,4.5vw,60px);display:flex;flex-direction:column;justify-content:center}
+.feat__b h2{color:#fff}
+.feat__sub{color:var(--mutedD);font-size:17px;margin-top:var(--s3);max-width:44ch}
+.meta{margin-top:var(--s4);border-top:1px solid var(--ruleD)}
+.meta__r{display:flex;gap:var(--s3);padding:var(--s2) 0;border-bottom:1px solid var(--ruleD);font-size:14.5px}
+.meta__r h4{flex:0 0 108px;color:var(--red);padding-top:2px}
+.meta__r div{color:var(--mutedD)}
+.meta__r a{color:#fff;text-decoration:none;border-bottom:1px solid var(--red)}
+
+/* DETAILS */
+.det{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--rule);margin-top:var(--s5)}
+.det__c{background:var(--paper);padding:var(--s4)}
+.det__c h4{color:var(--red);margin-bottom:var(--s2)}
+.det__c p{font-size:15.5px;line-height:1.72;color:var(--ink)}
+.det__c a{color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--red);word-break:break-word}
+@media(max-width:860px){.det{grid-template-columns:1fr}}
+
+/* ARCHIVE */
+.arch{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s3);margin-top:var(--s5)}
+@media(max-width:1000px){.arch{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.arch{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.arch{grid-template-columns:1fr}}
+.arch__c{position:relative;display:block;text-decoration:none;aspect-ratio:3/4;background:var(--scrim);overflow:hidden}
+.arch__c img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) brightness(.55);transition:transform .5s ease,filter .35s ease}
+.arch__c:hover img{transform:scale(1.05);filter:grayscale(0) brightness(.72)}
+.arch__t{position:absolute;left:0;right:0;bottom:0;padding:var(--s4) var(--s3) var(--s3);background:linear-gradient(180deg,rgba(6,6,8,0) 0%,rgba(6,6,8,.72) 42%,rgba(6,6,8,.97) 100%)}
+.arch__t h3{color:#fff;font-size:16px}
+.arch__t span{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#fff;opacity:.92;margin-top:5px;font-weight:500}
+
+.empty{border:1.5px dashed var(--rule);padding:var(--s5);text-align:center;margin-top:var(--s5)}
+.empty p{color:var(--muted);font-size:15.5px}
+
+.note{background:#FFF8E1;border-left:4px solid var(--red);padding:14px 20px;font-size:13px}
+.gap{background:#EEF4FF;border-left:4px solid #2A70DE;padding:14px 20px;font-size:13px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+/* ═══ DARK-CONTEXT SAFETY NET ═══════════════════════════════════════════
+   Anything on a dark ground gets light text. #DB3F48 is the brand red
+   tinted 13% toward white so small labels clear 4.5:1 on near-black;
+   true #D6222D is kept for shapes (dashes, strips, badges).
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* body text on dark */
+.sect--ink,
+.sect--ink p, .sect--ink li, .sect--ink td, .sect--ink dd, .sect--ink dt,
+.phead, .phead p,
+.feat__b, .feat__b p,
+.foot, .foot p, .foot a,
+.times__note, .hero__sub, .visit__i p{color:rgba(255,255,255,.82)}
+
+/* headings on dark */
+.sect--ink h1, .sect--ink h2, .sect--ink h3, .sect--ink h5,
+.sect--ink b, .sect--ink strong,
+.phead h1, .phead h2, .phead h3,
+.feat__b h1, .feat__b h2, .feat__b h3,
+.sect--ink .pillar__b p:first-child,
+.sect--ink .lede{color:#fff}
+
+/* small red labels on dark -> lightened red */
+.sect--ink .kicker, .phead .kicker, .feat__b .kicker,
+.sect--ink .pillar__h .sub,
+.sect--ink h4, .feat__b h4, .foot h4,
+.sect--ink .times__day, .times__day,
+.sect--ink cite,
+.meta__r h4,
+.nav__word em,
+.card__len, .player__len,
+.nav__links a:hover, .foot a:hover,
+.sect--ink a:not(.btn):hover{color:#DB3F48}
+
+/* shapes keep the true brand red */
+.sect--ink .mark::before, .phead .mark::before, .feat__b .mark::before{background:#D6222D}
+.sect--ink .strip, .phead .strip, .feat__b .strip{background:#D6222D}
+.sect--ink .strip span, .phead .strip span, .feat__b .strip span{color:#fff}
+
+/* captions over photos: white, never red — photos vary too much */
+.min__t span, .arch__t span{color:#fff;opacity:.92}
+.min__t h3, .arch__t h3{color:#fff}
+
+/* full white on solid red panels */
+.give p, .series p, .feat__date, .feat__date span{color:#fff}
+
+/* links on dark */
+.sect--ink a:not(.btn):not(.arch__c):not(.card):not(.min__c),
+.phead a:not(.btn){color:#fff}
+
+
+/* if an image fails or is slow, its ALT text inherits the img's colour —
+   on a dark tile that renders dark-on-dark. Force it light. */
+img{color:#fff;font-size:12px;font-family:'Oswald',sans-serif}
+.min__c img,.arch__c img,.card__th img,.camp__img img,.info__img img,
+.lead__ph img,.player img,.feat__img img,.hero__bg{color:#fff;background:#1A1A1F}
+
+
+/* ═══ FORCED DARK-MODE DEFENCE ═════════════════════════════════════════
+   iOS in-app browsers (Facebook, Instagram) and Chrome's "Force Dark"
+   invert page backgrounds but leave explicitly-set text colours alone —
+   turning dark-on-white into dark-on-black. Declaring the scheme and
+   pinning every light surface explicitly stops that.
+   ═════════════════════════════════════════════════════════════════════ */
+:root{color-scheme:light only}
+html,body{background-color:#FFFFFF;color:#0A0A0C;-webkit-text-size-adjust:100%}
+
+/* pin light surfaces so nothing can be silently darkened */
+.sect{background-color:#FFFFFF}
+.sect--bone{background-color:#F4F2F0}
+.modal__box{background-color:#FFFFFF}
+.reach__c,.camp__c,.det__c,.info__c,.pillar,.min__c,.lead__c{background-color:#FFFFFF}
+.note{background-color:#FFF8E1}
+.gap{background-color:#EEF4FF}
+
+/* pin dark surfaces too, so they can't be lightened */
+.sect--ink,.phead,.nav,.foot,.feat,.times,.hero,.player,.modal{background-color:#0A0A0C}
+.give,.series,.strip,.feat__date,.camp__tag,.lead__role,.nowbadge{background-color:#D6222D}
+
+/* if the OS asks for dark, we still render our own light design */
+@media (prefers-color-scheme: dark){
+  html,body{background-color:#FFFFFF;color:#0A0A0C}
+  .sect{background-color:#FFFFFF}
+  .sect--bone{background-color:#F4F2F0}
+  .modal__box{background-color:#FFFFFF}
+  .sect--ink,.phead,.nav,.foot,.feat,.times,.hero{background-color:#0A0A0C}
+  h1,h2,h3,h4{color:#0A0A0C}
+  .sect--ink h1,.sect--ink h2,.sect--ink h3,.phead h1,.phead h2,.phead h3,
+  .feat__b h1,.feat__b h2,.feat__b h3,.min__t h3,.arch__t h3{color:#FFFFFF}
+  .sect--ink p,.sect--ink li,.phead p,.feat__b p,.foot,.foot p,.foot a{color:rgba(255,255,255,.82)}
+}
+
+</style>
+</head>
+<body>
+
+<div class="note"><strong>PAGE 4 — EVENTS.</strong> Structure unchanged: upcoming events, then Previous Events. Every word is verbatim from your live Events and event-detail pages — nothing added.</div>
+
+<header class="phead"><div class="shell">
+  <div class="mark mark--l"><span class="kicker">Arise Church</span></div>
+  <h1>Events</h1>
+</div></header>
+
+<!-- FEATURED / UPCOMING -->
+<section style="padding:0"><div class="shell" style="padding-top:var(--s6)">
+  <div class="mark"><span class="kicker">Upcoming</span></div>
+</div>
+<div class="shell">
+  <div class="feat">
+    <div class="feat__img">
+      <img src="https://static.wixstatic.com/media/c3b2d0_df139d07e67d499993dc5818894f91d1~mv2.jpg" alt="Arise Church congregation worshipping with hands raised">
+      <div class="feat__date"><span class="m">Oct</span><span class="d">30</span></div>
+    </div>
+    <div class="feat__b">
+      <div class="strip" style="margin-bottom:var(--s3)"><span>Fri, Oct 30</span></div>
+      <h2>The Lead Network<br>2026 Camp Meeting:<br>The Outpour</h2>
+      <p class="feat__sub">Impartation and Activation of Spiritual Gifts by the Holy Spirit</p>
+
+      <div class="meta">
+        <div class="meta__r"><h4>Time</h4><div>Oct 30, 2026, 10:00 AM – Nov 01, 2026, 12:30 PM</div></div>
+        <div class="meta__r"><h4>Location</h4><div>Arise Church, 501 Ates Rd, Pineville, LA 71360, USA</div></div>
+      </div>
+
+      <div style="margin-top:var(--s5)"><a class="btn" href="#">RSVP</a></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- ABOUT THE EVENT -->
+<section class="sect"><div class="shell">
+  <div class="mark"><span class="kicker">About the Event</span></div>
+  <h2>Event Highlights</h2>
+  <p style="margin-top:var(--s3);font-size:clamp(17px,1.7vw,21px);line-height:1.62;max-width:50ch">Come for fresh fire and rekindle, revive, and release.</p>
+
+  <div class="det">
+    <div class="det__c">
+      <h4>Hosted By</h4>
+      <p>Apostle Bryant Sanders and Pastor Vanessa Sanders of the Lead Network and Arise Church.</p>
+    </div>
+    <div class="det__c">
+      <h4>Guest Speaker</h4>
+      <p>Pastor Keith Miller (Stand Firm World Ministries).</p>
+    </div>
+    <div class="det__c">
+      <h4>Contact</h4>
+      <p><a href="mailto:empoweredleader1@gmail.com">empoweredleader1@gmail.com</a></p>
+    </div>
+  </div>
+</div></section>
+
+<!-- PREVIOUS EVENTS -->
+<section class="sect sect--ink"><div class="shell">
+  <div class="mark mark--l"><span class="kicker">Previous Events</span></div>
+  <h2>Here You Can Check Out<br>Photos From Our Past Events</h2>
+
+  <div class="arch">
+    <a class="arch__c" href="#"><img src="https://static.wixstatic.com/media/c3b2d0_f30b31e02f5c43cd8f33555c4ab08705~mv2.jpg" alt="Photos from the Unshakeable Men's Conference"><div class="arch__t"><h3>Unshakeable Men's Conference</h3><span>Photos</span></div></a>
+    <a class="arch__c" href="#"><img src="https://static.wixstatic.com/media/1f9fa2_deb5664679744b2ab198359ec71b4c0d~mv2.jpg" alt="Photos from Women of Impact"><div class="arch__t"><h3>Women of Impact</h3><span>Photos</span></div></a>
+    <a class="arch__c" href="#"><img src="https://static.wixstatic.com/media/1f9fa2_a5448e514cc14ea08cb657e4f1a9cec4~mv2.jpg" alt="Photos from Kidz Kamp"><div class="arch__t"><h3>Kidz Kamp</h3><span>Photos</span></div></a>
+    <a class="arch__c" href="#"><img src="https://static.wixstatic.com/media/c3b2d0_1c539649f39f48cbb157d4e27efeb843~mv2.png" alt="Photos from Men's Retreat: The Covering"><div class="arch__t"><h3>Men's Retreat: The Covering</h3><span>Photos</span></div></a>
+  </div>
+
+  <div style="margin-top:var(--s5)"><a class="btn btn--onDark" href="#">See All Past Events</a></div>
+</div></section>
+
+<div class="note">
+<strong>Structure identical — four changes:</strong>
+<ul style="margin:9px 0 0 18px;line-height:1.85">
+  <li><strong>The event detail is pulled onto the main page.</strong> Right now Events shows only a title, date and one line; everything else — times, location, hosts, guest speaker, contact, highlights — sits on a second page most people never open. All of that text is already yours; it's just buried a click away.</li>
+  <li><strong>The date block is now visual.</strong> "Fri, Oct 30" as small text is easy to miss on the one event you're actually promoting.</li>
+  <li><strong>Previous Events becomes a photo grid</strong> instead of a bare sentence. Your live Previous Events page says "Here you can check out Photos from our past events!" and then shows nothing — the fourteen past event pages exist but aren't surfaced.</li>
+  <li><strong>RSVP is a real button</strong> in both the hero and the details, rather than a text link.</li>
+</ul>
+</div>
+
+<div class="gap">
+<strong>Three things I need from you.</strong>
+<ul style="margin:9px 0 0 18px;line-height:1.85">
+  <li><strong>Which past events should appear in the archive?</strong> I've placed four as examples. You have fourteen live: Kidz Kamp, Father Figure Brunch, Men's Retreat (×2), The Path (×2), Unshakeable Men's Conference, Women of Impact, Women Rising, Women's Retreat (×3 + waitlist), Thrive Lake Day, and one called "flow-1". Pick the ones worth showing.</li>
+  <li><strong>The archive needs real photos.</strong> I've used placeholders from elsewhere on your site. If you have event photo albums, those tiles should be the actual events.</li>
+  <li><strong>Is the camp meeting the only upcoming event?</strong> If more are coming, the grid handles multiples — the single event just gets the full-width feature treatment.</li>
+</ul>
+</div>
+
+</body>
+</html>

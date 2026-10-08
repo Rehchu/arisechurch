@@ -1,0 +1,248 @@
+<!--
+=============================================================================
+ARISE CHURCH - EMAIL TEMPLATES  (4 total)
+
+  A. STAFF ALERT        trigger: formSubmission   -> arisenow.church@gmail.com
+                        one template, covers all three forms
+
+  B. CONTACT reply      trigger: formReceived     -> the sender
+  C. SERVE reply        trigger: formReceived     -> the sender
+  D. PRAYER reply       trigger: formReceived     -> the sender
+
+HOW TO USE B / C / D
+The backend sends ONE trigger for the sender: formReceived, with a variable
+{{formType}} that is exactly  contact  /  serve  /  prayer .
+In the automation, branch on {{formType}} and use the matching template.
+If your builder can't branch, use template B for everything -- it's the
+general one and reads fine for all three.
+
+VARIABLES: formType, name, email, phone, subject, position, message
+
+WHY THE FONT DIFFERS FROM THE SITE
+Email clients don't load web fonts. Anton and Oswald won't render in Outlook,
+Gmail's app or Yahoo -- they'd fall back to Arial and look broken. So these use
+bold Arial with wide letterspacing to echo the site rather than imitate it.
+The red, the black, the double dashes and the red-bordered blocks all carry
+across. Tables and inline styles throughout -- flexbox and grid fail in Outlook.
+=============================================================================
+-->
+
+
+<!-- =====================================================================
+     A.  STAFF ALERT          trigger: formSubmission
+     ================================================================== -->
+
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">New {{formType}} submission from {{name}}</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f2f0;margin:0;padding:0;">
+ <tr><td align="center" style="padding:24px 12px;">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background-color:#ffffff;">
+   <tr><td style="height:6px;background-color:#D6222D;line-height:6px;font-size:0;">&nbsp;</td></tr>
+   <tr><td style="background-color:#0A0A0C;padding:28px 32px;">
+     <div style="padding-bottom:10px;">
+       <span style="display:inline-block;width:34px;height:5px;background-color:#D6222D;font-size:0;line-height:5px;">&nbsp;</span>
+       <span style="display:inline-block;width:12px;font-size:0;line-height:5px;">&nbsp;</span>
+       <span style="display:inline-block;width:34px;height:5px;background-color:#D6222D;font-size:0;line-height:5px;">&nbsp;</span>
+     </div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:#DB3F48;padding-bottom:8px;">New Submission</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:27px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#ffffff;line-height:1.15;">{{formType}} Form</div>
+   </td></tr>
+   <tr><td style="padding:32px 32px 8px 32px;">
+     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+       <tr><td width="110" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#D6222D;padding:0 0 16px 0;vertical-align:top;">Name</td>
+           <td style="font-family:Arial,Helvetica,sans-serif;font-size:16px;color:#0A0A0C;padding:0 0 16px 0;border-bottom:1px solid #e6e4e2;">{{name}}</td></tr>
+       <tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#D6222D;padding:16px 0;vertical-align:top;">Email</td>
+           <td style="font-family:Arial,Helvetica,sans-serif;font-size:16px;padding:16px 0;border-bottom:1px solid #e6e4e2;"><a href="mailto:{{email}}" style="color:#0A0A0C;">{{email}}</a></td></tr>
+       <tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#D6222D;padding:16px 0;vertical-align:top;">Phone</td>
+           <td style="font-family:Arial,Helvetica,sans-serif;font-size:16px;padding:16px 0;border-bottom:1px solid #e6e4e2;">{{phone}}</td></tr>
+       <tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#D6222D;padding:16px 0;vertical-align:top;">Subject</td>
+           <td style="font-family:Arial,Helvetica,sans-serif;font-size:16px;color:#0A0A0C;padding:16px 0;border-bottom:1px solid #e6e4e2;">{{subject}}</td></tr>
+       <tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#D6222D;padding:16px 0;vertical-align:top;">Position</td>
+           <td style="font-family:Arial,Helvetica,sans-serif;font-size:16px;color:#0A0A0C;padding:16px 0;">{{position}}</td></tr>
+     </table>
+   </td></tr>
+   <tr><td style="padding:14px 32px 32px 32px;">
+     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f2f0;border-left:5px solid #D6222D;">
+      <tr><td style="padding:22px 24px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#D6222D;padding-bottom:10px;">Message</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;color:#0A0A0C;">{{message}}</div>
+      </td></tr></table>
+   </td></tr>
+   <tr><td style="padding:0 32px 34px 32px;">
+     <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D6222D;">
+       <a href="mailto:{{email}}" style="display:inline-block;padding:15px 32px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:#ffffff;text-decoration:none;">Reply to {{name}}</a>
+     </td></tr></table>
+   </td></tr>
+   <tr><td style="background-color:#0A0A0C;padding:22px 32px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#8d8d92;line-height:1.7;">
+     Sent from the website form &middot; also saved in CMS &rsaquo; Form Submissions
+   </td></tr>
+  </table>
+ </td></tr>
+</table>
+
+
+<!-- =====================================================================
+     B.  CONTACT reply        formType = contact
+     ================================================================== -->
+
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">We got your message and someone will be in touch soon.</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f2f0;margin:0;padding:0;">
+ <tr><td align="center" style="padding:24px 12px;">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background-color:#ffffff;">
+   <tr><td style="height:6px;background-color:#D6222D;line-height:6px;font-size:0;">&nbsp;</td></tr>
+   <tr><td style="background-color:#0A0A0C;padding:40px 32px;">
+     <div style="padding-bottom:12px;">
+       <span style="display:inline-block;width:34px;height:5px;background-color:#D6222D;font-size:0;line-height:5px;">&nbsp;</span>
+       <span style="display:inline-block;width:12px;font-size:0;line-height:5px;">&nbsp;</span>
+       <span style="display:inline-block;width:34px;height:5px;background-color:#D6222D;font-size:0;line-height:5px;">&nbsp;</span>
+     </div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:#DB3F48;padding-bottom:10px;">Arise Church</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:34px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#ffffff;line-height:1.1;">We Got Your<br>Message<span style="color:#D6222D;">.</span></div>
+   </td></tr>
+   <tr><td style="padding:34px 32px 10px 32px;">
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.7;color:#0A0A0C;">Hi {{name}},</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;padding-top:16px;">Thanks for reaching out to Arise Church. We&rsquo;ve got your message and someone will get back to you soon.</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;padding-top:16px;">If you need to add anything, just reply to this email.</div>
+   </td></tr>
+   <tr><td style="padding:22px 32px 8px 32px;">
+     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f2f0;border-left:5px solid #D6222D;">
+      <tr><td style="padding:20px 24px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#D6222D;padding-bottom:9px;">What you sent</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.65;color:#4a4a4e;">{{message}}</div>
+      </td></tr></table>
+   </td></tr>
+   <tr><td style="padding:30px 32px 0 32px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;">
+     We&rsquo;d love to see you on a Sunday &mdash; and you&rsquo;re welcome exactly as you are.
+   </td></tr>
+   <tr><td style="padding:20px 32px 0 32px;">
+     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e6e4e2;border-bottom:1px solid #e6e4e2;">
+      <tr><td style="padding:18px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#0A0A0C;"><strong>Sunday Service</strong><br><span style="color:#4a4a4e;">10:30 AM &middot; both campuses</span></td>
+          <td align="right" style="padding:18px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#0A0A0C;"><strong>Glory Night</strong><br><span style="color:#4a4a4e;">Mondays 7:00 PM</span></td></tr>
+     </table>
+   </td></tr>
+   <tr><td style="padding:28px 32px 34px 32px;">
+     <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D6222D;">
+      <a href="https://www.arisecenla.church/contact" style="display:inline-block;padding:15px 32px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:#ffffff;text-decoration:none;">Plan Your Visit</a>
+     </td></tr></table>
+   </td></tr>
+   <tr><td style="background-color:#0A0A0C;padding:28px 32px;">
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#ffffff;padding-bottom:12px;">Arise Church</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#8d8d92;line-height:1.8;">501 Ates Road, Pineville, LA 71360<br>5305 North Blvd, Alexandria, LA 71301</div>
+     <div style="padding-top:16px;"><a href="https://www.arisecenla.church" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#DB3F48;text-decoration:none;">arisecenla.church</a></div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#6a6a6e;padding-top:18px;">This is an automatic confirmation &mdash; a real person will reply separately.</div>
+   </td></tr>
+  </table>
+ </td></tr>
+</table>
+
+
+<!-- =====================================================================
+     C.  SERVE reply          formType = serve
+     ================================================================== -->
+
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Thanks for signing up to serve at Arise Church.</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f2f0;margin:0;padding:0;">
+ <tr><td align="center" style="padding:24px 12px;">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background-color:#ffffff;">
+   <tr><td style="height:6px;background-color:#D6222D;line-height:6px;font-size:0;">&nbsp;</td></tr>
+   <tr><td style="background-color:#0A0A0C;padding:40px 32px;">
+     <div style="padding-bottom:12px;">
+       <span style="display:inline-block;width:34px;height:5px;background-color:#D6222D;font-size:0;line-height:5px;">&nbsp;</span>
+       <span style="display:inline-block;width:12px;font-size:0;line-height:5px;">&nbsp;</span>
+       <span style="display:inline-block;width:34px;height:5px;background-color:#D6222D;font-size:0;line-height:5px;">&nbsp;</span>
+     </div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:#DB3F48;padding-bottom:10px;">Serve With Us</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:34px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#ffffff;line-height:1.1;">Thanks For<br>Stepping Up<span style="color:#D6222D;">.</span></div>
+   </td></tr>
+   <tr><td style="padding:34px 32px 10px 32px;">
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.7;color:#0A0A0C;">Hi {{name}},</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;padding-top:16px;">We&rsquo;ve got your sign-up, and someone from that team will reach out about next steps.</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;padding-top:16px;">You don&rsquo;t need experience &mdash; just a willingness to show up. We&rsquo;ll take it from there.</div>
+   </td></tr>
+   <tr><td style="padding:22px 32px 8px 32px;">
+     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f2f0;border-left:5px solid #D6222D;">
+      <tr><td style="padding:20px 24px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#D6222D;padding-bottom:9px;">You signed up for</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:19px;font-weight:bold;color:#0A0A0C;padding-bottom:10px;">{{position}}</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.65;color:#4a4a4e;">{{message}}</div>
+      </td></tr></table>
+   </td></tr>
+   <tr><td style="padding:30px 32px 0 32px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;">
+     Questions before then? Just reply to this email.
+   </td></tr>
+   <tr><td style="padding:20px 32px 0 32px;">
+     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e6e4e2;border-bottom:1px solid #e6e4e2;">
+      <tr><td style="padding:18px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#0A0A0C;"><strong>Sunday Service</strong><br><span style="color:#4a4a4e;">10:30 AM &middot; both campuses</span></td>
+          <td align="right" style="padding:18px 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#0A0A0C;"><strong>Glory Night</strong><br><span style="color:#4a4a4e;">Mondays 7:00 PM</span></td></tr>
+     </table>
+   </td></tr>
+   <tr><td style="padding:28px 32px 34px 32px;">
+     <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D6222D;">
+      <a href="https://www.arisecenla.church/ministries" style="display:inline-block;padding:15px 32px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:#ffffff;text-decoration:none;">See All Ministries</a>
+     </td></tr></table>
+   </td></tr>
+   <tr><td style="background-color:#0A0A0C;padding:28px 32px;">
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#ffffff;padding-bottom:12px;">Arise Church</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#8d8d92;line-height:1.8;">501 Ates Road, Pineville, LA 71360<br>5305 North Blvd, Alexandria, LA 71301</div>
+     <div style="padding-top:16px;"><a href="https://www.arisecenla.church" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#DB3F48;text-decoration:none;">arisecenla.church</a></div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#6a6a6e;padding-top:18px;">This is an automatic confirmation &mdash; a real person will reply separately.</div>
+   </td></tr>
+  </table>
+ </td></tr>
+</table>
+
+
+<!-- =====================================================================
+     D.  PRAYER reply         formType = prayer
+     Deliberately quieter: no service-time push, no big CTA. Someone
+     sending a prayer request is in a different frame of mind.
+     ================================================================== -->
+
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">Our prayer team has your request.</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f2f0;margin:0;padding:0;">
+ <tr><td align="center" style="padding:24px 12px;">
+  <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background-color:#ffffff;">
+   <tr><td style="height:6px;background-color:#D6222D;line-height:6px;font-size:0;">&nbsp;</td></tr>
+   <tr><td style="background-color:#0A0A0C;padding:40px 32px;">
+     <div style="padding-bottom:12px;">
+       <span style="display:inline-block;width:34px;height:5px;background-color:#D6222D;font-size:0;line-height:5px;">&nbsp;</span>
+       <span style="display:inline-block;width:12px;font-size:0;line-height:5px;">&nbsp;</span>
+       <span style="display:inline-block;width:34px;height:5px;background-color:#D6222D;font-size:0;line-height:5px;">&nbsp;</span>
+     </div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:3px;text-transform:uppercase;color:#DB3F48;padding-bottom:10px;">Prayer Request</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:34px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#ffffff;line-height:1.1;">We&rsquo;re Praying<br>With You<span style="color:#D6222D;">.</span></div>
+   </td></tr>
+   <tr><td style="padding:34px 32px 10px 32px;">
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:1.7;color:#0A0A0C;">Hi {{name}},</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;padding-top:16px;">Thank you for trusting us with this. Our prayer team has your request, and we&rsquo;re praying.</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;padding-top:16px;">You&rsquo;re not carrying it alone.</div>
+   </td></tr>
+   <tr><td style="padding:22px 32px 8px 32px;">
+     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f4f2f0;border-left:5px solid #D6222D;">
+      <tr><td style="padding:20px 24px;">
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#D6222D;padding-bottom:9px;">Your request</div>
+        <div style="font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.65;color:#4a4a4e;">{{message}}</div>
+      </td></tr></table>
+   </td></tr>
+   <tr><td style="padding:28px 32px 0 32px;">
+     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #e6e4e2;">
+      <tr><td style="padding:22px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;">
+        If there&rsquo;s more you&rsquo;d like us to know, just reply to this email.
+      </td></tr>
+     </table>
+   </td></tr>
+   <tr><td style="padding:26px 32px 34px 32px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#4a4a4e;">
+     Corporate Prayer meets Monday to Thursday at 5:00 AM at the Main Campus.
+     You&rsquo;re welcome any morning.
+   </td></tr>
+   <tr><td style="background-color:#0A0A0C;padding:28px 32px;">
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#ffffff;padding-bottom:12px;">Arise Church</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#8d8d92;line-height:1.8;">501 Ates Road, Pineville, LA 71360</div>
+     <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#6a6a6e;padding-top:18px;">This is an automatic confirmation &mdash; a real person will reply separately.</div>
+   </td></tr>
+  </table>
+ </td></tr>
+</table>

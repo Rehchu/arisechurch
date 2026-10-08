@@ -1,0 +1,3610 @@
+[
+ {
+  "site": "live",
+  "page": "Home",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-home(2331) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 155,
+  "dcl": 391,
+  "load": 589,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2136,
+  "backend": [
+   "content.web.js/getPageContent @1567 271ms 3KB",
+   "content.web.js/getPageContent @1566 304ms 3KB",
+   "content.web.js/getHomeSettings @1844 259ms 1KB",
+   "gallery.web.js/getProjectPhotos @2106 215ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@1175",
+   "arise-home x1 last@1183",
+   "arise-footer x1 last@1173"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Content: 45 keys",
+   "Site content: 45 keys",
+   "Culture video: 1f9fa2_9140261c4e1e41a185fc58fe7f73125f",
+   "News: 1 items"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Home",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-home(2218) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 165,
+  "dcl": 433,
+  "load": 579,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 1133,
+  "backend": [
+   "content.web.js/getPageContent @1446 284ms 3KB",
+   "content.web.js/getPageContent @1444 303ms 3KB",
+   "content.web.js/getHomeSettings @1738 305ms 1KB",
+   "gallery.web.js/getProjectPhotos @2046 248ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-home x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Home: content 45 keys",
+   "Home: data-content -> #customElement1",
+   "Site content: 45 keys",
+   "Home: culture video 1f9fa2_9140261c4e1e41a185fc58fe7f73125f",
+   "Home: data-culture -> #customElement1",
+   "Home: news 1 items",
+   "Home: data-news -> #customElement1",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Home",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-home(2338) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 217,
+  "dcl": 357,
+  "load": 503,
+  "lcp": 1200,
+  "lcpTag": "div in arise-home",
+  "firstElementText": 837,
+  "backend": [
+   "content.web.js/getPageContent @1001 265ms 3KB",
+   "content.web.js/getPageContent @1002 272ms 3KB",
+   "content.web.js/getHomeSettings @1278 276ms 1KB",
+   "gallery.web.js/getProjectPhotos @1557 247ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@751",
+   "arise-home x1 last@867",
+   "arise-footer x1 last@750"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Content: 45 keys",
+   "Culture video: 1f9fa2_9140261c4e1e41a185fc58fe7f73125f",
+   "News: 1 items"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Home",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-home(2225) arise-footer(539)",
+  "exceptions": 1,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 222,
+  "dcl": 3121,
+  "load": 3216,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4114,
+  "backend": [
+   "content.web.js/getPageContent @3818 258ms 3KB",
+   "content.web.js/getPageContent @3819 276ms 3KB",
+   "content.web.js/getHomeSettings @4099 277ms 1KB",
+   "gallery.web.js/getProjectPhotos @4379 238ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3482",
+   "arise-home x1 last@3489",
+   "arise-footer x1 last@3485"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Home: content 45 keys",
+   "Home: data-content -> #customElement1",
+   "Home: culture video 1f9fa2_9140261c4e1e41a185fc58fe7f73125f",
+   "Home: data-culture -> #customElement1",
+   "Home: news 1 items",
+   "Home: data-news -> #customElement1",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Arise Church Alexandria",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-alexandria(1169) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 32,
+  "dcl": 160,
+  "load": 263,
+  "lcp": 608,
+  "lcpTag": "img in arise-alexandria",
+  "firstElementText": 573,
+  "backend": [
+   "content.web.js/getPageContent @695 281ms 3KB",
+   "content.web.js/getPageContent @696 283ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@460",
+   "arise-alexandria x2 last@1011",
+   "arise-footer x1 last@459"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Content: 45 keys",
+   "Alexandria: rendered on #customElement5"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Arise Church Alexandria",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-alexandria(1146) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 35,
+  "dcl": 2693,
+  "load": 2785,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3284,
+  "backend": [
+   "content.web.js/getPageContent @3385 278ms 3KB",
+   "content.web.js/getPageContent @3386 284ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-alexandria x1 last@4569",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Arise Church Alexandria: content 45 keys",
+   "Arise Church Alexandria: data-content -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Arise Church Alexandria",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-alexandria(1146) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 32,
+  "dcl": 2099,
+  "load": 2178,
+  "lcp": 2452,
+  "lcpTag": "img in arise-alexandria",
+  "firstElementText": 2454,
+  "backend": [
+   "content.web.js/getPageContent @2606 256ms 3KB",
+   "content.web.js/getPageContent @2605 274ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2372",
+   "arise-alexandria x1 last@2374",
+   "arise-footer x1 last@2368"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Arise Church Alexandria: content 45 keys",
+   "Arise Church Alexandria: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Arise Church Alexandria",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-alexandria(1169) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 3,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 2777,
+  "load": 2856,
+  "lcp": 4500,
+  "lcpTag": "img in arise-alexandria",
+  "firstElementText": 4422,
+  "backend": [
+   "content.web.js/getPageContent @3739 348ms 3KB",
+   "content.web.js/getPageContent @3738 369ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@4534",
+   "arise-alexandria x1 last@4461",
+   "arise-footer x1 last@4399"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Failed to load resource: the server responded with a status of 429 () https://sentry-next.wixpress.com/api/68/store/?sentry_key=605a7baede844d278b89dc95ae0a9123&sentry_version=7",
+   "Content: 45 keys",
+   "Alexandria: rendered on #customElement5",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Connect Groups",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-connect(1581) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 38,
+  "dcl": 130,
+  "load": 211,
+  "lcp": 432,
+  "lcpTag": "p in arise-footer",
+  "firstElementText": 461,
+  "backend": [
+   "content.web.js/getPageContent @728 268ms 3KB",
+   "content.web.js/getPageContent @728 280ms 3KB",
+   "content.web.js/getConnectGroups @1006 290ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@400",
+   "arise-connect x1 last@2316",
+   "arise-footer x1 last@397"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Connect Groups: content 45 keys",
+   "Connect Groups: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Connect Groups: 0 groups",
+   "Connect Groups: data-groups -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Connect Groups",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-connect(1619) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 35,
+  "dcl": 141,
+  "load": 228,
+  "lcp": 580,
+  "lcpTag": "h1 in arise-connect",
+  "firstElementText": 577,
+  "backend": [
+   "content.web.js/getPageContent @687 274ms 3KB",
+   "content.web.js/getPageContent @688 362ms 3KB",
+   "content.web.js/getConnectGroups @1054 317ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@460",
+   "arise-connect x1 last@537",
+   "arise-footer x1 last@459"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Content: 45 keys",
+   "Connect Groups: 0"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Connect Groups",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-connect(1619) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 26,
+  "dcl": 142,
+  "load": 223,
+  "lcp": 512,
+  "lcpTag": "h1 in arise-connect",
+  "firstElementText": 484,
+  "backend": [
+   "content.web.js/getPageContent @634 242ms 3KB",
+   "content.web.js/getPageContent @634 291ms 3KB",
+   "content.web.js/getConnectGroups @879 248ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@431",
+   "arise-connect x1 last@433",
+   "arise-footer x1 last@432"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Content: 45 keys",
+   "Site content: 45 keys",
+   "Connect Groups: 0"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Connect Groups",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-connect(1581) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 32,
+  "dcl": 2610,
+  "load": 2691,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3242,
+  "backend": [
+   "content.web.js/getPageContent @3256 252ms 3KB",
+   "content.web.js/getPageContent @3257 319ms 3KB",
+   "content.web.js/getConnectGroups @3582 279ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-connect x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Connect Groups: content 45 keys",
+   "Connect Groups: data-content -> #customElement5",
+   "Connect Groups: 0 groups",
+   "Connect Groups: data-groups -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Creative Arts",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(629) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 37,
+  "dcl": 145,
+  "load": 234,
+  "lcp": 500,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 473,
+  "backend": [
+   "content.web.js/getPageContent @636 344ms 3KB",
+   "content.web.js/getPageContent @636 394ms 3KB",
+   "content.web.js/getCreatives @1033 514ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@441",
+   "arise-creatives x1 last@484",
+   "arise-footer x1 last@417"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creative Arts: content 45 keys",
+   "Creative Arts: data-content -> #customElement5",
+   "Creative Arts: 6 departments, 14 members",
+   "Creative Arts: data-depts -> #customElement5",
+   "Creative Arts: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Creative Arts",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(629) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 27,
+  "dcl": 128,
+  "load": 226,
+  "lcp": 520,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 459,
+  "backend": [
+   "content.web.js/getPageContent @697 274ms 3KB",
+   "content.web.js/getPageContent @696 288ms 3KB",
+   "content.web.js/getCreatives @972 326ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@423",
+   "arise-creatives x1 last@493",
+   "arise-footer x1 last@418"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members",
+   "Creatives: rendered on #customElement5"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Creative Arts",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(629) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 39,
+  "dcl": 3216,
+  "load": 3800,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4102,
+  "backend": [
+   "content.web.js/getPageContent @4192 287ms 3KB",
+   "content.web.js/getPageContent @4190 299ms 3KB",
+   "content.web.js/getCreatives @4487 345ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3745",
+   "arise-creatives x1 last@3751",
+   "arise-footer x1 last@3748"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Creative Arts: content 45 keys",
+   "Creative Arts: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Creative Arts: 6 departments, 14 members",
+   "Creative Arts: data-depts -> #customElement5",
+   "Creative Arts: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Creative Arts",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(629) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 32,
+  "dcl": 2720,
+  "load": 2877,
+  "lcp": 3216,
+  "lcpTag": "p in arise-creatives",
+  "firstElementText": 3185,
+  "backend": [
+   "content.web.js/getPageContent @3424 247ms 3KB",
+   "content.web.js/getPageContent @3423 256ms 3KB",
+   "content.web.js/getCreatives @3674 314ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3127",
+   "arise-creatives x1 last@3130",
+   "arise-footer x1 last@3128"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members",
+   "Creatives: rendered on #customElement5"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Praise and Worship",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(447) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 30,
+  "dcl": 136,
+  "load": 243,
+  "lcp": 484,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 470,
+  "backend": [
+   "content.web.js/getPageContent @709 265ms 3KB",
+   "content.web.js/getPageContent @709 299ms 3KB",
+   "content.web.js/getCreatives @1012 343ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@423",
+   "arise-creatives x1 last@424",
+   "arise-footer x1 last@420"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Praise and Worship: content 45 keys",
+   "Praise and Worship: data-content -> #customElement5",
+   "Praise and Worship: 6 departments, 14 members",
+   "Praise and Worship: data-depts -> #customElement5",
+   "Praise and Worship: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Praise and Worship",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(262) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 29,
+  "dcl": 164,
+  "load": 305,
+  "lcp": 584,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 579,
+  "backend": [
+   "content.web.js/getPageContent @750 268ms 3KB",
+   "content.web.js/getPageContent @750 267ms 3KB",
+   "content.web.js/getCreatives @1020 345ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@498",
+   "arise-creatives x1 last@544",
+   "arise-footer x1 last@494"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Praise and Worship",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(262) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 28,
+  "dcl": 3610,
+  "load": 3916,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4468,
+  "backend": [
+   "content.web.js/getPageContent @4746 251ms 3KB",
+   "content.web.js/getPageContent @4748 250ms 3KB",
+   "content.web.js/getCreatives @5003 306ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@4316",
+   "arise-creatives x1 last@4351",
+   "arise-footer x1 last@4348"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Musicians",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(323) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 204,
+  "load": 368,
+  "lcp": 784,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 771,
+  "backend": [
+   "content.web.js/getPageContent @1039 271ms 3KB",
+   "content.web.js/getPageContent @1040 293ms 3KB",
+   "content.web.js/getCreatives @1338 407ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@710",
+   "arise-creatives x1 last@712",
+   "arise-footer x1 last@709"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Musicians: content 45 keys",
+   "Musicians: data-content -> #customElement5",
+   "Musicians: 6 departments, 14 members",
+   "Musicians: data-depts -> #customElement5",
+   "Musicians: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Praise and Worship",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(447) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 2594,
+  "load": 2692,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3446,
+  "backend": [
+   "content.web.js/getPageContent @3561 258ms 3KB",
+   "content.web.js/getPageContent @3638 327ms 3KB",
+   "content.web.js/getCreatives @3973 342ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Praise and Worship: content 45 keys",
+   "Praise and Worship: data-content -> #customElement5",
+   "Praise and Worship: 6 departments, 14 members",
+   "Praise and Worship: data-depts -> #customElement5",
+   "Praise and Worship: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Musicians",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(257) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 148,
+  "load": 264,
+  "lcp": 508,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 495,
+  "backend": [
+   "content.web.js/getPageContent @800 252ms 3KB",
+   "content.web.js/getPageContent @799 253ms 3KB",
+   "content.web.js/getCreatives @1054 295ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@446",
+   "arise-creatives x1 last@448",
+   "arise-footer x1 last@444"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Production",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(335) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 136,
+  "load": 224,
+  "lcp": 480,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 468,
+  "backend": [
+   "content.web.js/getPageContent @745 258ms 3KB",
+   "content.web.js/getPageContent @746 271ms 3KB",
+   "content.web.js/getCreatives @1023 350ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@415",
+   "arise-creatives x1 last@416",
+   "arise-footer x1 last@412"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Production: content 45 keys",
+   "Production: data-content -> #customElement5",
+   "Production: 6 departments, 14 members",
+   "Production: data-depts -> #customElement5",
+   "Production: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Production",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(258) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 141,
+  "load": 230,
+  "lcp": 472,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 454,
+  "backend": [
+   "content.web.js/getPageContent @751 291ms 3KB",
+   "content.web.js/getPageContent @751 315ms 3KB",
+   "content.web.js/getCreatives @1045 343ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@411",
+   "arise-creatives x1 last@413",
+   "arise-footer x1 last@410"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Musicians",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(257) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 32,
+  "dcl": 2787,
+  "load": 2891,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4014,
+  "backend": [
+   "content.web.js/getPageContent @3467 242ms 3KB",
+   "content.web.js/getPageContent @3468 261ms 3KB",
+   "content.web.js/getCreatives @3735 329ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3119",
+   "arise-creatives x1 last@3122",
+   "arise-footer x1 last@3120"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Musicians",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(323) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 35,
+  "dcl": 2589,
+  "load": 2705,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3047,
+  "backend": [
+   "content.web.js/getPageContent @3254 273ms 3KB",
+   "content.web.js/getPageContent @3256 280ms 3KB",
+   "content.web.js/getCreatives @3544 369ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Musicians: content 45 keys",
+   "Musicians: data-content -> #customElement5",
+   "Musicians: 6 departments, 14 members",
+   "Musicians: data-depts -> #customElement5",
+   "Musicians: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Sound",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(253) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 32,
+  "dcl": 162,
+  "load": 339,
+  "lcp": 748,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 788,
+  "backend": [
+   "content.web.js/getPageContent @977 256ms 3KB",
+   "content.web.js/getPageContent @978 259ms 3KB",
+   "content.web.js/getCreatives @1240 346ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@689",
+   "arise-creatives x1 last@691",
+   "arise-footer x1 last@687"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Sound",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(288) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 35,
+  "dcl": 2709,
+  "load": 2789,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3366,
+  "backend": [
+   "content.web.js/getPageContent @3476 285ms 3KB",
+   "content.web.js/getPageContent @3476 295ms 3KB",
+   "content.web.js/getCreatives @3777 377ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Sound: content 45 keys",
+   "Sound: data-content -> #customElement5",
+   "Sound: 6 departments, 14 members",
+   "Sound: data-depts -> #customElement5",
+   "Sound: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Production",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(335) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 2773,
+  "load": 2915,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3573,
+  "backend": [
+   "content.web.js/getPageContent @3747 266ms 3KB",
+   "content.web.js/getPageContent @3746 281ms 3KB",
+   "content.web.js/getCreatives @4030 340ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Production: content 45 keys",
+   "Production: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Production: 6 departments, 14 members",
+   "Production: data-depts -> #customElement5",
+   "Production: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Production",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(258) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 3,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 27,
+  "dcl": 2747,
+  "load": 4467,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3562,
+  "backend": [
+   "content.web.js/getPageContent @3844 260ms 3KB",
+   "content.web.js/getPageContent @3845 294ms 3KB",
+   "content.web.js/getCreatives @4141 335ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x1 last@4466",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Failed to load resource: the server responded with a status of 429 () https://sentry-next.wixpress.com/api/68/store/?sentry_key=605a7baede844d278b89dc95ae0a9123&sentry_version=7",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Media",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(258) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 25,
+  "dcl": 130,
+  "load": 214,
+  "lcp": 460,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 458,
+  "backend": [
+   "content.web.js/getPageContent @623 245ms 3KB",
+   "content.web.js/getPageContent @622 282ms 3KB",
+   "content.web.js/getCreatives @869 325ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@400",
+   "arise-creatives x1 last@401",
+   "arise-footer x1 last@398"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Sound",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(288) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 2630,
+  "load": 2702,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3546,
+  "backend": [
+   "content.web.js/getPageContent @3242 286ms 3KB",
+   "content.web.js/getPageContent @3242 297ms 3KB",
+   "content.web.js/getCreatives @3546 356ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2920",
+   "arise-creatives x1 last@2925",
+   "arise-footer x1 last@2922"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Sound: content 45 keys",
+   "Sound: data-content -> #customElement5",
+   "Sound: 6 departments, 14 members",
+   "Sound: data-depts -> #customElement5",
+   "Sound: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Media",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(312) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 2920,
+  "load": 2992,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3565,
+  "backend": [
+   "content.web.js/getPageContent @3611 250ms 3KB",
+   "content.web.js/getPageContent @3610 261ms 3KB",
+   "content.web.js/getCreatives @3869 406ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Media: content 45 keys",
+   "Media: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Media: 6 departments, 14 members",
+   "Media: data-depts -> #customElement5",
+   "Media: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Sound",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(253) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 26,
+  "dcl": 3250,
+  "load": 3317,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3776,
+  "backend": [
+   "content.web.js/getPageContent @3837 261ms 3KB",
+   "content.web.js/getPageContent @3838 273ms 3KB",
+   "content.web.js/getCreatives @4114 365ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Social Media and Content",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(255) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 28,
+  "dcl": 156,
+  "load": 261,
+  "lcp": 560,
+  "lcpTag": "h1 in arise-creatives",
+  "firstElementText": 557,
+  "backend": [
+   "content.web.js/getPageContent @808 262ms 3KB",
+   "content.web.js/getPageContent @808 360ms 3KB",
+   "content.web.js/getCreatives @1169 347ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@513",
+   "arise-creatives x1 last@515",
+   "arise-footer x1 last@491"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Social Media and Content",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-creatives(380) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 39,
+  "dcl": 197,
+  "load": 349,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 791,
+  "backend": [
+   "content.web.js/getPageContent @953 270ms 3KB",
+   "content.web.js/getPageContent @952 283ms 3KB",
+   "content.web.js/getCreatives @1262 352ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Social Media and Content: content 45 keys",
+   "Social Media and Content: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Social Media and Content: 6 departments, 14 members",
+   "Social Media and Content: data-depts -> #customElement5",
+   "Social Media and Content: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Media",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(312) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 35,
+  "dcl": 2148,
+  "load": 2313,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3056,
+  "backend": [
+   "content.web.js/getPageContent @2865 298ms 3KB",
+   "content.web.js/getPageContent @2866 319ms 3KB",
+   "content.web.js/getCreatives @3192 605ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Media: content 45 keys",
+   "Media: data-content -> #customElement5",
+   "Media: 6 departments, 14 members",
+   "Media: data-depts -> #customElement5",
+   "Media: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Media",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(258) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 25,
+  "dcl": 2939,
+  "load": 3054,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4129,
+  "backend": [
+   "content.web.js/getPageContent @3642 247ms 3KB",
+   "content.web.js/getPageContent @3641 255ms 3KB",
+   "content.web.js/getCreatives @3892 318ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3313",
+   "arise-creatives x1 last@3317",
+   "arise-footer x1 last@3315"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Classes",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-classes(368) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 135,
+  "load": 246,
+  "lcp": 596,
+  "lcpTag": "h1 in arise-classes",
+  "firstElementText": 476,
+  "backend": [
+   "content.web.js/getPageContent @628 242ms 3KB",
+   "content.web.js/getPageContent @628 277ms 3KB",
+   "classes.web.js/getPrograms @873 244ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@439",
+   "arise-classes x1 last@565",
+   "arise-footer x1 last@438"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Classes: 0 programs"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Classes",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-classes(368) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 37,
+  "dcl": 2737,
+  "load": 2823,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4014,
+  "backend": [
+   "content.web.js/getPageContent @3464 278ms 3KB",
+   "content.web.js/getPageContent @3462 334ms 3KB",
+   "classes.web.js/getPrograms @3751 222ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3069",
+   "arise-classes x1 last@4713",
+   "arise-footer x1 last@3067"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Classes: content 45 keys",
+   "Classes: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Classes: 0 programs",
+   "Classes: data-classes -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Social Media and Content",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(255) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 25,
+  "dcl": 2486,
+  "load": 2563,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3006,
+  "backend": [
+   "content.web.js/getPageContent @3132 305ms 3KB",
+   "content.web.js/getPageContent @3131 331ms 3KB",
+   "content.web.js/getCreatives @3441 350ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-creatives x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Creatives: 6 departments, 14 members"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Social Media and Content",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-creatives(380) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 4363,
+  "load": 4432,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 5208,
+  "backend": [
+   "content.web.js/getPageContent @5060 265ms 3KB",
+   "content.web.js/getPageContent @5061 319ms 3KB",
+   "content.web.js/getCreatives @5390 379ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@4738",
+   "arise-creatives x1 last@4742",
+   "arise-footer x1 last@4740"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Social Media and Content: content 45 keys",
+   "Social Media and Content: data-content -> #customElement5",
+   "Social Media and Content: 6 departments, 14 members",
+   "Social Media and Content: data-depts -> #customElement5",
+   "Social Media and Content: data-members -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Classes",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-classes(368) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 37,
+  "dcl": 3019,
+  "load": 3133,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3921,
+  "backend": [
+   "content.web.js/getPageContent @3913 382ms 3KB",
+   "classes.web.js/getPrograms @4300 216ms 1KB",
+   "content.web.js/getPageContent @3912 2996ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-classes x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Classes: content 45 keys",
+   "Classes: data-content -> #customElement5",
+   "Classes: 0 programs",
+   "Classes: data-classes -> #customElement5",
+   "Site content: 45 keys",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Past Sermons",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-sermons(802) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 132,
+  "load": 252,
+  "lcp": 604,
+  "lcpTag": "h1 in arise-sermons",
+  "firstElementText": 586,
+  "backend": [
+   "content.web.js/getPageContent @758 302ms 3KB",
+   "youtube.jsw/getLatestShorts @807 1629ms 1KB",
+   "youtube.jsw/getLiveVideoId @2438 804ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@531",
+   "arise-sermons x1 last@537",
+   "arise-footer x1 last@530"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Past Sermons: data-series-title -> #customElement1",
+   "Past Sermons: data-series-line -> #customElement1",
+   "Past Sermons: data-series-link -> #customElement1",
+   "Past Sermons: data-series-button -> #customElement1",
+   "Past Sermons: data-series-active -> #customElement1",
+   "Past Sermons: series band \"The Kingdom\"",
+   "Site content: 45 keys",
+   "Past Sermons: 8 newest Shorts",
+   "Past Sermons: data-clips -> #customElement1",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Past Sermons",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-sermons(1918) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 3,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 167,
+  "load": 282,
+  "lcp": 584,
+  "lcpTag": "h1 in arise-sermons",
+  "firstElementText": 575,
+  "backend": [
+   "content.web.js/getPageContent @722 302ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@534",
+   "arise-sermons x1 last@539",
+   "arise-footer x1 last@501"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Sermons: custom element #customElement1 not found.",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Classes",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-classes(368) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 24,
+  "dcl": 2802,
+  "load": 2883,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3886,
+  "backend": [
+   "content.web.js/getPageContent @3510 769ms 3KB",
+   "content.web.js/getPageContent @3512 770ms 3KB",
+   "classes.web.js/getPrograms @4291 235ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-classes x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Classes: 0 programs"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Ministries",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-ministries(461) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 29,
+  "dcl": 184,
+  "load": 312,
+  "lcp": 696,
+  "lcpTag": "img in arise-ministries",
+  "firstElementText": 587,
+  "backend": [
+   "content.web.js/getPageContent @767 260ms 3KB",
+   "content.web.js/getMinistries @768 274ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@510",
+   "arise-ministries x1 last@607",
+   "arise-footer x1 last@509"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Ministries: 9",
+   "Ministries: rendered"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Ministries",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-ministries(468) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 38,
+  "dcl": 182,
+  "load": 374,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 1161,
+  "backend": [
+   "content.web.js/getMinistries @1123 238ms 1KB",
+   "content.web.js/getPageContent @1122 318ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-ministries x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Ministries: 9 ministries",
+   "Ministries: data-ministries -> #customElement1",
+   "Site content: 45 keys",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Past Sermons",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-sermons(1918) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 3,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 26,
+  "dcl": 181,
+  "load": 391,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 1416,
+  "backend": [
+   "content.web.js/getPageContent @1066 273ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-sermons x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Sermons: custom element #customElement1 not found.",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Past Sermons",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-sermons(802) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 1959,
+  "load": 2038,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2447,
+  "backend": [
+   "content.web.js/getPageContent @2611 315ms 3KB",
+   "youtube.jsw/getLatestShorts @2790 200ms 1KB",
+   "youtube.jsw/getLiveVideoId @2992 196ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-sermons x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Past Sermons: data-series-title -> #customElement1",
+   "Past Sermons: data-series-line -> #customElement1",
+   "Past Sermons: data-series-link -> #customElement1",
+   "Past Sermons: data-series-button -> #customElement1",
+   "Past Sermons: data-series-active -> #customElement1",
+   "Past Sermons: series band \"The Kingdom\"",
+   "Site content: 45 keys",
+   "Past Sermons: 8 newest Shorts",
+   "Past Sermons: data-clips -> #customElement1",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Ministries",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-ministries(461) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 145,
+  "load": 225,
+  "lcp": 536,
+  "lcpTag": "img in arise-ministries",
+  "firstElementText": 564,
+  "backend": [
+   "content.web.js/getPageContent @641 280ms 3KB",
+   "content.web.js/getMinistries @641 293ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@455",
+   "arise-ministries x1 last@489",
+   "arise-footer x1 last@467"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Ministries: 9",
+   "Ministries: rendered"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Ministries",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-ministries(468) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 30,
+  "dcl": 2431,
+  "load": 2544,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3949,
+  "backend": [
+   "content.web.js/getMinistries @3361 273ms 1KB",
+   "content.web.js/getPageContent @3360 286ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3054",
+   "arise-ministries x1 last@3058",
+   "arise-footer x1 last@3050"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Ministries: 9 ministries",
+   "Ministries: data-ministries -> #customElement1",
+   "Site content: 45 keys",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Events",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-events(740) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 39,
+  "dcl": 2585,
+  "load": 2695,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3017,
+  "backend": [
+   "content.web.js/getPageContent @3349 266ms 3KB",
+   "events.web.js/getEvents @3350 365ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-events x1 last@4568",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Events: 1 upcoming, 8 past",
+   "Events: data-events -> #customElement1",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Events",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-events(712) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 24,
+  "dcl": 4627,
+  "load": 4706,
+  "lcp": 5000,
+  "lcpTag": "img in arise-events",
+  "firstElementText": 4953,
+  "backend": [
+   "content.web.js/getPageContent @5072 267ms 3KB",
+   "events.web.js/getEvents @5072 400ms 2KB"
+  ],
+  "renders": [
+   "arise-header x1 last@4890",
+   "arise-events x1 last@4954",
+   "arise-footer x1 last@4889"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Events: 1 upcoming, 8 past",
+   "Events: rendered"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Events",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-events(740) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 90,
+  "dcl": 2288,
+  "load": 2386,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3200,
+  "backend": [
+   "content.web.js/getPageContent @3036 304ms 3KB",
+   "events.web.js/getEvents @3037 415ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2680",
+   "arise-events x1 last@2686",
+   "arise-footer x1 last@2682"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Events: 1 upcoming, 8 past",
+   "Events: data-events -> #customElement1",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Contact",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-contact(656) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 2560,
+  "load": 2652,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3013,
+  "backend": [
+   "content.web.js/getPageContent @3416 265ms 3KB",
+   "content.web.js/getPageContent @3417 279ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2986",
+   "arise-contact x1 last@4741",
+   "arise-footer x1 last@2983"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Contact: content 45 keys",
+   "Contact: data-content -> #customElement1",
+   "Site content -> #customElement1, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Contact",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-contact(681) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": true,
+  "ttfb": 24,
+  "dcl": 153,
+  "load": 251,
+  "lcp": 564,
+  "lcpTag": "h2 in arise-contact",
+  "firstElementText": 562,
+  "backend": [
+   "content.web.js/getPageContent @677 254ms 3KB",
+   "content.web.js/getPageContent @678 269ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@466",
+   "arise-contact x1 last@503",
+   "arise-footer x1 last@465"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Content: 45 keys",
+   "Contact: rendered on #customElement1"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Events",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-events(712) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 26,
+  "dcl": 2513,
+  "load": 2586,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3755,
+  "backend": [
+   "content.web.js/getPageContent @3176 267ms 3KB",
+   "events.web.js/getEvents @3178 373ms 2KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2854",
+   "arise-events x1 last@2859",
+   "arise-footer x1 last@2856"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Events: 1 upcoming, 8 past",
+   "Events: rendered"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Sign Up to Serve",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-serve(843) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 139,
+  "load": 224,
+  "lcp": 540,
+  "lcpTag": "p in arise-serve",
+  "firstElementText": 462,
+  "backend": [
+   "content.web.js/getPageContent @642 261ms 3KB",
+   "content.web.js/getPageContent @642 264ms 3KB",
+   "content.web.js/getServePositions @905 257ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@454",
+   "arise-serve x1 last@491",
+   "arise-footer x1 last@453"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Serve: 7 positions"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Contact",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-contact(681) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": true,
+  "ttfb": 37,
+  "dcl": 199,
+  "load": 271,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 845,
+  "backend": [
+   "content.web.js/getPageContent @884 285ms 3KB",
+   "content.web.js/getPageContent @882 313ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-contact x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Content: 45 keys",
+   "Contact: rendered on #customElement1",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Sign Up to Serve",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-serve(1175) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 41,
+  "dcl": 2538,
+  "load": 2601,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3846,
+  "backend": [
+   "content.web.js/getPageContent @3302 277ms 3KB",
+   "content.web.js/getPageContent @3303 296ms 3KB",
+   "content.web.js/getServePositions @3608 286ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2909",
+   "arise-serve x1 last@4612",
+   "arise-footer x1 last@2907"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Sign Up to Serve!: content 45 keys",
+   "Sign Up to Serve!: data-content -> #customElement5",
+   "Sign Up to Serve!: 7 positions",
+   "Sign Up to Serve!: data-positions -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Contact",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-contact(656) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 2454,
+  "load": 2529,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3837,
+  "backend": [
+   "content.web.js/getPageContent @3136 291ms 3KB",
+   "content.web.js/getPageContent @3136 316ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-contact x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Contact: content 45 keys",
+   "Contact: data-content -> #customElement1",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Sign Up to Serve",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-serve(843) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 29,
+  "dcl": 147,
+  "load": 235,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2055,
+  "backend": [
+   "content.web.js/getPageContent @1931 264ms 3KB",
+   "content.web.js/getPageContent @1932 268ms 3KB",
+   "content.web.js/getServePositions @2206 619ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@1637",
+   "arise-serve x1 last@1642",
+   "arise-footer x1 last@1639"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Serve: 7 positions"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Meet our Leaders",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-leaders(1495) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": true,
+  "ttfb": 33,
+  "dcl": 167,
+  "load": 291,
+  "lcp": 724,
+  "lcpTag": "p in arise-leaders",
+  "firstElementText": 670,
+  "backend": [
+   "content.web.js/getLeaders @872 292ms 2KB",
+   "content.web.js/getPageContent @871 393ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@667",
+   "arise-leaders x1 last@669",
+   "arise-footer x1 last@635"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Leaders: 7",
+   "Leaders: rendered",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Meet our Leaders",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-leaders(1502) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": true,
+  "ttfb": 34,
+  "dcl": 2433,
+  "load": 2602,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3419,
+  "backend": [
+   "content.web.js/getLeaders @3332 299ms 2KB",
+   "content.web.js/getPageContent @3331 426ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2833",
+   "arise-leaders x1 last@4452",
+   "arise-footer x1 last@2830"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Meet our Leaders: 7 leaders",
+   "Meet our Leaders: data-leaders -> #customElement1",
+   "Site content: 45 keys",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Sign Up to Serve",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-serve(1175) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 2849,
+  "load": 2946,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 4220,
+  "backend": [
+   "content.web.js/getPageContent @3640 277ms 3KB",
+   "content.web.js/getPageContent @3639 292ms 3KB",
+   "content.web.js/getServePositions @3926 310ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3235",
+   "arise-serve x1 last@3240",
+   "arise-footer x1 last@3237"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Sign Up to Serve!: content 45 keys",
+   "Sign Up to Serve!: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Sign Up to Serve!: 7 positions",
+   "Sign Up to Serve!: data-positions -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Children's Ministry",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-childrens(445) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 42,
+  "dcl": 2678,
+  "load": 2795,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3466,
+  "backend": [
+   "content.web.js/getPageContent @3464 283ms 3KB",
+   "content.web.js/getPageContent @3465 313ms 3KB",
+   "gallery.web.js/getProjectPhotos @3782 278ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-childrens x1 last@4643",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Children's Ministry: content 45 keys",
+   "Children's Ministry: data-content -> #customElement5",
+   "Children's Ministry: gallery 0 items",
+   "Children's Ministry: data-photos -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Meet our Leaders",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-leaders(1502) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": true,
+  "ttfb": 36,
+  "dcl": 1957,
+  "load": 2011,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2831,
+  "backend": [
+   "content.web.js/getPageContent @2612 268ms 3KB",
+   "content.web.js/getLeaders @2614 275ms 2KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2282",
+   "arise-leaders x1 last@2288",
+   "arise-footer x1 last@2285"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Meet our Leaders: 7 leaders",
+   "Meet our Leaders: data-leaders -> #customElement1",
+   "Site content -> #customElement1, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Children's Ministry",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-childrens(438) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 28,
+  "dcl": 3163,
+  "load": 3243,
+  "lcp": 11280,
+  "lcpTag": "img in arise-childrens",
+  "firstElementText": 3519,
+  "backend": [
+   "content.web.js/getPageContent @3700 240ms 3KB",
+   "content.web.js/getPageContent @3699 332ms 3KB",
+   "gallery.web.js/getProjectPhotos @3942 230ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@3489",
+   "arise-childrens x1 last@3521",
+   "arise-footer x1 last@3486"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Content: 45 keys",
+   "Site content: 45 keys",
+   "Gallery: 0 items"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Meet our Leaders",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-leaders(1495) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": true,
+  "ttfb": 32,
+  "dcl": 2254,
+  "load": 2335,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2791,
+  "backend": [
+   "content.web.js/getPageContent @2941 278ms 3KB",
+   "content.web.js/getLeaders @2942 317ms 2KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-leaders x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Leaders: 7",
+   "Leaders: rendered"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Children's Ministry",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-childrens(438) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 26,
+  "dcl": 144,
+  "load": 219,
+  "lcp": 604,
+  "lcpTag": "img in arise-childrens",
+  "firstElementText": 565,
+  "backend": [
+   "content.web.js/getPageContent @699 266ms 3KB",
+   "content.web.js/getPageContent @700 292ms 3KB",
+   "gallery.web.js/getProjectPhotos @995 244ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@475",
+   "arise-childrens x1 last@499",
+   "arise-footer x1 last@497"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Content: 45 keys",
+   "Gallery: 0 items"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Youth Ministry",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-youth(313) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 164,
+  "load": 252,
+  "lcp": 640,
+  "lcpTag": "img in arise-youth",
+  "firstElementText": 571,
+  "backend": [
+   "content.web.js/getPageContent @695 256ms 3KB",
+   "content.web.js/getPageContent @694 262ms 3KB",
+   "gallery.web.js/getProjectPhotos @953 206ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@479",
+   "arise-youth x1 last@531",
+   "arise-footer x1 last@478"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Content: 45 keys",
+   "Site content: 45 keys",
+   "Gallery: 0 items"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Children's Ministry",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-childrens(445) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 33,
+  "dcl": 2461,
+  "load": 2601,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3357,
+  "backend": [
+   "content.web.js/getPageContent @3234 257ms 3KB",
+   "content.web.js/getPageContent @3233 298ms 3KB",
+   "gallery.web.js/getProjectPhotos @3499 230ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-childrens x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Children's Ministry: content 45 keys",
+   "Children's Ministry: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Children's Ministry: gallery 0 items",
+   "Children's Ministry: data-photos -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Youth Ministry",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-youth(320) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 2407,
+  "load": 2478,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2919,
+  "backend": [
+   "content.web.js/getPageContent @3148 257ms 3KB",
+   "content.web.js/getPageContent @3146 272ms 3KB",
+   "gallery.web.js/getProjectPhotos @3414 238ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-youth x1 last@4438",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Youth Ministry: content 45 keys",
+   "Youth Ministry: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Youth Ministry: gallery 0 items",
+   "Youth Ministry: data-photos -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Youth Ministry",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-youth(320) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 2207,
+  "load": 2320,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3383,
+  "backend": [
+   "content.web.js/getPageContent @2943 278ms 3KB",
+   "content.web.js/getPageContent @2944 279ms 3KB",
+   "gallery.web.js/getProjectPhotos @3236 225ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2602",
+   "arise-youth x1 last@2606",
+   "arise-footer x1 last@2603"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Youth Ministry: content 45 keys",
+   "Youth Ministry: data-content -> #customElement5",
+   "Youth Ministry: gallery 0 items",
+   "Youth Ministry: data-photos -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Outreach",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-outreach(1077) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 26,
+  "dcl": 130,
+  "load": 246,
+  "lcp": 592,
+  "lcpTag": "video in arise-outreach",
+  "firstElementText": 452,
+  "backend": [
+   "content.web.js/getPageContent @646 244ms 3KB",
+   "content.web.js/getPageContent @645 381ms 3KB",
+   "gallery.web.js/getProjectPhotos @891 216ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@448",
+   "arise-outreach x1 last@512",
+   "arise-footer x1 last@446"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Content: 45 keys",
+   "Site content: 45 keys",
+   "Gallery: 0 items"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Youth Ministry",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-youth(313) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 27,
+  "dcl": 2146,
+  "load": 2310,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3286,
+  "backend": [
+   "content.web.js/getPageContent @3252 282ms 3KB",
+   "content.web.js/getPageContent @3253 291ms 3KB",
+   "gallery.web.js/getProjectPhotos @3549 310ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2658",
+   "arise-youth x1 last@2663",
+   "arise-footer x1 last@2660"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Content: 45 keys",
+   "Gallery: 0 items"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Outreach",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-outreach(1077) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 2981,
+  "load": 3062,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 6548,
+  "backend": [
+   "content.web.js/getPageContent @6024 259ms 3KB",
+   "content.web.js/getPageContent @6025 266ms 3KB",
+   "gallery.web.js/getProjectPhotos @6301 227ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@5588",
+   "arise-outreach x1 last@7271",
+   "arise-footer x1 last@5586"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Outreach: content 45 keys",
+   "Outreach: data-content -> #customElement5",
+   "Outreach: gallery 0 items",
+   "Outreach: data-photos -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Outreach",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-outreach(1077) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 27,
+  "dcl": 134,
+  "load": 207,
+  "lcp": 544,
+  "lcpTag": "video in arise-outreach",
+  "firstElementText": 452,
+  "backend": [
+   "content.web.js/getPageContent @650 265ms 3KB",
+   "content.web.js/getPageContent @651 282ms 3KB",
+   "gallery.web.js/getProjectPhotos @936 242ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@450",
+   "arise-outreach x1 last@479",
+   "arise-footer x1 last@452"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Content: 45 keys",
+   "Gallery: 0 items"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Lead Network",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-leadnetwork(940) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 133,
+  "load": 210,
+  "lcp": 520,
+  "lcpTag": "p in arise-leadnetwork",
+  "firstElementText": 465,
+  "backend": [
+   "content.web.js/getPageContent @656 274ms 3KB",
+   "content.web.js/getPageContent @656 304ms 3KB",
+   "gallery.web.js/getProjectPhotos @933 325ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@431",
+   "arise-leadnetwork x1 last@468",
+   "arise-footer x1 last@423"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Content: 45 keys",
+   "Site content: 45 keys",
+   "Gallery: 0 items"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Outreach",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-outreach(1077) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 2290,
+  "load": 2362,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3317,
+  "backend": [
+   "content.web.js/getPageContent @2957 288ms 3KB",
+   "content.web.js/getPageContent @2958 288ms 3KB",
+   "gallery.web.js/getProjectPhotos @3256 238ms 1KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2638",
+   "arise-outreach x1 last@2645",
+   "arise-footer x1 last@2641"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Outreach: content 45 keys",
+   "Outreach: data-content -> #customElement5",
+   "Outreach: gallery 0 items",
+   "Outreach: data-photos -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Lead Network",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-leadnetwork(940) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 2615,
+  "load": 2687,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3256,
+  "backend": [
+   "content.web.js/getPageContent @3354 261ms 3KB",
+   "content.web.js/getPageContent @3352 267ms 3KB",
+   "gallery.web.js/getProjectPhotos @3633 246ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-leadnetwork x1 last@4809",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Lead Network: content 45 keys",
+   "Lead Network: data-content -> #customElement5",
+   "Site content: 45 keys",
+   "Lead Network: gallery 0 items",
+   "Lead Network: data-photos -> #customElement5",
+   "Site content -> #customElement5, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "About",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-about(2171) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 27,
+  "dcl": 187,
+  "load": 276,
+  "lcp": 592,
+  "lcpTag": "p in arise-about",
+  "firstElementText": 561,
+  "backend": [
+   "content.web.js/getPageContent @702 405ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@505",
+   "arise-about x1 last@564",
+   "arise-footer x1 last@504"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "About",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-about(2178) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 29,
+  "dcl": 2254,
+  "load": 2322,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3333,
+  "backend": [
+   "content.web.js/getPageContent @2956 279ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2545",
+   "arise-about x1 last@4642",
+   "arise-footer x1 last@2543"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Site content -> #customElement3, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Lead Network",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-leadnetwork(940) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 36,
+  "dcl": 2129,
+  "load": 2214,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2899,
+  "backend": [
+   "content.web.js/getPageContent @2784 290ms 3KB",
+   "content.web.js/getPageContent @2786 297ms 3KB",
+   "gallery.web.js/getProjectPhotos @3092 287ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-leadnetwork x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Lead Network: content 45 keys",
+   "Lead Network: data-content -> #customElement5",
+   "Lead Network: gallery 0 items",
+   "Lead Network: data-photos -> #customElement5",
+   "Site content -> #customElement5, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Lead Network",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-leadnetwork(940) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 2496,
+  "load": 2587,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 2883,
+  "backend": [
+   "content.web.js/getPageContent @3147 266ms 3KB",
+   "content.web.js/getPageContent @3148 267ms 3KB",
+   "gallery.web.js/getProjectPhotos @3418 234ms 1KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-leadnetwork x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Content: 45 keys",
+   "Gallery: 0 items"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "About",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-about(2178) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 34,
+  "dcl": 2503,
+  "load": 2613,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3509,
+  "backend": [
+   "content.web.js/getPageContent @3273 263ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-about x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Site content -> #customElement3, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "About",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-about(2171) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 23,
+  "dcl": 149,
+  "load": 225,
+  "lcp": 500,
+  "lcpTag": "p in arise-about",
+  "firstElementText": 482,
+  "backend": [
+   "content.web.js/getPageContent @649 313ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@433",
+   "arise-about x1 last@436",
+   "arise-footer x1 last@435"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Bible Search",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-bible(939) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 30,
+  "dcl": 145,
+  "load": 262,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 1513,
+  "backend": [
+   "content.web.js/getPageContent @978 297ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@518",
+   "arise-bible x1 last@3249",
+   "arise-footer x1 last@516"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Site content -> #customElement3, #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Bible Search",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(259) arise-bible(936) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 25,
+  "dcl": 138,
+  "load": 240,
+  "lcp": 576,
+  "lcpTag": "h1 in arise-bible",
+  "firstElementText": 572,
+  "backend": [
+   "content.web.js/getPageContent @660 289ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@463",
+   "arise-bible x1 last@536",
+   "arise-footer x1 last@462"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Bible Search",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-bible(936) arise-footer(530)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 133,
+  "load": 205,
+  "lcp": 500,
+  "lcpTag": "h1 in arise-bible",
+  "firstElementText": 484,
+  "backend": [
+   "content.web.js/getPageContent @616 316ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@416",
+   "arise-bible x1 last@418",
+   "arise-footer x1 last@417"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Bible Search",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(27) arise-bible(939) arise-footer(539)",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 38,
+  "dcl": 2612,
+  "load": 2693,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 3151,
+  "backend": [
+   "content.web.js/getPageContent @3260 315ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-bible x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Site content -> #customElement3, #customElement2, #customElement4"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Give",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 483,
+  "dcl": 2961,
+  "load": 4580,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": [
+   "Failed to load resource: the server responded with a status of 404 () https://tithe.ly/give_new/www/%7B%7B%20myChurch.logo_url%20%7D%7D",
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Give",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 471,
+  "dcl": 3125,
+  "load": 4863,
+  "lcp": 4316,
+  "lcpTag": "p",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": [
+   "Failed to load resource: the server responded with a status of 404 () https://tithe.ly/give_new/www/%7B%7B%20myChurch.logo_url%20%7D%7D",
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Give",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 167,
+  "dcl": 577,
+  "load": 1012,
+  "lcp": 1452,
+  "lcpTag": "p",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": [
+   "Failed to load resource: the server responded with a status of 404 () https://tithe.ly/give_new/www/%7B%7B%20myChurch.logo_url%20%7D%7D",
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Give",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 0,
+  "consoleWarnErr": 2,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 119,
+  "dcl": 409,
+  "load": 812,
+  "lcp": 192,
+  "lcpTag": "p",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": [
+   "Failed to load resource: the server responded with a status of 404 () https://tithe.ly/give_new/www/%7B%7B%20myChurch.logo_url%20%7D%7D",
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Podcast",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 1,
+  "consoleWarnErr": 125,
+  "brokenImgs": 0,
+  "overflowX": 12,
+  "sundaySunday": false,
+  "ttfb": 335,
+  "dcl": 830,
+  "load": 2529,
+  "lcp": 2176,
+  "lcpTag": "img",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Podcast",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 1,
+  "consoleWarnErr": 20,
+  "brokenImgs": 0,
+  "overflowX": 12,
+  "sundaySunday": false,
+  "ttfb": 298,
+  "dcl": 1005,
+  "load": 3185,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Podcast",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 1,
+  "consoleWarnErr": 15,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 138,
+  "dcl": 537,
+  "load": 1525,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": []
+ },
+ {
+  "site": "live",
+  "page": "Podcast",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "",
+  "exceptions": 0,
+  "consoleWarnErr": 0,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 326,
+  "dcl": 338,
+  "load": 375,
+  "lcp": 368,
+  "lcpTag": "div",
+  "firstElementText": null,
+  "backend": [],
+  "renders": [],
+  "pageCodeLogs": []
+ },
+ {
+  "site": "live",
+  "page": "Job Board",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(237) arise-footer(500)",
+  "exceptions": 0,
+  "consoleWarnErr": 3,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 45,
+  "dcl": 162,
+  "load": 260,
+  "lcp": 676,
+  "lcpTag": "div",
+  "firstElementText": 570,
+  "backend": [
+   "content.web.js/getPageContent @818 277ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@505",
+   "arise-footer x1 last@503"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Job Board",
+  "viewport": "desktop",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(237) arise-footer(511)",
+  "exceptions": 0,
+  "consoleWarnErr": 3,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 4484,
+  "dcl": 4676,
+  "load": 4806,
+  "lcp": 0,
+  "lcpTag": "",
+  "firstElementText": 5779,
+  "backend": [
+   "content.web.js/getPageContent @5537 272ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@5058",
+   "arise-footer x1 last@5056"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Site content -> #customElement4, #customElement2"
+  ]
+ },
+ {
+  "site": "live",
+  "page": "Job Board",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(237) arise-footer(500)",
+  "exceptions": 0,
+  "consoleWarnErr": 3,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 29,
+  "dcl": 2001,
+  "load": 2088,
+  "lcp": 2512,
+  "lcpTag": "div",
+  "firstElementText": 2379,
+  "backend": [
+   "content.web.js/getPageContent @2555 291ms 3KB"
+  ],
+  "renders": [
+   "arise-header x1 last@2344",
+   "arise-footer x1 last@2346"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys"
+  ]
+ },
+ {
+  "site": "preview",
+  "page": "Job Board",
+  "viewport": "phone",
+  "run": 1,
+  "error": "",
+  "arise": "arise-header(237) arise-footer(511)",
+  "exceptions": 0,
+  "consoleWarnErr": 3,
+  "brokenImgs": 0,
+  "overflowX": 0,
+  "sundaySunday": false,
+  "ttfb": 31,
+  "dcl": 2222,
+  "load": 2322,
+  "lcp": 16716,
+  "lcpTag": "div",
+  "firstElementText": 2725,
+  "backend": [
+   "content.web.js/getPageContent @2907 266ms 3KB"
+  ],
+  "renders": [
+   "arise-header x0 last@-",
+   "arise-footer x0 last@-"
+  ],
+  "pageCodeLogs": [
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Permissions policy violation: unload is not allowed in this document. chrome-extension://cnlefmmeadmemmdciolhbnfeacpdfbkd/src/js/Grammarly-check.js",
+   "Site content: 45 keys",
+   "Site content -> #customElement2, #customElement4"
+  ]
+ }
+]

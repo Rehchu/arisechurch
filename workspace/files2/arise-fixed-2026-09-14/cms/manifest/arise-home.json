@@ -1,0 +1,506 @@
+[
+  {
+    "contentKey": "home.hero.photo",
+    "page": "home",
+    "label": "Hero background photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_df139d07e67d499993dc5818894f91d1~mv2.jpg",
+    "where": "Top of page, big photo behind the headline"
+  },
+  {
+    "contentKey": "home.hero.kicker",
+    "page": "home",
+    "label": "Hero kicker",
+    "text": "Arise Church &middot; Pineville, LA",
+    "imageUrl": "",
+    "where": "Top of page, small red line above the headline"
+  },
+  {
+    "contentKey": "home.hero.heading",
+    "page": "home",
+    "label": "Hero heading",
+    "text": "You Belong<br>Here<span class=\"dot\">.</span>",
+    "imageUrl": "",
+    "where": "Top of page, the big headline"
+  },
+  {
+    "contentKey": "home.hero.body",
+    "page": "home",
+    "label": "Hero welcome text",
+    "text": "Welcome to our multicultural, multiethnic, and multigenerational church!\n      We are thrilled to have you join our vibrant community. Here, you will find a place of belonging\n      and support, where diverse backgrounds come together to share in faith and fellowship.",
+    "imageUrl": "",
+    "where": "Top of page, paragraph under the headline"
+  },
+  {
+    "contentKey": "home.hero.button",
+    "page": "home",
+    "label": "Hero button 1",
+    "text": "Plan Your Visit",
+    "imageUrl": "",
+    "where": "Top of page, red button under the welcome text"
+  },
+  {
+    "contentKey": "home.hero.button2",
+    "page": "home",
+    "label": "Hero button 2",
+    "text": "Sermons",
+    "imageUrl": "",
+    "where": "Top of page, outlined button under the welcome text"
+  },
+  {
+    "contentKey": "home.news.kicker",
+    "page": "home",
+    "label": "Exciting News label",
+    "text": "Exciting News",
+    "imageUrl": "",
+    "where": "Top of page, right side, label on the news panel (only shows when news items exist)"
+  },
+  {
+    "contentKey": "home.who.kicker",
+    "page": "home",
+    "label": "Who We Are kicker",
+    "text": "Who We Are",
+    "imageUrl": "",
+    "where": "Who We Are section, small red line above the heading"
+  },
+  {
+    "contentKey": "home.who.h2",
+    "page": "home",
+    "label": "Who We Are heading",
+    "text": "Who We Are",
+    "imageUrl": "",
+    "where": "Who We Are section heading"
+  },
+  {
+    "contentKey": "home.who.body",
+    "page": "home",
+    "label": "Who We Are text",
+    "text": "We can't wait to grow together and embrace the unique gifts each person brings.",
+    "imageUrl": "",
+    "where": "Who We Are section, paragraph under the heading"
+  },
+  {
+    "contentKey": "home.who.pastors",
+    "page": "home",
+    "label": "Pastors strip",
+    "text": "Apostle Bryant Sanders &middot; Pastor Vanessa Sanders",
+    "imageUrl": "",
+    "where": "Who We Are section, red slanted strip with the pastor names"
+  },
+  {
+    "contentKey": "home.path.item1Number",
+    "page": "home",
+    "label": "Pathway step 1 number",
+    "text": "01",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 1 number"
+  },
+  {
+    "contentKey": "home.path.item1",
+    "page": "home",
+    "label": "Pathway step 1 title",
+    "text": "Connect",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 1 title"
+  },
+  {
+    "contentKey": "home.path.item1Body",
+    "page": "home",
+    "label": "Pathway step 1 text",
+    "text": "With God and His family.",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 1 text"
+  },
+  {
+    "contentKey": "home.path.item2Number",
+    "page": "home",
+    "label": "Pathway step 2 number",
+    "text": "02",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 2 number"
+  },
+  {
+    "contentKey": "home.path.item2",
+    "page": "home",
+    "label": "Pathway step 2 title",
+    "text": "Grow",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 2 title"
+  },
+  {
+    "contentKey": "home.path.item2Body",
+    "page": "home",
+    "label": "Pathway step 2 text",
+    "text": "In God's character.",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 2 text"
+  },
+  {
+    "contentKey": "home.path.item3Number",
+    "page": "home",
+    "label": "Pathway step 3 number",
+    "text": "03",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 3 number"
+  },
+  {
+    "contentKey": "home.path.item3",
+    "page": "home",
+    "label": "Pathway step 3 title",
+    "text": "Serve",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 3 title"
+  },
+  {
+    "contentKey": "home.path.item3Body",
+    "page": "home",
+    "label": "Pathway step 3 text",
+    "text": "In God's Church.",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 3 text"
+  },
+  {
+    "contentKey": "home.path.item4Number",
+    "page": "home",
+    "label": "Pathway step 4 number",
+    "text": "04",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 4 number"
+  },
+  {
+    "contentKey": "home.path.item4",
+    "page": "home",
+    "label": "Pathway step 4 title",
+    "text": "Share",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 4 title"
+  },
+  {
+    "contentKey": "home.path.item4Body",
+    "page": "home",
+    "label": "Pathway step 4 text",
+    "text": "God's message.",
+    "imageUrl": "",
+    "where": "Who We Are section, four-step row, step 4 text"
+  },
+  {
+    "contentKey": "home.campus.kicker",
+    "page": "home",
+    "label": "Locations kicker",
+    "text": "Our Locations",
+    "imageUrl": "",
+    "where": "Campuses section, small red line above the heading"
+  },
+  {
+    "contentKey": "home.campus.h2",
+    "page": "home",
+    "label": "Campuses heading",
+    "text": "One Church,<br>Two Campuses",
+    "imageUrl": "",
+    "where": "Campuses section heading"
+  },
+  {
+    "contentKey": "home.campus.main.photo",
+    "page": "home",
+    "label": "Main Campus photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_d90892fdb5fd40d8bd3c1057ca244d04~mv2.jpg",
+    "where": "Campuses section, left card photo"
+  },
+  {
+    "contentKey": "home.campus.main.tag",
+    "page": "home",
+    "label": "Main Campus tag",
+    "text": "Main Campus",
+    "imageUrl": "",
+    "where": "Campuses section, left card, red tag under the photo"
+  },
+  {
+    "contentKey": "home.campus.main.directions",
+    "page": "home",
+    "label": "Main Campus directions link",
+    "text": "Get Directions &rarr;",
+    "imageUrl": "",
+    "where": "Campuses section, left card, red link at the bottom"
+  },
+  {
+    "contentKey": "home.campus.second.photo",
+    "page": "home",
+    "label": "Second Campus photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_51f64171a5904d5b9b8b492f062db9bc~mv2.jpg",
+    "where": "Campuses section, right card photo"
+  },
+  {
+    "contentKey": "home.campus.second.tag",
+    "page": "home",
+    "label": "Second Campus tag",
+    "text": "Second Campus",
+    "imageUrl": "",
+    "where": "Campuses section, right card, red tag under the photo"
+  },
+  {
+    "contentKey": "home.campus.second.directions",
+    "page": "home",
+    "label": "Second Campus directions link",
+    "text": "Get Directions &rarr;",
+    "imageUrl": "",
+    "where": "Campuses section, right card, first red link at the bottom"
+  },
+  {
+    "contentKey": "home.campus.second.more",
+    "page": "home",
+    "label": "Second Campus more link",
+    "text": "Interested in this Campus? &rarr;",
+    "imageUrl": "",
+    "where": "Campuses section, right card, second red link at the bottom"
+  },
+  {
+    "contentKey": "home.ministries.kicker",
+    "page": "home",
+    "label": "Ministries kicker",
+    "text": "Ministries",
+    "imageUrl": "",
+    "where": "Ministries section (dark), small red line above the heading"
+  },
+  {
+    "contentKey": "home.ministries.heading",
+    "page": "home",
+    "label": "Ministries heading",
+    "text": "Find Your People",
+    "imageUrl": "",
+    "where": "Ministries section (dark) heading"
+  },
+  {
+    "contentKey": "home.ministries.item1.photo",
+    "page": "home",
+    "label": "Ministry card 1 image",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_1c539649f39f48cbb157d4e27efeb843~mv2.png",
+    "where": "Ministries section, card 1 image"
+  },
+  {
+    "contentKey": "home.ministries.item1",
+    "page": "home",
+    "label": "Ministry card 1 title",
+    "text": "Lead Network",
+    "imageUrl": "",
+    "where": "Ministries section, card 1 title"
+  },
+  {
+    "contentKey": "home.ministries.learnMore",
+    "page": "home",
+    "label": "Ministry card link text",
+    "text": "Learn More",
+    "imageUrl": "",
+    "where": "Ministries section, small text under each card title (all four cards)"
+  },
+  {
+    "contentKey": "home.ministries.item2.photo",
+    "page": "home",
+    "label": "Ministry card 2 image",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/1f9fa2_a5448e514cc14ea08cb657e4f1a9cec4~mv2.jpg",
+    "where": "Ministries section, card 2 image"
+  },
+  {
+    "contentKey": "home.ministries.item2",
+    "page": "home",
+    "label": "Ministry card 2 title",
+    "text": "Children's Ministry",
+    "imageUrl": "",
+    "where": "Ministries section, card 2 title"
+  },
+  {
+    "contentKey": "home.ministries.item3.photo",
+    "page": "home",
+    "label": "Ministry card 3 image",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/1f9fa2_89a44a65090b488ea33de3157f4f3490~mv2.png",
+    "where": "Ministries section, card 3 image"
+  },
+  {
+    "contentKey": "home.ministries.item3",
+    "page": "home",
+    "label": "Ministry card 3 title",
+    "text": "Youth Ministry",
+    "imageUrl": "",
+    "where": "Ministries section, card 3 title"
+  },
+  {
+    "contentKey": "home.ministries.item4.photo",
+    "page": "home",
+    "label": "Ministry card 4 image",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/1f9fa2_2aea5b909f5e467b9d6aa1c30e513ce4~mv2.png",
+    "where": "Ministries section, card 4 image"
+  },
+  {
+    "contentKey": "home.ministries.item4",
+    "page": "home",
+    "label": "Ministry card 4 title",
+    "text": "Outreach",
+    "imageUrl": "",
+    "where": "Ministries section, card 4 title"
+  },
+  {
+    "contentKey": "home.ministries.button",
+    "page": "home",
+    "label": "Ministries button",
+    "text": "All Ministries",
+    "imageUrl": "",
+    "where": "Ministries section, outlined button under the cards"
+  },
+  {
+    "contentKey": "home.visit.kicker",
+    "page": "home",
+    "label": "What To Expect kicker",
+    "text": "First Time?",
+    "imageUrl": "",
+    "where": "What To Expect section (dark), small red line above the heading"
+  },
+  {
+    "contentKey": "home.visit.h2",
+    "page": "home",
+    "label": "What To Expect heading",
+    "text": "What To Expect",
+    "imageUrl": "",
+    "where": "What To Expect section heading"
+  },
+  {
+    "contentKey": "home.visit.parkingTitle",
+    "page": "home",
+    "label": "Parking title",
+    "text": "Parking",
+    "imageUrl": "",
+    "where": "What To Expect section, column 1 title"
+  },
+  {
+    "contentKey": "home.visit.parking",
+    "page": "home",
+    "label": "Parking text",
+    "text": "Park without rushing and find a seat. Our X-Edge team is out on Sunday mornings to guide you in and send you toward the right door.",
+    "imageUrl": "",
+    "where": "What To Expect section, column 1 text"
+  },
+  {
+    "contentKey": "home.visit.whatToWearTitle",
+    "page": "home",
+    "label": "What To Wear title",
+    "text": "What To Wear",
+    "imageUrl": "",
+    "where": "What To Expect section, column 2 title"
+  },
+  {
+    "contentKey": "home.visit.whattowear",
+    "page": "home",
+    "label": "What To Wear text",
+    "text": "Come as you are. You'll see jeans and you'll see suits, and God sees the same thing in both. There's no dress code here - we mean it.",
+    "imageUrl": "",
+    "where": "What To Expect section, column 2 text"
+  },
+  {
+    "contentKey": "home.visit.whenToArriveTitle",
+    "page": "home",
+    "label": "When To Arrive title",
+    "text": "When To Arrive",
+    "imageUrl": "",
+    "where": "What To Expect section, column 3 title"
+  },
+  {
+    "contentKey": "home.visit.whentoarrive",
+    "page": "home",
+    "label": "When To Arrive text",
+    "text": "Arrive a little early and have time for fellowship. Meet a few faces, settle in, and share a moment together before the first song.",
+    "imageUrl": "",
+    "where": "What To Expect section, column 3 text"
+  },
+  {
+    "contentKey": "home.visit.button",
+    "page": "home",
+    "label": "What To Expect button 1",
+    "text": "Get Directions",
+    "imageUrl": "",
+    "where": "What To Expect section, red button"
+  },
+  {
+    "contentKey": "home.visit.button2",
+    "page": "home",
+    "label": "What To Expect button 2",
+    "text": "Ask Us a Question",
+    "imageUrl": "",
+    "where": "What To Expect section, outlined button"
+  },
+  {
+    "contentKey": "home.prayer.kicker",
+    "page": "home",
+    "label": "Prayer kicker",
+    "text": "Prayer Request",
+    "imageUrl": "",
+    "where": "Prayer Request section, small red line at the top"
+  },
+  {
+    "contentKey": "home.prayer.quote",
+    "page": "home",
+    "label": "Prayer quote",
+    "text": "\"There are parts of our calling, works of the Holy Spirit, and defeats of the darkness that will come no other way than through furious, fervent, faith-filled, unceasing prayer.\"",
+    "imageUrl": "",
+    "where": "Prayer Request section, the large quote"
+  },
+  {
+    "contentKey": "home.prayer.cite",
+    "page": "home",
+    "label": "Prayer quote author",
+    "text": "- Beth Moore",
+    "imageUrl": "",
+    "where": "Prayer Request section, red name under the quote"
+  },
+  {
+    "contentKey": "home.prayer.button",
+    "page": "home",
+    "label": "Prayer button",
+    "text": "Prayer Request",
+    "imageUrl": "",
+    "where": "Prayer Request section, button under the quote"
+  },
+  {
+    "contentKey": "home.prayer.photo",
+    "page": "home",
+    "label": "Prayer photo",
+    "text": "",
+    "imageUrl": "https://static.wixstatic.com/media/c3b2d0_f30b31e02f5c43cd8f33555c4ab08705~mv2.jpg",
+    "where": "Prayer Request section, photo on the right"
+  },
+  {
+    "contentKey": "home.give.kicker",
+    "page": "home",
+    "label": "Give kicker",
+    "text": "Give",
+    "imageUrl": "",
+    "where": "Give section (red band), small line above the heading"
+  },
+  {
+    "contentKey": "home.give.heading",
+    "page": "home",
+    "label": "Give heading",
+    "text": "Give Online",
+    "imageUrl": "",
+    "where": "Give section (red band) heading"
+  },
+  {
+    "contentKey": "home.give.body",
+    "page": "home",
+    "label": "Give text",
+    "text": "Your giving supports everything that happens here - both campuses, every ministry, and everyone who walks through the door.",
+    "imageUrl": "",
+    "where": "Give section, paragraph under the heading"
+  },
+  {
+    "contentKey": "home.give.button",
+    "page": "home",
+    "label": "Give button",
+    "text": "Give Online",
+    "imageUrl": "",
+    "where": "Give section, white button"
+  }
+]
