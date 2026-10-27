@@ -514,7 +514,8 @@ const SECRET_NAMES = {
   esv: ['ESV_API_KEY'],
   apiBible: ['API_BIBLE_KEY', 'APIbible'],
   biblia: ['BIBLIA_API_KEY'],
-  arisehub: ['ARISEHUB_API_KEY']
+  arisehub: ['ARISEHUB_API_KEY'],
+  arisehubUrl: ['ARISEHUB_URL']      // optional: another address for the same AriseHub
 };
 let KEYS = null;          // { youversion, esv, apiBible, biblia, arisehub }
 let keysLoadedAt = 0;
@@ -542,7 +543,7 @@ async function loadKeys() {
 export async function keyStatus() {
   const k = await loadKeys();
   const out = {};
-  Object.keys(SECRET_NAMES).forEach((id) => { out[id] = !!k[id]; });
+  Object.keys(SECRET_NAMES).forEach((id) => { if (id !== 'arisehubUrl') out[id] = !!k[id]; });
   return out;
 }
 
@@ -974,16 +975,29 @@ const biblia = {
    (docs/agent-access.md in the AriseHub repo); a 401 means trade again.
    AriseHub does its own verse-number shifting, note borrowing and chapter
    spanning, so a reference goes across exactly as typed. */
-const HUB_URL = 'https://arisehub.myfaithtech.com';
+const HUB_URL_DEFAULT = 'https://arisehub.myfaithtech.com';
+/* The secret ARISEHUB_URL, when set, points the bridge at another address for
+   the same app (its workers.dev address, say, which sits outside the custom
+   domain's firewall). Read with the other keys. */
+const hubUrl = () => ((KEYS && KEYS.arisehubUrl) || HUB_URL_DEFAULT).replace(/\/+$/, '');
+const HUB_HEADERS = { Accept: 'application/json', 'User-Agent': 'AriseChurchWebsite/1.0 (Wix Velo; +https://www.arisecenla.church)' };
+/* What a blocked request was told, in a line: a firewall's block page says
+   who blocked it (Cloudflare, Access, a WAF rule), which a bare status cannot. */
+function excerpt(text) {
+  const t = tidy(String(text || '').replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]*>/g, ' '));
+  return t ? ' — ' + t.slice(0, 160) : '';
+}
 let hubSession = { token: '', until: 0 };
 async function hubToken(force) {
   if (!force && hubSession.token && hubSession.until > Date.now()) return hubSession.token;
   const key = KEYS && KEYS.arisehub;
   if (!key) throw new Error('AriseHub key not set');
-  const res = await fetchOnce(HUB_URL + '/api/agent/token', { method: 'post', headers: { Authorization: 'Bearer ' + key, Accept: 'application/json', 'User-Agent': 'AriseChurchWebsite/1.0 (Wix Velo; +https://www.arisecenla.church)' } });
+  const res = await fetchOnce(hubUrl() + '/api/agent/token', { method: 'post', headers: Object.assign({ Authorization: 'Bearer ' + key }, HUB_HEADERS) });
+  let text = '';
+  try { text = await res.text(); } catch (e) { text = ''; }
   let d = null;
-  try { d = await res.json(); } catch (e) { d = null; }
-  if (!res.ok) throw new Error('AriseHub token ' + res.status + ((d && d.error) ? ' ' + d.error : ''));
+  try { d = JSON.parse(text); } catch (e) { d = null; }
+  if (!res.ok) throw new Error('AriseHub token ' + res.status + ((d && d.error) ? ' ' + d.error : excerpt(text)));
   if (!d) throw new Error('AriseHub token: not JSON');
   if (!d.access_token) throw new Error('AriseHub token: no session');
   // Renew two minutes early; expires_at is seconds since the epoch.
@@ -993,9 +1007,9 @@ async function hubToken(force) {
 }
 async function hubGet(path) {
   let token = await hubToken(false);
-  const hdrs = (t) => ({ Authorization: 'Bearer ' + t, Accept: 'application/json', 'User-Agent': 'AriseChurchWebsite/1.0 (Wix Velo; +https://www.arisecenla.church)' });
-  let res = await fetchOnce(HUB_URL + path, { headers: hdrs(token) });
-  if (res.status === 401) { token = await hubToken(true); res = await fetchOnce(HUB_URL + path, { headers: hdrs(token) }); }
+  const hdrs = (t) => Object.assign({ Authorization: 'Bearer ' + t }, HUB_HEADERS);
+  let res = await fetchOnce(hubUrl() + path, { headers: hdrs(token) });
+  if (res.status === 401) { token = await hubToken(true); res = await fetchOnce(hubUrl() + path, { headers: hdrs(token) }); }
   let d = null;
   try { d = await res.json(); } catch (e) { d = null; }
   if (!res.ok) {
@@ -1355,7 +1369,7 @@ export async function bibleStatus() {
   list.forEach((t) => { counts[t.providerId] = (counts[t.providerId] || 0) + 1; });
   // The bridge, end to end: trade the key for a session, then one dictionary
   // lookup. Says exactly which step failed and what AriseHub answered.
-  let dictionary = { configured: !!keys.arisehub, ok: false };
+  let dictionary = { configured: !!keys.arisehub, ok: false, url: hubUrl() };
   if (keys.arisehub) {
     try {
       await hubToken(true);
