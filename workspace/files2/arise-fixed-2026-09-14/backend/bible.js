@@ -711,6 +711,17 @@ const bibleApiCom = {
 };
 
 /* ---- AO Lab / helloao (no key; the big English catalogue, notes, audio) -- */
+/* Display names for AO Lab's catalogue. Most come through as they are; a few
+   eBible titles are not dropdown entries ("English: Wycliffe's Bible Modern
+   Spelling (Enhanced) (with Deuterocanon)"), and one is misspelled upstream. */
+const HELLOAO_NAMES = {
+  eng_wyc2018: "Wycliffe's Bible (modern spelling)",
+  eng_tnt: 'Tyndale New Testament',
+  eng_msb: 'Majority Standard Bible',                // the catalogue has "BIble"
+  eng_lxx: 'Septuagint in American English (LXX2012)'
+};
+const helloaoName = (id, raw) => HELLOAO_NAMES[id]
+  || String(raw || id || '').replace(/^English:\s*/i, '').replace(/\bBIble\b/g, 'Bible');
 /* Serves whole chapters, so a verse range is fetched as its chapter and sliced. */
 const helloao = {
   id: 'helloao', label: 'AO Lab', keyless: true,
@@ -746,7 +757,7 @@ const helloao = {
     const t = d.translation || {};
     const out = {
       reference: refLabel(p), translation: t.id || translation,
-      translationName: t.englishName || t.name || translation, copyright: t.licenseUrl,
+      translationName: helloaoName(t.id || translation, t.englishName || t.name), copyright: t.licenseUrl,
       providerId: 'helloao', verses: verses, text: verses.map((v) => v.text).join(' ')
     };
     if (footnotes.length) out.footnotes = footnotes;
@@ -757,7 +768,7 @@ const helloao = {
     const res = await fetchOnce('https://bible.helloao.org/api/available_translations.json');
     if (!res.ok) throw new Error('AO Lab ' + res.status);
     const d = await res.json();
-    return (d.translations || []).map((t) => ({ id: t.id, name: t.englishName || t.name, language: t.languageEnglishName || t.language }));
+    return (d.translations || []).map((t) => ({ id: t.id, name: helloaoName(t.id, t.englishName || t.name), language: t.languageEnglishName || t.language }));
   }
 };
 
@@ -1082,7 +1093,8 @@ const PROVIDERS = [youversion, esv, helloao, apiBible, biblia, bibleApiCom, wlde
    text (five World English Bibles, three ASVs). Scrolling that to find the
    KJV is worse than having fewer choices. Applies ONLY to keyless sources:
    anything from a keyed source (YouVersion, ESV, API.Bible, Biblia, AriseHub)
-   was licensed or chosen deliberately and is always kept. */
+   was licensed or chosen deliberately and is always kept.
+   bibleStatus?unused=1 lists what this leaves out, per source. */
 const KEYLESS_KEEP = new Set([
   'BSB',       // Berean Standard Bible (narrated)
   'ENGWEBP',   // World English Bible
@@ -1101,7 +1113,21 @@ const KEYLESS_KEEP = new Set([
   'eng_t4t',   // Translation for Translators
   'eng_jps',   // JPS TaNaKH 1917
   'eng_wmb',   // World Messianic Bible
-  'AAB'        // Accessible Ancients Bible (the other narrated one)
+  'AAB',       // Accessible Ancients Bible (the other narrated one)
+  // Added 2026-10-27: of the free Bibles the page was not showing, the ten
+  // people actually look for. The rest of the 75 are other editions of a
+  // listed work (five WEBs, Septuagints after Brenton's, the ASV on another
+  // text) or editions made for one community (Aboriginal English, Kriol).
+  'eng_wyc2018', // Wycliffe's Bible, modern spelling - the first English Bible
+  'eng_tnt',     // Tyndale New Testament
+  'eng_wbs',     // Webster Bible 1833
+  'oeb-us',      // Open English Bible, US Edition (bible-api.com)
+  'eng_msb',     // Majority Standard Bible - the BSB on the Byzantine text
+  'eng_webc',    // World English Bible (Catholic) - the deuterocanon in Catholic order
+  'eng_emtv',    // English Majority Text Version (New Testament)
+  'eng_noy',     // Noyes Bible (New Testament, 1869)
+  'eng_lee',     // Leeser Tanakh (1853)
+  'eng_lxx'      // Septuagint in American English (LXX2012)
 ]);
 
 /* The website is English only (decided 2026-10-27). A MISSING tag keeps a

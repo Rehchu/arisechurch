@@ -31,7 +31,7 @@ globalThis.__secrets = {};
 
 const BIBLE_API_JOHN = { reference: 'John 3:16', verses: [{ book_id: 'JHN', book_name: 'John', chapter: 3, verse: 16, text: 'For God so loved the world,\n that he gave his one and only Son...\n' }],
   text: 'For God so loved the world, that he gave his one and only Son...\n', translation_id: 'web', translation_name: 'World English Bible', translation_note: 'Public Domain' };
-const BIBLE_API_DATA = { translations: [{ identifier: 'web', name: 'World English Bible', language: 'English' }, { identifier: 'kjv', name: 'King James Version', language: 'English' }, { identifier: 'cuv', name: 'Chinese Union Version', language: 'Chinese' }] };
+const BIBLE_API_DATA = { translations: [{ identifier: 'web', name: 'World English Bible', language: 'English' }, { identifier: 'kjv', name: 'King James Version', language: 'English' }, { identifier: 'oeb-us', name: 'Open English Bible, US Edition', language: 'English' }, { identifier: 'cuv', name: 'Chinese Union Version', language: 'Chinese' }] };
 function helloaoChapter(id, name, withAudio) {
   return { translation: { id: id, name: name, englishName: name, licenseUrl: 'https://example.org/licence' },
     chapter: { number: 3, content: [
@@ -57,7 +57,12 @@ const HELLOAO_LIST = { translations: [
   { id: 'grc_tr', name: 'Textus Receptus', languageEnglishName: 'Ancient Greek' },           // English-only site: dropped
   { id: 'heb_wlc', name: 'Westminster Leningrad Codex', languageEnglishName: 'Ancient Hebrew' },
   { id: 'spa_rv', name: 'Reina Valera', languageEnglishName: 'Spanish' },
-  { id: 'AAB', name: 'Accessible Ancients Bible', languageEnglishName: 'English' }
+  { id: 'AAB', name: 'Accessible Ancients Bible', languageEnglishName: 'English' },
+  // Three of the ten added to the keep list on 2026-10-27, with the titles AO Lab really gives them.
+  { id: 'eng_wyc2018', name: "English: Wycliffe's Bible Modern Spelling (Enhanced) (with Deuterocanon)", languageEnglishName: 'English' },
+  { id: 'eng_msb', name: 'Majority Standard BIble', languageEnglishName: 'English' },
+  { id: 'eng_noy', name: 'Noyes Bible', languageEnglishName: 'English' },
+  { id: 'eng_glw', name: "God's Living Word", languageEnglishName: 'English' }                // free, English, not in the keep list
 ] };
 const WLDEH_CH = { data: [{ book: 'john', chapter: '3', verse: '16', text: '¶ For God so loved the world' }, { book: 'john', chapter: '3', verse: '16', text: 'DUPLICATE' }, { book: 'john', chapter: '3', verse: '17', text: 'For God sent not his Son' }] };
 const WLDEH_LIST = [{ id: 'en-kjv', version: 'King James (Authorised) Version', language: { name: 'English' } }, { id: 'en-asv', version: 'American Standard Version (1901)', language: { name: 'English' } }, { id: 'fr-lsg', version: 'Louis Segond', language: { name: 'French' } }];
@@ -221,7 +226,11 @@ await test('with no keys at all: the free Bibles, curated, English, alphabetical
   const list = await bible.allTranslations();
   const ids = list.map((x) => x.id);
   assert.ok(ids.includes('BSB') && ids.includes('eng_kjv') && ids.includes('eng_kja') && ids.includes('AAB'), 'curated free Bibles kept');
-  assert.ok(!ids.includes('eng_web') && !ids.includes('eng_webbe'), 'uncurated free editions dropped');
+  assert.ok(!ids.includes('eng_web') && !ids.includes('eng_webbe') && !ids.includes('eng_glw'), 'uncurated free editions dropped');
+  assert.ok(ids.includes('eng_wyc2018') && ids.includes('eng_noy') && ids.includes('oeb-us'), 'the ten added on 2026-10-27 are kept (AO Lab and bible-api.com)');
+  assert.equal(list.find((x) => x.id === 'eng_wyc2018').name, "Wycliffe's Bible (modern spelling)", 'an eBible title becomes a dropdown entry');
+  assert.equal(list.find((x) => x.id === 'eng_msb').name, 'Majority Standard Bible', 'the upstream "BIble" is corrected');
+  assert.equal(list.find((x) => x.id === 'eng_noy').name, 'Noyes Bible', 'other names pass through as they are');
   assert.ok(!ids.includes('grc_tr') && !ids.includes('heb_wlc') && !ids.includes('spa_rv') && !ids.includes('cuv') && !ids.includes('fr-lsg'), 'other languages dropped');
   assert.ok(!ids.includes('kjv') && !ids.includes('en-kjv'), 'bible-api.com / WLDEH KJV are not in the keep list');
   const names = list.map((x) => x.name);
