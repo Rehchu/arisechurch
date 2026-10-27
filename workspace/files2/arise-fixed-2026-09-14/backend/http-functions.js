@@ -142,12 +142,12 @@ export async function get_bibleReference(request) {
   const ref = q(request, 'ref', 120);
   if (!ref) return failed(400, { error: 'missing ref' });
   try { return json(await dictionaryReference(ref), 3600); }
-  catch (e) { console.error('bibleReference', e); return json({ entries: [], available: false, error: 'dictionary unavailable' }); }
+  catch (e) { console.error('bibleReference', e); return json({ entries: [], available: false, configured: true, error: (e && e.message) || 'dictionary unavailable' }); }
 }
 
 export async function get_bibleDictionary(request) {
   try { return json(await dictionaryLookup({ q: q(request, 'q', 80), letter: q(request, 'letter', 1), slug: q(request, 'slug', 120) }), 3600); }
-  catch (e) { console.error('bibleDictionary', e); return json({ entries: [], available: false, error: 'dictionary unavailable' }); }
+  catch (e) { console.error('bibleDictionary', e); return json({ entries: [], available: false, configured: true, error: (e && e.message) || 'dictionary unavailable' }); }
 }
 
 export async function get_bibleStatus() {

@@ -407,11 +407,21 @@ await test('a hub Bible goes across exactly as typed, with the hub\'s notes; the
   assert.equal(net.hubTokens, 2);
   await assert.rejects(fresh.getPassage('Hezekiah 3', '116'), (e) => { assert.match(e.message, /doesn't include that passage/); return true; });
 });
+await test('with a key but AriseHub refusing it, the dictionary says so instead of vanishing', async () => {
+  reset(); globalThis.__secrets = { ARISEHUB_API_KEY: 'ahk_wrong' };
+  const fresh = await load('bible.js', 'p2');
+  await assert.rejects(fresh.dictionaryReference('John 3'), /AriseHub token 401/);
+  const st = await fresh.bibleStatus();
+  assert.equal(st.dictionary.configured, true);
+  assert.equal(st.dictionary.ok, false);
+  assert.match(st.dictionary.error, /AriseHub token 401/);
+  assert.ok(calls('api/agent/token').every((c) => /AriseChurchWebsite/.test(c.headers['User-Agent'])), 'the bridge names itself');
+});
 await test('without an AriseHub key the dictionary is simply absent', async () => {
   reset(); globalThis.__secrets = {};
   const fresh = await load('bible.js', 'q');
-  assert.deepEqual(await fresh.dictionaryReference('John 3'), { entries: [], available: false });
-  assert.deepEqual(await fresh.dictionaryLookup({ q: 'shep' }), { entries: [], available: false });
+  assert.deepEqual(await fresh.dictionaryReference('John 3'), { entries: [], available: false, configured: false });
+  assert.deepEqual(await fresh.dictionaryLookup({ q: 'shep' }), { entries: [], available: false, configured: false });
   assert.equal(calls('arisehub').length, 0);
 });
 await test('bibleBooks: chapter counts from AO Lab, the static list if it fails', async () => {
@@ -455,13 +465,13 @@ await test('get_bibleBibles / get_bibleBooks / get_bibleReference / get_bibleDic
   const books = JSON.parse((await http.get_bibleBooks()).body);
   assert.equal(books.books[0].name, 'Genesis');
   const ref = JSON.parse((await http.get_bibleReference(req({ ref: 'John 3' }))).body);
-  assert.deepEqual(ref, { entries: [], available: false });
+  assert.deepEqual(ref, { entries: [], available: false, configured: false });
   assert.equal((await http.get_bibleReference(req({}))).status, 400);
   const dict = JSON.parse((await http.get_bibleDictionary(req({ q: 'shep' }))).body);
   assert.equal(dict.available, false);
   const status = JSON.parse((await http.get_bibleStatus()).body);
   assert.deepEqual(Object.values(status.keys).every((v) => typeof v === 'boolean'), true);
-  assert.equal(status.dictionary, false);
+  assert.deepEqual(status.dictionary, { configured: false, ok: false });
   assert.ok(status.bibles >= 4);
 });
 await test('a long or odd query is clipped, never thrown', async () => {

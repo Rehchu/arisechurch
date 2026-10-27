@@ -929,8 +929,14 @@ class AriseBible extends HTMLElement {
     try {
       const d = await this.request('bibleReference?ref=' + encodeURIComponent(ref));
       if (id !== this._reqId) return;
-      if (d && d.available === false) { if (wrap) wrap.hidden = true; this.fitDeck(); return; }
+      if (d && d.configured === false) { if (wrap) wrap.hidden = true; this.fitDeck(); return; }
       if (wrap) wrap.hidden = false;
+      if (d && d.available === false) {
+        list.hidden = true; list.innerHTML = '';
+        if (status) { status.textContent = 'The dictionaries are unavailable right now.'; status.hidden = false; }
+        this.fitDeck();
+        return;
+      }
       const entries = (d && Array.isArray(d.entries)) ? d.entries : [];
       if (!entries.length) {
         list.hidden = true; list.innerHTML = '';

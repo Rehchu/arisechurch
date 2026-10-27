@@ -980,9 +980,11 @@ async function hubToken(force) {
   if (!force && hubSession.token && hubSession.until > Date.now()) return hubSession.token;
   const key = KEYS && KEYS.arisehub;
   if (!key) throw new Error('AriseHub key not set');
-  const res = await fetchOnce(HUB_URL + '/api/agent/token', { method: 'post', headers: { Authorization: 'Bearer ' + key } });
-  if (!res.ok) throw new Error('AriseHub token ' + res.status);
-  const d = await res.json();
+  const res = await fetchOnce(HUB_URL + '/api/agent/token', { method: 'post', headers: { Authorization: 'Bearer ' + key, Accept: 'application/json', 'User-Agent': 'AriseChurchWebsite/1.0 (Wix Velo; +https://www.arisecenla.church)' } });
+  let d = null;
+  try { d = await res.json(); } catch (e) { d = null; }
+  if (!res.ok) throw new Error('AriseHub token ' + res.status + ((d && d.error) ? ' ' + d.error : ''));
+  if (!d) throw new Error('AriseHub token: not JSON');
   if (!d.access_token) throw new Error('AriseHub token: no session');
   // Renew two minutes early; expires_at is seconds since the epoch.
   const until = d.expires_at ? d.expires_at * 1000 : Date.now() + 55 * MINUTE;
@@ -991,8 +993,9 @@ async function hubToken(force) {
 }
 async function hubGet(path) {
   let token = await hubToken(false);
-  let res = await fetchOnce(HUB_URL + path, { headers: { Authorization: 'Bearer ' + token } });
-  if (res.status === 401) { token = await hubToken(true); res = await fetchOnce(HUB_URL + path, { headers: { Authorization: 'Bearer ' + token } }); }
+  const hdrs = (t) => ({ Authorization: 'Bearer ' + t, Accept: 'application/json', 'User-Agent': 'AriseChurchWebsite/1.0 (Wix Velo; +https://www.arisecenla.church)' });
+  let res = await fetchOnce(HUB_URL + path, { headers: hdrs(token) });
+  if (res.status === 401) { token = await hubToken(true); res = await fetchOnce(HUB_URL + path, { headers: hdrs(token) }); }
   let d = null;
   try { d = await res.json(); } catch (e) { d = null; }
   if (!res.ok) {
@@ -1303,23 +1306,26 @@ export const DICTIONARY_ATTRIBUTION = 'Easton\'s Bible Dictionary (1897) and Smi
 const dictCache = makeCache(60 * MINUTE);
 
 async function dictionaryAvailable() { await loadKeys(); return !!(KEYS && KEYS.arisehub); }
+/* No AriseHub key: the page hides the dictionary. A key but a failed call: the
+   page keeps the dictionary and says it is unavailable right now. */
+const NOT_CONFIGURED = { entries: [], available: false, configured: false };
 
 /* Which dictionary entries discuss the passage on screen. */
 export async function dictionaryReference(ref) {
   ref = tidy(ref);
-  if (!ref || !parseReference(ref)) return { entries: [], available: await dictionaryAvailable() };
-  if (!(await dictionaryAvailable())) return { entries: [], available: false };
+  if (!(await dictionaryAvailable())) return NOT_CONFIGURED;
+  if (!ref || !parseReference(ref)) return { entries: [], available: true, configured: true };
   const k = 'ref|' + ref.toLowerCase();
   const hit = dictCache.get(k);
   if (hit) return hit;
   const d = await hubGet('/api/bible/reference?ref=' + encodeURIComponent(ref));
-  return dictCache.set(k, { entries: d.entries || [], attribution: DICTIONARY_ATTRIBUTION, available: true });
+  return dictCache.set(k, { entries: d.entries || [], attribution: DICTIONARY_ATTRIBUTION, available: true, configured: true });
 }
 
 /* Search by headword (q), browse a letter, or one full article (slug). */
 export async function dictionaryLookup(opts) {
   opts = opts || {};
-  if (!(await dictionaryAvailable())) return { entries: [], available: false };
+  if (!(await dictionaryAvailable())) return NOT_CONFIGURED;
   const slug = tidy(opts.slug).toLowerCase().slice(0, 120);
   const q = tidy(opts.q).slice(0, 80);
   const letter = tidy(opts.letter).toLowerCase().slice(0, 1);
@@ -1327,12 +1333,12 @@ export async function dictionaryLookup(opts) {
   if (slug) path = '/api/bible/dictionary?slug=' + encodeURIComponent(slug);
   else if (q) path = '/api/bible/dictionary?q=' + encodeURIComponent(q);
   else if (letter) path = '/api/bible/dictionary?letter=' + encodeURIComponent(letter);
-  else return { entries: [], available: true };
+  else return { entries: [], available: true, configured: true };
   const hit = dictCache.get(path);
   if (hit) return hit;
   const d = await hubGet(path);
-  const out = slug ? { entry: d.entry || null, attribution: DICTIONARY_ATTRIBUTION, available: true }
-                   : { entries: d.entries || [], attribution: DICTIONARY_ATTRIBUTION, available: true };
+  const out = slug ? { entry: d.entry || null, attribution: DICTIONARY_ATTRIBUTION, available: true, configured: true }
+                   : { entries: d.entries || [], attribution: DICTIONARY_ATTRIBUTION, available: true, configured: true };
   return dictCache.set(path, out);
 }
 
@@ -1347,11 +1353,23 @@ export async function bibleStatus() {
   const list = await allTranslations();
   const counts = {};
   list.forEach((t) => { counts[t.providerId] = (counts[t.providerId] || 0) + 1; });
+  // The bridge, end to end: trade the key for a session, then one dictionary
+  // lookup. Says exactly which step failed and what AriseHub answered.
+  let dictionary = { configured: !!keys.arisehub, ok: false };
+  if (keys.arisehub) {
+    try {
+      await hubToken(true);
+      dictionary.session = 'ok';
+      const d = await hubGet('/api/bible/reference?ref=' + encodeURIComponent('John 3'));
+      dictionary.ok = true;
+      dictionary.entriesForJohn3 = (d.entries || []).length;
+    } catch (e) { dictionary.error = (e && e.message) || 'failed'; }
+  }
   return {
     keys: keys,
     sources: PROVIDERS.map((p) => ({ id: p.id, label: p.label, keyless: p.keyless, configured: p.configured(),
       offered: offered[p.id] || 0, listed: counts[p.id] || 0, error: lastErrors[p.id] || undefined })),
     bibles: list.length,
-    dictionary: !!keys.arisehub
+    dictionary: dictionary
   };
 }
