@@ -1182,7 +1182,12 @@ export async function allTranslations() {
       const providers = await bibleProviders();
       const lists = await Promise.all(providers.map(async (p) => {
         const pending = p.translations();
-        try { const rows = await withDeadline(pending, p.id === 'arisehub' ? HUB_DEADLINE : SOURCE_DEADLINE, p.label); offered[p.id] = rows.length; delete lastErrors[p.id]; return rows.map((t) => Object.assign({}, t, { providerId: p.id })); }
+        try {
+          const rows = await withDeadline(pending, p.id === 'arisehub' ? HUB_DEADLINE : SOURCE_DEADLINE, p.label);
+          offered[p.id] = rows.length; delete lastErrors[p.id];
+          offeredRows[p.id] = rows.filter(languageKept).map((t) => ({ id: t.id, name: t.name }));
+          return rows.map((t) => Object.assign({}, t, { providerId: p.id }));
+        }
         catch (e) {
           lastErrors[p.id] = (e && e.message) || 'failed'; offered[p.id] = 0;
           // A source that answers after its deadline is not wasted: the list is
@@ -1218,6 +1223,7 @@ export async function allTranslations() {
 let lastGood = [];
 const lastErrors = {};
 const offered = {};      // source id -> how many Bibles it listed, before curation and de-duplication
+const offeredRows = {};  // source id -> the English rows it listed (id, name), for bibleStatus ?unused=1
 
 /* The catalogue row for a translation id (which source serves it). */
 export async function translationFor(id) {
@@ -1418,13 +1424,30 @@ export async function dictionaryLookup(opts) {
    Which keys are set (names only), what each source answered, how many Bibles
    survive into the list. For checking the Secrets Manager after a publish.
    ========================================================================= */
-export async function bibleStatus(refresh) {
+export async function bibleStatus(refresh, unused) {
   forgetKeys();
   const keys = await keyStatus();
   if (refresh) catalogueCache.clear();
   const list = await allTranslations();
   const counts = {};
   list.forEach((t) => { counts[t.providerId] = (counts[t.providerId] || 0) + 1; });
+  // ?unused=1: every English Bible a source offers that is NOT on the page -
+  // the free ones curation left out, and the duplicates of ones already
+  // listed under another source. For deciding what to add to KEYLESS_KEEP.
+  let unusedOut;
+  if (unused) {
+    const listed = new Set(list.map(dedupeKey));
+    unusedOut = {};
+    Object.keys(offeredRows).forEach((id) => {
+      const seen = new Set();
+      unusedOut[id] = offeredRows[id].filter((t) => {
+        const k = dedupeKey(t);
+        if (listed.has(k) || seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      }).map((t) => t.id + ' | ' + t.name);
+    });
+  }
   // The bridge, end to end: trade the key for a session, then one dictionary
   // lookup. Says exactly which step failed and what AriseHub answered.
   let dictionary = { configured: !!keys.arisehub, ok: false, url: hubUrl() };
@@ -1442,6 +1465,7 @@ export async function bibleStatus(refresh) {
     sources: PROVIDERS.map((p) => ({ id: p.id, label: p.label, keyless: p.keyless, configured: p.configured(),
       offered: offered[p.id] || 0, listed: counts[p.id] || 0, error: lastErrors[p.id] || undefined })),
     bibles: list.length,
-    dictionary: dictionary
+    dictionary: dictionary,
+    unused: unusedOut
   };
 }
