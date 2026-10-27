@@ -7,3 +7,9 @@
 - Two AriseHub slips found while porting (not fixed there): KJV rule `authoris[ez]d` never matches "Authorized"; Biblia lists language "en", which `/english/i` drops. Suggested as follow-up tasks.
 - Preview artifact: https://claude.ai/artifact/Hg6iomuBQtD3fPnNPRcYBm (sample data). User approves the preview before anything is merged or published.
 - Docs: `workspace/files2/arise-bible-page-2026-10-27/BRIEF.md`; CMS plan in `cms/PageContent-bible-page-2026-10-27.{csv,json}`; manifest `cms/manifest/arise-bible.json` (28 keys).
+
+## Status 27 Oct (later)
+- Preview approved ("It's Great! DO IT!"). PR Rehchu/arisechurch#4 merged to main as 3197c54. User publishes in Wix.
+- CMS (via connector): 12 new bible.* rows inserted, 3 reworded (form labels -> Bible / Verse or chapter / Read). Four retired rows (bible.cta.pineville, bible.cta.alexandria, bible.cta.end, bible.results.ready) still present: delete once the new page is published.
+- After publish: check https://www.arisecenla.church/_functions/bibleStatus (keys true/false, sources offered/listed/error), then the page.
+- A 5-lens adversarial review workflow (wf_ef7ce064-b7c) was still running at merge time; its findings, if any, go in a follow-up PR.
