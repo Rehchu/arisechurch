@@ -30,7 +30,7 @@ node workspace/sample-site/tests/backend.test.mjs
 node workspace/sample-site/tests/page-code.test.mjs
 ```
 
-19 and 90 tests. They read the files in `workspace/files2/arise-fixed-2026-09-14`, so keep that folder in step when the site's code in `src/` changes.
+28 and 92 tests. They read the files in `workspace/files2/arise-fixed-2026-09-14`, so keep that folder in step when the site's code in `src/` changes.
 
 ## Checking the real site
 

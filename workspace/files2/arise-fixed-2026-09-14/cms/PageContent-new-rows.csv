@@ -525,3 +525,7 @@ youth.leaders.photo,youth,Leaders photo,,https://static.wixstatic.com/media/1f9f
 youth.leaders.role,youth,Leaders role badge,Youth Ministers,,,"Leaders section, red badge on the card"
 youth.moments.heading,youth,Photos heading,Youth Life,,,Photo section title
 youth.moments.kicker,youth,Photos kicker,Moments,,,"Photo section, small red text"
+sermons.playlists.kicker,sermons,Sermons playlists kicker,Messages &amp; Series,,,"Light grey Sermons section, small red text"
+sermons.playlists.heading,sermons,Sermons playlists heading,Sermons,,,"Light grey Sermons section, title"
+sermons.playlists.lede,sermons,Sermons playlists intro,"Every message from Apostle Bryant Sanders, Pastor Vanessa Sanders and our guest ministers, in playlists. Pick one and watch it right here.",,,"Light grey Sermons section, paragraph under the title"
+sermons.playlists.button,sermons,Sermons playlists button,All Playlists on YouTube,,,"Light grey Sermons section, outlined button under the player"

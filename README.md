@@ -51,8 +51,8 @@ Publishing from the command line uses the design version recorded in `wix.config
 ## Checking your work
 
 ```bash
-node workspace/sample-site/tests/backend.test.mjs      # 19 tests, the server-side code under Node
-node workspace/sample-site/tests/page-code.test.mjs    # 90 tests, every page file against a fake Wix
+node workspace/sample-site/tests/backend.test.mjs      # 28 tests, the server-side code under Node
+node workspace/sample-site/tests/page-code.test.mjs    # 92 tests, every page file against a fake Wix
 node workspace/audit/check.mjs --pages=home,classes --sites=live --vps=desktop,phone
 ```
 
@@ -65,7 +65,11 @@ The last one drives a headless browser over the real pages and reports console e
 - **Write "Arise Church"**, never just "Arise".
 - Test before handing anything over, and check the published site: custom elements don't run properly in the Editor or in Preview.
 
-## Where things stand (8 October 2026)
+## Where things stand (27 October 2026)
+
+- **Media page (`/sermons`) rebuilt around the YouTube channel:** the player at the top shows the newest service and switches to the live stream while one is running; the Glory Nights player shows the newest Glory Night; a new Sermons section lists the channel's playlists (Sunday Sermons, Apostle Bryant Sanders, Pastor Vanessa Sanders first) with an inline player. The Shorts grid is unchanged. Four new Page Content rows (`sermons.playlists.*`) are in `workspace/files2/arise-fixed-2026-09-14/cms/PageContent-media-page-2026-10-27.csv`, ready to import; until they are, the element shows the same words built in.
+
+## Where things stood (8 October 2026)
 
 - Published: the September fix build, the speed work, the MORE class page and whole-flyer class cards.
 - First visits are about four times faster than in September and download roughly a seventh of the data.

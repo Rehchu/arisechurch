@@ -2,9 +2,11 @@
    Paste into: Code panel -> Page Code -> "Past Sermons"  (replaces the whole file)
    Fixed 2026-09-14: finds the element by type when the ID differs, logs every miss.
    Sped up 2026-09-15: the backend calls start at once and each attribute is set as soon
-   as its own call answers. */
+   as its own call answers.
+   Media page 2026-10-27: also sends the newest service (data-latest-video), the newest
+   Glory Night (data-glory-video) and the channel's playlists (data-playlists). */
 import wixData from 'wix-data';
-import { getLiveVideoId, getCurrentSeries, getLatestShorts } from 'backend/youtube.jsw';
+import { getLiveVideoId, getCurrentSeries, getLatestShorts, getLatestVideo, getLatestGloryNight, getPlaylists } from 'backend/youtube.jsw';
 
 const PAGE = 'Past Sermons';
 const EL = '#customElement1';
@@ -97,6 +99,35 @@ $w.onReady(async () => {
     } catch (err) { console.error(PAGE + ': Shorts lookup failed', err); }
   })();
 
+  // ---- Newest service, for the player at the top. The element keeps the
+  //      live-stream playlist if nothing comes back.
+  const latestLoad = (async () => {
+    try {
+      const v = await getLatestVideo();
+      if (v && v.id) { ariseSet('data-latest-video', v); console.log(PAGE + ': latest service ' + v.id + ' "' + v.title + '"'); }
+      else console.log(PAGE + ': no latest service from YouTube, player keeps the live-stream playlist');
+    } catch (err) { console.error(PAGE + ': latest service lookup failed', err); }
+  })();
+
+  // ---- Newest Glory Night, for the Glory Nights player.
+  const gloryLoad = (async () => {
+    try {
+      const v = await getLatestGloryNight();
+      if (v && v.id) { ariseSet('data-glory-video', v); console.log(PAGE + ': latest Glory Night ' + v.id + ' "' + v.title + '"'); }
+      else console.log(PAGE + ': no Glory Night from YouTube, player keeps the playlist');
+    } catch (err) { console.error(PAGE + ': Glory Night lookup failed', err); }
+  })();
+
+  // ---- The channel's playlists, for the Sermons section. If none come back,
+  //      the element keeps showing its built-in list.
+  const playlistsLoad = (async () => {
+    try {
+      const list = await getPlaylists();
+      console.log(PAGE + ': ' + list.length + ' playlists');
+      if (list.length) ariseSet('data-playlists', list);
+    } catch (err) { console.error(PAGE + ': playlists lookup failed', err); }
+  })();
+
   // ---- Live stream: checked now, then re-checked every minute; the attribute
   //      only changes on change.
   let current = null;
@@ -112,5 +143,5 @@ $w.onReady(async () => {
   checkLive();
   setInterval(checkLive, 60000);
 
-  await Promise.all([seriesLoad, shortsLoad]);   // onReady finishes once both have answered
+  await Promise.all([seriesLoad, shortsLoad, latestLoad, gloryLoad, playlistsLoad]);   // onReady finishes once all have answered
 });

@@ -20,6 +20,10 @@
    CMS hooks 2026-09-14: every text block and image editable via Page Content (see cms/manifest/arise-sermons.json)
    14 Sept (Bradly): the clips grid shows the newest YouTube Shorts (data-clips from the page code, read by
    backend/youtube.jsw getLatestShorts). The built-in list is the newest Shorts on 14 Sept; per-clip CMS rows removed.
+   27 Oct 2026 (Media page): the top player shows the newest service (data-latest-video) and switches to the live
+   stream when one is running; the Glory Nights player shows the newest Glory Night (data-glory-video); a new
+   Sermons section lists the channel's playlists (data-playlists) with an inline player -- Sunday Sermons, Apostle
+   Bryant Sanders, Pastor Vanessa Sanders first, then the rest. The Shorts grid is unchanged.
    =========================================================================== */
 
 const FONTS =
@@ -44,6 +48,35 @@ const LATEST_EMBED = 'https://www.youtube.com/embed/videoseries?list=' + STREAMS
 const GLORY_LIST  = 'PLYhdT3QigNmY';
 const GLORY_EMBED = 'https://www.youtube.com/embed/videoseries?list=' + GLORY_LIST + '&rel=0';
 const GLORY_URL   = 'https://www.youtube.com/playlist?list=' + GLORY_LIST;
+const CHANNEL_URL = 'https://www.youtube.com/@arisechurch4147';
+
+/* Built-in playlist list for the Sermons section. Shown until the page code
+   sends the channel's playlists (data-playlists from backend/youtube.jsw
+   getPlaylists), or if YouTube cannot be reached. These were the channel's
+   playlists on 27 Oct 2026, Glory Nights left out because it has its own
+   section. The first three stay first; the rest follow YouTube's order. */
+const PLAYLISTS = [
+  { id: 'PLb-9QSfkRhnE2aI5nXA_Vv-UJDr8Fn4mI', title: 'Sunday Sermons', count: 113, thumb: YT + 'oYSMY9VJk1I/hqdefault.jpg' },
+  { id: 'PLa-Nxr2f-qHY', title: 'Apostle Bryant Sanders \u2014 Messages', count: 82, thumb: YT + 'GfTvURWWlLg/hqdefault.jpg' },
+  { id: 'PLeDfl1m-bAzo', title: 'Pastor Vanessa Sanders \u2014 Messages', count: 45, thumb: YT + '8gUVgiIENWk/hqdefault.jpg' },
+  { id: 'PLAUiV-2ZIEuI', title: 'Guest Ministers | Arise Church', count: 24, thumb: YT + 'v6O3oGM3xG8/hqdefault.jpg' },
+  { id: 'PLMbBRRxhqveM', title: 'Fruit of the Spirit (Series)', count: 5, thumb: YT + '2LeaYkJKkM8/hqdefault.jpg' },
+  { id: 'PLO9cKOxkFsOs', title: 'Sermon Series: This Is Us (2019)', count: 5, thumb: YT + 'oYSMY9VJk1I/hqdefault.jpg' },
+  { id: 'PLBKi2GRVZ2uY', title: "Men's Retreat 2026 \u2014 The Covering", count: 3, thumb: YT + 'R_GgUKwRucs/hqdefault.jpg' },
+  { id: 'PLWJRS0iEv_vk', title: 'Conferences & Special Events', count: 31, thumb: YT + 'fgjN_1f203A/hqdefault.jpg' },
+  { id: 'PLcUxXtBi6scY', title: 'The Supernatural Power of the Name of Jesus (Series)', count: 4, thumb: YT + 'ElcTtCxWq9A/hqdefault.jpg' },
+  { id: 'PLHe_Ip_acqAM', title: 'No Killer, No King (Series)', count: 5, thumb: YT + 'F7pNGR7JFXc/hqdefault.jpg' },
+  { id: 'PLFcdpdUSxF-A', title: 'The Believers Authority (Series)', count: 4, thumb: YT + 'qXVcqfbqguo/hqdefault.jpg' },
+  { id: 'PLb-9QSfkRhnEylnizReaelT5aKprffde_', title: 'Lead Network', count: 2, thumb: YT + 'dvwZSgvYI4Q/hqdefault.jpg' },
+  { id: 'PLb-9QSfkRhnFeiSw6ZING8xeppNPp1lUa', title: 'iServe September', count: 4, thumb: YT + '7UUHXXFlhuw/hqdefault.jpg' }
+];
+const EMBED_ALLOW = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+
+function asrVideoId(v) { return /^[A-Za-z0-9_-]{11}$/.test(String(v || '')) ? String(v) : ''; }
+function asrListId(v) { return /^[A-Za-z0-9_-]{13,40}$/.test(String(v || '')) ? String(v) : ''; }
+function asrPlaylistEmbed(id, autoplay) {
+  return 'https://www.youtube.com/embed/videoseries?list=' + id + '&rel=0' + (autoplay ? '&autoplay=1' : '');
+}
 const WM = 'https://static.wixstatic.com/media/';
 
 /* Built-in Shorts list. Shown only until the page code sends the newest Shorts
@@ -217,6 +250,53 @@ arise-events,arise-sermons{display:block;width:100%}
 .aes .grid--shorts{grid-template-columns:repeat(4,1fr);gap:28px 20px}
 @media(max-width:760px){.aes .grid--shorts{grid-template-columns:repeat(2,1fr);gap:24px 14px}}
 
+/* ---------- SERMONS: latest service lines ---------- */
+.aes .featv__title{color:#fff;font-weight:500;font-size:clamp(16px,1.6vw,19px);line-height:1.4;margin-top:24px;max-width:40ch}
+.aes .featv__when{color:rgba(255,255,255,.62);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-top:8px}
+.aes .featv__link{display:inline-block;margin-top:16px;color:#fff;font-size:12px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;text-decoration:none;border-bottom:1.5px solid var(--redL);padding-bottom:3px}
+.aes .featv__link:hover{color:var(--redL)}
+.aes .glory__now{margin-top:24px;color:rgba(255,255,255,.72);font-size:15px;line-height:1.55;max-width:44ch}
+.aes .glory__now b{display:block;color:#fff;font-weight:500;font-size:16.5px}
+.aes .glory__now span{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-top:6px}
+
+/* ---------- SERMONS: playlists ---------- */
+.aes .pls{display:grid;grid-template-columns:1.35fr .65fr;gap:clamp(24px,3vw,40px);margin-top:48px;align-items:start}
+@media(max-width:900px){.aes .pls{grid-template-columns:1fr}}
+.aes .pls__now{display:flex;align-items:flex-end;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;margin-top:22px}
+.aes .pls__now h3{font-size:clamp(18px,2vw,24px);letter-spacing:.02em}
+.aes .pls__now .nowbadge{margin-bottom:10px}
+.aes .pls__count{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.aes .pls__out{color:var(--ink);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;border-bottom:1.5px solid var(--red);padding-bottom:3px;white-space:nowrap}
+.aes .pls__out:hover{color:var(--red)}
+.aes .pls__list{display:flex;flex-direction:column;gap:2px;max-height:min(600px,72vh);overflow:auto;
+  background:var(--rule);border:1px solid var(--rule);scrollbar-width:thin}
+.aes .pl{display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:center;width:100%;text-align:left;
+  background:var(--paper);border:0;border-left:4px solid transparent;padding:12px 14px 12px 12px;cursor:pointer;
+  font:inherit;color:inherit;transition:background .18s,border-color .18s}
+.aes .pl:hover{border-left-color:rgba(214,34,45,.5)}
+.aes .pl:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.aes .pl[aria-selected="true"]{background:var(--ink);color:#fff;border-left-color:var(--red)}
+.aes .pl__th{position:relative;aspect-ratio:16/9;background:var(--scrim);overflow:hidden}
+.aes .pl__th img{width:100%;height:100%;object-fit:cover;filter:brightness(.9);transition:transform .45s ease}
+.aes .pl:hover .pl__th img{transform:scale(1.06)}
+.aes .pl__n{position:absolute;right:0;bottom:0;background:rgba(6,6,8,.88);color:#fff;font-size:10.5px;letter-spacing:.08em;padding:3px 7px}
+.aes .pl h3{font-size:15px;line-height:1.2;letter-spacing:.02em}
+.aes .pl p{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.aes .pl[aria-selected="true"] h3{color:#fff}
+.aes .pl[aria-selected="true"] p{color:rgba(255,255,255,.62)}
+@media(max-width:900px){
+  .aes .pls__list{flex-direction:row;max-height:none;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
+    padding-bottom:2px;-webkit-overflow-scrolling:touch}
+  .aes .pl{flex:0 0 212px;grid-template-columns:1fr;gap:12px;scroll-snap-align:start;align-content:start;
+    border-left:0;border-top:4px solid transparent;padding:0 0 14px}
+  .aes .pl__th{aspect-ratio:16/9}
+  .aes .pl h3,.aes .pl p{padding:0 12px}
+  .aes .pl:hover{border-top-color:rgba(214,34,45,.5)}
+  .aes .pl[aria-selected="true"]{border-top-color:var(--red)}
+}
+
 @media(prefers-reduced-motion:reduce){.aes *{transition:none!important}}
 @media (prefers-color-scheme: dark){
   .aes{background:#fff;color:#0A0A0C}
@@ -271,6 +351,9 @@ class AriseSermons extends HTMLElement {
               '<span class="nowbadge" id="ariseBadge">Latest Service</span>' +
               '<h2 data-ck="sermons.latest.heading">Sunday Morning<br>Service</h2>' +
               '<div class="strip" style="margin-top:24px"><span data-ck="sermons.latest.strip">Arise Church</span></div>' +
+              '<p class="featv__title" id="ariseLatestTitle" style="display:none"></p>' +
+              '<p class="featv__when" id="ariseLatestWhen" style="display:none"></p>' +
+              '<a class="featv__link" id="ariseLatestLink" href="' + CHANNEL_URL + '/streams" target="_blank" rel="noopener">Watch on YouTube</a>' +
             '</div>' +
           '</div>' +
         '</div></section>' +
@@ -295,16 +378,39 @@ class AriseSermons extends HTMLElement {
                 '<span data-ck="sermons.glory.campus">Main Campus</span>' +
                 '<span data-ck="sermons.glory.address">501 Ates Road, Pineville</span>' +
               '</div>' +
+              '<p class="glory__now" id="ariseGloryNow" style="display:none"></p>' +
               '<div style="margin-top:34px">' +
                 '<a class="btn btn--ghost" href="' + GLORY_URL + '" target="_blank" rel="noopener" data-ck="sermons.glory.button">All Glory Nights</a>' +
               '</div>' +
             '</div>' +
             '<div class="glory__p">' +
-              '<iframe src="' + GLORY_EMBED + '" title="Arise Church \u2014 Glory Nights" ' +
-              'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+              '<iframe id="ariseGloryFrame" src="' + GLORY_EMBED + '" title="Arise Church \u2014 Glory Nights" ' +
+              'frameborder="0" loading="lazy" allow="' + EMBED_ALLOW + '" ' +
               'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>' +
             '</div>' +
           '</div>' +
+        '</div></section>' +
+
+        '<section class="sect sect--bone"><div class="shell">' +
+          '<div class="mark"><span class="kicker" data-ck="sermons.playlists.kicker">Messages &amp; Series</span></div>' +
+          '<h2 data-ck="sermons.playlists.heading">Sermons</h2>' +
+          '<p class="lede" style="margin-top:18px;max-width:58ch" data-ck="sermons.playlists.lede">Every message from Apostle Bryant Sanders, ' +
+            'Pastor Vanessa Sanders and our guest ministers, in playlists. Pick one and watch it right here.</p>' +
+          '<div class="pls" data-cms-source="YouTube">' +
+            '<div>' +
+              '<div class="player">' +
+                '<iframe id="arisePlaylistFrame" src="' + asrPlaylistEmbed(PLAYLISTS[0].id) + '" title="Arise Church \u2014 ' + asrEsc(PLAYLISTS[0].title) + '" ' +
+                'frameborder="0" loading="lazy" allow="' + EMBED_ALLOW + '" ' +
+                'referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>' +
+              '</div>' +
+              '<div class="pls__now">' +
+                '<div><span class="nowbadge">Now Playing</span><h3 id="arisePlaylistTitle"></h3><p class="pls__count" id="arisePlaylistCount"></p></div>' +
+                '<a class="pls__out" id="arisePlaylistLink" href="#" target="_blank" rel="noopener">Open on YouTube</a>' +
+              '</div>' +
+            '</div>' +
+            '<div class="pls__list" id="aesPlaylists" role="tablist" aria-label="Sermon playlists"></div>' +
+          '</div>' +
+          '<div style="margin-top:48px"><a class="btn btn--dark" href="' + CHANNEL_URL + '/playlists" target="_blank" rel="noopener" data-ck="sermons.playlists.button">All Playlists on YouTube</a></div>' +
         '</div></section>' +
 
         '<section class="sect"><div class="shell">' +
@@ -328,25 +434,125 @@ class AriseSermons extends HTMLElement {
       '</div>';
 
     this.renderClips();
+    this.renderPlaylists();
     this.applyContent();
 
-    /* If the page code tells us a live stream is running, switch the player.
-       Set it with:  el.setAttribute('data-live-video', '<videoId>')
-       See the Sermons page code in the build notes. Without it, the player
-       simply shows the most recent upload, which is the sensible default. */
+    /* The page code sends the newest service as data-latest-video and, while a
+       stream is running, its id as data-live-video; the live stream wins. With
+       neither, the player shows the channel's live-stream playlist, which
+       always starts at the most recent stream -- the sensible default. */
     this.applyLive();
+    this.applyGlory();
     this.applySeries();
   }
 
-  static get observedAttributes() { return ['data-clips', 'data-live-video', 'data-series-active', 'data-series-title',
-            'data-series-line', 'data-series-link', 'data-series-button', 'data-content']; }
+  static get observedAttributes() { return ['data-clips', 'data-live-video', 'data-latest-video', 'data-glory-video',
+            'data-playlists', 'data-series-active', 'data-series-title', 'data-series-line', 'data-series-link',
+            'data-series-button', 'data-content']; }
 
   attributeChangedCallback(name) {
     if (!this._b) return;   // nothing to patch until it has rendered
     if (name === 'data-content') { this.applyContent(); return; }
     if (name === 'data-clips') { this.renderClips(); return; }
-    if (name === 'data-live-video') this.applyLive();
+    if (name === 'data-playlists') { this.renderPlaylists(); return; }
+    if (name === 'data-glory-video') { this.applyGlory(); return; }
+    if (name === 'data-live-video' || name === 'data-latest-video') this.applyLive();
     else this.applySeries();
+  }
+
+  /* A JSON attribute, or null when it is missing or unreadable. */
+  readJson(name) {
+    const raw = this.getAttribute(name);
+    if (!raw) return null;
+    try { return JSON.parse(raw); } catch (e) { console.error('arise-sermons: bad ' + name + ' JSON', e); return null; }
+  }
+
+  /* Sermons section: the channel's playlists as a list beside an inline player.
+     The page code sends them as data-playlists: [{ id, title, count, thumb }];
+     until then, or if YouTube cannot be reached, the built-in PLAYLISTS show.
+     Choosing one loads it in the player; the first is loaded to begin with. */
+  renderPlaylists() {
+    const mount = this.querySelector('#aesPlaylists');
+    if (!mount) return;
+    let list = this.readJson('data-playlists');
+    if (!Array.isArray(list)) list = [];
+    list = list.filter(function (p) { return p && asrListId(p.id) && p.id !== GLORY_LIST && String(p.title || '').trim(); }).slice(0, 24);
+    if (!list.length) list = PLAYLISTS;
+    const key = list.map(function (p) { return p.id + '|' + p.title + '|' + (p.count || 0) + '|' + (p.thumb || ''); }).join(',');
+    if (this._plKey === key && mount.children.length) return;
+    this._plKey = key;
+    this._playlists = list;
+    mount.innerHTML = list.map(function (p) {
+      const n = Number(p.count) || 0;
+      const thumb = /^https:\/\/i\.ytimg\.com\//.test(String(p.thumb || '')) ? p.thumb : '';
+      return '<button type="button" class="pl" role="tab" data-list="' + asrEsc(p.id) + '" aria-selected="false">' +
+        '<span class="pl__th">' +
+          (thumb ? '<img src="' + asrEsc(thumb) + '" alt="" loading="lazy" decoding="async">' : '') +
+          (n ? '<span class="pl__n">' + n + '</span>' : '') +
+        '</span>' +
+        '<span><h3>' + asrEsc(p.title) + '</h3>' + (n ? '<p>' + n + (n === 1 ? ' message' : ' messages') + '</p>' : '') + '</span>' +
+      '</button>';
+    }).join('');
+    if (!this._plBound) {
+      this._plBound = true;
+      const self = this;
+      mount.addEventListener('click', function (ev) {
+        const btn = ev.target && ev.target.closest ? ev.target.closest('.pl') : null;
+        if (btn && mount.contains(btn)) self.selectPlaylist(btn.getAttribute('data-list'), true);
+      });
+    }
+    const sel = this._plSel;
+    const keep = sel && list.some(function (p) { return p.id === sel; });
+    this.selectPlaylist(keep ? sel : list[0].id, false);
+  }
+
+  selectPlaylist(id, autoplay) {
+    const list = this._playlists || PLAYLISTS;
+    const p = list.filter(function (x) { return x.id === id; })[0];
+    if (!p) return;
+    const frame = this.querySelector('#arisePlaylistFrame');
+    const title = this.querySelector('#arisePlaylistTitle');
+    const count = this.querySelector('#arisePlaylistCount');
+    const link = this.querySelector('#arisePlaylistLink');
+    const changed = this._plSel !== p.id;
+    this._plSel = p.id;
+    if (frame && (changed || !frame.getAttribute('src'))) {
+      const target = asrPlaylistEmbed(p.id, !!autoplay);
+      if (frame.getAttribute('src') !== target) frame.src = target;
+      frame.title = 'Arise Church \u2014 ' + p.title;
+    }
+    if (title) title.textContent = p.title;
+    if (count) count.textContent = p.count ? p.count + (p.count === 1 ? ' message' : ' messages') + ' on YouTube' : '';
+    if (link) link.href = 'https://www.youtube.com/playlist?list=' + p.id;
+    this.querySelectorAll('#aesPlaylists .pl').forEach(function (b) {
+      const on = b.getAttribute('data-list') === p.id;
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+      /* on a phone the list is a strip: bring the chosen card fully into view */
+      if (on && autoplay && typeof b.scrollIntoView === 'function') {
+        try { b.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' }); } catch (e) { /* older browsers */ }
+      }
+    });
+  }
+
+  /* Glory Nights player: the newest Glory Night, sent by the page code as
+     data-glory-video: { id, title, when }. The playlist keeps playing after it.
+     Without it the player shows the playlist from its first video. */
+  applyGlory() {
+    const frame = this.querySelector('#ariseGloryFrame');
+    const now = this.querySelector('#ariseGloryNow');
+    if (!frame) return;
+    const v = this.readJson('data-glory-video');
+    const vid = v ? asrVideoId(v.id) : '';
+    const target = vid ? 'https://www.youtube.com/embed/' + vid + '?list=' + GLORY_LIST + '&rel=0' : GLORY_EMBED;
+    if (frame.getAttribute('src') !== target) frame.src = target;
+    if (now) {
+      if (vid && v.title) {
+        now.innerHTML = 'Latest Glory Night<b>' + asrEsc(v.title) + '</b>' + (v.when ? '<span>' + asrEsc(v.when) + '</span>' : '');
+        now.style.display = '';
+      } else {
+        now.style.display = 'none';
+      }
+    }
   }
 
   /* Shorts grid. The page code sends the newest Shorts from the YouTube channel
@@ -406,17 +612,35 @@ class AriseSermons extends HTMLElement {
   applyLive() {
     const frame = this.querySelector('#ariseFeatured');
     const badge = this.querySelector('#ariseBadge');
+    const title = this.querySelector('#ariseLatestTitle');
+    const when = this.querySelector('#ariseLatestWhen');
+    const link = this.querySelector('#ariseLatestLink');
     if (!frame) return;
 
-    let vid = this.getAttribute('data-live-video');
-    if (vid && !/^[A-Za-z0-9_\-]+$/.test(vid)) vid = '';
-    const target = vid ? 'https://www.youtube.com/embed/' + vid + '?rel=0&autoplay=0' : LATEST_EMBED;
+    const vid = asrVideoId(this.getAttribute('data-live-video'));
+    const latest = this.readJson('data-latest-video');
+    const latestId = latest ? asrVideoId(latest.id) : '';
+    const target = vid ? 'https://www.youtube.com/embed/' + vid + '?rel=0&autoplay=0'
+                 : latestId ? 'https://www.youtube.com/embed/' + latestId + '?list=' + STREAMS_ID + '&rel=0'
+                 : LATEST_EMBED;
     if (frame.getAttribute('src') !== target) frame.src = target;
     if (badge) {
       const txt = vid ? 'Live Now' : 'Latest Service';
       if (badge.textContent !== txt) badge.textContent = txt;
       if (vid) { if (badge.getAttribute('data-live') !== 'true') badge.setAttribute('data-live', 'true'); }
       else if (badge.hasAttribute('data-live')) badge.removeAttribute('data-live');
+    }
+    const showLatest = !vid && latestId && latest.title;
+    if (title) { title.textContent = showLatest ? latest.title : ''; title.style.display = showLatest ? '' : 'none'; }
+    if (when) {
+      const txt = vid ? 'Streaming now' : (showLatest && latest.when ? latest.when : '');
+      when.textContent = txt; when.style.display = txt ? '' : 'none';
+    }
+    if (link) {
+      link.href = vid ? 'https://www.youtube.com/watch?v=' + vid
+                : latestId ? 'https://www.youtube.com/watch?v=' + latestId + '&list=' + STREAMS_ID
+                : CHANNEL_URL + '/streams';
+      link.textContent = vid ? 'Watch live on YouTube' : 'Watch on YouTube';
     }
   }
   applyContent() {

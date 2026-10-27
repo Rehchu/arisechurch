@@ -174,5 +174,37 @@
     "text": "Plan Your Visit",
     "imageUrl": "",
     "where": "Red banner at the bottom, white button"
+  },
+  {
+    "contentKey": "sermons.playlists.kicker",
+    "page": "sermons",
+    "label": "Sermons playlists kicker",
+    "text": "Messages &amp; Series",
+    "imageUrl": "",
+    "where": "Light grey Sermons section, small red text"
+  },
+  {
+    "contentKey": "sermons.playlists.heading",
+    "page": "sermons",
+    "label": "Sermons playlists heading",
+    "text": "Sermons",
+    "imageUrl": "",
+    "where": "Light grey Sermons section, title"
+  },
+  {
+    "contentKey": "sermons.playlists.lede",
+    "page": "sermons",
+    "label": "Sermons playlists intro",
+    "text": "Every message from Apostle Bryant Sanders, Pastor Vanessa Sanders and our guest ministers, in playlists. Pick one and watch it right here.",
+    "imageUrl": "",
+    "where": "Light grey Sermons section, paragraph under the title"
+  },
+  {
+    "contentKey": "sermons.playlists.button",
+    "page": "sermons",
+    "label": "Sermons playlists button",
+    "text": "All Playlists on YouTube",
+    "imageUrl": "",
+    "where": "Light grey Sermons section, outlined button under the player"
   }
 ]

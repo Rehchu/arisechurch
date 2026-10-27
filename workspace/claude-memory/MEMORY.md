@@ -9,3 +9,4 @@
 - [Arise chat transcript 13–15 Sept](arise-chat-2026-09-13-to-15.md) — path to the full transcript of the audit + fix-build chat and what it covered
 - [Arise live status 2026-09-13](arise-live-status-2026-09-13.md) — dated snapshot: URL statuses, apps, SEO gaps (code details superseded)
 - [Arise deploy 2026-09-15](arise-fix-build-2026-09-15-deploy.md) — LATEST: fixes (77f2fad) + speed fixes (0d8dee0) published 15 Sept; 571 CMS rows; 29 Sept: MORE course + themed class page live (ce352a1); 8 Oct: everything backed up to private repo Rehchu/arise-church-backup (all repos private; old workspace repo being deleted, it held a PII CSV)
+- [Media page build 2026-10-27](arise-media-page-2026-10-27.md) — /sermons: newest service on top (live wins), newest Glory Night, Sermons playlist section; Shorts untouched

@@ -1,0 +1,5 @@
+contentKey,page,label,text,imageUrl,image,where
+sermons.playlists.kicker,sermons,Sermons playlists kicker,Messages &amp; Series,,,"Light grey Sermons section, small red text"
+sermons.playlists.heading,sermons,Sermons playlists heading,Sermons,,,"Light grey Sermons section, title"
+sermons.playlists.lede,sermons,Sermons playlists intro,"Every message from Apostle Bryant Sanders, Pastor Vanessa Sanders and our guest ministers, in playlists. Pick one and watch it right here.",,,"Light grey Sermons section, paragraph under the title"
+sermons.playlists.button,sermons,Sermons playlists button,All Playlists on YouTube,,,"Light grey Sermons section, outlined button under the player"

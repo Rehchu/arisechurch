@@ -8,7 +8,12 @@
    - Live check ignores upcoming (scheduled) streams. The channel's /live page
      points at the next scheduled stream too; only a stream playing now counts.
    - Series detection reads YouTube's current playlist layout.
-   - New getLatestShorts(): the newest Shorts, for the Sermons page. */
+   - New getLatestShorts(): the newest Shorts, for the Sermons page.
+   Added 2026-10-27 (Media page):
+   - getLatestVideo(): the newest live-stream replay, for the player at the top.
+   - getLatestGloryNight(): the newest video in the Glory Nights playlist.
+   - getPlaylists(): the channel's playlists (Sunday Sermons, Apostle Bryant,
+     Pastor Vanessa, ...) for the Sermons section. */
 import { fetch } from 'wix-fetch';
 
 const CHANNEL_ID = 'UCGS9j7B_prcJkbTNgzlGrKg';
@@ -18,11 +23,12 @@ const YT_HEADERS = {
   'Accept-Language': 'en-US,en;q=0.9'
 };
 
-async function getPage(path) {
-  const res = await fetch(CHANNEL + path, { method: 'get', headers: YT_HEADERS });
-  if (!res.ok) throw new Error('YouTube ' + path + ' answered ' + res.status);
+async function getUrl(url) {
+  const res = await fetch(url, { method: 'get', headers: YT_HEADERS });
+  if (!res.ok) throw new Error('YouTube ' + url.replace(/^https?:\/\/[^/]+/, '') + ' answered ' + res.status);
   return res.text();
 }
+function getPage(path) { return getUrl(CHANNEL + path); }
 
 /* Decode a JSON string body taken out of YouTube's page data. */
 function jsonText(raw) {
@@ -219,4 +225,259 @@ export async function getLatestShorts(limit) {
   }
 
   return shortsCache.value ? shortsCache.value.slice(0, max) : [];
+}
+
+
+/* =========================================================================
+   4. VIDEO LISTS (streams tab, playlist pages)
+   One parser for both of YouTube's layouts: the older *VideoRenderer blocks
+   and the current lockupViewModel cards. Returns the videos in page order as
+   [{ id, title, when, ageDays, live, upcoming }]. "when" is YouTube's own
+   wording ("Streamed 6 days ago"); ageDays turns it into a number so a list
+   can be sorted newest first whatever order the page lists it in.
+   ========================================================================= */
+
+/* YouTube writes ages two ways: "Streamed 2 weeks ago" on channel tabs and
+   playlist pages, "2w ago" / "3mo ago" on compact cards. Both are read. */
+const UNIT_DAYS = { s: 1 / 86400, m: 1 / 1440, h: 1 / 24, d: 1, w: 7, mo: 30, y: 365 };
+const AGE_RE = /(?:streamed|premiered)?\s*(\d+)\s*(seconds?|minutes?|hours?|days?|weeks?|months?|years?|mo|[smhdwy])\s+ago/i;
+
+/* "Streamed 2 weeks ago" -> 14. Unknown wording -> Infinity, so known ages win. */
+export function ageDays(text) {
+  const m = String(text || '').match(AGE_RE);
+  if (!m) return Infinity;
+  const u = m[2].toLowerCase();
+  const key = u.indexOf('mo') === 0 ? 'mo' : u.charAt(0);
+  return Number(m[1]) * UNIT_DAYS[key];
+}
+
+export function parseVideoList(html) {
+  const src = String(html || '');
+  const out = [];
+  const seen = {};
+  const add = function (id, title, when, live, upcoming) {
+    if (!id || seen[id] || !/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+    seen[id] = true;
+    when = String(when || '').replace(/\s+/g, ' ').trim();
+    out.push({
+      id: id,
+      title: String(title || '').replace(/\s+/g, ' ').trim(),
+      when: when,
+      ageDays: ageDays(when),
+      live: !!live,
+      upcoming: !!upcoming
+    });
+  };
+
+  /* Layout A: videoRenderer / gridVideoRenderer / playlistVideoRenderer.
+     Each block starts with its own videoId, so splitting on the renderer name
+     keeps one video's data away from the next one's. */
+  const partsA = src.split(/"(?:videoRenderer|gridVideoRenderer|playlistVideoRenderer)":\{/);
+  for (let i = 1; i < partsA.length; i++) {
+    const b = partsA[i].slice(0, 20000);
+    const idm = b.match(/^"videoId":"([A-Za-z0-9_-]{11})"/);
+    if (!idm) continue;
+    const tm = b.match(/"title":\{"runs":\[\{"text":"((?:[^"\\]|\\.)*)"/) ||
+               b.match(/"title":\{"simpleText":"((?:[^"\\]|\\.)*)"/) ||
+               b.match(/"title":\{"accessibility":\{"accessibilityData":\{"label":"((?:[^"\\]|\\.)*)"/);
+    const wm = b.match(/"publishedTimeText":\{"simpleText":"((?:[^"\\]|\\.)*)"/) ||
+               b.match(/"text":"((?:Streamed|Premiered)?\s*\d+\s*\w+\s+ago)"/i);
+    const upcoming = b.indexOf('"upcomingEventData"') > -1 || /"style":"UPCOMING"|"label":"UPCOMING"|"text":"UPCOMING"/.test(b);
+    const live = !upcoming && (/"style":"LIVE"|"label":"LIVE"|"text":"LIVE"|BADGE_STYLE_TYPE_LIVE_NOW|"text":"\d[\d,.]*K?\s*watching"/.test(b) ||
+                 /"icon":\{"iconType":"LIVE"\}/.test(b));
+    add(idm[1], tm ? jsonText(tm[1]) : '', wm ? jsonText(wm[1]) : '', live, upcoming);
+  }
+
+  /* Layout B: lockupViewModel cards with contentType LOCKUP_CONTENT_TYPE_VIDEO. */
+  if (!out.length) {
+    const partsB = src.split('"lockupViewModel":');
+    for (let j = 1; j < partsB.length; j++) {
+      const b = partsB[j].slice(0, 60000);
+      if (b.indexOf('"contentType":"LOCKUP_CONTENT_TYPE_VIDEO"') < 0) continue;
+      const idm = b.match(/"contentId":"([A-Za-z0-9_-]{11})"/) || b.match(/i\.ytimg\.com\/vi\/([A-Za-z0-9_-]{11})\//);
+      if (!idm) continue;
+      const tm = b.match(/"lockupMetadataViewModel":\{"title":\{"content":"((?:[^"\\]|\\.)*)"/);
+      const wm = b.match(/"content":"((?:Streamed|Premiered)?\s*\d+\s*\w+\s+ago)"/i);
+      const upcoming = /Scheduled for|"UPCOMING"|"isUpcoming":true|"text":"Upcoming"/i.test(b);
+      const live = !upcoming && (/"text":"LIVE"|"LIVE_NOW"|"text":"\d[\d,.]*K?\s*watching"|"content":"LIVE"/.test(b));
+      add(idm[1], tm ? jsonText(tm[1]) : '', wm ? jsonText(wm[1]) : '', live, upcoming);
+    }
+  }
+  return out;
+}
+
+function videoRecord(v, list) {
+  return {
+    id: v.id,
+    title: v.title,
+    when: v.when,
+    url: 'https://www.youtube.com/watch?v=' + v.id + (list ? '&list=' + list : ''),
+    thumb: 'https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg'
+  };
+}
+
+/* =========================================================================
+   5. LATEST VIDEO
+   Reads the channel's Live tab (/streams), which YouTube lists newest first.
+   Scheduled (upcoming) streams are skipped: the player at the top of the
+   Media page wants the newest service that can actually be watched. If the
+   Live tab gives nothing, the Videos tab is tried. Cached 10 minutes; keeps
+   the last good answer if YouTube cannot be reached.
+   ========================================================================= */
+
+let streamsCache = { value: null, at: 0 };
+const STREAMS_CACHE_MS = 600000;
+
+export async function getLatestStreams(limit) {
+  const max = Math.max(1, Math.min(Number(limit) || 12, 50));
+  const now = Date.now();
+  if (streamsCache.value && now - streamsCache.at < STREAMS_CACHE_MS) return streamsCache.value.slice(0, max);
+
+  const tabs = ['/streams', '/videos'];
+  for (let i = 0; i < tabs.length; i++) {
+    try {
+      const list = parseVideoList(await getPage(tabs[i])).filter(function (v) { return !v.upcoming; });
+      if (list.length) {
+        streamsCache = { value: list, at: now };
+        return list.slice(0, max);
+      }
+    } catch (err) {
+      console.error('Streams lookup failed (' + tabs[i] + '):', err);
+    }
+  }
+  return streamsCache.value ? streamsCache.value.slice(0, max) : [];
+}
+
+export async function getLatestVideo() {
+  const list = await getLatestStreams(1);
+  return list.length ? videoRecord(list[0]) : null;
+}
+
+/* =========================================================================
+   6. LATEST GLORY NIGHT
+   Reads the Glory Nights playlist page and picks the newest video by YouTube's
+   own "Streamed N days ago" wording, so it does not matter whether the
+   playlist is kept newest-first or oldest-first. If the page carries no ages
+   (a layout change), the newest stream whose title says "Glory Night" is used,
+   and failing that the first video in the playlist. Cached 10 minutes.
+   ========================================================================= */
+
+export const GLORY_PLAYLIST = 'PLYhdT3QigNmY';
+
+let gloryCache = { value: null, at: 0 };
+const GLORY_CACHE_MS = 600000;
+
+export function newestOf(list) {
+  let best = null;
+  for (let i = 0; i < list.length; i++) {
+    const v = list[i];
+    if (v.upcoming) continue;
+    if (!best || v.ageDays < best.ageDays) best = v;   // ties keep the earlier one
+  }
+  return best;
+}
+
+export async function getLatestGloryNight() {
+  const now = Date.now();
+  if (gloryCache.value && now - gloryCache.at < GLORY_CACHE_MS) return gloryCache.value;
+
+  let pick = null;
+  let playlist = [];
+  try {
+    playlist = parseVideoList(await getUrl('https://www.youtube.com/playlist?list=' + GLORY_PLAYLIST));
+    const dated = playlist.filter(function (v) { return isFinite(v.ageDays); });
+    if (dated.length) pick = newestOf(dated);
+  } catch (err) {
+    console.error('Glory Nights playlist failed:', err);
+  }
+
+  if (!pick) {
+    try {
+      const streams = await getLatestStreams(30);
+      for (let i = 0; i < streams.length; i++) {
+        if (/glory\s*night/i.test(streams[i].title)) { pick = streams[i]; break; }
+      }
+    } catch (err) {
+      console.error('Glory Night stream lookup failed:', err);
+    }
+  }
+  if (!pick && playlist.length) pick = playlist.filter(function (v) { return !v.upcoming; })[0] || null;
+
+  const result = pick ? videoRecord(pick, GLORY_PLAYLIST) : null;
+  if (result) gloryCache = { value: result, at: now };
+  return result || gloryCache.value;
+}
+
+/* =========================================================================
+   7. PLAYLISTS
+   The channel's playlists for the Sermons section: [{ id, title, count,
+   thumb, url }]. The three the Media page leads with come first, in this
+   order; the rest follow in YouTube's order (most recently updated first).
+   Glory Nights has its own section on the page, so it is left out here.
+   Cached 10 minutes; keeps the last good list if YouTube cannot be reached.
+   ========================================================================= */
+
+export const FEATURED_PLAYLISTS = [
+  'PLb-9QSfkRhnE2aI5nXA_Vv-UJDr8Fn4mI',   // Sunday Sermons
+  'PLa-Nxr2f-qHY',                        // Apostle Bryant Sanders - Messages
+  'PLeDfl1m-bAzo'                         // Pastor Vanessa Sanders - Messages
+];
+
+let playlistsCache = { value: null, at: 0 };
+const PLAYLISTS_CACHE_MS = 600000;
+
+export function parsePlaylists(html) {
+  const out = [];
+  const seen = {};
+  const parts = String(html || '').split('"lockupViewModel":');
+  for (let i = 1; i < parts.length; i++) {
+    const b = parts[i].slice(0, 12000);
+    const idm = b.match(/"contentId":"(PL[A-Za-z0-9_-]{10,})"/);
+    const tm = b.match(/"lockupMetadataViewModel":\{"title":\{"content":"((?:[^"\\]|\\.)*)"/) ||
+               b.match(/"title":\{"content":"((?:[^"\\]|\\.)*)"/);
+    if (!idm || !tm || seen[idm[1]]) continue;
+    seen[idm[1]] = true;
+    const cm = b.match(/"text":"(\d[\d,]*) videos?"/i);
+    const vm = b.match(/i\.ytimg\.com\/vi\/([A-Za-z0-9_-]{11})\//);
+    out.push({
+      id: idm[1],
+      title: jsonText(tm[1]).trim(),
+      count: cm ? Number(cm[1].replace(/,/g, '')) : 0,
+      thumb: vm ? 'https://i.ytimg.com/vi/' + vm[1] + '/hqdefault.jpg' : '',
+      url: 'https://www.youtube.com/playlist?list=' + idm[1]
+    });
+  }
+  /* Older layout, as in listPlaylists() above */
+  if (!out.length) {
+    listPlaylists(html).forEach(function (p) {
+      out.push({ id: p.id, title: p.title, count: 0, thumb: '', url: 'https://www.youtube.com/playlist?list=' + p.id });
+    });
+  }
+  return out;
+}
+
+export function orderPlaylists(list) {
+  const rest = list.filter(function (p) { return p.id !== GLORY_PLAYLIST && FEATURED_PLAYLISTS.indexOf(p.id) < 0; });
+  const lead = [];
+  FEATURED_PLAYLISTS.forEach(function (id) {
+    const hit = list.filter(function (p) { return p.id === id; })[0];
+    if (hit) lead.push(hit);
+  });
+  return lead.concat(rest);
+}
+
+export async function getPlaylists() {
+  const now = Date.now();
+  if (playlistsCache.value && now - playlistsCache.at < PLAYLISTS_CACHE_MS) return playlistsCache.value;
+
+  try {
+    const list = orderPlaylists(parsePlaylists(await getPage('/playlists')));
+    if (list.length) {
+      playlistsCache = { value: list, at: now };
+      return list;
+    }
+  } catch (err) {
+    console.error('Playlists lookup failed:', err);
+  }
+  return playlistsCache.value || [];
 }
