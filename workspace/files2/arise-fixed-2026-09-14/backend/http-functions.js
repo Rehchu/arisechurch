@@ -87,3 +87,70 @@ export async function post_ariseForm(request) {
     return serverError({ body: { error: 'server error' } });
   }
 }
+/* =========================================================================
+   BIBLE SEARCH  (added 2026-10-27)
+   The Bible page's element calls these same-origin URLs; the Bible sources
+   and their keys stay in backend/bible.js. All GET, all JSON, all public -
+   they serve Scripture, not data about people.
+
+     /_functions/bible?ref=John+3:16&translation=BSB   one passage
+     /_functions/bibleBibles                            every Bible, one list
+     /_functions/bibleBooks                             the 66 books + chapter counts
+     /_functions/bibleReference?ref=John+3             dictionary entries citing the passage
+     /_functions/bibleDictionary?q=shep | ?letter=s | ?slug=shepherd
+     /_functions/bibleStatus                            which keys are set, what each source answered
+
+   /_functions/ URLs only run on the LIVE site, not in Preview. */
+import { getPassage, allTranslations, bibleBooks, dictionaryReference, dictionaryLookup, bibleStatus } from 'backend/bible.js';
+
+const JSON_HEADERS = { 'Content-Type': 'application/json; charset=utf-8' };
+function json(body, cacheSeconds) {
+  const headers = Object.assign({}, JSON_HEADERS);
+  if (cacheSeconds) headers['Cache-Control'] = 'public, max-age=' + cacheSeconds;
+  else headers['Cache-Control'] = 'no-store';
+  return ok({ headers: headers, body: JSON.stringify(body) });
+}
+function failed(status, body) {
+  const r = status === 400 ? badRequest : serverError;
+  return r({ headers: Object.assign({ 'Cache-Control': 'no-store' }, JSON_HEADERS), body: JSON.stringify(body) });
+}
+const q = (request, name, max) => clean(request && request.query && request.query[name], max || 200);
+
+export async function get_bible(request) {
+  const ref = q(request, 'ref', 120);
+  const translation = q(request, 'translation', 80);
+  if (!ref) return failed(400, { error: 'Type a reference, for example John 3:16' });
+  try {
+    return json(await getPassage(ref, translation), 300);
+  } catch (e) {
+    console.error('bible: ' + ref + ' [' + translation + '] -> ' + ((e && e.detail) || (e && e.message)));
+    return failed(502, { error: (e && e.message) || 'lookup failed' });
+  }
+}
+
+export async function get_bibleBibles() {
+  try { return json({ translations: await allTranslations() }, 600); }
+  catch (e) { console.error('bibleBibles', e); return failed(502, { error: 'The list of Bibles is unavailable right now.' }); }
+}
+
+export async function get_bibleBooks() {
+  try { return json({ books: await bibleBooks() }, 86400); }
+  catch (e) { console.error('bibleBooks', e); return failed(502, { error: 'The book list is unavailable right now.' }); }
+}
+
+export async function get_bibleReference(request) {
+  const ref = q(request, 'ref', 120);
+  if (!ref) return failed(400, { error: 'missing ref' });
+  try { return json(await dictionaryReference(ref), 3600); }
+  catch (e) { console.error('bibleReference', e); return json({ entries: [], available: false, error: 'dictionary unavailable' }); }
+}
+
+export async function get_bibleDictionary(request) {
+  try { return json(await dictionaryLookup({ q: q(request, 'q', 80), letter: q(request, 'letter', 1), slug: q(request, 'slug', 120) }), 3600); }
+  catch (e) { console.error('bibleDictionary', e); return json({ entries: [], available: false, error: 'dictionary unavailable' }); }
+}
+
+export async function get_bibleStatus() {
+  try { return json(await bibleStatus()); }
+  catch (e) { console.error('bibleStatus', e); return failed(502, { error: (e && e.message) || 'status failed' }); }
+}

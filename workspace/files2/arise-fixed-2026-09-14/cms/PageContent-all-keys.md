@@ -91,30 +91,40 @@ Totals: 578 keys · 526 new · 45 already in CMS · 7 shared · 0 blank.
 | `site.times.second.prayer.label` | shared, not imported | Prayer label (Alexandria) | Prayer | Find Us section, right dark card, prayer row name (row shows |
 | `site.times.sunday.second.label` | shared, not imported | Sunday service label (Alexandria) | Sunday Service | Find Us section, right dark card, first row name |
 
-## bible (20)
+## bible (28, rebuilt 2026-10-27: twelve new, three reworded, four retired)
 
-| Key | Status | Label | Default | Where |
+| key | status | label | built-in text | where |
 |---|---|---|---|---|
-| `bible.cta.alexandria` | new | Go Deeper sentence: words after the Alexandria time | in Alexandria. Glory Nights | Red banner at the bottom, sentence after the Pineville Sunda |
+| `bible.bibles.heading` | new 2026-10-27 | 04 Bibles: heading | The Bibles | 04 Bibles room, title |
+| `bible.bibles.kicker` | new 2026-10-27 | 04 Bibles: kicker | Every Translation | 04 Bibles room (light grey), small red text |
+| `bible.bibles.lede` | new 2026-10-27 | 04 Bibles: intro line | Modern and traditional, word-for-word and easy reading. Pick one and the passage you were  | 04 Bibles room, paragraph under the title |
 | `bible.cta.button` | new | Bottom banner button | Sermons | Red banner at the bottom, white button |
-| `bible.cta.end` | new | Go Deeper sentence: closing punctuation | . | Red banner at the bottom, sentence after the Pineville Sunda |
 | `bible.cta.heading` | new | Bottom banner heading | Hear It Taught | Red banner at the bottom, title |
 | `bible.cta.kicker` | new | Bottom banner kicker | Go Deeper | Red banner at the bottom, small text |
-| `bible.cta.pineville` | new | Go Deeper sentence: words after the Pineville time | in Pineville, | Red banner at the bottom, sentence after the Pineville Sunda |
-| `bible.form.button` | new | Search button | Search | Dark search box, red button |
-| `bible.form.verseLabel` | new | Verse field label | Verse | Dark search box, label above the verse typing box |
-| `bible.form.versionLabel` | new | Version field label | Version | Dark search box, label above the translation dropdown |
-| `bible.hero.heading` | new | Hero heading | Bible Search | Top of page, big title |
-| `bible.hero.kicker` | new | Hero kicker | Resources | Top of page, small red text above the big title |
-| `bible.results.ready` | new | Results area starting message | Ready! Select version & enter verse (e.g., john 3:16 or john 3:16-20) | Dark search box, grey text under the suggestion buttons befo |
-| `bible.search.heading` | new | Search section heading | Read It / For Yourself | White section above the search box, title |
-| `bible.search.kicker` | new | Search section kicker | Look Up A Passage | White section above the search box, small red text |
-| `bible.suggest.item1` | new | Suggestion button 1 label | John 3:16 | Dark search box, outlined suggestion button 1 (label only; i |
-| `bible.suggest.item2` | new | Suggestion button 2 label | Psalm 23 | Dark search box, outlined suggestion button 2 (label only; i |
-| `bible.suggest.item3` | new | Suggestion button 3 label | Romans 8:28 | Dark search box, outlined suggestion button 3 (label only; i |
-| `bible.suggest.item4` | new | Suggestion button 4 label | 1 Corinthians 13:4-7 | Dark search box, outlined suggestion button 4 (label only; i |
-| `bible.suggest.item5` | new | Suggestion button 5 label | Philippians 4:6-7 | Dark search box, outlined suggestion button 5 (label only; i |
-| `bible.suggest.item6` | new | Suggestion button 6 label | Isaiah 40:31 | Dark search box, outlined suggestion button 6 (label only; i |
+| `bible.cta.place1` | new 2026-10-27 | Bottom banner line 1: place | in Pineville | Red banner at the bottom, words after the first Sunday time |
+| `bible.cta.place2` | new 2026-10-27 | Bottom banner line 2: place | in Alexandria | Red banner at the bottom, words after the second Sunday time |
+| `bible.cta.place3` | new 2026-10-27 | Bottom banner line 3: place | Glory Night in Pineville | Red banner at the bottom, words after the Monday time |
+| `bible.form.button` | reworded 2026-10-27 | Read button | Read | 01 Read room, red button |
+| `bible.form.verseLabel` | reworded 2026-10-27 | Reference field label | Verse or chapter | 01 Read room, label above the typing box |
+| `bible.form.versionLabel` | reworded 2026-10-27 | Bible field label | Bible | 01 Read room, label above the Bible dropdown |
+| `bible.hero.heading` | new | Hero heading | Bible Search | Masthead, big title |
+| `bible.hero.kicker` | new | Hero kicker | Resources | Masthead, small red text above the big title |
+| `bible.listen.heading` | new 2026-10-27 | 03 Listen: heading | Listen To / This Chapter | 03 Listen room, title |
+| `bible.listen.kicker` | new 2026-10-27 | 03 Listen: kicker | Hear The Word | 03 Listen room, small red text |
+| `bible.listen.lede` | new 2026-10-27 | 03 Listen: intro line | Narrated chapters of the Berean Standard Bible and the Accessible Ancients Bible. Recordin | 03 Listen room, paragraph under the title |
+| `bible.search.heading` | new | 01 Read: heading | Read It / For Yourself | 01 Read room, title above the search bar |
+| `bible.search.kicker` | new | 01 Read: kicker | Look Up A Passage | 01 Read room, small red text above the title |
+| `bible.study.heading` | new 2026-10-27 | 02 Study: heading | Study / The Passage | 02 Study room, title |
+| `bible.study.kicker` | new 2026-10-27 | 02 Study: kicker | Go Deeper | 02 Study room, small red text |
+| `bible.study.lede` | new 2026-10-27 | 02 Study: intro line | Translator’s notes on the verses you are reading, and what Easton’s and Smith’s Bible dict | 02 Study room, paragraph under the title |
+| `bible.suggest.item1` | new | Suggestion button 1 label | John 3:16 | 01 Read room, outlined suggestion button 1 (label only; it s |
+| `bible.suggest.item2` | new | Suggestion button 2 label | Psalm 23 | 01 Read room, outlined suggestion button 2 (label only; it s |
+| `bible.suggest.item3` | new | Suggestion button 3 label | Romans 8:28 | 01 Read room, outlined suggestion button 3 (label only) |
+| `bible.suggest.item4` | new | Suggestion button 4 label | 1 Corinthians 13:4-7 | 01 Read room, outlined suggestion button 4 (label only) |
+| `bible.suggest.item5` | new | Suggestion button 5 label | Philippians 4:6-7 | 01 Read room, outlined suggestion button 5 (label only) |
+| `bible.suggest.item6` | new | Suggestion button 6 label | Isaiah 40:31 | 01 Read room, outlined suggestion button 6 (label only) |
+
+Retired 2026-10-27 (rows can be deleted once the new page is published): `bible.cta.pineville`, `bible.cta.alexandria`, `bible.cta.end` (replaced by `bible.cta.place1-3`, one place per line so no line can read as another campus’s), `bible.results.ready` (the page opens on a passage, so the waiting message never shows).
 
 ## childrens (21)
 

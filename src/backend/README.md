@@ -113,3 +113,13 @@ Here is an example `permissions.json` file for a site with a backend file called
   }
 }
 ```
+
++ **bible.js**  (added 2026-10-27)
+  The Bible behind the Bible Search page: eight sources (YouVersion, ESV, AO Lab,
+  API.Bible, Biblia, bible-api.com, WLDEH, and AriseHub itself) behind one list of
+  English Bibles, plus the Easton / Smith dictionary through AriseHub. Keys live in
+  the Secrets Manager (`YOUVERSION_APP_KEY`, `ESV_API_KEY`, `API_BIBLE_KEY`,
+  `BIBLIA_API_KEY`, `ARISEHUB_API_KEY`); none is required. Served to the page by the
+  `get_bible*` HTTP functions in http-functions.js. Ported from AriseHub's
+  lib/bible.ts; tests in sample-site/tests/bible.test.mjs. `/_functions/bibleStatus`
+  shows which keys are set and what each source answered.

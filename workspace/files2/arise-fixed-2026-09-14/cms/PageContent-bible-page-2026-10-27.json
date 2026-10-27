@@ -1,0 +1,123 @@
+{
+  "insert": [
+    {
+      "contentKey": "bible.study.kicker",
+      "page": "bible",
+      "label": "02 Study: kicker",
+      "text": "Go Deeper",
+      "imageUrl": "",
+      "where": "02 Study room, small red text"
+    },
+    {
+      "contentKey": "bible.study.heading",
+      "page": "bible",
+      "label": "02 Study: heading",
+      "text": "Study<br>The Passage",
+      "imageUrl": "",
+      "where": "02 Study room, title"
+    },
+    {
+      "contentKey": "bible.study.lede",
+      "page": "bible",
+      "label": "02 Study: intro line",
+      "text": "Translator’s notes on the verses you are reading, and what Easton’s and Smith’s Bible dictionaries wrote about the people, places and words in them.",
+      "imageUrl": "",
+      "where": "02 Study room, paragraph under the title"
+    },
+    {
+      "contentKey": "bible.listen.kicker",
+      "page": "bible",
+      "label": "03 Listen: kicker",
+      "text": "Hear The Word",
+      "imageUrl": "",
+      "where": "03 Listen room, small red text"
+    },
+    {
+      "contentKey": "bible.listen.heading",
+      "page": "bible",
+      "label": "03 Listen: heading",
+      "text": "Listen To<br>This Chapter",
+      "imageUrl": "",
+      "where": "03 Listen room, title"
+    },
+    {
+      "contentKey": "bible.listen.lede",
+      "page": "bible",
+      "label": "03 Listen: intro line",
+      "text": "Narrated chapters of the Berean Standard Bible and the Accessible Ancients Bible. Recordings are per chapter, so the whole chapter plays whatever verses are on screen.",
+      "imageUrl": "",
+      "where": "03 Listen room, paragraph under the title"
+    },
+    {
+      "contentKey": "bible.bibles.kicker",
+      "page": "bible",
+      "label": "04 Bibles: kicker",
+      "text": "Every Translation",
+      "imageUrl": "",
+      "where": "04 Bibles room (light grey), small red text"
+    },
+    {
+      "contentKey": "bible.bibles.heading",
+      "page": "bible",
+      "label": "04 Bibles: heading",
+      "text": "The Bibles",
+      "imageUrl": "",
+      "where": "04 Bibles room, title"
+    },
+    {
+      "contentKey": "bible.bibles.lede",
+      "page": "bible",
+      "label": "04 Bibles: intro line",
+      "text": "Modern and traditional, word-for-word and easy reading. Pick one and the passage you were reading opens in it.",
+      "imageUrl": "",
+      "where": "04 Bibles room, paragraph under the title"
+    },
+    {
+      "contentKey": "bible.cta.place1",
+      "page": "bible",
+      "label": "Bottom banner line 1: place",
+      "text": "in Pineville",
+      "imageUrl": "",
+      "where": "Red banner at the bottom, words after the first Sunday time"
+    },
+    {
+      "contentKey": "bible.cta.place2",
+      "page": "bible",
+      "label": "Bottom banner line 2: place",
+      "text": "in Alexandria",
+      "imageUrl": "",
+      "where": "Red banner at the bottom, words after the second Sunday time"
+    },
+    {
+      "contentKey": "bible.cta.place3",
+      "page": "bible",
+      "label": "Bottom banner line 3: place",
+      "text": "Glory Night in Pineville",
+      "imageUrl": "",
+      "where": "Red banner at the bottom, words after the Monday time"
+    }
+  ],
+  "update": [
+    {
+      "contentKey": "bible.form.versionLabel",
+      "text": "Bible",
+      "label": "Bible field label"
+    },
+    {
+      "contentKey": "bible.form.verseLabel",
+      "text": "Verse or chapter",
+      "label": "Reference field label"
+    },
+    {
+      "contentKey": "bible.form.button",
+      "text": "Read",
+      "label": "Read button"
+    }
+  ],
+  "remove": [
+    "bible.cta.pineville",
+    "bible.cta.alexandria",
+    "bible.cta.end",
+    "bible.results.ready"
+  ]
+}
