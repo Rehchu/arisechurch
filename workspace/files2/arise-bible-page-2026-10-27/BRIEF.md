@@ -28,7 +28,7 @@ Browser → `/_functions/bible*` (same origin, `backend/http-functions.js`) →
 
 `backend/bible.js` is AriseHub's `lib/bible.ts` + `lib/usfm-books.ts` + the
 `/api/bible/*` routes, converted to plain JavaScript for Velo (`wix-fetch`,
-`wix-secrets-backend`). Same rules: the free list is curated to 18 editions,
+`wix-secrets-backend`). Same rules: the free list is curated to 28 editions (18 at launch, ten more on 2026-10-27 from the `bibleStatus?unused=1` list),
 duplicates collapse under one canonical name, a licensed copy of the BSB keeps
 its recording, notes are borrowed and said so, a range across chapters is fetched
 as whole chapters and trimmed (six at most), errors come back as a sentence a
@@ -51,7 +51,7 @@ bible-api, wldeh, arisehub.
 
 `YOUVERSION_APP_KEY`, `API_BIBLE_KEY` (an older `APIbible` is read as a fallback),
 `BIBLIA_API_KEY`, `ARISEHUB_API_KEY`; `ESV_API_KEY` is optional. None is
-required: with no keys the page still has the 18 free Bibles.
+required: with no keys the page still has the 28 free Bibles.
 
 `ARISEHUB_URL` = `https://arisehub.dyer-hq.workers.dev`. The custom domain
 (arisehub.myfaithtech.com) sits behind Cloudflare's challenge page ("Just a
