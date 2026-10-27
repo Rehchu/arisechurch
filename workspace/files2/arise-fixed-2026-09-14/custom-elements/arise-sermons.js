@@ -262,7 +262,7 @@ arise-sermons{display:block;width:100%}
 /* sticky by default, so the strap holds inside any scrolling container; the script
    switches it to fixed when the page itself scrolls (a Wix wrapper can defeat sticky) */
 .aes .strap{position:sticky;top:0;z-index:6;background:var(--ink);border-top:1px solid var(--red);border-bottom:1px solid var(--ruleD)}
-.aes .strap.pinned{position:fixed;left:0;right:0;width:auto;box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.aes .strap.pinned{position:fixed;left:0;right:0;width:auto;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:top .25s var(--ease)}
 .aes .strap__spacer{height:0}
 .aes .strap__in{display:flex;align-items:center;min-height:48px;gap:12px}
 .aes .strap__jump{display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1*var(--gut));padding:0 var(--gut);flex:1 1 auto}
@@ -732,26 +732,40 @@ class AriseSermons extends HTMLElement {
     this.initPin();
   }
 
-  /* Where the top of the screen is for us: under the site header if Wix pins
-     it (fixed or sticky), else 0. Measured live, so the Editor's choice wins. */
+  /* Where the top of the screen is for us: under whatever pinned, VISIBLE bar is
+     covering the top edge of the viewport right now (a Wix header set to stay
+     put), else 0. It hit-tests the top edge instead of trusting header markup,
+     so a header that scrolls away, slides off, or fades out while you scroll
+     down (Wix offers all three) leaves the strap at the very top. */
   headerOffset() {
     let off = 0;
     try {
-      const cands = document.querySelectorAll('#SITE_HEADER, [id^="SITE_HEADER"], header');
-      for (let i = 0; i < cands.length; i++) {
-        if (this.contains(cands[i])) continue;
-        let el = cands[i], n = 0, pinned = false;
-        while (el && n++ < 6) {
-          const pos = getComputedStyle(el).position;
-          if (pos === 'fixed' || pos === 'sticky') { pinned = true; break; }
-          el = el.parentElement;
+      if (typeof document.elementsFromPoint !== 'function') return 0;
+      const w = window.innerWidth || 1000;
+      const xs = [Math.round(w * 0.5), Math.round(w * 0.12), Math.round(w * 0.88)];
+      for (let k = 0; k < xs.length; k++) {
+        const stack = document.elementsFromPoint(xs[k], 2);
+        for (let i = 0; i < stack.length; i++) {
+          const el = stack[i];
+          if (el === document.documentElement || el === document.body || this.contains(el)) continue;
+          /* the pinned box this element belongs to, and whether it is actually visible */
+          let node = el, pin = null, n = 0, opacity = 1, hidden = false;
+          while (node && node !== document.body && n++ < 10) {
+            const cs = getComputedStyle(node);
+            opacity *= parseFloat(cs.opacity) || 0;
+            if (cs.visibility === 'hidden') hidden = true;
+            if (cs.position === 'fixed' || cs.position === 'sticky') { pin = node; break; }
+            node = node.parentElement;
+          }
+          if (!pin) continue;
+          if (hidden || opacity < 0.05) break;   // a bar that has faded out covers nothing
+          const r = pin.getBoundingClientRect();
+          if (r.top <= 2 && r.bottom > 0 && r.height < 240) off = Math.max(off, r.bottom);
+          break;
         }
-        if (!pinned) continue;
-        const r = cands[i].getBoundingClientRect();
-        if (r.top <= 1 && r.height > 0 && r.height < 240) off = Math.max(off, r.bottom);
       }
     } catch (e) { off = 0; }
-    return off;
+    return Math.round(off);
   }
 
   /* Lock the strap to the top of the screen while the deck is in view. Done
@@ -803,8 +817,15 @@ class AriseSermons extends HTMLElement {
       }
     };
     const kick = function () { if (!raf) raf = requestAnimationFrame(update); };
+    /* a Wix header that hides or shows itself animates after the scroll stops: look again */
+    let later = [];
+    const kickLater = function () {
+      kick();
+      later.forEach(clearTimeout);
+      later = [200, 500, 900].map(function (ms) { return setTimeout(kick, ms); });
+    };
     this._pinUpdate = update;
-    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('scroll', kickLater, { passive: true });
     window.addEventListener('resize', kick);
     update();
     setTimeout(update, 600);
