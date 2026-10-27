@@ -98,7 +98,9 @@ export async function post_ariseForm(request) {
      /_functions/bibleBooks                             the 66 books + chapter counts
      /_functions/bibleReference?ref=John+3             dictionary entries citing the passage
      /_functions/bibleDictionary?q=shep | ?letter=s | ?slug=shepherd
-     /_functions/bibleStatus[?refresh=1][&unused=1]     which keys are set, what each source answered, what it offers that is unused
+     /_functions/bibleStatus[?refresh=1][&unused=1][&save=1]
+                                                      which keys are set, what each source answered, what it offers that is
+                                                      unused; save=1 files the answer in the BibleStatus collection
 
    /_functions/ URLs only run on the LIVE site, not in Preview. */
 import { getPassage, allTranslations, bibleBooks, dictionaryReference, dictionaryLookup, bibleStatus } from 'backend/bible.js';
@@ -156,6 +158,16 @@ export async function get_bibleDictionary(request) {
    are from the cached list (the keys are re-read either way). ?unused=1 lists,
    per source, the English Bibles it offers that are not on the page. */
 export async function get_bibleStatus(request) {
-  try { return json(await bibleStatus(q(request, 'refresh', 4) === '1', q(request, 'unused', 4) === '1')); }
+  try {
+    const status = await bibleStatus(q(request, 'refresh', 4) === '1', q(request, 'unused', 4) === '1');
+    // ?save=1 also files the answer in the BibleStatus collection, so it can be
+    // read from the CMS (or by the connector) when nobody is at a computer to
+    // copy it. Names and counts only; a failure to save does not fail the call.
+    if (q(request, 'save', 4) === '1') {
+      try { await wixData.insert('BibleStatus', { payload: JSON.stringify(status), at: new Date(), title: 'bibleStatus ' + new Date().toISOString() }, { suppressAuth: true }); status.saved = true; }
+      catch (e) { console.error('bibleStatus save', e); status.saved = false; }
+    }
+    return json(status);
+  }
   catch (e) { console.error('bibleStatus', e); return failed(502, { error: (e && e.message) || 'status failed' }); }
 }
