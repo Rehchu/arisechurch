@@ -259,7 +259,9 @@ arise-sermons{display:block;width:100%}
 @media(min-width:900px){.aes .mast{padding:44px 0 26px}.aes .mast__tick{display:block}}
 
 /* ---- the strap: the running order as tabs; sticky under the site header while the deck is in view ---- */
-.aes .strap{position:relative;z-index:6;background:var(--ink);border-top:1px solid var(--red);border-bottom:1px solid var(--ruleD)}
+/* sticky by default, so the strap holds inside any scrolling container; the script
+   switches it to fixed when the page itself scrolls (a Wix wrapper can defeat sticky) */
+.aes .strap{position:sticky;top:0;z-index:6;background:var(--ink);border-top:1px solid var(--red);border-bottom:1px solid var(--ruleD)}
 .aes .strap.pinned{position:fixed;left:0;right:0;width:auto;box-shadow:0 8px 24px rgba(0,0,0,.35)}
 .aes .strap__spacer{height:0}
 .aes .strap__in{display:flex;align-items:center;min-height:48px;gap:12px}
@@ -270,6 +272,13 @@ arise-sermons{display:block;width:100%}
   display:inline-flex;align-items:center;gap:8px;transition:background .18s,color .18s}
 .aes .strap__j:first-child{border-left:0}
 .aes .strap__j i{font-style:normal;color:var(--redL);font-family:'Anton',Impact,sans-serif;font-size:13px;letter-spacing:.12em}
+@media(max-width:620px){
+  /* every tab visible at once: the row shares the width, number above the word */
+  .aes .strap__jump{overflow:visible;margin:0;padding:0}
+  .aes .strap__j{flex:1 1 0;min-width:0;flex-direction:column;justify-content:center;gap:4px;padding:7px 2px;min-height:52px;
+    font-size:10px;letter-spacing:.06em;white-space:normal;text-align:center;line-height:1.1}
+  .aes .strap__j i{font-size:12px}
+}
 .aes .strap__j::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s var(--ease)}
 .aes .strap__j:hover{background:rgba(255,255,255,.06);color:#fff}
 .aes .strap__j[aria-selected="true"]{color:#fff;background:rgba(255,255,255,.04)}
@@ -748,6 +757,20 @@ class AriseSermons extends HTMLElement {
   /* Lock the strap to the top of the screen while the deck is in view. Done
      with position:fixed from script rather than position:sticky, because a
      Wix wrapper with overflow set would silently defeat sticky. */
+  /* Does the page itself scroll, or does some wrapper around the element? Fixed
+     positioning only makes sense in the first case; sticky covers the second. */
+  windowScrolls() {
+    try {
+      let el = this.parentElement, n = 0;
+      while (el && el !== document.body && el !== document.documentElement && n++ < 40) {
+        const cs = getComputedStyle(el);
+        if (/(auto|scroll)/.test(cs.overflowY) && el.scrollHeight > el.clientHeight + 1) return false;
+        el = el.parentElement;
+      }
+    } catch (e) { return true; }
+    return true;
+  }
+
   initPin() {
     const self = this;
     const strap = this.querySelector('#aesStrap');
@@ -760,6 +783,12 @@ class AriseSermons extends HTMLElement {
       const off = self.headerOffset();
       const pinned = strap.classList.contains('pinned');
       const h = strap.offsetHeight || 48;
+      if (!self.windowScrolls()) {
+        /* a wrapper scrolls: leave it to position:sticky, just keep its top right */
+        if (pinned) { strap.classList.remove('pinned'); strap.style.transform = ''; spacer.style.height = '0px'; }
+        if (strap.style.top !== off + 'px') strap.style.top = off + 'px';
+        return;
+      }
       const natural = (pinned ? spacer : strap).getBoundingClientRect().top;
       if (natural <= off) {
         if (!pinned) { spacer.style.height = h + 'px'; strap.classList.add('pinned'); }
@@ -768,8 +797,9 @@ class AriseSermons extends HTMLElement {
         const over = (off + h) - self.getBoundingClientRect().bottom;
         const t = over > 0 ? 'translateY(' + (-Math.round(over)) + 'px)' : '';
         if (strap.style.transform !== t) strap.style.transform = t;
-      } else if (pinned) {
-        strap.classList.remove('pinned'); strap.style.top = ''; strap.style.transform = ''; spacer.style.height = '0px';
+      } else {
+        if (pinned) { strap.classList.remove('pinned'); strap.style.transform = ''; spacer.style.height = '0px'; }
+        if (strap.style.top !== off + 'px') strap.style.top = off + 'px';   // the sticky top, for a pinned site header
       }
     };
     const kick = function () { if (!raf) raf = requestAnimationFrame(update); };
