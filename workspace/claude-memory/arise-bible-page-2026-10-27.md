@@ -19,4 +19,4 @@
 - Review workflow findings applied (see BRIEF.md "Review pass"). bibleStatus re-reads keys on every call; `?refresh=1` refetches catalogues.
 - The user pasted a Supabase SECRET key in chat (not used, not stored anywhere); advised rotation + updating the Worker's SUPABASE_SECRET_KEY together.
 - AriseHub key `ahk_JLE2Cpah…` ("Arise Website"): expires_at set to NULL at the user's request (keyIsLive treats null as never).
-- Still to do once dictionary.ok is true: delete the four retired Page Content rows.
+- 05:10Z: bridge confirmed (dictionary.ok true, 25 entries for John 3, AriseHub offered 59 / listed 1, 49 Bibles total). The four retired Page Content rows deleted; 28 bible.* rows remain. Nothing outstanding on the Bible page.
