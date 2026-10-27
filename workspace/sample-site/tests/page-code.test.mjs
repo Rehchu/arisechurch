@@ -14,7 +14,10 @@
        for late elements and retries a setAttribute that failed,
      - Past Sermons sets the series band without the old .length guard, starts
        the series lookup, Shorts and first live check together, and a CMS
-       series row still wins over the automatic YouTube series.
+       series row still wins over the automatic YouTube series,
+     - Past Sermons (Media page, 2026-10-27) sends the newest service, the
+       newest Glory Night and the playlists, each as soon as it answers, and
+       sends nothing for the ones YouTube cannot answer.
    Zero dependencies.
    =========================================================================== */
 import fs from 'node:fs';
@@ -59,7 +62,10 @@ export const getEvents = mock('getEvents', () => ({ upcoming: [{ id: 'e' }], pas
 fs.writeFileSync(path.join(TMP, 'youtube.mjs'), `import { mock } from './mock.mjs';
 export const getLiveVideoId = mock('getLiveVideoId', () => globalThis.__live || null);
 export const getCurrentSeries = mock('getCurrentSeries', () => globalThis.__auto || null);
-export const getLatestShorts = mock('getLatestShorts', () => globalThis.__shorts || []);`);
+export const getLatestShorts = mock('getLatestShorts', () => globalThis.__shorts || []);
+export const getLatestVideo = mock('getLatestVideo', () => globalThis.__latest || null);
+export const getLatestGloryNight = mock('getLatestGloryNight', () => globalThis.__glory || null);
+export const getPlaylists = mock('getPlaylists', () => globalThis.__playlists || []);`);
 fs.writeFileSync(path.join(TMP, 'wixdata.mjs'), `import { mock } from './mock.mjs';
 const find = mock('wixData.find', () => ({ items: globalThis.__series ? [globalThis.__series] : [] }));
 export default { query: () => { const api = { eq() { return api; }, limit() { return api; }, find }; return api; } };`);
@@ -250,7 +256,7 @@ await test('series lookup, Shorts and first live check start together; each land
     let finished = false;
     const ready = Promise.resolve(site.run()).then(() => { finished = true; });
     await settle(20);
-    assert.deepEqual(globalThis.__calls.slice().sort(), ['getLatestShorts', 'getLiveVideoId', 'wixData.find'], 'not every lookup started at once');
+    assert.deepEqual(globalThis.__calls.slice().sort(), ['getLatestGloryNight', 'getLatestShorts', 'getLatestVideo', 'getLiveVideoId', 'getPlaylists', 'wixData.find'], 'not every lookup started at once');
     gates.release('getLiveVideoId'); await settle(20);
     assert.equal(site.page.attrs['data-live-video'], 'livelivel11', 'live id waited for the other lookups');
     assert.equal(site.page.attrs['data-series-active'], undefined);
@@ -276,6 +282,43 @@ await test('no CMS row: newest YouTube series fills the band; not live -> no liv
     assert.equal(site.page.attrs['data-series-button'], 'Watch the Series');
     assert.equal(site.page.attrs['data-live-video'], undefined);
   } finally { globalThis.__auto = null; }
+});
+
+await test('Media page: newest service, newest Glory Night and playlists land as JSON, each on its own', async () => {
+  globalThis.__series = null; globalThis.__shorts = []; globalThis.__live = null;
+  globalThis.__latest = { id: 'sun26Oct001', title: 'Sunday Morning Service', when: 'Streamed 1 day ago', url: 'https://www.youtube.com/watch?v=sun26Oct001' };
+  globalThis.__glory = { id: 'glory20Oct1', title: 'Monday Night Glory Night', when: 'Streamed 6 days ago', url: 'https://www.youtube.com/watch?v=glory20Oct1&list=PLYhdT3QigNmY' };
+  globalThis.__playlists = [{ id: 'PLb-9QSfkRhnE2aI5nXA_Vv-UJDr8Fn4mI', title: 'Sunday Sermons', count: 113, thumb: 'https://i.ytimg.com/vi/oYSMY9VJk1I/hqdefault.jpg' }];
+  const gates = hold(['getLatestVideo', 'getLatestGloryNight', 'getPlaylists']);
+  try {
+    const site = makeSite({ pageId: 'customElement1' });
+    await prepare('Past Sermons.js', site);
+    let finished = false;
+    const ready = Promise.resolve(site.run()).then(() => { finished = true; });
+    await settle(30);
+    assert.equal(site.page.attrs['data-latest-video'], undefined);
+    assert.equal(site.page.attrs['data-glory-video'], undefined);
+    assert.equal(site.page.attrs['data-playlists'], undefined);
+    gates.release('getPlaylists'); await settle(20);
+    assert.equal(JSON.parse(site.page.attrs['data-playlists'])[0].title, 'Sunday Sermons');
+    assert.equal(site.page.attrs['data-latest-video'], undefined, 'latest service waited for the playlists');
+    gates.release('getLatestGloryNight'); await settle(20);
+    assert.equal(JSON.parse(site.page.attrs['data-glory-video']).id, 'glory20Oct1');
+    assert.equal(finished, false, 'onReady finished before the latest service answered');
+    gates.release('getLatestVideo'); await ready; await settle(20);
+    assert.equal(JSON.parse(site.page.attrs['data-latest-video']).id, 'sun26Oct001');
+    assert.deepEqual(Object.keys(site.header.attrs), [], 'header was targeted');
+  } finally { gates.end(); globalThis.__latest = null; globalThis.__glory = null; globalThis.__playlists = null; }
+});
+await test('Media page: when YouTube answers nothing, none of the three attributes is set (element keeps its defaults)', async () => {
+  globalThis.__series = null; globalThis.__shorts = []; globalThis.__live = null;
+  globalThis.__latest = null; globalThis.__glory = null; globalThis.__playlists = [];
+  const site = makeSite({ pageId: 'customElement3', throwOnMissing: true });
+  await load('Past Sermons.js', site); await settle(50);
+  assert.equal(site.page.attrs['data-latest-video'], undefined);
+  assert.equal(site.page.attrs['data-glory-video'], undefined);
+  assert.equal(site.page.attrs['data-playlists'], undefined);
+  assert.equal(site.page.attrs['data-series-active'], 'false');
 });
 
 console.log('masterPage.js');

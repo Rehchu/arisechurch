@@ -5,7 +5,7 @@
     "label": "Hero kicker",
     "text": "Arise Church",
     "imageUrl": "",
-    "where": "Top of page, small red text above the big title"
+    "where": "Masthead at the top, small red text above the title"
   },
   {
     "contentKey": "sermons.hero.heading",
@@ -13,7 +13,7 @@
     "label": "Hero heading",
     "text": "Sermons",
     "imageUrl": "",
-    "where": "Top of page, big title"
+    "where": "Masthead at the top, big title"
   },
   {
     "contentKey": "sermons.latest.heading",
@@ -136,14 +136,6 @@
     "where": "Shared site fact (bottom banner)"
   },
   {
-    "contentKey": "sermons.cta.bodyMain",
-    "page": "sermons",
-    "label": "Bottom banner text after main time",
-    "text": "in Pineville,",
-    "imageUrl": "",
-    "where": "Red banner at the bottom, after the Pineville Sunday time"
-  },
-  {
     "contentKey": "site.times.sunday.second",
     "page": "sermons",
     "label": "Second campus Sunday time",
@@ -152,27 +144,67 @@
     "where": "Shared site fact (bottom banner)"
   },
   {
-    "contentKey": "sermons.cta.bodySecond",
-    "page": "sermons",
-    "label": "Bottom banner text after second time",
-    "text": "in Alexandria. Glory Nights",
-    "imageUrl": "",
-    "where": "Red banner at the bottom, after the Alexandria Sunday time"
-  },
-  {
-    "contentKey": "sermons.cta.bodyEnd",
-    "page": "sermons",
-    "label": "Bottom banner ending punctuation",
-    "text": ".",
-    "imageUrl": "",
-    "where": "Red banner at the bottom, period after the Glory Nights time"
-  },
-  {
     "contentKey": "sermons.cta.button",
     "page": "sermons",
     "label": "Bottom banner button",
     "text": "Plan Your Visit",
     "imageUrl": "",
     "where": "Red banner at the bottom, white button"
+  },
+  {
+    "contentKey": "sermons.playlists.kicker",
+    "page": "sermons",
+    "label": "Sermons playlists kicker",
+    "text": "Messages &amp; Series",
+    "imageUrl": "",
+    "where": "Light grey Sermons section, small red text"
+  },
+  {
+    "contentKey": "sermons.playlists.heading",
+    "page": "sermons",
+    "label": "Sermons playlists heading",
+    "text": "Sermons",
+    "imageUrl": "",
+    "where": "Light grey Sermons section, title"
+  },
+  {
+    "contentKey": "sermons.playlists.lede",
+    "page": "sermons",
+    "label": "Sermons playlists intro",
+    "text": "Every message from Apostle Bryant Sanders, Pastor Vanessa Sanders and our guest ministers, in playlists. Pick one and watch it right here.",
+    "imageUrl": "",
+    "where": "Light grey Sermons section, paragraph under the title"
+  },
+  {
+    "contentKey": "sermons.playlists.button",
+    "page": "sermons",
+    "label": "Sermons playlists button",
+    "text": "All Playlists on YouTube",
+    "imageUrl": "",
+    "where": "Light grey Sermons section, outlined button under the player"
+  },
+  {
+    "contentKey": "sermons.cta.place1",
+    "page": "sermons",
+    "label": "Invitation line 1 place",
+    "text": "in Pineville",
+    "imageUrl": "",
+    "where": "Red \"Better in the Room\" band, after the first Sunday time"
+  },
+  {
+    "contentKey": "sermons.cta.place2",
+    "page": "sermons",
+    "label": "Invitation line 2 place",
+    "text": "in Alexandria",
+    "imageUrl": "",
+    "where": "Red \"Better in the Room\" band, after the second Sunday time"
+  },
+  {
+    "contentKey": "sermons.cta.place3",
+    "page": "sermons",
+    "label": "Invitation line 3 place",
+    "text": "Glory Night in Pineville",
+    "imageUrl": "",
+    "where": "Red \"Better in the Room\" band, after the Monday time"
   }
 ]

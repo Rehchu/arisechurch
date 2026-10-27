@@ -67,7 +67,11 @@ export const customTrigger = { runTrigger: async (o) => { state.triggers.push(o)
 /* wix-fetch: answers YouTube URLs with the saved channel pages.
    globalThis.__ytMode: 'offline' (503), 'desktop' (real desktop pages),
    'mobile' (the mobile page YouTube sends to a generic User-Agent),
-   'live-now' (the saved upcoming-stream page edited to a stream playing now). */
+   'live-now' (the saved upcoming-stream page edited to a stream playing now).
+   The Live tab (/streams) and the Glory Nights playlist page are synthetic
+   pages in YouTube's current shape (youtube-streams*.html,
+   youtube-playlist-glory*.html); globalThis.__gloryPage picks the playlist page
+   ('404' makes it fail). */
 fs.writeFileSync(path.join(TMP, 'wix-fetch.mjs'), `
 import fs from 'node:fs';
 import path from 'node:path';
@@ -81,6 +85,11 @@ export const fetch = async (url, opts) => {
   if (mode === 'mobile') return reply(read('youtube-shorts-mobile.html'));
   if (url.indexOf('/shorts') > -1) return reply(read('youtube-shorts.html'));
   if (url.indexOf('/playlists') > -1) return reply(read('youtube-playlists.html'));
+  if (url.indexOf('/streams') > -1) return reply(read(mode === 'live-now' ? 'youtube-streams-live.html' : 'youtube-streams.html'));
+  if (url.indexOf('playlist?list=') > -1) {
+    if (globalThis.__gloryPage === '404') return { ok: false, status: 404, text: async () => '' };
+    return reply(read(globalThis.__gloryPage || 'youtube-playlist-glory.html'));
+  }
   if (url.indexOf('/live') > -1) {
     let html = read('youtube-live-upcoming.html');
     if (mode === 'live-now') {
@@ -262,6 +271,9 @@ await test('offline: live, series and Shorts all come back empty without throwin
   assert.equal(await yt.getLiveVideoId(), null);
   assert.equal(await yt.getCurrentSeries(), null);
   assert.deepEqual(await yt.getLatestShorts(8), []);
+  assert.equal(await yt.getLatestVideo(), null);
+  assert.equal(await yt.getLatestGloryNight(), null);
+  assert.deepEqual(await yt.getPlaylists(), []);
 });
 await test('requests YouTube with a desktop browser User-Agent (a generic one gets the mobile site)', async () => {
   globalThis.__ytMode = 'desktop';
@@ -305,6 +317,95 @@ await test('a stream playing now is reported as live', async () => {
   globalThis.__ytMode = 'live-now';
   const yt = await load('youtube.jsw', 'livenow');
   assert.equal(await yt.getLiveVideoId(), '1BkVBEluwdY');
+});
+
+/* ---------- youtube.jsw: Media page (2026-10-27) ---------- */
+await test('ageDays reads both of YouTube\'s wordings', async () => {
+  const yt = await load('youtube.jsw', 'age');
+  assert.equal(yt.ageDays('Streamed 6 days ago'), 6);
+  assert.equal(yt.ageDays('Streamed 2 weeks ago'), 14);
+  assert.equal(yt.ageDays('Premiered 3 months ago'), 90);
+  assert.equal(yt.ageDays('2y ago'), 730);
+  assert.equal(yt.ageDays('3mo ago'), 90);
+  assert.ok(Math.abs(yt.ageDays('5m ago') - 5 / 1440) < 1e-9);
+  assert.equal(yt.ageDays('1 hour ago'), 1 / 24);
+  assert.equal(yt.ageDays('Scheduled for 2 Nov 2026'), Infinity);
+});
+await test('parseVideoList reads the current lockup layout from a real YouTube page', async () => {
+  const yt = await load('youtube.jsw', 'lockup');
+  const list = yt.parseVideoList(fs.readFileSync(path.join(FIXTURES, 'youtube-live-upcoming.html'), 'utf8'));
+  assert.ok(list.length >= 20, 'found ' + list.length + ' cards');
+  assert.equal(list[0].id, 'y-etOCS0aPw');
+  assert.match(list[0].title, /PIT Maneuver/);
+  assert.equal(list[0].when, '2y ago');
+  assert.equal(list[0].ageDays, 730);
+  assert.ok(list.every((v) => /^[A-Za-z0-9_-]{11}$/.test(v.id) && v.title));
+});
+await test('newest service: the Live tab newest first, the scheduled stream skipped', async () => {
+  globalThis.__ytMode = 'desktop';
+  state.fetches = [];
+  const yt = await load('youtube.jsw', 'latest');
+  const v = await yt.getLatestVideo();
+  assert.deepEqual(v, {
+    id: 'sun26Oct001', title: 'Sunday Morning Service | Arise Church', when: 'Streamed 1 day ago',
+    url: 'https://www.youtube.com/watch?v=sun26Oct001', thumb: 'https://i.ytimg.com/vi/sun26Oct001/hqdefault.jpg'
+  });
+  assert.match(state.fetches[0].url, /\/channel\/UCGS9j7B_prcJkbTNgzlGrKg\/streams$/);
+  const all = await yt.getLatestStreams(10);
+  assert.deepEqual(all.map((x) => x.id), ['sun26Oct001', 'glory20Oct1', 'sun19Oct001', 'glory13Oct1']);
+  assert.equal(state.fetches.length, 1, 'the second call must come from the cache');
+});
+await test('a stream running now is the newest item on the Live tab and is flagged live', async () => {
+  globalThis.__ytMode = 'live-now';
+  const yt = await load('youtube.jsw', 'latestlive');
+  const all = await yt.getLatestStreams(2);
+  assert.equal(all[0].id, 'livenow0001');
+  assert.equal(all[0].live, true);
+  assert.equal(all[1].live, false);
+});
+await test('newest Glory Night: picked by age, so an oldest-first playlist still gives the newest', async () => {
+  globalThis.__ytMode = 'desktop'; globalThis.__gloryPage = null;
+  const yt = await load('youtube.jsw', 'glory');
+  const g = await yt.getLatestGloryNight();
+  assert.equal(g.id, 'glory20Oct1');
+  assert.equal(g.title, 'Monday Night Glory Night');
+  assert.equal(g.when, 'Streamed 6 days ago');
+  assert.equal(g.url, 'https://www.youtube.com/watch?v=glory20Oct1&list=PLYhdT3QigNmY');
+});
+await test('Glory Night: a playlist page without ages falls back to the newest "Glory Night" on the Live tab', async () => {
+  globalThis.__ytMode = 'desktop'; globalThis.__gloryPage = 'youtube-playlist-glory-noages.html';
+  const yt = await load('youtube.jsw', 'glorynoage');
+  assert.equal((await yt.getLatestGloryNight()).id, 'glory20Oct1');
+  globalThis.__gloryPage = null;
+});
+await test('Glory Night: a failed playlist page falls back to the Live tab; nothing anywhere -> null', async () => {
+  globalThis.__ytMode = 'desktop'; globalThis.__gloryPage = '404';
+  const yt = await load('youtube.jsw', 'glory404');
+  assert.equal((await yt.getLatestGloryNight()).id, 'glory20Oct1');
+  globalThis.__ytMode = 'mobile';
+  const yt2 = await load('youtube.jsw', 'glorynone');
+  assert.equal(await yt2.getLatestGloryNight(), null);
+  globalThis.__gloryPage = null;
+});
+await test('playlists from the real playlists page: Sunday Sermons, Apostle Bryant, Pastor Vanessa first; Glory Nights left out', async () => {
+  globalThis.__ytMode = 'desktop';
+  const yt = await load('youtube.jsw', 'playlists');
+  const p = await yt.getPlaylists();
+  assert.equal(p.length, 13);
+  assert.deepEqual(p.slice(0, 3).map((x) => x.title), ['Sunday Sermons', 'Apostle Bryant Sanders \u2014 Messages', 'Pastor Vanessa Sanders \u2014 Messages']);
+  assert.deepEqual(p.slice(0, 3).map((x) => x.id), ['PLb-9QSfkRhnE2aI5nXA_Vv-UJDr8Fn4mI', 'PLa-Nxr2f-qHY', 'PLeDfl1m-bAzo']);
+  assert.equal(p[3].title, 'Guest Ministers | Arise Church');
+  assert.ok(p.every((x) => x.id !== 'PLYhdT3QigNmY'), 'Glory Nights must not be in the Sermons list');
+  assert.equal(p[0].count, 113);
+  assert.equal(p[1].count, 82);
+  assert.equal(p[0].thumb, 'https://i.ytimg.com/vi/oYSMY9VJk1I/hqdefault.jpg');
+  assert.equal(p[0].url, 'https://www.youtube.com/playlist?list=PLb-9QSfkRhnE2aI5nXA_Vv-UJDr8Fn4mI');
+  assert.ok(p.every((x) => x.count > 0 && /^https:\/\/i\.ytimg\.com\/vi\/[A-Za-z0-9_-]{11}\/hqdefault\.jpg$/.test(x.thumb)));
+});
+await test('playlists: the mobile page gives [] rather than junk', async () => {
+  globalThis.__ytMode = 'mobile';
+  const yt = await load('youtube.jsw', 'playlistsmobile');
+  assert.deepEqual(await yt.getPlaylists(), []);
 });
 
 console.log(`\n${passed} passed, ${failed} failed`);

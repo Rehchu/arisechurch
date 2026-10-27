@@ -543,16 +543,20 @@ Totals: 578 keys · 526 new · 45 already in CMS · 7 shared · 0 blank.
 | `outreach.supplies.item9` | new | Supplies list item 9 | Bar soap / soap box | Supplies section, list line 9 |
 | `outreach.supplies.kicker` | new | Supplies kicker | How To Help | Supplies section, small red text |
 
-## sermons (19)
+## sermons (23, three replaced 2026-10-27)
 
 | Key | Status | Label | Default | Where |
 |---|---|---|---|---|
 | `sermons.clips.button` | new | Clips button | All Messages on YouTube | White clips section, button under the cards |
 | `sermons.clips.heading` | new | Clips heading | Clips & Announcements | White clips section, title |
 | `sermons.clips.kicker` | new | Clips kicker | More From Arise Church | White clips section, small red text |
-| `sermons.cta.bodyEnd` | new | Bottom banner ending punctuation | . | Red banner at the bottom, period after the Glory Nights time |
-| `sermons.cta.bodyMain` | new | Bottom banner text after main time | in Pineville, | Red banner at the bottom, after the Pineville Sunday time |
-| `sermons.cta.bodySecond` | new | Bottom banner text after second time | in Alexandria. Glory Nights | Red banner at the bottom, after the Alexandria Sunday time |
+| `sermons.playlists.kicker` | new (2026-10-27) | Sermons playlists kicker | Messages & Series | Light grey Sermons section, small red text |
+| `sermons.playlists.heading` | new (2026-10-27) | Sermons playlists heading | Sermons | Light grey Sermons section, title |
+| `sermons.playlists.lede` | new (2026-10-27) | Sermons playlists intro | Every message from Apostle Bryant Sanders, Pastor Vanessa Sanders and our guest ministers, in playlists. Pick one and watch it right here. | Light grey Sermons section, paragraph under the title |
+| `sermons.playlists.button` | new (2026-10-27) | Sermons playlists button | All Playlists on YouTube | Light grey Sermons section, outlined button under the player |
+| `sermons.cta.place1` | new (2026-10-27) | Invitation line 1 place | in Pineville | Red "Better in the Room" band, after the first Sunday time |
+| `sermons.cta.place2` | new (2026-10-27) | Invitation line 2 place | in Alexandria | Red "Better in the Room" band, after the second Sunday time |
+| `sermons.cta.place3` | new (2026-10-27) | Invitation line 3 place | Glory Night in Pineville | Red "Better in the Room" band, after the Monday time |
 | `sermons.cta.button` | new | Bottom banner button | Plan Your Visit | Red banner at the bottom, white button |
 | `sermons.cta.heading` | new | Bottom banner heading | Better In The Room | Red banner at the bottom, title |
 | `sermons.cta.kicker` | new | Bottom banner kicker | Join Us In Person | Red banner at the bottom, small text |
