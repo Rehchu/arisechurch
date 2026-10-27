@@ -404,8 +404,9 @@ function injectHead() {
 /* The running order: tab number, label, the room (panel) it shows. */
 const JUMPS = [['01', 'Read', 'abiRead'], ['02', 'Study', 'abiStudy'], ['03', 'Listen', 'abiListen'], ['04', 'Bibles', 'abiBibles']];
 
-/* Session memory: the Bible list and the book list change rarely; keep them
-   for an hour so the second page view opens at once. */
+/* Session memory: the book list never changes and the Bible list rarely; keep
+   them (ten minutes for the Bibles, so a newly added key shows up soon) so the
+   second page view opens at once. */
 function abiRemember(key, value) { try { sessionStorage.setItem('abi:' + key, JSON.stringify({ at: Date.now(), value: value })); } catch (e) { /* private mode */ } }
 function abiRecall(key, maxAge) {
   try {
@@ -649,7 +650,7 @@ class AriseBible extends HTMLElement {
     const ref = this.querySelector('#abiRef');
     if (ref) ref.value = this._ref;
 
-    const cachedBibles = abiRecall('bibles', 60 * 60 * 1000);
+    const cachedBibles = abiRecall('bibles', 10 * 60 * 1000);
     const cachedBooks = abiRecall('books', 24 * 60 * 60 * 1000);
     if (cachedBibles) this.setBibles(cachedBibles);
     if (cachedBooks) this.setBooks(cachedBooks);

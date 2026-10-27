@@ -192,6 +192,14 @@ await test('de-duplication merges one work under several names', () => {
   assert.ok(same(t('English Standard Version 2016'), t('English Standard Version')));
   assert.ok(same(t('Geneva Bible 1599'), t('Geneva Bible')));
   assert.ok(same(t("Brenton's English Septuagint"), t('Brenton English translation of the Septuagint')));
+  // the live list of 27 Oct 2026
+  assert.ok(same(t('The Holy Bible: King James Version'), t('King James Version')));
+  assert.ok(same(t('The King James Version Apocrypha'), t('King James Version + Apocrypha')));
+  assert.ok(same(t('1890 Darby Bible'), t('Darby Translation')));
+  assert.ok(same(t('Douay-Rheims American 1899'), t('Douay-Rheims 1899')));
+  assert.ok(same(t('English LSV'), t('Literal Standard Version')));
+  assert.ok(same(t('Plain English Version (Aboriginal)'), t('Plain English Version')));
+  assert.ok(same(t('The Lexham English Bible'), t('Lexham English Bible')));
 });
 await test('de-duplication must NOT merge distinct works', () => {
   assert.ok(!same(t('New American Standard Bible 1995'), t('New American Standard Bible 2020')));
@@ -200,6 +208,9 @@ await test('de-duplication must NOT merge distinct works', () => {
   assert.ok(!same(t('World English Bible'), t('World English Bible Updated')));
   assert.ok(!same(t('King James Version'), t('King James Version + Apocrypha')));
   assert.ok(!same(t('King James Version'), t('Cambridge Paragraph Bible of the KJV')));
+  assert.ok(!same(t('King James Version'), t('The King James Version Apocrypha')));
+  assert.ok(!same(t('Revised Version 1885'), t('American Standard Version')));
+  assert.ok(!same(t('World Messianic Bible'), t('World Messianic Bible British Edition')));
   assert.ok(!same(t('English Standard Version'), t('English Standard Version Anglicised')));
   assert.ok(!same(t('English Standard Version 2016'), t('English Standard Version 2011')));
   assert.ok(!same(t('NET Bible'), t('Amplified Bible')));
@@ -244,7 +255,7 @@ await test('with every key: licensed Bibles pass through whole, the website\'s s
   assert.equal(byId['ab2'].providerId, 'api-bible', 'Free Bible Version via API.Bible (eng_fbv was not in the helloao fixture)');
   assert.ok(!byId['ab1'], 'Arapaho Luke dropped on language');
   assert.equal(byId['LEB'].providerId, 'biblia');
-  assert.equal(list.filter((x) => /king james/i.test(x.name) && !/apocrypha/i.test(x.name)).length, 2, 'KJV and Biblia\'s "The Holy Bible: King James Version" (different name, kept apart)');
+  assert.equal(list.filter((x) => /king james/i.test(x.name) && !/apocrypha/i.test(x.name)).length, 1, 'Biblia\'s "The Holy Bible: King James Version" is the KJV under another title');
   assert.equal(calls('api/agent/token').length, 1, 'one token exchange');
   assert.ok(calls('rest.api.bible/v1/bibles')[0].headers['api-key'] === 'old-name-key', 'the older APIbible secret is read when API_BIBLE_KEY is absent');
   const status = await keyed.keyStatus();
