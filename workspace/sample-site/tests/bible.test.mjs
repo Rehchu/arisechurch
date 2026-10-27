@@ -98,8 +98,9 @@ export const fetch = async (url, opts) => {
   if (url.startsWith('https://rest.api.bible/v1/bibles/')) return reply(200, F.API_BIBLE_PASSAGE);
   if (url.startsWith('https://api.biblia.com/v1/bible/find')) return reply(200, F.BIBLIA_LIST);
   if (url.startsWith('https://api.biblia.com/v1/bible/content/')) return reply(200, 'For God so loved the world, that he gave his one and only Son.', true);
-  if (url === 'https://arisehub.myfaithtech.com/api/agent/token') { net.hubTokens++; return reply((opts.headers || {}).Authorization === 'Bearer ahk_test' ? 200 : 401, { access_token: 'tok' + net.hubTokens, expires_at: Math.floor(Date.now() / 1000) + 3600 }); }
-  if (url.startsWith('https://arisehub.myfaithtech.com/api/bible/')) {
+  if (url === 'https://blocked.example/api/agent/token') return reply(403, '<!DOCTYPE html><html><head><title>Attention Required! | Cloudflare</title><style>body{}</style></head><body><h1>Sorry, you have been blocked</h1><p>You are unable to access arisehub.myfaithtech.com</p><p>Cloudflare Ray ID: 9abc</p></body></html>', true);
+  if (url === 'https://arisehub.myfaithtech.com/api/agent/token' || url === 'https://arisehub.example.workers.dev/api/agent/token') { net.hubTokens++; return reply((opts.headers || {}).Authorization === 'Bearer ahk_test' ? 200 : 401, { access_token: 'tok' + net.hubTokens, expires_at: Math.floor(Date.now() / 1000) + 3600 }); }
+  if (url.startsWith('https://arisehub.myfaithtech.com/api/bible/') || url.startsWith('https://arisehub.example.workers.dev/api/bible/')) {
     const auth = (opts.headers || {}).Authorization || '';
     if (net.hubFails401Once && auth === 'Bearer tok1') { net.hubFails401Once = false; return reply(401, { error: 'unauthorized' }); }
     if (url.indexOf('/translations') > -1) return reply(200, F.HUB_LIST);
@@ -417,6 +418,18 @@ await test('with a key but AriseHub refusing it, the dictionary says so instead 
   assert.match(st.dictionary.error, /AriseHub token 401/);
   assert.ok(calls('api/agent/token').every((c) => /AriseChurchWebsite/.test(c.headers['User-Agent'])), 'the bridge names itself');
 });
+await test('a firewall block page is quoted in the error, and ARISEHUB_URL moves the bridge', async () => {
+  reset(); globalThis.__secrets = { ARISEHUB_API_KEY: 'ahk_test', ARISEHUB_URL: 'https://blocked.example' };
+  const fresh = await load('bible.js', 'p3');
+  await assert.rejects(fresh.dictionaryReference('John 3'), (e) => { assert.match(e.message, /^AriseHub token 403 \u2014 Attention Required! \| Cloudflare Sorry, you have been blocked/); assert.ok(e.message.length < 220); return true; });
+  reset(); globalThis.__secrets = { ARISEHUB_API_KEY: 'ahk_test', ARISEHUB_URL: 'https://arisehub.example.workers.dev/' };
+  const moved = await load('bible.js', 'p4');
+  const r = await moved.dictionaryReference('John 3');
+  assert.equal(r.entries[0].slug, 'nicodemus');
+  assert.ok(calls('arisehub.example.workers.dev/api/agent/token').length === 1 && calls('myfaithtech').length === 0, 'every bridge call went to the other address');
+  assert.equal((await moved.bibleStatus()).dictionary.url, 'https://arisehub.example.workers.dev');
+  assert.equal((await moved.keyStatus()).arisehubUrl, undefined, 'the URL is not a key');
+});
 await test('without an AriseHub key the dictionary is simply absent', async () => {
   reset(); globalThis.__secrets = {};
   const fresh = await load('bible.js', 'q');
@@ -471,7 +484,7 @@ await test('get_bibleBibles / get_bibleBooks / get_bibleReference / get_bibleDic
   assert.equal(dict.available, false);
   const status = JSON.parse((await http.get_bibleStatus()).body);
   assert.deepEqual(Object.values(status.keys).every((v) => typeof v === 'boolean'), true);
-  assert.deepEqual(status.dictionary, { configured: false, ok: false });
+  assert.deepEqual(status.dictionary, { configured: false, ok: false, url: 'https://arisehub.myfaithtech.com' });
   assert.ok(status.bibles >= 4);
 });
 await test('a long or odd query is clipped, never thrown', async () => {
