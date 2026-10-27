@@ -107,8 +107,10 @@ const MAP = {
   "'wix-web-module'": './wix-web-module.mjs', "'wix-data'": './wix-data.mjs', "'@wix/essentials'": './essentials.mjs',
   "'@wix/events'": './events.mjs', "'@wix/online-programs'": './online-programs.mjs', "'@wix/portfolio'": './portfolio.mjs',
   "'wix-http-functions'": './wix-http-functions.mjs', "'wix-crm-backend'": './wix-crm-backend.mjs', "'@wix/automations'": './automations.mjs',
-  "'wix-fetch'": './wix-fetch.mjs'
+  "'wix-fetch'": './wix-fetch.mjs', "'wix-secrets-backend'": './wix-secrets-backend.mjs', "'backend/bible.js'": './bible.mjs'
 };
+/* backend/bible.js has its own suite (bible.test.mjs); here it only has to load so http-functions.js can import it */
+fs.writeFileSync(path.join(TMP, 'wix-secrets-backend.mjs'), `export const getSecret = async (name) => { throw new Error('Secret not found: ' + name); };`);
 /* tag gives a fresh module instance (fresh caches) for each YouTube scenario */
 async function load(file, tag) {
   let src = fs.readFileSync(path.join(BACKEND, file), 'utf8');
@@ -235,6 +237,7 @@ await test('getProjectPhotos maps images and videos and drops empties', async ()
 
 /* ---------- http-functions.js ---------- */
 console.log('http-functions.js');
+await load('bible.js');
 const http = await load('http-functions.js');
 const req = (body) => ({ body: { json: async () => body } });
 await test('post_ariseForm rejects unknown form types and bad emails', async () => {

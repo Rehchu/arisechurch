@@ -1,0 +1,13 @@
+contentKey,page,label,text,imageUrl,image,where
+bible.study.kicker,bible,02 Study: kicker,Go Deeper,,,"02 Study room, small red text"
+bible.study.heading,bible,02 Study: heading,Study<br>The Passage,,,"02 Study room, title"
+bible.study.lede,bible,02 Study: intro line,"Translator’s notes on the verses you are reading, and what Easton’s and Smith’s Bible dictionaries wrote about the people, places and words in them.",,,"02 Study room, paragraph under the title"
+bible.listen.kicker,bible,03 Listen: kicker,Hear The Word,,,"03 Listen room, small red text"
+bible.listen.heading,bible,03 Listen: heading,Listen To<br>This Chapter,,,"03 Listen room, title"
+bible.listen.lede,bible,03 Listen: intro line,"Narrated chapters of the Berean Standard Bible and the Accessible Ancients Bible. Recordings are per chapter, so the whole chapter plays whatever verses are on screen.",,,"03 Listen room, paragraph under the title"
+bible.bibles.kicker,bible,04 Bibles: kicker,Every Translation,,,"04 Bibles room (light grey), small red text"
+bible.bibles.heading,bible,04 Bibles: heading,The Bibles,,,"04 Bibles room, title"
+bible.bibles.lede,bible,04 Bibles: intro line,"Modern and traditional, word-for-word and easy reading. Pick one and the passage you were reading opens in it.",,,"04 Bibles room, paragraph under the title"
+bible.cta.place1,bible,Bottom banner line 1: place,in Pineville,,,"Red banner at the bottom, words after the first Sunday time"
+bible.cta.place2,bible,Bottom banner line 2: place,in Alexandria,,,"Red banner at the bottom, words after the second Sunday time"
+bible.cta.place3,bible,Bottom banner line 3: place,Glory Night in Pineville,,,"Red banner at the bottom, words after the Monday time"
