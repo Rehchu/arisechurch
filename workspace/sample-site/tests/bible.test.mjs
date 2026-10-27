@@ -87,6 +87,7 @@ const net = globalThis.__net;
 const reply = (status, body, isText) => ({ ok: status < 400, status, json: async () => (typeof body === 'string' ? JSON.parse(body) : body), text: async () => (isText ? body : JSON.stringify(body)) });
 export const fetch = async (url, opts) => {
   net.log.push({ url, headers: (opts && opts.headers) || {}, method: (opts && opts.method) || 'get' });
+  for (const k of Object.keys(net.slow || {})) { if (url.indexOf(k) > -1) { await new Promise((r) => setTimeout(r, net.slow[k])); delete net.slow[k]; } }
   for (const k of Object.keys(net.fail)) { if (url.indexOf(k) > -1) { const f = net.fail[k]; if (typeof f === 'number') return reply(f, { error: 'nope' }); throw new Error('connection reset'); } }
   if (url.startsWith('https://bible-api.com/data')) return reply(200, F.BIBLE_API_DATA);
   if (url.startsWith('https://bible-api.com/')) return reply(url.indexOf('Hezekiah') > -1 ? 404 : 200, F.BIBLE_API_JOHN);
@@ -451,6 +452,20 @@ await test('a firewall block page is quoted in the error, and ARISEHUB_URL moves
   assert.ok(calls('arisehub.example.workers.dev/api/agent/token').length === 1 && calls('myfaithtech').length === 0, 'every bridge call went to the other address');
   assert.equal((await moved.bibleStatus()).dictionary.url, 'https://arisehub.example.workers.dev');
   assert.equal((await moved.keyStatus()).arisehubUrl, undefined, 'the URL is not a key');
+});
+await test('a source that answers after its deadline gets the list rebuilt on the next request', async () => {
+  reset(); globalThis.__secrets = { ARISEHUB_API_KEY: 'ahk_test' };
+  const fresh = await load('bible.js', 'p5');
+  net.slow = { 'api/bible/translations': 150 };
+  fresh.__setDeadlines && fresh.__setDeadlines(50);
+  const first = await fresh.allTranslations();
+  assert.ok(!first.some((x) => x.providerId === 'arisehub'), 'AriseHub missed the first deadline');
+  const st = await fresh.bibleStatus();
+  assert.match(st.sources.find((x) => x.id === 'arisehub').error || '', /timed out|AriseHub/);
+  await new Promise((r) => setTimeout(r, 250));
+  const second = await fresh.allTranslations();
+  assert.ok(second.some((x) => x.id === '116'), 'the late answer cleared the cache and the warm second call lists AriseHub\'s Bibles');
+  net.slow = {};
 });
 await test('without an AriseHub key the dictionary is simply absent', async () => {
   reset(); globalThis.__secrets = {};

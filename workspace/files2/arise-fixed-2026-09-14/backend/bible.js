@@ -519,8 +519,11 @@ function withDeadline(promise, ms, label) {
   const late = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(label + ' timed out after ' + ms + 'ms')), ms); });
   return Promise.race([promise, late]).then((v) => { clearTimeout(timer); return v; }, (e) => { clearTimeout(timer); throw e; });
 }
-const SOURCE_DEADLINE = 6000;     // one source's catalogue
-const PASSAGE_DEADLINE = 12000;   // one passage
+let SOURCE_DEADLINE = 6000;       // one source's catalogue
+let HUB_DEADLINE = 11000;         // AriseHub gathers its own sources first, so it is slower from cold
+let PASSAGE_DEADLINE = 12000;     // one passage
+/* Test hook only: the suite shortens the deadlines to milliseconds. */
+export function __setDeadlines(ms) { SOURCE_DEADLINE = ms; HUB_DEADLINE = ms; PASSAGE_DEADLINE = ms * 4; }
 
 /* =========================================================================
    2. KEYS  (Wix Secrets Manager)
@@ -1169,8 +1172,15 @@ export async function allTranslations() {
     try {
       const providers = await bibleProviders();
       const lists = await Promise.all(providers.map(async (p) => {
-        try { const rows = await withDeadline(p.translations(), SOURCE_DEADLINE, p.label); offered[p.id] = rows.length; delete lastErrors[p.id]; return rows.map((t) => Object.assign({}, t, { providerId: p.id })); }
-        catch (e) { lastErrors[p.id] = (e && e.message) || 'failed'; offered[p.id] = 0; return []; }
+        const pending = p.translations();
+        try { const rows = await withDeadline(pending, p.id === 'arisehub' ? HUB_DEADLINE : SOURCE_DEADLINE, p.label); offered[p.id] = rows.length; delete lastErrors[p.id]; return rows.map((t) => Object.assign({}, t, { providerId: p.id })); }
+        catch (e) {
+          lastErrors[p.id] = (e && e.message) || 'failed'; offered[p.id] = 0;
+          // A source that answers after its deadline is not wasted: the list is
+          // rebuilt on the next request, when that source is warm and quick.
+          pending.then((rows) => { if (rows && rows.length) catalogueCache.clear(); }, () => {});
+          return [];
+        }
       }));
       const keyless = new Set(PROVIDERS.filter((p) => p.keyless).map((p) => p.id));
       const seen = new Set();
