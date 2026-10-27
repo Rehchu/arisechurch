@@ -532,6 +532,12 @@ await test('get_bibleBibles / get_bibleBooks / get_bibleReference / get_bibleDic
   assert.equal(dict.available, false);
   const status = JSON.parse((await http.get_bibleStatus()).body);
   assert.deepEqual(Object.values(status.keys).every((v) => typeof v === 'boolean'), true);
+  assert.equal(status.unused, undefined, 'the unused lists only on request');
+  const withUnused = JSON.parse((await http.get_bibleStatus(req({ unused: '1' }))).body);
+  assert.ok(withUnused.unused.helloao.includes('eng_web | World English Bible'), 'an English edition curation left out');
+  assert.ok(!withUnused.unused.helloao.some((x) => /Textus Receptus|Reina Valera/.test(x)), 'other languages are not offered to an English-only site');
+  assert.ok(!withUnused.unused.helloao.some((x) => /^BSB \|/.test(x)), 'what is on the page is not unused');
+  assert.ok(withUnused.unused['bible-api'].includes('kjv | King James Version') === false, 'the KJV is on the page from AO Lab, so bible-api.com\'s copy is a duplicate, not unused');
   assert.deepEqual(status.dictionary, { configured: false, ok: false, url: 'https://arisehub.myfaithtech.com' });
   assert.ok(status.bibles >= 4);
 });
