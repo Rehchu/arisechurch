@@ -1,4 +1,4 @@
-import { ok, badRequest, serverError } from 'wix-http-functions';
+import { ok, badRequest, serverError, response } from 'wix-http-functions';
 import wixData from 'wix-data';
 import { contacts } from 'wix-crm-backend';
 import { customTrigger } from '@wix/automations';
@@ -98,7 +98,7 @@ export async function post_ariseForm(request) {
      /_functions/bibleBooks                             the 66 books + chapter counts
      /_functions/bibleReference?ref=John+3             dictionary entries citing the passage
      /_functions/bibleDictionary?q=shep | ?letter=s | ?slug=shepherd
-     /_functions/bibleStatus                            which keys are set, what each source answered
+     /_functions/bibleStatus[?refresh=1]                which keys are set, what each source answered
 
    /_functions/ URLs only run on the LIVE site, not in Preview. */
 import { getPassage, allTranslations, bibleBooks, dictionaryReference, dictionaryLookup, bibleStatus } from 'backend/bible.js';
@@ -111,8 +111,10 @@ function json(body, cacheSeconds) {
   return ok({ headers: headers, body: JSON.stringify(body) });
 }
 function failed(status, body) {
-  const r = status === 400 ? badRequest : serverError;
-  return r({ headers: Object.assign({ 'Cache-Control': 'no-store' }, JSON_HEADERS), body: JSON.stringify(body) });
+  const opts = { headers: Object.assign({ 'Cache-Control': 'no-store' }, JSON_HEADERS), body: JSON.stringify(body) };
+  if (status === 400) return badRequest(opts);
+  if (status === 500) return serverError(opts);
+  return response(Object.assign({ status: status }, opts));   // 502: the source failed, not this site
 }
 const q = (request, name, max) => clean(request && request.query && request.query[name], max || 200);
 
@@ -150,7 +152,9 @@ export async function get_bibleDictionary(request) {
   catch (e) { console.error('bibleDictionary', e); return json({ entries: [], available: false, configured: true, error: (e && e.message) || 'dictionary unavailable' }); }
 }
 
-export async function get_bibleStatus() {
-  try { return json(await bibleStatus()); }
+/* ?refresh=1 also refetches every source's catalogue; without it the counts
+   are from the cached list (the keys are re-read either way). */
+export async function get_bibleStatus(request) {
+  try { return json(await bibleStatus(q(request, 'refresh', 4) === '1')); }
   catch (e) { console.error('bibleStatus', e); return failed(502, { error: (e && e.message) || 'status failed' }); }
 }
