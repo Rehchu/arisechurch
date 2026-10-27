@@ -1,4 +1,5 @@
-const { chromium } = require('playwright'); const fs = require('fs'); const path = require('path');
+const { chromium } = require('playwright'); const fs = require('fs'); const path = require('path'); const os = require('os');
+const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'arise-probe-'));   // scratch pages go to the system temp folder, never beside this file
 const [,, ELEMENT] = process.argv;
 const js = fs.readFileSync(ELEMENT, 'utf8').replace(/<\/script/g, '<\\/script');
 const XSS = '<img src=x onerror="window.__xss=1"> "quoted" & \'single\'';
@@ -6,7 +7,7 @@ const mk = (pre, post) => `<!doctype html><html><head><meta charset="utf-8"><met
 (async () => {
   const b = await chromium.launch(); const out = {};
   const route = (pg) => pg.route('**/*', (r) => { const u = r.request().url(); if (u.startsWith('file://') || u.startsWith('data:')) return r.continue(); if (/i\.ytimg\.com/.test(u)) return r.fulfill({ status: 200, contentType: 'image/svg+xml', body: '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"><rect width="640" height="360" fill="#333"/></svg>' }); if (/youtube\.com\/embed/.test(u)) return r.fulfill({ status: 200, contentType: 'text/html', body: '<body></body>' }); return r.abort(); });
-  const run = async (name, html, opts, fn) => { const pg = await b.newPage(Object.assign({ viewport: { width: 1366, height: 900 } }, opts || {})); const errs = []; pg.on('pageerror', (e) => errs.push(e.message)); await route(pg); const f = path.join(__dirname, 'probe-' + name + '.html'); fs.writeFileSync(f, html); await pg.goto('file://' + f); await pg.waitForTimeout(1200); out[name] = Object.assign({ errors: errs }, await fn(pg)); await pg.close(); };
+  const run = async (name, html, opts, fn) => { const pg = await b.newPage(Object.assign({ viewport: { width: 1366, height: 900 } }, opts || {})); const errs = []; pg.on('pageerror', (e) => errs.push(e.message)); await route(pg); const f = path.join(TMP, 'probe-' + name + '.html'); fs.writeFileSync(f, html); await pg.goto('file://' + f); await pg.waitForTimeout(1200); out[name] = Object.assign({ errors: errs }, await fn(pg)); await pg.close(); };
   const hiddenR = () => [...document.querySelectorAll('arise-sermons .r, arise-sermons .rail > *')].filter(e => getComputedStyle(e).opacity !== '1').length;
   // 1. no IntersectionObserver at all
   await run('noIO', mk('<script>delete window.IntersectionObserver;</script><arise-sermons id="el"></arise-sermons>', ''), {}, (pg) => pg.evaluate(() => ({ hidden: (() => [...document.querySelectorAll('arise-sermons .r, arise-sermons .rail > *')].filter(e => getComputedStyle(e).opacity !== '1').length)(), hasJs: document.getElementById('el').classList.contains('aes-js') })));
