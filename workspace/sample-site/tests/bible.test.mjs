@@ -121,7 +121,7 @@ globalThis.__fixtures = { BIBLE_API_JOHN, BIBLE_API_DATA, helloaoChapter, HELLOA
 
 const MAP = { "'wix-fetch'": './wix-fetch.mjs', "'wix-secrets-backend'": './wix-secrets-backend.mjs', "'wix-http-functions'": './wix-http-functions.mjs',
   "'backend/bible.js'": './bible.mjs', "'wix-data'": './stub.mjs', "'wix-crm-backend'": './stub.mjs', "'@wix/automations'": './stub.mjs', "'@wix/essentials'": './stub.mjs' };
-fs.writeFileSync(path.join(TMP, 'stub.mjs'), `export default {}; export const contacts = {}; export const customTrigger = {}; export const auth = {};`);
+fs.writeFileSync(path.join(TMP, 'stub.mjs'), `export default { insert: async (c, r) => { (globalThis.__net.inserted = globalThis.__net.inserted || []).push([c, r]); return r; } }; export const contacts = {}; export const customTrigger = {}; export const auth = {};`);
 /* tag gives a fresh module instance (fresh caches, fresh keys) per scenario */
 async function load(file, tag) {
   let src = fs.readFileSync(path.join(BACKEND, file), 'utf8');
@@ -538,6 +538,11 @@ await test('get_bibleBibles / get_bibleBooks / get_bibleReference / get_bibleDic
   assert.ok(!withUnused.unused.helloao.some((x) => /Textus Receptus|Reina Valera/.test(x)), 'other languages are not offered to an English-only site');
   assert.ok(!withUnused.unused.helloao.some((x) => /^BSB \|/.test(x)), 'what is on the page is not unused');
   assert.ok(withUnused.unused['bible-api'].includes('kjv | King James Version') === false, 'the KJV is on the page from AO Lab, so bible-api.com\'s copy is a duplicate, not unused');
+  const saved = JSON.parse((await http.get_bibleStatus(req({ unused: '1', save: '1' }))).body);
+  assert.equal(saved.saved, true);
+  const row = net.inserted[net.inserted.length - 1];
+  assert.equal(row[0], 'BibleStatus');
+  assert.ok(JSON.parse(row[1].payload).unused.helloao.length > 0, 'the saved payload carries the unused lists');
   assert.deepEqual(status.dictionary, { configured: false, ok: false, url: 'https://arisehub.myfaithtech.com' });
   assert.ok(status.bibles >= 4);
 });
