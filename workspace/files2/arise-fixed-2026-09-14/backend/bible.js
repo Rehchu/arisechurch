@@ -1134,7 +1134,16 @@ const SAME_WORK = [
   // "English Standard Version 2016". Same words, one entry. "Anglicised" and
   // "2011" are different editions and stay apart.
   { canon: 'English Standard Version', match: /^english\s+standard\s+version(\s+2016)?$/i },
-  { canon: 'Berean Standard Bible', match: /^berean\s+standard\s+bible$/i }
+  { canon: 'Berean Standard Bible', match: /^berean\s+standard\s+bible$/i },
+  // Seen in the live list on 27 Oct 2026: the same work from two sources under
+  // two titles. Each rule is anchored so a real variant stays a separate entry.
+  { canon: 'King James Version', match: /^the\s+holy\s+bible:\s*king\s+james\s+version$/i },
+  { canon: 'King James Version + Apocrypha', match: /^(the\s+)?king\s+james\s+version\s*(\+|with)?\s*apocrypha$/i },
+  { canon: 'Darby Translation', match: /^(1890\s+)?darby\s+(bible|translation)$/i },
+  { canon: 'Douay-Rheims 1899', match: /^douay-?rheims(\s+american)?(\s+1899)?(\s+american)?(\s+edition)?$/i },
+  { canon: 'Literal Standard Version', match: /^(english\s+lsv|literal\s+standard\s+version)$/i },
+  { canon: 'Plain English Version', match: /^plain\s+english\s+version(\s+\(aboriginal\))?$/i },
+  { canon: 'Lexham English Bible', match: /^(the\s+)?lexham\s+english\s+bible$/i }
 ];
 export const canonicalWork = (t) => SAME_WORK.find((w) => w.match.test((t && t.name) || ''));
 
