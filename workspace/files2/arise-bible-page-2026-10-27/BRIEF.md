@@ -47,18 +47,28 @@ reader can act on. Differences from AriseHub, on purpose:
 Sources, most preferred first: youversion, esv, helloao, api-bible, biblia,
 bible-api, wldeh, arisehub.
 
-## Keys (Wix Secrets Manager — all five stored 27 Oct)
+## Keys (Wix Secrets Manager — stored 27 Oct)
 
 `YOUVERSION_APP_KEY`, `API_BIBLE_KEY` (an older `APIbible` is read as a fallback),
 `BIBLIA_API_KEY`, `ARISEHUB_API_KEY`; `ESV_API_KEY` is optional. None is
 required: with no keys the page still has the 18 free Bibles.
 
+`ARISEHUB_URL` = `https://arisehub.dyer-hq.workers.dev`. The custom domain
+(arisehub.myfaithtech.com) sits behind Cloudflare's challenge page ("Just a
+moment… Enable JavaScript and cookies"), which a server cannot pass, so every
+bridge call from Wix answered 403 there even with Bot Fight Mode off. The
+Worker's workers.dev address is outside the zone's security and works. A WAF
+"Skip" rule for `/api/` on the custom domain would be the alternative.
+
 ## Checking it after publishing
 
 1. `https://www.arisecenla.church/_functions/bibleStatus` — `keys` shows which
-   secrets are set (true/false, never values); `sources[].offered` is how many
-   Bibles each source listed, `listed` how many survived into the page's list,
-   `error` what a source answered if it failed.
+   secrets are set (true/false, never values; re-read on every call);
+   `sources[].offered` is how many Bibles each source listed, `listed` how many
+   survived into the page's list, `error` what a source answered if it failed
+   (a firewall's block page is quoted); `dictionary` tries the AriseHub bridge
+   end to end and says which step failed. Add `?refresh=1` to refetch every
+   source's catalogue instead of reporting the cached list.
 2. `/_functions/bibleBibles` — the list the page shows.
 3. `/_functions/bible?ref=John+3:16&translation=BSB` — one passage.
 4. The page itself: tabs, chips, Prev / Next, a Bible card, a dictionary entry.
@@ -77,10 +87,23 @@ sets).
 
 ## Checks
 
-- `node workspace/sample-site/tests/bible.test.mjs` — 27 (references, the list,
-  each source, notes / audio / span, the AriseHub bridge, the HTTP functions)
+- `node workspace/sample-site/tests/bible.test.mjs` — 30 (references, the list,
+  each source, notes / audio / span, the AriseHub bridge, the HTTP functions;
+  refuses to run if the files2 copy differs from src/backend)
 - `node workspace/sample-site/tests/backend.test.mjs` — 28, `page-code.test.mjs` — 92
 - Browser (Playwright, sample backend): four sizes, no console errors, no
   horizontal scroll, no small tap targets; chips, Prev / Next, Study, the entry
   expander, Listen with and without a recording, the Bibles wall and filter, a
   bad reference, the strap lock under a pinned header, every `data-ck` key.
+
+## Review pass (27 Oct, after the merge)
+
+Five-lens adversarial review of the port. Fixed the same day: an empty or
+unknown Bible id went to the first configured source, which for YouVersion
+means "needs a Bible id" (now: the BSB on AO Lab); an all-sources-down merge
+was cached empty for an hour (now never cached); no per-source deadline (now
+6 s per catalogue, 12 s per passage); `failed(502)` sent 500; the passage cache
+grew without bound; secret-read failures were silent; keys were not re-read on
+the passage path; the English Brenton merge rule had been dropped; the suite
+tested the files2 copy without checking it matched src. Left as is: the status
+endpoint is public (it reports names and counts only).

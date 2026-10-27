@@ -13,3 +13,10 @@
 - CMS (via connector): 12 new bible.* rows inserted, 3 reworded (form labels -> Bible / Verse or chapter / Read). Four retired rows (bible.cta.pineville, bible.cta.alexandria, bible.cta.end, bible.results.ready) still present: delete once the new page is published.
 - After publish: check https://www.arisecenla.church/_functions/bibleStatus (keys true/false, sources offered/listed/error), then the page.
 - A 5-lens adversarial review workflow (wf_ef7ce064-b7c) was still running at merge time; its findings, if any, go in a follow-up PR.
+
+## Bridge fix 27 Oct (later)
+- Live: 48 Bibles (YouVersion 20, free 12, API.Bible 9, Biblia 7). The AriseHub bridge answered `AriseHub token 403 — Just a moment... Enable JavaScript and cookies` = Cloudflare's challenge page on arisehub.myfaithtech.com (Bot Fight Mode off did not help). Fix: secret `ARISEHUB_URL = https://arisehub.dyer-hq.workers.dev` (the Worker's workers.dev address, outside the zone's security). User turned Bot Fight Mode off and was given a WAF Skip rule as the alternative.
+- Review workflow findings applied (see BRIEF.md "Review pass"). bibleStatus re-reads keys on every call; `?refresh=1` refetches catalogues.
+- The user pasted a Supabase SECRET key in chat (not used, not stored anywhere); advised rotation + updating the Worker's SUPABASE_SECRET_KEY together.
+- AriseHub key `ahk_JLE2Cpah…` ("Arise Website"): expires_at set to NULL at the user's request (keyIsLive treats null as never).
+- Still to do once dictionary.ok is true: delete the four retired Page Content rows.

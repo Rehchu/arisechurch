@@ -16,6 +16,7 @@
      bible-api   bible-api.com        no key                   public-domain classics
      wldeh       WLDEH on jsDelivr    no key                   public-domain classics
      arisehub    AriseHub itself      key ARISEHUB_API_KEY     every Bible AriseHub can serve, plus the Easton / Smith dictionary
+                                      (optional ARISEHUB_URL: another address for the same app, e.g. its workers.dev one)
 
    KEYS live in the Wix Secrets Manager (Dashboard -> Developer Tools ->
    Secrets Manager), never in this file. Names above, spelled exactly.
@@ -493,19 +494,38 @@ async function fetchOnce(url, init) {
 
 /* A tiny time-boxed cache. Velo backend instances are warm for a while, so a
    second reader of John 3 within ten minutes costs no network at all. */
-function makeCache(ttl) {
+function makeCache(ttl, max) {
   const map = new Map();
+  max = max || 300;
   return {
     get(k) { const hit = map.get(k); if (hit && hit.until > Date.now()) return hit.value; map.delete(k); return undefined; },
-    set(k, v) { map.set(k, { value: v, until: Date.now() + ttl }); return v; },
+    set(k, v) {
+      // Sweep what has expired, then the oldest, so a warm instance never
+      // keeps more than `max` chapters in memory.
+      const now = Date.now();
+      map.forEach((hit, key) => { if (hit.until <= now) map.delete(key); });
+      while (map.size >= max) { map.delete(map.keys().next().value); }
+      map.set(k, { value: v, until: now + ttl });
+      return v;
+    },
     clear() { map.clear(); }
   };
 }
+/* A promise with a deadline. wix-fetch has no timeout of its own, and one slow
+   source must not hold every other answer: the late result is dropped, the
+   request it belongs to finishes on its own. */
+function withDeadline(promise, ms, label) {
+  let timer;
+  const late = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error(label + ' timed out after ' + ms + 'ms')), ms); });
+  return Promise.race([promise, late]).then((v) => { clearTimeout(timer); return v; }, (e) => { clearTimeout(timer); throw e; });
+}
+const SOURCE_DEADLINE = 6000;     // one source's catalogue
+const PASSAGE_DEADLINE = 12000;   // one passage
 
 /* =========================================================================
    2. KEYS  (Wix Secrets Manager)
    Read once per warm instance, re-read every ten minutes so a rotated key
-   takes effect without a redeploy. A missing secret is '' - never an error:
+   takes effect without a redeploy (bibleStatus re-reads them at once). A missing secret is '' - never an error:
    the source simply sits out. API.Bible has an older secret named
    `APIbible`; it is read as a fallback so nobody has to rename it.
    ========================================================================= */
@@ -522,8 +542,17 @@ let keysLoadedAt = 0;
 let keysLoading = null;
 
 async function readSecret(name) {
-  try { const v = await getSecret(name); return tidy(v); } catch (e) { return ''; }
+  try { const v = await getSecret(name); return tidy(v); }
+  catch (e) {
+    // A missing secret is the normal case for an unused source. Anything else
+    // (permissions, an outage) is worth a line in Site Logs.
+    const msg = String((e && e.message) || e || '');
+    if (!/not found|does not exist|no secret/i.test(msg)) console.error('Secrets Manager: ' + name + ': ' + msg);
+    return '';
+  }
 }
+/* Forget the keys so the next read goes to the Secrets Manager (bibleStatus). */
+function forgetKeys() { keysLoadedAt = 0; }
 async function loadKeys() {
   if (KEYS && Date.now() - keysLoadedAt < 10 * MINUTE) return KEYS;
   if (keysLoading) return keysLoading;
@@ -1089,6 +1118,10 @@ export const languageKept = (t) => {
    page shows. */
 const SAME_WORK = [
   { canon: 'American Standard Version', match: /american\s+standard\s+version/i },
+  // Brenton's English translation of the Septuagint is listed under several
+  // titles. Its Greek companion never reaches this table: other languages are
+  // filtered out before de-duplication.
+  { canon: "Brenton's English Septuagint", match: /brenton/i },
   // Anchored: must not catch "+ Apocrypha" or "Cambridge Paragraph Bible of the KJV".
   { canon: 'King James Version', match: /^(the\s+)?king\s+james\s+(\(authori[sz]ed\)\s+)?version$/i },
   // Anchored: must not catch "British Edition" or "Updated", which are real variants.
@@ -1136,7 +1169,7 @@ export async function allTranslations() {
     try {
       const providers = await bibleProviders();
       const lists = await Promise.all(providers.map(async (p) => {
-        try { const rows = await p.translations(); offered[p.id] = rows.length; delete lastErrors[p.id]; return rows.map((t) => Object.assign({}, t, { providerId: p.id })); }
+        try { const rows = await withDeadline(p.translations(), SOURCE_DEADLINE, p.label); offered[p.id] = rows.length; delete lastErrors[p.id]; return rows.map((t) => Object.assign({}, t, { providerId: p.id })); }
         catch (e) { lastErrors[p.id] = (e && e.message) || 'failed'; offered[p.id] = 0; return []; }
       }));
       const keyless = new Set(PROVIDERS.filter((p) => p.keyless).map((p) => p.id));
@@ -1154,8 +1187,9 @@ export async function allTranslations() {
         merged.push(row);
       }));
       merged.sort((a, b) => a.name.localeCompare(b.name));
-      // Keep a last good list if a refresh comes back empty (every source down).
-      if (!merged.length && lastGood.length) return lastGood;
+      // An empty merge (every source down) is never cached: the next request
+      // tries again, and the last good list serves meanwhile.
+      if (!merged.length) return lastGood;
       lastGood = merged;
       return catalogueCache.set('all', merged);
     } finally { catalogueLoading = null; }
@@ -1174,9 +1208,9 @@ export async function translationFor(id) {
 
 function getProvider(id) {
   if (id) { const p = PROVIDERS.find((x) => x.id === id && x.configured()); if (p) return p; }
-  const first = PROVIDERS.find((p) => p.configured());
-  if (!first) throw new Error('no Bible source configured');
-  return first;
+  // No source named: AO Lab, which needs no key and no id (its default is the
+  // BSB). YouVersion and API.Bible cannot serve a passage without a Bible id.
+  return helloao;
 }
 
 /* =========================================================================
@@ -1272,19 +1306,23 @@ export async function getPassage(ref, translation) {
   const hit = passageCache.get(cacheKey);
   if (hit) return hit;
   try {
+    await loadKeys();
     const record = translation ? await translationFor(translation) : null;
     const provider = record ? getProvider(record.providerId) : getProvider(null);
+    // An id no source lists (a key removed, a stale link) falls back to the
+    // default Bible rather than asking AO Lab for an id it has never heard of.
+    if (!record) translation = '';
     let passage;
     if (provider.id === 'arisehub') {
       // AriseHub spans chapters, borrows notes and attaches audio itself.
-      passage = await provider.getPassage(ref, translation);
+      passage = await withDeadline(provider.getPassage(ref, translation), PASSAGE_DEADLINE, 'AriseHub');
     } else {
       const p = parseReference(ref);
       if (!p && provider.id !== 'bible-api') throw cannot(ref);
       const spanned = !!(p && p.chapterTo && p.chapterTo !== p.chapter);
-      passage = spanned
-        ? await spanChapters(provider, p, translation || undefined)
-        : await provider.getPassage(ref, translation || undefined);
+      passage = await withDeadline(spanned
+        ? spanChapters(provider, p, translation || undefined)
+        : provider.getPassage(ref, translation || undefined), PASSAGE_DEADLINE, provider.label);
       // Study notes should be there whatever Bible was picked. If the selected
       // one carries none, borrow them and say where they came from.
       if (!(passage.footnotes && passage.footnotes.length)) {
@@ -1361,9 +1399,10 @@ export async function dictionaryLookup(opts) {
    Which keys are set (names only), what each source answered, how many Bibles
    survive into the list. For checking the Secrets Manager after a publish.
    ========================================================================= */
-export async function bibleStatus() {
+export async function bibleStatus(refresh) {
+  forgetKeys();
   const keys = await keyStatus();
-  catalogueCache.clear();
+  if (refresh) catalogueCache.clear();
   const list = await allTranslations();
   const counts = {};
   list.forEach((t) => { counts[t.providerId] = (counts[t.providerId] || 0) + 1; });

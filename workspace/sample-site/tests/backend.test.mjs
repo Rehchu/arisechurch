@@ -57,7 +57,8 @@ const state = globalThis.__state;
 export const projectItems = { listProjectItems: async (id) => ({ items: state.items[id] || [] }) };`);
 fs.writeFileSync(path.join(TMP, 'wix-http-functions.mjs'), `
 const r = (status) => (o) => Object.assign({ status }, o);
-export const ok = r(200), badRequest = r(400), serverError = r(500);`);
+export const ok = r(200), badRequest = r(400), serverError = r(500);
+export const response = (o) => o;`);
 fs.writeFileSync(path.join(TMP, 'wix-crm-backend.mjs'), `
 const state = globalThis.__state;
 export const contacts = { appendOrCreateContact: async (c) => { state.contacts.push(c); return { contactId: 'c-' + state.contacts.length }; } };`);

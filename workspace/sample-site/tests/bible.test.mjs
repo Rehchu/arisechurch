@@ -17,6 +17,11 @@ import assert from 'node:assert/strict';
 
 const ROOT = path.resolve(fileURLToPath(new URL('.', import.meta.url)), '..', '..');
 const BACKEND = path.join(ROOT, 'files2', 'arise-fixed-2026-09-14', 'backend');
+/* The suite runs the files2 copy; Wix deploys src/backend. They must be the same file. */
+for (const f of ['bible.js', 'http-functions.js']) {
+  const a = fs.readFileSync(path.join(BACKEND, f), 'utf8'), b = fs.readFileSync(path.join(ROOT, '..', 'src', 'backend', f), 'utf8');
+  if (a !== b) { console.log('FAIL files2/.../backend/' + f + ' differs from src/backend/' + f + ' — copy it over before testing'); process.exit(1); }
+}
 const TMP = fs.mkdtempSync(path.join(os.tmpdir(), 'arise-bible-'));
 
 /* ---------- the network, as fixtures ---------- */
@@ -74,7 +79,8 @@ fs.writeFileSync(path.join(TMP, 'wix-secrets-backend.mjs'), `
 export const getSecret = async (name) => { const s = globalThis.__secrets || {}; if (!(name in s)) throw new Error('Secret not found: ' + name); return s[name]; };`);
 fs.writeFileSync(path.join(TMP, 'wix-http-functions.mjs'), `
 const r = (status) => (o) => Object.assign({ status }, o);
-export const ok = r(200), badRequest = r(400), serverError = r(500);`);
+export const ok = r(200), badRequest = r(400), serverError = r(500);
+export const response = (o) => o;`);
 fs.writeFileSync(path.join(TMP, 'wix-fetch.mjs'), `
 const F = globalThis.__fixtures;
 const net = globalThis.__net;
@@ -184,6 +190,7 @@ await test('de-duplication merges one work under several names', () => {
   assert.ok(same(t('King James (Authorized) Version'), t('The King James Version')));
   assert.ok(same(t('English Standard Version 2016'), t('English Standard Version')));
   assert.ok(same(t('Geneva Bible 1599'), t('Geneva Bible')));
+  assert.ok(same(t("Brenton's English Septuagint"), t('Brenton English translation of the Septuagint')));
 });
 await test('de-duplication must NOT merge distinct works', () => {
   assert.ok(!same(t('New American Standard Bible 1995'), t('New American Standard Bible 2020')));
@@ -260,13 +267,13 @@ await test('one source down does not empty the list, and the list is cached', as
 
 /* ======================= 3. what each source's answer becomes ======================= */
 console.log('bible.js: passages');
-await test('a Bible id that is not in the list goes to the first configured source, with the source\'s own name', async () => {
+await test('a Bible id that is not in the list is served as the BSB on AO Lab, under its own name', async () => {
   // bible-api.com's "web" is not in the curated list, so it is not routed there
   reset(); globalThis.__secrets = {};
   const fresh = await load('bible.js', 'd');
   const p = await fresh.getPassage('John 3:16', 'web');
   assert.equal(p.providerId, 'helloao');
-  assert.equal(p.translationName, 'King James Version', 'the source\'s own name, nothing overwritten');
+  assert.equal(p.translationName, 'Berean Standard Bible', 'the default Bible, named by its source');
   assert.equal(calls('bible-api.com/John').length, 0);
 });
 await test('AO Lab: a verse range is sliced from the chapter; notes limited to shown verses; audio per narrator', async () => {
@@ -340,11 +347,26 @@ await test('API.Bible and Biblia', async () => {
   assert.equal(calls('api.biblia.com')[0].headers.Referer, 'https://www.arisecenla.church');
   assert.ok(calls('api.biblia.com/v1/bible/content')[0].url.indexOf('passage=John3.16') > -1);
 });
-await test('an id no source lists goes to the first configured source', async () => {
-  reset(); globalThis.__secrets = {};
+await test('an empty or unknown Bible id falls back to the BSB on AO Lab, even when keyed sources are configured', async () => {
+  reset(); globalThis.__secrets = { YOUVERSION_APP_KEY: 'yv-key', API_BIBLE_KEY: 'ab-key' };
   const fresh = await load('bible.js', 'k');
   const p = await fresh.getPassage('John 3:16-17', 'en-kjv');
   assert.equal(p.providerId, 'helloao');
+  assert.ok(calls('helloao.org/api/BSB/JHN/3').length === 1, 'asked for the BSB, not for "en-kjv"');
+  const q = await fresh.getPassage('John 3:16', '');
+  assert.equal(q.providerId, 'helloao');
+  assert.equal(calls('youversion.com/v1/bibles/').length, 0, 'YouVersion is never asked without a Bible id');
+});
+await test('an empty catalogue is never cached; a slow source is dropped on a deadline', async () => {
+  reset(); globalThis.__secrets = {};
+  const fresh = await load('bible.js', 'k2');
+  net.fail = { 'bible.helloao.org/api/available': 503, 'bible-api.com/data': 503, 'wldeh/bible-api/bibles/bibles.json': 503 };
+  assert.deepEqual(await fresh.allTranslations(), []);
+  net.fail = {};
+  const n = net.log.length;
+  const list = await fresh.allTranslations();
+  assert.ok(list.length >= 4, 'the next call tried again: ' + list.length);
+  assert.ok(net.log.length > n, 'and went to the network');
 });
 await test('a range across chapters is fetched as whole chapters and trimmed; too many chapters is refused', async () => {
   reset(); globalThis.__secrets = {};
@@ -467,7 +489,7 @@ await test('get_bible: JSON with a cache header; 400 without a reference; a frie
   assert.equal(missing.status, 400);
   assert.match(JSON.parse(missing.body).error, /John 3:16/);
   const bad = await http.get_bible(req({ ref: 'Hezekiah 3', translation: 'BSB' }));
-  assert.equal(bad.status, 500);
+  assert.equal(bad.status, 502, 'the source failed, not this site');
   assert.match(JSON.parse(bad.body).error, /Couldn't understand/);
   assert.equal(bad.headers['Cache-Control'], 'no-store');
 });
@@ -489,7 +511,7 @@ await test('get_bibleBibles / get_bibleBooks / get_bibleReference / get_bibleDic
 });
 await test('a long or odd query is clipped, never thrown', async () => {
   const r = await http.get_bible(req({ ref: 'x'.repeat(5000), translation: ['BSB'] }));
-  assert.ok(r.status === 500 || r.status === 400);
+  assert.ok(r.status === 502 || r.status === 400);
   const r2 = await http.get_bibleDictionary(req({ letter: 'shepherd' }));
   assert.equal(r2.status, 200);
 });
