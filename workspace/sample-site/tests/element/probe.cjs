@@ -1,0 +1,36 @@
+const { chromium } = require('playwright'); const fs = require('fs'); const path = require('path');
+const [,, ELEMENT] = process.argv;
+const js = fs.readFileSync(ELEMENT, 'utf8').replace(/<\/script/g, '<\\/script');
+const XSS = '<img src=x onerror="window.__xss=1"> "quoted" & \'single\'';
+const mk = (pre, post) => `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0">${pre}<script>${js}</script>${post}</body></html>`;
+(async () => {
+  const b = await chromium.launch(); const out = {};
+  const route = (pg) => pg.route('**/*', (r) => { const u = r.request().url(); if (u.startsWith('file://') || u.startsWith('data:')) return r.continue(); if (/i\.ytimg\.com/.test(u)) return r.fulfill({ status: 200, contentType: 'image/svg+xml', body: '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"><rect width="640" height="360" fill="#333"/></svg>' }); if (/youtube\.com\/embed/.test(u)) return r.fulfill({ status: 200, contentType: 'text/html', body: '<body></body>' }); return r.abort(); });
+  const run = async (name, html, opts, fn) => { const pg = await b.newPage(Object.assign({ viewport: { width: 1366, height: 900 } }, opts || {})); const errs = []; pg.on('pageerror', (e) => errs.push(e.message)); await route(pg); const f = path.join(__dirname, 'probe-' + name + '.html'); fs.writeFileSync(f, html); await pg.goto('file://' + f); await pg.waitForTimeout(1200); out[name] = Object.assign({ errors: errs }, await fn(pg)); await pg.close(); };
+  const hiddenR = () => [...document.querySelectorAll('arise-sermons .r, arise-sermons .rail > *')].filter(e => getComputedStyle(e).opacity !== '1').length;
+  // 1. no IntersectionObserver at all
+  await run('noIO', mk('<script>delete window.IntersectionObserver;</script><arise-sermons id="el"></arise-sermons>', ''), {}, (pg) => pg.evaluate(() => ({ hidden: (() => [...document.querySelectorAll('arise-sermons .r, arise-sermons .rail > *')].filter(e => getComputedStyle(e).opacity !== '1').length)(), hasJs: document.getElementById('el').classList.contains('aes-js') })));
+  // 2. IO exists but never fires
+  await run('deadIO', mk('<script>window.IntersectionObserver=function(){this.observe=function(){};this.unobserve=function(){};this.disconnect=function(){}};</script><arise-sermons id="el"></arise-sermons>', ''), {}, (pg) => pg.evaluate(() => ({ hidden: [...document.querySelectorAll('arise-sermons .r, arise-sermons .rail > *')].filter(e => getComputedStyle(e).opacity !== '1').length })));
+  // 3. attributes set before upgrade (element parsed with attributes, script after)
+  const pre = `<arise-sermons id="el" data-live-video="livelivel11" data-latest-video='${JSON.stringify({ id: 'QwF6-Sdrxoo', title: 'T', when: 'W' }).replace(/'/g, '&#39;')}' data-series-active="true" data-series-title="Series X" data-clips='[{"id":"abcdefghijk","title":"C1"}]'></arise-sermons>`;
+  await run('preAttrs', mk(pre, ''), {}, (pg) => pg.evaluate(() => ({ featured: document.querySelector('#ariseFeatured').getAttribute('src'), badge: document.querySelector('#ariseBadge').textContent.trim(), live: document.getElementById('el').classList.contains('is-live'), series: getComputedStyle(document.querySelector('#ariseSeries')).display, seriesTitle: document.querySelector('#ariseSeriesTitle').textContent, clips: document.querySelectorAll('#aesClips a').length })));
+  // 4. hostile titles everywhere
+  await run('xss', mk('<arise-sermons id="el"></arise-sermons>', `<script>const el=document.getElementById('el');const X=${JSON.stringify(XSS)};
+    el.setAttribute('data-latest-video', JSON.stringify({id:'QwF6-Sdrxoo',title:X,when:X}));
+    el.setAttribute('data-glory-video', JSON.stringify({id:'rKjR2PYdJUg',title:X,when:X}));
+    el.setAttribute('data-playlists', JSON.stringify([{id:'PLb-9QSfkRhnE2aI5nXA_Vv-UJDr8Fn4mI',title:X,count:5,thumb:'https://i.ytimg.com/vi/x/hq.jpg" onerror="window.__xss=2'},{id:'bad id',title:'nope'},{id:'PLYhdT3QigNmY',title:'glory must not show'}]));
+    el.setAttribute('data-clips', JSON.stringify([{id:'abcdefghijk',title:X},{id:'<script>',title:'bad'}]));
+    el.setAttribute('data-series-active','true'); el.setAttribute('data-series-title',X); el.setAttribute('data-series-link','javascript:alert(1)'); el.setAttribute('data-series-button',X);
+    el.setAttribute('data-live-video','<b>');</script>`), {}, (pg) => pg.evaluate(() => ({ xss: window.__xss || 0, injectedImgs: [...document.querySelectorAll('arise-sermons img')].filter(i => i.getAttribute('src') === 'x').length, titleText: document.querySelector('#ariseLatestTitle').textContent.slice(0, 20), tick: document.querySelector('#aesTickA').textContent.slice(0, 40), seriesHref: document.querySelector('#ariseSeriesBtn').getAttribute('href'), playlists: document.querySelectorAll('#aesPlaylists .pl').length, clips: document.querySelectorAll('#aesClips a').length, liveClass: document.getElementById('el').classList.contains('is-live'), frameTitle: document.querySelector('#ariseFeatured').title })));
+  // 5. reduced motion: everything visible and no running animations
+  await run('reducedMotion', mk('<arise-sermons id="el"></arise-sermons>', ''), { reducedMotion: 'reduce' }, (pg) => pg.evaluate(() => ({ hidden: [...document.querySelectorAll('arise-sermons .r, arise-sermons .rail > *')].filter(e => getComputedStyle(e).opacity !== '1').length, animations: document.getAnimations().length })));
+  // 6. same value twice: no src rewrite (count 'load' events on the featured frame)
+  await run('idempotent', mk('<arise-sermons id="el"></arise-sermons>', `<script>const el=document.getElementById('el');window.__loads=0;document.querySelector('#ariseFeatured').addEventListener('load',()=>window.__loads++);
+    const v=JSON.stringify({id:'QwF6-Sdrxoo',title:'T',when:'W'});el.setAttribute('data-latest-video',v);setTimeout(()=>{el.setAttribute('data-latest-video',v);el.setAttribute('data-latest-video',v);},300);</script>`), {}, (pg) => pg.evaluate(() => ({ loads: window.__loads, src: document.querySelector('#ariseFeatured').getAttribute('src') })));
+  // 7. 360px width overflow + tap targets
+  await run('w360', mk('<arise-sermons id="el"></arise-sermons>', ''), { viewport: { width: 360, height: 780 } }, (pg) => pg.evaluate(() => ({ scrollW: document.documentElement.scrollWidth, innerW: innerWidth, smallTaps: [...document.querySelectorAll('arise-sermons a, arise-sermons button')].filter(e => { const r = e.getBoundingClientRect(); return r.width > 0 && (r.height < 44 || r.width < 44); }).map(e => (e.id || e.className) + ' ' + Math.round(e.getBoundingClientRect().width) + 'x' + Math.round(e.getBoundingClientRect().height)) })));
+  // 8. keyboard on the tablist
+  await run('keys', mk('<arise-sermons id="el"></arise-sermons>', ''), {}, async (pg) => { await pg.focus('#aesPlaylists .pl[aria-selected="true"]'); await pg.keyboard.press('ArrowRight'); await pg.keyboard.press('ArrowRight'); return pg.evaluate(() => ({ selected: [...document.querySelectorAll('#aesPlaylists .pl')].findIndex(b => b.getAttribute('aria-selected') === 'true'), focused: document.activeElement && document.activeElement.className, frame: document.querySelector('#arisePlaylistFrame').getAttribute('src') })); });
+  await b.close(); console.log(JSON.stringify(out, null, 1));
+})();
